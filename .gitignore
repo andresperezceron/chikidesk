@@ -1,0 +1,27 @@
+# Archivos de sistema
+.DS_Store
+*.iml
+
+# Carpetas de configuración de Android Studio
+.idea/
+.gradle/
+local.properties
+
+# Output de compilación
+/build/
+*/build/
+
+# Archivos temporales
+*.log
+*.tmp
+
+# Archivos personales
+*.keystore
+*.jks
+
+# IntelliJ
+*.ipr
+*.iws
+
+# Otros
+.cxx/

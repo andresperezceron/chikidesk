@@ -1,0 +1,536 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <!-- Título principal -->
+        <TextView
+            android:id="@+id/txvTituloConfig"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/creando_configuracion"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- Título pequeño para la máquina -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/maquina"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/darker_gray"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:id="@+id/txvNombreMaquina"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Título pequeño para el molde -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/molde"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/darker_gray"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:id="@+id/txvNombreMolde"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="24dp"/>
+
+            <!-- Temperaturas -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/temperaturas_c"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/darker_gray"
+            android:layout_marginBottom="4dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="24dp"
+                android:weightSum="4"
+                android:gravity="center">
+
+            <EditText
+                android:id="@+id/edtTemp1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:autofillHints=""
+                android:inputType="numberDecimal"
+                android:hint="@string/t1"
+                android:layout_marginEnd="4dp"/>
+
+            <EditText
+                android:id="@+id/edtTemp2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:autofillHints=""
+                android:inputType="numberDecimal"
+                android:hint="@string/t2"
+                android:layout_marginEnd="4dp"
+                android:layout_marginStart="4dp"/>
+
+            <EditText
+                android:id="@+id/edtTemp3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:autofillHints=""
+                android:inputType="numberDecimal"
+                android:hint="@string/t3"
+                android:layout_marginEnd="4dp"
+                android:layout_marginStart="4dp"/>
+
+            <EditText
+                android:id="@+id/edtTemp4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:autofillHints=""
+                android:inputType="numberDecimal"
+                android:hint="@string/t4"
+                android:layout_marginStart="4dp"/>
+            </LinearLayout>
+
+            <!-- Inyección: título -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/inyecci_n_velocidad_presi_n"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/darker_gray"
+                android:layout_marginBottom="4dp" />
+
+            <!-- Fila de velocidades -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp"
+                android:weightSum="5"
+                android:gravity="center">
+
+                <EditText
+                    android:id="@+id/edtInyVelocidad1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autofillHints=""
+                    android:hint="@string/v1"
+                    android:inputType="numberDecimal"
+                    android:layout_marginEnd="4dp"/>
+
+                <EditText
+                    android:id="@+id/edtInyVelocidad2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autofillHints=""
+                    android:hint="@string/v2"
+                    android:inputType="numberDecimal"
+                    android:layout_marginHorizontal="4dp"/>
+
+                <EditText
+                    android:id="@+id/edtInyVelocidad3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autofillHints=""
+                    android:hint="@string/v3"
+                    android:inputType="numberDecimal"
+                    android:layout_marginHorizontal="4dp"/>
+
+                <EditText
+                    android:id="@+id/edtInyVelocidad4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autofillHints=""
+                    android:hint="@string/v4"
+                    android:inputType="numberDecimal"
+                    android:layout_marginHorizontal="4dp"/>
+
+                <EditText
+                    android:id="@+id/edtInyVelocidad5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autofillHints=""
+                    android:hint="@string/v5"
+                    android:inputType="numberDecimal"
+                    android:layout_marginStart="4dp"/>
+            </LinearLayout>
+
+            <!-- Fila de presiones -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="24dp"
+                android:weightSum="5"
+                android:gravity="center">
+
+                <EditText
+                    android:id="@+id/edtInyPresion1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autofillHints=""
+                    android:hint="@string/p1"
+                    android:inputType="numberDecimal"
+                    android:layout_marginEnd="4dp"/>
+
+                <EditText
+                    android:id="@+id/edtInyPresion2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autofillHints=""
+                    android:hint="@string/p2"
+                    android:inputType="numberDecimal"
+                    android:layout_marginHorizontal="4dp"/>
+
+                <EditText
+                    android:id="@+id/edtInyPresion3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autofillHints=""
+                    android:hint="@string/p3"
+                    android:inputType="numberDecimal"
+                    android:layout_marginHorizontal="4dp"/>
+
+                <EditText
+                    android:id="@+id/edtInyPresion4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autofillHints=""
+                    android:hint="@string/p4"
+                    android:inputType="numberDecimal"
+                    android:layout_marginHorizontal="4dp"/>
+
+                <EditText
+                    android:id="@+id/edtInyPresion5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autofillHints=""
+                    android:hint="@string/p5"
+                    android:inputType="numberDecimal"
+                    android:layout_marginStart="4dp"/>
+            </LinearLayout>
+
+            <!-- Título Retenpresión -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/retenpresi_n_vel_pres_tiempo"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/darker_gray"
+                android:layout_marginBottom="4dp" />
+
+            <!-- Fila única con los tres campos -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3"
+                android:layout_marginBottom="24dp">
+
+                <EditText
+                    android:id="@+id/edtRetenVelocidad"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autofillHints=""
+                    android:hint="@string/velocidad"
+                    android:inputType="numberDecimal"
+                    android:layout_marginEnd="4dp" />
+
+                <EditText
+                    android:id="@+id/edtRetenPresion"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autofillHints=""
+                    android:hint="@string/presion"
+                    android:inputType="numberDecimal"
+                    android:layout_marginHorizontal="4dp" />
+
+                <EditText
+                    android:id="@+id/edtRetenTiempo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autofillHints=""
+                    android:hint="@string/tiempo"
+                    android:inputType="numberDecimal"
+                    android:layout_marginStart="4dp" />
+            </LinearLayout>
+
+            <!-- Título Plastificación -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/plastificaci_n"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/darker_gray"
+                android:layout_marginBottom="4dp" />
+
+            <!-- Campo plastificación -->
+            <EditText
+                android:id="@+id/etPlastificacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:hint="@string/plastificaci_n"
+                android:inputType="numberDecimal"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Título Expulsor -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/expulsor_vel_pres_posicion"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/darker_gray"
+                android:layout_marginBottom="4dp" />
+
+            <!-- Fila 1: Velocidad 1 - Presión 1 - Posición 1 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3"
+                android:layout_marginBottom="8dp">
+
+                <EditText
+                    android:id="@+id/edtExpVelocidad1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autofillHints=""
+                    android:hint="@string/vel_1"
+                    android:inputType="numberDecimal"
+                    android:layout_marginEnd="4dp" />
+
+                <EditText
+                    android:id="@+id/edtExpPresion1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autofillHints=""
+                    android:hint="@string/pres_1"
+                    android:inputType="numberDecimal"
+                    android:layout_marginHorizontal="4dp" />
+
+                <EditText
+                    android:id="@+id/edtExpPosicion1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autofillHints=""
+                    android:hint="@string/pos_1"
+                    android:inputType="numberDecimal"
+                    android:layout_marginStart="4dp" />
+            </LinearLayout>
+
+            <!-- Fila 2: Velocidad 2 - Presión 2 - Posición 2 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3"
+                android:layout_marginBottom="24dp">
+
+                <EditText
+                    android:id="@+id/edtExpVelocidad2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autofillHints=""
+                    android:hint="@string/vel_2"
+                    android:inputType="numberDecimal"
+                    android:layout_marginEnd="4dp" />
+
+                <EditText
+                    android:id="@+id/edtExpPresion2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autofillHints=""
+                    android:hint="@string/pres_2"
+                    android:inputType="numberDecimal"
+                    android:layout_marginHorizontal="4dp" />
+
+                <EditText
+                    android:id="@+id/edtExpPosicion2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autofillHints=""
+                    android:hint="@string/pos_2"
+                    android:inputType="numberDecimal"
+                    android:layout_marginStart="4dp" />
+            </LinearLayout>
+
+            <!-- Título Tiempo de Ciclo -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tiempo_de_ciclo"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/darker_gray"
+                android:layout_marginBottom="4dp" />
+
+            <!-- Fila: Tiempo de ciclo y Tiempo de ciclo real -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginBottom="24dp">
+
+                <EditText
+                    android:id="@+id/etTiempoCiclo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autofillHints=""
+                    android:hint="@string/ciclo"
+                    android:inputType="numberDecimal"
+                    android:layout_marginEnd="8dp" />
+
+                <EditText
+                    android:id="@+id/etTiempoCicloReal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autofillHints=""
+                    android:hint="@string/ciclo_real"
+                    android:inputType="numberDecimal" />
+            </LinearLayout>
+
+            <!-- Título Tiempo de enfriamiento -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tiempo_de_enfriamiento"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/darker_gray"
+                android:layout_marginBottom="4dp" />
+
+            <EditText
+                android:id="@+id/etTiempoEnfriamiento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:hint="@string/enfriamiento"
+                android:inputType="numberDecimal"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Título Timeout -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/timeout"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/darker_gray"
+                android:layout_marginBottom="4dp" />
+
+            <EditText
+                android:id="@+id/etTimeout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:hint="@string/timeout"
+                android:inputType="numberDecimal"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Título Material -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/material"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/darker_gray"
+                android:layout_marginBottom="4dp" />
+
+            <EditText
+                android:id="@+id/etMaterial"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:hint="@string/material_utilizado"
+                android:inputType="text"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Título Observaciones -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/observaciones"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/darker_gray"
+                android:layout_marginBottom="4dp" />
+
+            <EditText
+                android:id="@+id/etObservaciones"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:autofillHints=""
+                android:hint="@string/a_ade_observaciones_aqu"
+                android:gravity="top|start"
+                android:inputType="textMultiLine"
+                android:background="@android:drawable/edit_text"
+                android:layout_marginBottom="32dp" />
+
+            <Button
+                android:id="@+id/btnGuardarConfiguracion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/guardar_configuraci_n"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@android:color/holo_green_dark"
+                android:layout_marginBottom="32dp" />
+        </LinearLayout>
+</ScrollView>
