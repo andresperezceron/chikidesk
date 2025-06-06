@@ -4,18 +4,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/layoutMoldeLista"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="6dp"
+    android:background="@drawable/bg_inicio">
+
+    <TextView
+        android:id="@+id/txvMoldeListaHeader"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        style="@style/onMoldeListaHeader"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewMolde"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:contentDescription="@string/listando_moldes"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txvMoldeListaHeader"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
+        app:layout_constraintEnd_toEndOf="parent"
+        android:clipToPadding="false"
+        android:paddingBottom="72dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAgregarMolde"
@@ -23,7 +32,10 @@
         android:layout_height="wrap_content"
         android:contentDescription="@string/agregando_nuevo_molde"
         android:src="@drawable/ic_add"
+        app:backgroundTint="@color/teal_700"
+        app:tint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="16dp"/>
+        android:layout_margin="16dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

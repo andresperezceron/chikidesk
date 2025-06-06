@@ -13,62 +13,38 @@
 
         <!-- Título principal -->
         <TextView
-            android:id="@+id/txvTituloConfig"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="@string/mostrando_configuracion_para"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/holo_blue_dark"
-            android:layout_marginBottom="16dp"/>
+            style="@style/TitulosPrincipales"/>
 
         <!-- Línea divisoria -->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray"
-            android:layout_marginBottom="16dp"/>
+        <View style="@style/LineaDivisoria"/>
 
         <!-- Máquina seleccionada -->
         <TextView
             android:text="@string/maquina"
-            style="@style/SmallTitleTextViewStyle"/>
+            style="@style/onConfigDetalleTituloPequeno"/>
 
         <TextView
             android:id="@+id/txvNombreMaquina"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textColor="@android:color/black"
-            android:textStyle="bold"
-            android:layout_marginBottom="12dp"/>
+            style="@style/onConfigDetalleNombreMoldeMaquina"/>
 
         <!-- Molde seleccionado -->
         <TextView
             android:text="@string/molde"
-            style="@style/SmallTitleTextViewStyle"/>
+            style="@style/onConfigDetalleTituloPequeno"/>
 
         <TextView
             android:id="@+id/txvNombreMolde"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textColor="@android:color/black"
-            android:textStyle="bold"
-            android:layout_marginBottom="24dp"/>
+            style="@style/onConfigDetalleNombreMoldeMaquina"/>
 
         <!-- Temperaturas -->
         <TextView
             android:text="@string/temperaturas_c"
-            style="@style/BigTitleTextViewStyle"/>
+            style="@style/onConfigDetalleTituloGrande"/>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
             android:weightSum="4"
-            android:layout_marginBottom="32dp">
+            style="@style/onConfigDetalleLinLayMarginBotton20dp">
 
             <TextView
                 android:id="@+id/txvTemp1"
@@ -90,21 +66,17 @@
         <!-- Inyección -->
         <TextView
             android:text="@string/inyecci_n_mm_s_y_bar"
-            style="@style/BigTitleTextViewStyle"/>
+            style="@style/onConfigDetalleTituloGrande"/>
 
         <!-- Título Velocidades -->
         <TextView
             android:text="@string/velocidades_mm_s"
-            style="@style/SmallTitleTextViewStyle" />
+            style="@style/onConfigDetalleTituloPequeno" />
 
         <!-- Fila de velocidades -->
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
             android:weightSum="5"
-            android:layout_marginBottom="6dp">
+            style="@style/onConfigDetalleLinLayMarginBotton6dp">
 
             <TextView
                 android:id="@+id/txvInyVel1"
@@ -129,16 +101,12 @@
 
         <TextView
             android:text="@string/presiones_bar"
-            style="@style/SmallTitleTextViewStyle" />
+            style="@style/onConfigDetalleTituloPequeno" />
 
     <!-- Fila de presiones -->
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
             android:weightSum="5"
-            android:layout_marginBottom="32dp">
+            style="@style/onConfigDetalleLinLayMarginBotton20dp">
 
             <TextView
                 android:id="@+id/txvInyPre1"
@@ -163,15 +131,11 @@
 
         <TextView
             android:text="@string/retenpresi_n_vel_pres_tiempo"
-            style="@style/BigTitleTextViewStyle"/>
+            style="@style/onConfigDetalleTituloGrande"/>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
             android:weightSum="3"
-            android:layout_marginBottom="32dp">
+            style="@style/onConfigDetalleLinLayMarginBotton20dp">
 
             <TextView
                 android:id="@+id/txvRetenVelocidad"
@@ -188,30 +152,23 @@
 
         <TextView
             android:text="@string/plastificacion"
-            style="@style/BigTitleTextViewStyle"/>
+            style="@style/onConfigDetalleTituloGrande"/>
 
         <TextView
             android:id="@+id/txvPlastificacion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginBottom="32dp" />
+            style="@style/onConfigDetalleValoresSinBorde"/>
 
         <TextView
             android:text="@string/expulsor_vel_pres_posicion"
-            style="@style/BigTitleTextViewStyle"/>
+            style="@style/onConfigDetalleTituloGrande"/>
 
         <TextView
             android:text="@string/velocidades_mm_s"
-            style="@style/SmallTitleTextViewStyle" />
+            style="@style/onConfigDetalleTituloPequeno" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
             android:weightSum="2"
-            android:layout_marginBottom="6dp">
+            style="@style/onConfigDetalleLinLayMarginBotton6dp">
 
             <TextView
                 android:id="@+id/txvExpulsorVel1"
@@ -224,15 +181,11 @@
 
         <TextView
             android:text="@string/presiones_bar"
-            style="@style/SmallTitleTextViewStyle" />
+            style="@style/onConfigDetalleTituloPequeno" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
             android:weightSum="2"
-            android:layout_marginBottom="6dp">
+            style="@style/onConfigDetalleLinLayMarginBotton6dp">
 
             <TextView
                 android:id="@+id/txvExpulsorPre1"
@@ -245,15 +198,11 @@
 
         <TextView
             android:text="@string/posiciones_mm"
-            style="@style/SmallTitleTextViewStyle" />
+            style="@style/onConfigDetalleTituloPequeno" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
             android:weightSum="2"
-            android:layout_marginBottom="32dp">
+            style="@style/onConfigDetalleLinLayMarginBotton20dp">
 
             <TextView
                 android:id="@+id/txvExpulsorPos1"
@@ -262,6 +211,96 @@
             <TextView
                 android:id="@+id/txvExpulsorPos2"
                 style="@style/RoundedTextViewStyle" />
+        </LinearLayout>
+
+        <TextView
+            android:text="@string/tiempos"
+            style="@style/onConfigDetalleTituloGrande"/>
+
+        <LinearLayout style="@style/onConfigDetalleLinLayTitulosPequenos">
+
+            <TextView
+                android:text="@string/tiempo_ciclo"
+                style="@style/onConfigDetalleTituloPequenoIzquierda" />
+
+            <TextView
+                android:text="@string/ciclo_real"
+                style="@style/onConfigDetalleTituloPequenoDerecha" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:weightSum="2"
+            style="@style/onConfigDetalleLinLayMarginBotton20dp">
+
+            <TextView
+                android:id="@+id/txvTiempoCiclo"
+                style="@style/RoundedTextViewStyle" />
+
+            <TextView
+                android:id="@+id/txvTiempoCicloReal"
+                style="@style/RoundedTextViewStyle" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/onConfigDetalleLinLayTitulosPequenos">
+
+            <TextView
+                android:text="@string/tiempo_enfriar"
+                style="@style/onConfigDetalleTituloPequenoIzquierda" />
+
+            <TextView
+                android:text="@string/time_out"
+                style="@style/onConfigDetalleTituloPequenoDerecha" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:weightSum="2"
+            style="@style/onConfigDetalleLinLayMarginBotton20dp">
+
+            <TextView
+                android:id="@+id/txvTiempoEnfriar"
+                style="@style/RoundedTextViewStyle" />
+
+            <TextView
+                android:id="@+id/txvTimeOut"
+                style="@style/RoundedTextViewStyle" />
+        </LinearLayout>
+
+        <TextView
+            android:text="@string/material"
+            style="@style/onConfigDetalleTituloGrande"/>
+
+        <TextView
+            android:id="@+id/txvMaterial"
+            style="@style/onConfigDetalleValoresSinBorde"/>
+
+        <TextView
+            android:text="@string/observaciones"
+            style="@style/onConfigDetalleTituloGrande"/>
+
+        <TextView
+            android:id="@+id/txvObservaciones"
+            style="@style/onConfigDetalleTxvObservaciones"/>
+
+        <View style="@style/LineaDivisoria"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btnVisto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/visto"
+                android:layout_marginTop="4dp" />
+
+            <Button
+                android:id="@+id/buttonDelete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/modificar"
+                android:layout_marginTop="10dp" />
         </LinearLayout>
 
     </LinearLayout>

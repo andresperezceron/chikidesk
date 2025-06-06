@@ -11,21 +11,151 @@
         <item name="android:textColor">@android:color/black</item>
     </style>
 
-    <style name="SmallTitleTextViewStyle">
+    <style name="onConfigDetalleTituloPequeno">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">14sp</item>
-        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:layout_marginBottom">2dp</item>
         <item name="android:textColor">@android:color/darker_gray</item>
     </style>
 
-    <style name="BigTitleTextViewStyle">
+    <style name="onConfigDetalleTituloPequenoIzquierda">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:paddingStart">46dp</item>
+        <item name="android:paddingEnd">1dp</item>
+        <item name="android:layout_marginBottom">2dp</item>
+        <item name="android:textColor">@android:color/darker_gray</item>
+    </style>
+
+    <style name="onConfigDetalleTituloPequenoDerecha">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:paddingStart">54dp</item>
+        <item name="android:paddingEnd">1dp</item>
+        <item name="android:layout_marginBottom">2dp</item>
+        <item name="android:textColor">@android:color/darker_gray</item>
+    </style>
+
+    <style name="onConfigDetalleTituloGrande">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">15sp</item>
+        <item name="android:textSize">17sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:layout_marginBottom">8dp</item>
         <item name="android:textColor">@android:color/holo_blue_dark</item>
+    </style>
+
+    <style name="onConfigDetalleNombreMoldeMaquina">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="onConfigDetalleLinLayMarginBotton20dp">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginBottom">20dp</item>
+    </style>
+
+    <style name="onConfigDetalleLinLayMarginBotton6dp">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginBottom">6dp</item>
+    </style>
+
+    <style name="onConfigDetalleLinLayTitulosPequenos">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center</item>
+        <item name="android:weightSum">2</item>
+    </style>
+
+    <style name="onConfigDetalleValoresSinBorde">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginBottom">20dp</item>
+    </style>
+
+    <style name="onConfigDetalleTxvObservaciones">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">120dp</item>
+        <item name="android:background">@drawable/textview_rounded</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:layout_marginBottom">20dp</item>
+    </style>
+
+    <style name="TitulosPrincipales">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginBottom">6dp</item>
+        <item name="android:textColor">@color/gris_uno</item>
+    </style>
+
+    <style name="LineaDivisoria">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_marginBottom">14dp</item>
+        <item name="android:background">@color/gris_uno</item>
+    </style>
+
+    <style name="onInicioHeader">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:text">@string/chikidesk</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_marginBottom">48dp</item>
+    </style>
+
+    <style name="onInicioLinearLayoutPrincipal">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:padding">28dp</item>
+        <item name= "android:background">@drawable/bg_inicio</item>
+    </style>
+
+    <style name="onInicioBotones">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">200dp</item>
+        <item name="android:text">@string/moldes</item>
+        <item name="android:textColor">@color/gris_uno</item>
+        <item name="android:backgroundTint">@color/azul_uno</item>
+    </style>
+
+    <style name="onInicioEspacio">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">16dp</item>
+    </style>
+
+    <style name="onMoldeListaHeader">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:text">@string/listando_moldes</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/gris_uno</item>
     </style>
 
 </resources>

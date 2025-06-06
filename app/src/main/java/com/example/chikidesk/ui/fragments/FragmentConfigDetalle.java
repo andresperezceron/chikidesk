@@ -2,11 +2,13 @@ package com.example.chikidesk.ui.fragments;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import com.example.chikidesk.R;
 import com.example.chikidesk.db.ExpulsorDao;
@@ -117,5 +119,26 @@ public class FragmentConfigDetalle extends Fragment {
         txvExpulsorPre2.setText(expulsor.getPresion2());
         txvExpulsorPos1.setText(expulsor.getPosicion1());
         txvExpulsorPos2.setText(expulsor.getPosicion2());
+
+        TextView txvTiempoCiclo = view.findViewById(R.id.txvTiempoCiclo);
+        TextView txvTiempoCicloReal = view.findViewById(R.id.txvTiempoCicloReal);
+        txvTiempoCiclo.setText(config.getTiempoCiclo());
+        txvTiempoCicloReal.setText(config.getTiempoCicloReal());
+
+        TextView txvTiempoEnfriar = view.findViewById(R.id.txvTiempoEnfriar);
+        TextView txvTimeOut = view.findViewById(R.id.txvTimeOut);
+        txvTiempoEnfriar.setText(config.getTiempoEnfriar());
+        txvTimeOut.setText(config.getTimeOut());
+
+        TextView txvMaterial = view.findViewById(R.id.txvMaterial);
+        txvMaterial.setText(config.getMaterial());
+
+        TextView txvObservaciones = view.findViewById(R.id.txvObservaciones);
+        txvObservaciones.setText(config.getObservaciones());
+
+        Button btnVisto = view.findViewById(R.id.btnVisto);
+        btnVisto.setOnClickListener(v -> {
+            Navigation.findNavController(view).popBackStack();
+        });
     }
 }

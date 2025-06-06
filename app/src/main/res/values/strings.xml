@@ -104,4 +104,15 @@
     <string name="presiones_bar">Presiones (bar)</string>
     <string name="plastificacion">Plastificacion</string>
     <string name="posiciones_mm">Posiciones (mm)</string>
+    <string name="real">(Real)</string>
+    <string name="tiempo_de_ciclo_real">Tiempo de ciclo (Real)</string>
+    <string name="tiempos">Tiempos</string>
+    <string name="tiempo_ciclo">Tiempo Ciclo</string>
+    <string name="tiempo_enfriar">Tiempo Enfriar</string>
+    <string name="time_out">Time Out</string>
+    <string name="modificar">Modificar</string>
+    <string name="chikidesk">ChikiDesk</string>
+    <string name="icono_de_seccion">Icono de seccion</string>
+    <string name="t_tulo_de_secci_n">Título de sección</string>
+    <string name="subt_tulo">Subtítulo</string>
 </resources>

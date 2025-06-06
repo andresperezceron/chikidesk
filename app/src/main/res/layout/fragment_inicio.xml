@@ -1,35 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:padding="32dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/onInicioLinearLayoutPrincipal">
 
-    <Button
+    <TextView style="@style/onInicioHeader"/>
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnMoldes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/moldes" />
+        android:text="@string/moldes"
+        app:cornerRadius="16dp"
+        style="@style/onInicioBotones" />
 
-    <Space
-        android:layout_width="0dp"
-        android:layout_height="16dp" />
+    <Space style="@style/onInicioEspacio" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnMaquinas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/maquinas" />
+        android:text="@string/maquinas"
+        app:cornerRadius="16dp"
+        style="@style/onInicioBotones"/>
 
-    <Space
-        android:layout_width="0dp"
-        android:layout_height="16dp" />
+    <Space style="@style/onInicioEspacio"/>
 
-    <Button
+    <!-- Botón Configuraciones - Amarillo -->
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnConfiguraciones"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/configuraciones" />
+        android:text="@string/configuraciones"
+        app:cornerRadius="16dp"
+        style="@style/onInicioBotones"/>
+
 </LinearLayout>
