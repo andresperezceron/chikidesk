@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    android:backgroundTint="@color/azul_uno"
+    android:backgroundTint="@color/azul1"
     card_view:cardCornerRadius="8dp"
     card_view:cardElevation="4dp">
 
@@ -17,5 +17,5 @@
         android:gravity="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textStyle="bold"
-        android:textColor="@color/gris_uno"/>
+        android:textColor="@color/gris1"/>
 </androidx.cardview.widget.CardView>

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/fragmentInicio"
-        android:name="com.example.chikidesk.ui.fragments.FragmentInicio"
+        android:name="com.example.chikidesk.ui.fragments.FragmentStartApp"
         android:label="Inicio" >
         <action
             android:id="@+id/action_inicio_to_moldes"
@@ -62,7 +62,7 @@
 
     <fragment
         android:id="@+id/fragmentMaquinaLista"
-        android:name="com.example.chikidesk.ui.fragments.FragmentMaquinaLista"
+        android:name="com.example.chikidesk.ui.fragments.FragmentMaquinaList"
         android:label="Lista de Máquinas" >
         <action
             android:id="@+id/action_maquinaLista_to_maquinaDetalle"
@@ -95,7 +95,7 @@
 
     <fragment
         android:id="@+id/fragmentMoldeLista"
-        android:name="com.example.chikidesk.ui.fragments.FragmentMoldeLista"
+        android:name="com.example.chikidesk.ui.fragments.FragmentMoldeList"
         android:label="Listando Moldes" >
         <action
             android:id="@+id/action_moldeLista_to_moldeDetalle"
@@ -118,11 +118,14 @@
         android:id="@+id/fragmentMoldeFormulario"
         android:name="com.example.chikidesk.ui.fragments.FragmentMoldeForm"
         android:label="Agregar Molde" >
+        <action
+            android:id="@+id/action_moldeForm_to_home"
+            app:destination="@+id/fragmentInicio" />
     </fragment>
 
     <fragment
         android:id="@+id/fragmentMoldeDetalle"
-        android:name="com.example.chikidesk.ui.fragments.FragmentMoldeDetalle"
+        android:name="com.example.chikidesk.ui.fragments.FragmentMoldeShow"
         android:label="Descripcion Máquina" >
     </fragment>
 

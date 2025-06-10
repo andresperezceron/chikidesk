@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,8 +21,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
-public class FragmentMoldeLista extends Fragment {
-    public FragmentMoldeLista() {
+public class FragmentMoldeList extends Fragment {
+    public FragmentMoldeList() {
         // Constructor público vacío requerido
     }
 
@@ -33,7 +31,7 @@ public class FragmentMoldeLista extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_molde_lista, container, false);
+        View view = inflater.inflate(R.layout.fragment_molde_list, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.recyclerViewMolde);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -43,13 +41,18 @@ public class FragmentMoldeLista extends Fragment {
 
         AdapterMoldeLista.OnItemClickListener listener = molde -> {
             Bundle bundle = new Bundle();
-            bundle.putInt("id_molde", molde.getId());
+            bundle.putParcelable("molde", molde);
             NavHostFragment.findNavController(this)
                     .navigate(R.id.action_moldeLista_to_moldeDetalle, bundle);
         };
         recyclerView.setAdapter(new AdapterMoldeLista(listaMoldes, listener));
 
-        FloatingActionButton fabAgregar = view.findViewById(R.id.fabAgregarMolde);
+        FloatingActionButton fabHome = view.findViewById(R.id.fabBack);
+        fabHome.setOnClickListener(v -> {
+            Navigation.findNavController(view).popBackStack();
+        });
+
+        FloatingActionButton fabAgregar = view.findViewById(R.id.fabNewMolde);
         fabAgregar.setOnClickListener(v -> {
             Navigation.findNavController(v).navigate(R.id.action_moldeLista_to_moldeFormulario);
         });

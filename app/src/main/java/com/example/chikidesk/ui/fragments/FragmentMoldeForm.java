@@ -14,6 +14,9 @@ import androidx.navigation.Navigation;
 import com.example.chikidesk.R;
 import com.example.chikidesk.db.MoldeDao;
 import com.example.chikidesk.model.Molde;
+import com.example.chikidesk.ui.validateforms.CheckMoldeForm;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class FragmentMoldeForm extends Fragment {
     public FragmentMoldeForm() {
@@ -23,28 +26,41 @@ public class FragmentMoldeForm extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        EditText editNombre = view.findViewById(R.id.editTextNombre);
-        EditText editReferencia = view.findViewById(R.id.editTextReferencia);
-        EditText editDescripcion = view.findViewById(R.id.editTextDescripcion);
+        EditText editNombre = view.findViewById(R.id.edtNombreMolde);
+        EditText editReferencia = view.findViewById(R.id.edtReferenciaMolde);
+        EditText editDescripcion = view.findViewById(R.id.edtDescripcionMolde);
         Button btnGuardar = view.findViewById(R.id.btnGuardarMolde);
 
-        btnGuardar.setOnClickListener(v -> {
-            String nombre = editNombre.getText().toString().trim();
-            String referencia = editReferencia.getText().toString().trim();
-            String descripcion = editDescripcion.getText().toString().trim();
+        TextInputLayout tilNombre = view.findViewById(R.id.tilNombreMolde);
+        TextInputLayout tilReferencia = view.findViewById(R.id.tilReferenciaMolde);
+        TextInputLayout tilDescripcion = view.findViewById(R.id.tilDescripcionMolde);
 
-            if (nombre.isEmpty() || referencia.isEmpty()) {
-                Toast.makeText(getContext(), "Todos los campos son obligatorios",
-                        Toast.LENGTH_SHORT).show();
-                return;
+        btnGuardar.setOnClickListener(v -> {
+            CheckMoldeForm check = new CheckMoldeForm(getContext(),
+                    tilNombre, tilReferencia, tilDescripcion,
+                    editNombre.getText().toString().trim(),
+                    editReferencia.getText().toString().trim(),
+                    editDescripcion.getText().toString().trim());
+
+            if(check.getCheckStatus()) {
+                MoldeDao dao = new MoldeDao(requireContext());
+                dao.insertar(new Molde(0, check.getNombre(), check.getReferencia(),
+                        check.getDescripcion()));
+                dao.close();
+                Toast.makeText(getContext(), "Molde guardado", Toast.LENGTH_SHORT).show();
+                Navigation.findNavController(view).popBackStack(); // Volver a la lista
             }
 
-            MoldeDao dao = new MoldeDao(requireContext());
-            dao.insertar(new Molde(0, nombre, referencia, descripcion));
-            dao.close();
+        });
 
-            Toast.makeText(getContext(), "Molde guardado", Toast.LENGTH_SHORT).show();
-            Navigation.findNavController(view).popBackStack(); // Volver a la lista
+        FloatingActionButton fabBack = view.findViewById(R.id.fabBack);
+        fabBack.setOnClickListener(v -> {
+            Navigation.findNavController(view).popBackStack();
+        });
+
+        FloatingActionButton fabHome = view.findViewById(R.id.fabHome);
+        fabHome.setOnClickListener(v -> {
+            Navigation.findNavController(v).navigate(R.id.action_moldeForm_to_home);
         });
     }
 }

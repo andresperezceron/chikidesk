@@ -14,10 +14,10 @@
         <!-- Título principal -->
         <TextView
             android:text="@string/mostrando_configuracion_para"
-            style="@style/TitulosPrincipales"/>
+            style="@style/onConfigShowBigTitle"/>
 
         <!-- Línea divisoria -->
-        <View style="@style/LineaDivisoria"/>
+        <View style="@style/onMoldeFormDivisorLine"/>
 
         <!-- Máquina seleccionada -->
         <TextView
@@ -281,7 +281,7 @@
             android:id="@+id/txvObservaciones"
             style="@style/onConfigDetalleTxvObservaciones"/>
 
-        <View style="@style/LineaDivisoria"/>
+        <View style="@style/onMoldeFormDivisorLine"/>
 
         <LinearLayout
             android:layout_width="match_parent"

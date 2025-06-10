@@ -4,50 +4,119 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@drawable/bg_main">
 
-    <EditText
-        android:id="@+id/editTextNombre"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:autofillHints=""
-        android:hint="@string/nombre_del_molde"
-        android:inputType="text"
+    <TextView
+        android:id="@+id/txvMoldeFormHeader"
+        android:text="@string/new_molde"
+        style="@style/onAllAppHeader"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <EditText
-        android:id="@+id/editTextReferencia"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:autofillHints=""
-        android:hint="@string/referencia_del_molde"
-        android:inputType="text"
-        app:layout_constraintTop_toBottomOf="@id/editTextNombre"
+    <Space
+        android:id="@+id/spacer"
+        style="@style/onAllAppSpacer"
+        app:layout_constraintTop_toBottomOf="@id/txvMoldeFormHeader"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-    <EditText
-        android:id="@+id/editTextDescripcion"
-        android:layout_width="0dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilNombreMolde"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:autofillHints=""
-        android:hint="@string/descripcion_del_molde"
-        android:inputType="text"
-        app:layout_constraintTop_toBottomOf="@id/editTextReferencia"
+        android:textColorHint="@color/verde1"
+        app:boxBackgroundMode="outline"
+        app:cursorErrorColor="@color/naranja3"
+        app:boxStrokeErrorColor="@color/naranja3"
+        app:errorTextColor="@color/naranja3"
+        app:errorIconTint="@color/naranja3"
+        app:layout_constraintTop_toBottomOf="@id/spacer"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        app:layout_constraintEnd_toEndOf="parent">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtNombreMolde"
+            android:hint="@string/property_nombre"
+            android:autofillHints=""
+            style="@style/onMoldeFormEditTexts" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilReferenciaMolde"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/verde1"
+        android:layout_marginTop="8dp"
+        app:boxBackgroundMode="outline"
+        app:cursorErrorColor="@color/naranja3"
+        app:boxStrokeErrorColor="@color/naranja3"
+        app:errorTextColor="@color/naranja3"
+        app:errorIconTint="@color/naranja3"
+        app:layout_constraintTop_toBottomOf="@id/tilNombreMolde"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtReferenciaMolde"
+            android:autofillHints=""
+            android:hint="@string/property_referencia"
+            style="@style/onMoldeFormEditTexts" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilDescripcionMolde"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/teal_200"
+        android:layout_marginTop="8dp"
+        app:boxBackgroundMode="outline"
+        app:layout_constraintTop_toBottomOf="@id/tilReferenciaMolde"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtDescripcionMolde"
+            android:autofillHints=""
+            android:hint="@string/property_descripcion"
+            style="@style/onMoldeFormEditTexts" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btnGuardarMolde"
+        style="@style/onStartAppButtons"
+        android:layout_marginTop="64dp"
+        android:text="@string/action_save"
+        app:cornerRadius="16dp"
+        app:strokeWidth="6dp"
+        app:strokeColor="@color/verde3"
+        app:backgroundTint="@color/verde2"
+        app:layout_constraintTop_toBottomOf="@id/tilDescripcionMolde"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/boton_guardar"
-        app:layout_constraintTop_toBottomOf="@id/editTextReferencia"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp"/>
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/ic_back"
+        android:contentDescription="@string/fab_back"
+        app:backgroundTint="@color/verde3"
+        app:tint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="@string/fab_home"
+        android:src="@drawable/ic_home"
+        app:backgroundTint="@color/verde3"
+        app:tint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

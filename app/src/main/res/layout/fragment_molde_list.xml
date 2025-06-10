@@ -6,20 +6,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="6dp"
-    android:background="@drawable/bg_inicio">
+    android:background="@drawable/bg_main">
 
     <TextView
-        android:id="@+id/txvMoldeListaHeader"
+        android:id="@+id/txvMoldeListHeader"
+        android:text="@string/list_moldes"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        style="@style/onMoldeListaHeader"/>
+        style="@style/onAllAppHeader"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewMolde"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:contentDescription="@string/listando_moldes"
-        app:layout_constraintTop_toBottomOf="@id/txvMoldeListaHeader"
+        android:contentDescription="@string/list_moldes"
+        app:layout_constraintTop_toBottomOf="@id/txvMoldeListHeader"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,15 +28,29 @@
         android:paddingBottom="72dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAgregarMolde"
+        android:id="@+id/fabBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/agregando_nuevo_molde"
-        android:src="@drawable/ic_add"
-        app:backgroundTint="@color/teal_700"
-        app:tint="@android:color/white"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/ic_home"
+        android:contentDescription="@string/fab_back"
+        app:backgroundTint="@color/verde3"
+        app:tint="@color/gris1"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="16dp" />
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabNewMolde"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="@string/new_molde"
+        android:src="@drawable/ic_add"
+        app:backgroundTint="@color/verde3"
+        app:tint="@color/gris1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

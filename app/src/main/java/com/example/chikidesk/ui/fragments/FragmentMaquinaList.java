@@ -23,15 +23,15 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FragmentMaquinaLista extends Fragment {
-    public FragmentMaquinaLista() {}
+public class FragmentMaquinaList extends Fragment {
+    public FragmentMaquinaList() {}
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_maquina_lista, container, false);
+        View view = inflater.inflate(R.layout.fragment_maquina_list, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.recyclerViewMaquina);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -47,7 +47,12 @@ public class FragmentMaquinaLista extends Fragment {
         };
         recyclerView.setAdapter(new AdapterMaquinaLista(maquinas, listener));
 
-        FloatingActionButton fabAgregar = view.findViewById(R.id.fabAgregarMaquina);
+        FloatingActionButton fabHome = view.findViewById(R.id.fabBack);
+        fabHome.setOnClickListener(v -> {
+            Navigation.findNavController(view).popBackStack();
+        });
+
+        FloatingActionButton fabAgregar = view.findViewById(R.id.fabNewMaquina);
         fabAgregar.setOnClickListener(v -> {
             Navigation.findNavController(v).navigate(R.id.action_maquinaLista_to_maquinaFormulario);
         });

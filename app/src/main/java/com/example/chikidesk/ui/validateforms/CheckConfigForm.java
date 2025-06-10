@@ -5,15 +5,16 @@ import android.widget.EditText;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CheckValues {
+public class CheckConfigForm {
     private final List<String> listaVacios;
 
-    public CheckValues() {
+    public CheckConfigForm() {
         listaVacios = new ArrayList<>();
     }
 
     public String checkEdt(EditText edt, String nombreCampo) {
         String value = edt.getText().toString().trim();
+
         switch(nombreCampo) {
             case "temp1" :
                 if(value.isEmpty()) {

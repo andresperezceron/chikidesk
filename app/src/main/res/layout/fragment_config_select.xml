@@ -21,7 +21,7 @@
         android:id="@+id/rcvConfigSelect"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:contentDescription="@string/listando_configuraciones"
+        android:contentDescription="@string/list_config"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -2,31 +2,39 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/onInicioLinearLayoutPrincipal">
+    style="@style/onStarAppLinearLayoutMain">
 
-    <TextView style="@style/onInicioHeader"/>
+    <TextView style="@style/onStarAppHeader"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnMoldes"
         android:text="@string/moldes"
+        style="@style/onStartAppButtons"
         app:cornerRadius="16dp"
-        style="@style/onInicioBotones" />
+        app:strokeWidth="6dp"
+        app:strokeColor="@color/verde3"
+        app:backgroundTint="@color/verde2"/>
 
-    <Space style="@style/onInicioEspacio" />
+    <Space style="@style/onStarAppSpace" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnMaquinas"
         android:text="@string/maquinas"
+        style="@style/onStartAppButtons"
         app:cornerRadius="16dp"
-        style="@style/onInicioBotones"/>
+        app:strokeWidth="6dp"
+        app:strokeColor="@color/verde3"
+        app:backgroundTint="@color/verde2"/>
 
-    <Space style="@style/onInicioEspacio"/>
+    <Space style="@style/onStarAppSpace"/>
 
-    <!-- Botón Configuraciones - Amarillo -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnConfiguraciones"
         android:text="@string/configuraciones"
+        style="@style/onStartAppButtons"
         app:cornerRadius="16dp"
-        style="@style/onInicioBotones"/>
+        app:strokeWidth="6dp"
+        app:strokeColor="@color/verde3"
+        app:backgroundTint="@color/verde2" />
 
 </LinearLayout>

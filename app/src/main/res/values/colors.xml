@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_500">#4DB6AC</color>
+    <color name="purple_500back">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
@@ -9,11 +10,24 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#D32F2F</color>
 
+    <color name="naranja1">#fff3e0</color>
+    <color name="naranja2">#ffe0b2</color>
+    <color name="naranja3">#ffcc80</color>
+    <color name="naranja4">#ffb74d</color>
+    <color name="naranja5">#ffa726</color>
+    <color name="naranja6">#ff9800</color>
+    <color name="naranja7">#fb8c00</color>
+    <color name="naranja8">#f57c00</color>
+    <color name="naranja9">#ef6c00</color>
+    <color name="naranja10">#e65100</color>
 
-    <color name="verde_uno">#4DB6AC</color>
+    <color name="verde1">#FF03DAC5</color>
+    <color name="verde2">#4DB6AC</color>
+    <color name="verde3">#FF018786</color>
 
-    <color name="gris_uno">#F1F7F6</color>
+    <color name="gris1">#F1F7F6</color>
 
-    <color name="azul_uno">#2BA5B2</color>
-    <color name="azul_dos">#023E55</color>
+    <color name="azul1">#2BA5B2</color>
+    <color name="azul2">#023E55</color>
+
 </resources>

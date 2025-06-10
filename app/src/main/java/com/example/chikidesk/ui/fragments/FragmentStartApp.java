@@ -11,9 +11,9 @@ import androidx.navigation.Navigation;
 
 import com.example.chikidesk.R;
 
-public class FragmentInicio extends Fragment {
-    public FragmentInicio() {
-        super(R.layout.fragment_inicio);
+public class FragmentStartApp extends Fragment {
+    public FragmentStartApp() {
+        super(R.layout.fragment_start_app);
     }
 
     @Override

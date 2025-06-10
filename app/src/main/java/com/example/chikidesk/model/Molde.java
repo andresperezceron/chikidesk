@@ -1,8 +1,11 @@
 package com.example.chikidesk.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import androidx.annotation.NonNull;
 
-public class Molde {
+public class Molde implements Parcelable {
     private int id;
     private String nombre;
     private String referencia;
@@ -14,6 +17,25 @@ public class Molde {
         this.referencia = referencia;
         this.descripcion = descripcion;
     }
+
+    protected Molde(Parcel in) {
+        id = in.readInt();
+        nombre = in.readString();
+        referencia = in.readString();
+        descripcion = in.readString();
+    }
+
+    public static final Creator<Molde> CREATOR = new Creator<>() {
+        @Override
+        public Molde createFromParcel(Parcel in) {
+            return new Molde(in);
+        }
+
+        @Override
+        public Molde[] newArray(int size) {
+            return new Molde[size];
+        }
+    };
 
     public int getId() {
         return id;
@@ -47,10 +69,17 @@ public class Molde {
         this.descripcion = descripcion;
     }
 
-    @NonNull
-    @Override
-    public String toString() {
-        return nombre + " (" + referencia + ")";
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel parcel, int i) {
+        parcel.writeInt(id);
+        parcel.writeString(nombre);
+        parcel.writeString(referencia);
+        parcel.writeString(descripcion);
     }
 }

@@ -49,7 +49,6 @@ public class MoldeDao extends AbstractDao<Molde> {
         return db.insert(getTableName(), null, getContentValues(molde));
     }
 
-
     public List<Molde> obtenerMoldesNoConfigurados(int idMaquina) {
         List<Molde> moldes = new ArrayList<>();
         String query = "SELECT m.id, m.nombre, m.referencia, m.descripcion " +
@@ -64,5 +63,21 @@ public class MoldeDao extends AbstractDao<Molde> {
 
         cursor.close();
         return moldes;
+    }
+
+    public boolean propertyNameDuplicate(String name) {
+        String query = "SELECT * FROM molde WHERE nombre=?";
+        Cursor cursor = db.rawQuery(query, new String[]{name});
+        boolean value = cursor.moveToFirst();
+        cursor.close();
+        return value;
+    }
+
+    public boolean propertyRefDuplicate(String ref) {
+        String query = "SELECT * FROM molde WHERE referencia=?";
+        Cursor cursor = db.rawQuery(query, new String[]{ref});
+        boolean value = cursor.moveToFirst();
+        cursor.close();
+        return value;
     }
 }

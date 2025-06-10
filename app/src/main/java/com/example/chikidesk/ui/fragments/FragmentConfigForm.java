@@ -26,7 +26,7 @@ import com.example.chikidesk.model.Maquina;
 import com.example.chikidesk.model.Molde;
 import com.example.chikidesk.model.RetenPresion;
 import com.example.chikidesk.model.Temperatura;
-import com.example.chikidesk.ui.validateforms.CheckValues;
+import com.example.chikidesk.ui.validateforms.CheckConfigForm;
 
 public class FragmentConfigForm extends Fragment {
     private EditText edtTemp1, edtTemp2, edtTemp3, edtTemp4;
@@ -99,7 +99,7 @@ public class FragmentConfigForm extends Fragment {
         txvNombreMolde.setText(molde.getNombre());
 
         btnGuardarConfiguracion.setOnClickListener(v -> {
-            CheckValues cv = new CheckValues();
+            CheckConfigForm cv = new CheckConfigForm();
 
             Temperatura nuevaTemperatura = new Temperatura(0,
                     cv.checkEdt(edtTemp1, "temp1"),
