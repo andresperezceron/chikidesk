@@ -43,11 +43,6 @@ public class MaquinaDao extends AbstractDao<Maquina> {
         return maquina.getId();
     }
 
-    @Override
-    public long insertar(Maquina maquina) {
-        return db.insert(getTableName(), null, getContentValues(maquina));
-    }
-
     public Map<Maquina, Integer> obtenerTotalesConfiguraciones() {
         Map<Maquina, Integer> resultado = new HashMap<>();
 

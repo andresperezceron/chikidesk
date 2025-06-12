@@ -24,16 +24,13 @@ public class FragmentStartApp extends Fragment {
         Button btnMaquinas = view.findViewById(R.id.btnMaquinas);
         Button btnConfiguraciones = view.findViewById(R.id.btnConfiguraciones);
 
-        btnMoldes.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigate(R.id.action_inicio_to_moldes);
-        });
+        btnMoldes.setOnClickListener(v ->
+            Navigation.findNavController(v).navigate(R.id.action_startApp_to_moldeList));
 
-        btnMaquinas.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigate(R.id.action_inicio_to_maquinas);
-        });
+        btnMaquinas.setOnClickListener(v ->
+            Navigation.findNavController(v).navigate(R.id.action_startApp_to_maquinaList));
 
-        btnConfiguraciones.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigate(R.id.action_inicio_to_configuraciones);
-        });
+        btnConfiguraciones.setOnClickListener(v ->
+            Navigation.findNavController(v).navigate(R.id.action_startApp_to_configList));
     }
 }

@@ -1,21 +1,27 @@
 <resources>
     <string name="app_name">Chiki Desk</string>
-    <string name="moldes">Moldes</string>
-    <string name="maquinas">Maquinas</string>
-    <string name="list_moldes">Listando moldes</string>
+    <string name="btn_text_moldes">Moldes</string>
+    <string name="btn_text_maquinas">Maquinas</string>
+    <string name="header_molde_list">Listando moldes</string>
     <string name="list_maquinas">Listando maquinas</string>
     <string name="list_config">Listando configuraciones</string>
-    <string name="new_molde">Creando nuevo molde</string>
+    <string name="header_molde_form">Creando nuevo molde</string>
     <string name="property_nombre">Nombre</string>
     <string name="property_referencia">Referencia</string>
     <string name="property_descripcion">Descripción</string>
     <string name="action_save">Guardar</string>
-    <string name="msn_nombre_molde_empy">El campo Nombre es obligatorio</string>
-    <string name="msn_nombre_duplicate">Ya hay un molde con este Nombre</string>
-    <string name="msn_molde_ref_empy">El campo Referencia es obligatorio</string>
-    <string name="msn_molde_ref_duplicate">Ya hay un molde con esta Referencia</string>
-    <string name="fab_back">Direccionar atrás</string>
-    <string name="fab_home">Direccionar a home</string>
+    <string name="msn_empty_property_name">El campo Nombre es obligatorio</string>
+    <string name="msn_empty_property_ref">El campo Referencia es obligatorio</string>
+    <string name="msn_duplicate_property_name">Ya hay un molde con este Nombre</string>
+    <string name="msn_duplicate_property_ref">Ya hay un molde con esta Referencia</string>
+    <string name="msn_img_select">Selecciona imagen</string>
+    <string name="msn_img">img</string>
+    <string name="cont_desc_fab_nav_back">Fab nav atrás</string>
+    <string name="cont_desc_fab_nav_home">Fab nav home</string>
+    <string name="cont_desc_fab_select_img">Fab select imagen</string>
+    <string name="cont_desc_fab_new_molde">Fab new molde</string>
+    <string name="cont_desc_img_molde">Contenedor imageView molde</string>
+    <string name="cont_desc_rcv_molde">Contenedor recycledView molde</string>
     <string name="nueva_maquina">Nueva maquina</string>
     <string name="creando_nueva_maquina">Creando Nueva Maquina</string>
     <string name="nombre_para_la_nueva_maquina">Nombre para la nueva Maquina</string>
@@ -90,7 +96,6 @@
     <string name="molde_nombremolde">Molde: NombreMolde</string>
     <string name="visualizando_configuraci_n">Visualizando Configuración</string>
     <string name="m_quina">Máquina:</string>
-    <string name="molde">Molde:</string>
     <string name="mostrando_configuracion_para">Mostrando Configuracion para...</string>
     <string name="_25_c">25°C</string>
     <string name="inyecci_n_mm_s_y_bar">Inyección (mm/s y bar)</string>
@@ -108,8 +113,4 @@
     <string name="tiempo_enfriar">Tiempo Enfriar</string>
     <string name="time_out">Time Out</string>
     <string name="modificar">Modificar</string>
-    <string name="chikidesk">ChikiDesk</string>
-    <string name="icono_de_seccion">Icono de seccion</string>
-    <string name="t_tulo_de_secci_n">Título de sección</string>
-    <string name="subt_tulo">Subtítulo</string>
 </resources>

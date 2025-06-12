@@ -38,46 +38,23 @@ public class MoldeDao extends AbstractDao<Molde> {
         return values;
     }
 
-
     @Override
     protected int getId(Molde molde) {
         return molde.getId();
     }
 
-    @Override
-    public long insertar(Molde molde) {
-        return db.insert(getTableName(), null, getContentValues(molde));
-    }
-
-    public List<Molde> obtenerMoldesNoConfigurados(int idMaquina) {
+    public List<Molde> getMoldesNotConfig(int idMaquina) {
         List<Molde> moldes = new ArrayList<>();
         String query = "SELECT m.id, m.nombre, m.referencia, m.descripcion " +
                 "FROM molde m " +
                 "LEFT JOIN configuracion c ON m.id = c.id_molde AND c.id_maquina = ? " +
                 "WHERE c.id_molde IS NULL";
-        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(idMaquina)});
 
-        if(cursor.moveToFirst())
-            do moldes.add(fromCursor(cursor));
-            while(cursor.moveToNext());
-
-        cursor.close();
+        try(Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(idMaquina)})) {
+            if(cursor.moveToFirst())
+                do moldes.add(fromCursor(cursor));
+                while(cursor.moveToNext());
+        }
         return moldes;
-    }
-
-    public boolean propertyNameDuplicate(String name) {
-        String query = "SELECT * FROM molde WHERE nombre=?";
-        Cursor cursor = db.rawQuery(query, new String[]{name});
-        boolean value = cursor.moveToFirst();
-        cursor.close();
-        return value;
-    }
-
-    public boolean propertyRefDuplicate(String ref) {
-        String query = "SELECT * FROM molde WHERE referencia=?";
-        Cursor cursor = db.rawQuery(query, new String[]{ref});
-        boolean value = cursor.moveToFirst();
-        cursor.close();
-        return value;
     }
 }

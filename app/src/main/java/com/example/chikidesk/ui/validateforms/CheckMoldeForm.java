@@ -6,16 +6,17 @@ import com.google.android.material.textfield.TextInputLayout;
 
 public class CheckMoldeForm {
     private final MoldeDao dao;
-    TextInputLayout tilNombre, tilReferencia, tilDescripcion;
-    private String nombre, referencia, descripcion;
+    private final String nombre;
+    private final String referencia;
+    private final TextInputLayout tilNombre;
+    private final TextInputLayout tilReferencia;
+    private String descripcion;
     private boolean checkStatus;
 
-    public CheckMoldeForm(Context context, TextInputLayout tilNombre,
-                          TextInputLayout tilReferencia, TextInputLayout tilDescripcion,
+    public CheckMoldeForm(Context context, TextInputLayout tilNombre, TextInputLayout tilReferencia,
                           String nombre, String referencia, String descripcion) {
         this.tilNombre = tilNombre;
         this.tilReferencia = tilReferencia;
-        this.tilDescripcion = tilDescripcion;
         this.nombre = nombre;
         this.referencia = referencia;
         this.descripcion = descripcion;
@@ -32,7 +33,7 @@ public class CheckMoldeForm {
         if(nombre.isEmpty()) {
             checkStatus = false;
             tilNombre.setError("El campo Nombre es obligatorio");
-        }else if(dao.propertyNameDuplicate(nombre)) {
+        }else if(dao.duplicateUniqueKey("nombre", nombre)) {
             tilNombre.setError("Nombre ulizado por otro molde");
             checkStatus = false;
         }
@@ -43,7 +44,7 @@ public class CheckMoldeForm {
         if(referencia.isEmpty()) {
             checkStatus = false;
             tilReferencia.setError("El campo Referencia es obligatorio");
-        }else if(dao.propertyRefDuplicate(referencia)) {
+        }else if(dao.duplicateUniqueKey("referencia", referencia)) {
             tilReferencia.setError("Referencia utilizada por otro molde");
             checkStatus = false;
         }

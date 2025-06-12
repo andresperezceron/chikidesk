@@ -1,7 +1,7 @@
 package com.example.chikidesk.model;
 
 public class Inyeccion {
-    private int id_configuracion;
+    private int id;
     private String velocidad1;
     private String presion1;
     private String velocidad2;
@@ -13,10 +13,10 @@ public class Inyeccion {
     private String velocidad5;
     private String presion5;
 
-    public Inyeccion(int id_configuracion, String velocidad1, String presion1, String velocidad2,
-                     String presion2, String velocidad3, String presion3, String velocidad4,
-                     String presion4, String velocidad5, String presion5) {
-        this.id_configuracion = id_configuracion;
+    public Inyeccion(int id, String velocidad1, String presion1, String velocidad2, String presion2,
+                     String velocidad3, String presion3, String velocidad4, String presion4,
+                     String velocidad5, String presion5) {
+        this.id = id;
         this.velocidad1 = velocidad1;
         this.presion1 = presion1;
         this.velocidad2 = velocidad2;
@@ -29,12 +29,12 @@ public class Inyeccion {
         this.presion5 = presion5;
     }
 
-    public int getId_configuracion() {
-        return id_configuracion;
+    public int getId() {
+        return id;
     }
 
-    public void setId_configuracion(int id_configuracion) {
-        this.id_configuracion = id_configuracion;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getVelocidad1() {

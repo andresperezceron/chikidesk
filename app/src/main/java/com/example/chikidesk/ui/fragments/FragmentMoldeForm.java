@@ -33,18 +33,17 @@ public class FragmentMoldeForm extends Fragment {
 
         TextInputLayout tilNombre = view.findViewById(R.id.tilNombreMolde);
         TextInputLayout tilReferencia = view.findViewById(R.id.tilReferenciaMolde);
-        TextInputLayout tilDescripcion = view.findViewById(R.id.tilDescripcionMolde);
 
         btnGuardar.setOnClickListener(v -> {
             CheckMoldeForm check = new CheckMoldeForm(getContext(),
-                    tilNombre, tilReferencia, tilDescripcion,
+                    tilNombre, tilReferencia,
                     editNombre.getText().toString().trim(),
                     editReferencia.getText().toString().trim(),
                     editDescripcion.getText().toString().trim());
 
             if(check.getCheckStatus()) {
                 MoldeDao dao = new MoldeDao(requireContext());
-                dao.insertar(new Molde(0, check.getNombre(), check.getReferencia(),
+                dao.insert(new Molde(0, check.getNombre(), check.getReferencia(),
                         check.getDescripcion()));
                 dao.close();
                 Toast.makeText(getContext(), "Molde guardado", Toast.LENGTH_SHORT).show();
@@ -53,7 +52,7 @@ public class FragmentMoldeForm extends Fragment {
 
         });
 
-        FloatingActionButton fabBack = view.findViewById(R.id.fabBack);
+        FloatingActionButton fabBack = view.findViewById(R.id.fabNavHome);
         fabBack.setOnClickListener(v -> {
             Navigation.findNavController(view).popBackStack();
         });

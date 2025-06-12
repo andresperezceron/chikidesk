@@ -1,40 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/onStarAppLinearLayoutMain">
+    android:id="@+id/fragmentStartApp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="56dp"
+    android:background="@drawable/bg_main" >
 
-    <TextView style="@style/onStarAppHeader"/>
+    <TextView
+        android:id="@+id/txvStartAppHeader"
+        android:text="@string/app_name"
+        android:textSize="34sp"
+        style="@style/onAllAppHeader"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/btnMoldes"
-        android:text="@string/moldes"
+        android:text="@string/btn_text_moldes"
+        android:layout_marginTop="64dp"
         style="@style/onStartAppButtons"
         app:cornerRadius="16dp"
         app:strokeWidth="6dp"
         app:strokeColor="@color/verde3"
-        app:backgroundTint="@color/verde2"/>
+        app:backgroundTint="@color/verde2"
+        app:layout_constraintTop_toBottomOf="@id/txvStartAppHeader"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-    <Space style="@style/onStarAppSpace" />
-
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/btnMaquinas"
-        android:text="@string/maquinas"
+        android:text="@string/btn_text_maquinas"
         style="@style/onStartAppButtons"
         app:cornerRadius="16dp"
         app:strokeWidth="6dp"
         app:strokeColor="@color/verde3"
-        app:backgroundTint="@color/verde2"/>
+        app:backgroundTint="@color/verde2"
+        app:layout_constraintTop_toBottomOf="@id/btnMoldes"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-    <Space style="@style/onStarAppSpace"/>
 
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/btnConfiguraciones"
         android:text="@string/configuraciones"
         style="@style/onStartAppButtons"
         app:cornerRadius="16dp"
         app:strokeWidth="6dp"
         app:strokeColor="@color/verde3"
-        app:backgroundTint="@color/verde2" />
+        app:backgroundTint="@color/verde2"
+        app:layout_constraintTop_toBottomOf="@id/btnMaquinas"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

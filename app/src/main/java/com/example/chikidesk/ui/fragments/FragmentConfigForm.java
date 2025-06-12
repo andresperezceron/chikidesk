@@ -89,9 +89,9 @@ public class FragmentConfigForm extends Fragment {
         Button btnGuardarConfiguracion = view.findViewById(R.id.btnGuardarConfiguracion);
 
         MaquinaDao maquinaDao = new MaquinaDao(getContext());
-        Maquina maquina = maquinaDao.obtenerPorId(id_maquina);
+        Maquina maquina = maquinaDao.getById(id_maquina);
         MoldeDao moldeDao = new MoldeDao(getContext());
-        Molde molde = moldeDao.obtenerPorId(id_molde);
+        Molde molde = moldeDao.getById(id_molde);
         maquinaDao.close();
         moldeDao.close();
 
@@ -148,7 +148,7 @@ public class FragmentConfigForm extends Fragment {
                                 String.join("\n", cv.listaCamposVacios())))
                         .setPositiveButton(getString(R.string.continuar), (dialog, which) -> {
                             ConfigDao configDao = new ConfigDao(getContext());
-                            int id_configuracion = (int) configDao.insertar(nuevaConfiguracion);
+                            int id_configuracion = (int) configDao.insert(nuevaConfiguracion);
                             configDao.close();
                             _completarInsertConfig(id_configuracion,
                                     nuevaTemperatura, nuevaInyeccion,
@@ -158,7 +158,7 @@ public class FragmentConfigForm extends Fragment {
                         .show();
             } else {
                 ConfigDao configDao = new ConfigDao(getContext());
-                int id_configuracion = (int) configDao.insertar(nuevaConfiguracion);
+                int id_configuracion = (int) configDao.insert(nuevaConfiguracion);
                 configDao.close();
                 _completarInsertConfig(id_configuracion, nuevaTemperatura, nuevaInyeccion,
                         nuevoRetenPresion, nuevoExpulsor);
@@ -170,23 +170,23 @@ public class FragmentConfigForm extends Fragment {
                                         Inyeccion inyeccion, RetenPresion retenPresion,
                                         Expulsor expulsor) {
         TemperaturaDao temperaturaDao = new TemperaturaDao(getContext());
-        temperatura.setId_configuracion(id_configuracion);
-        temperaturaDao.insertar(temperatura);
+        temperatura.setId(id_configuracion);
+        temperaturaDao.insert(temperatura);
         temperaturaDao.close();
 
         InyeccionDao inyeccionDao = new InyeccionDao(getContext());
-        inyeccion.setId_configuracion(id_configuracion);
-        inyeccionDao.insertar(inyeccion);
+        inyeccion.setId(id_configuracion);
+        inyeccionDao.insert(inyeccion);
         inyeccionDao.close();
 
         RetenPresionDao retenDao = new RetenPresionDao(getContext());
-        retenPresion.setId_configuracion(id_configuracion);
-        retenDao.insertar(retenPresion);
+        retenPresion.setId(id_configuracion);
+        retenDao.insert(retenPresion);
         retenDao.close();
 
         ExpulsorDao expulsorDao = new ExpulsorDao(getContext());
-        expulsor.setId_configuracion(id_configuracion);
-        expulsorDao.insertar(expulsor);
+        expulsor.setId(id_configuracion);
+        expulsorDao.insert(expulsor);
         expulsorDao.close();
 
         _limpiarCampos();

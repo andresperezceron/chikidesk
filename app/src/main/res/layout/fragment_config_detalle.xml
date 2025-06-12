@@ -30,7 +30,7 @@
 
         <!-- Molde seleccionado -->
         <TextView
-            android:text="@string/molde"
+            android:text="@string/btn_text_moldes"
             style="@style/onConfigDetalleTituloPequeno"/>
 
         <TextView

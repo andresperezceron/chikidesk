@@ -4,9 +4,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
+import com.example.chikidesk.model.Configuracion;
 import com.example.chikidesk.model.Expulsor;
 
-public class ExpulsorDao extends AbstractDao<Expulsor> {
+public class ExpulsorDao extends AbstractDao<Expulsor> implements SubTableConfig<Expulsor> {
 
     public ExpulsorDao(Context context) {
         super(context);
@@ -20,7 +21,7 @@ public class ExpulsorDao extends AbstractDao<Expulsor> {
     @Override
     protected Expulsor fromCursor(Cursor cursor) {
         return new Expulsor(
-                cursor.getInt(cursor.getColumnIndexOrThrow("id_configuracion")),
+                cursor.getInt(cursor.getColumnIndexOrThrow("id")),
                 cursor.getString(cursor.getColumnIndexOrThrow("velocidad1")),
                 cursor.getString(cursor.getColumnIndexOrThrow("presion1")),
                 cursor.getString(cursor.getColumnIndexOrThrow("posicion1")),
@@ -33,7 +34,7 @@ public class ExpulsorDao extends AbstractDao<Expulsor> {
     @Override
     protected ContentValues getContentValues(Expulsor expulsor) {
         ContentValues values = new ContentValues();
-        values.put("id_configuracion", expulsor.getId_configuracion());
+        values.put("id", expulsor.getId());
         values.put("velocidad1", expulsor.getVelocidad1());
         values.put("presion1", expulsor.getPresion1());
         values.put("posicion1", expulsor.getPosicion1());
@@ -45,11 +46,16 @@ public class ExpulsorDao extends AbstractDao<Expulsor> {
 
     @Override
     protected int getId(Expulsor expulsor) {
-        return expulsor.getId_configuracion();
+        return expulsor.getId();
     }
 
     @Override
-    public long insertar(Expulsor expulsor) {
+    public long insert(Expulsor expulsor) {
         return db.insert(getTableName(), null, getContentValues(expulsor));
+    }
+
+    @Override
+    public Expulsor getByConfig(Configuracion config) {
+        return getById(config.getId());
     }
 }

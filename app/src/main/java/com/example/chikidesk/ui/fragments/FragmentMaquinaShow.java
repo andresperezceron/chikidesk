@@ -15,8 +15,8 @@ import com.example.chikidesk.db.MaquinaDao;
 import com.example.chikidesk.model.Maquina;
 
 
-public class FragmentMaquinaDetalle extends Fragment {
-    public FragmentMaquinaDetalle() {
+public class FragmentMaquinaShow extends Fragment {
+    public FragmentMaquinaShow() {
         super(R.layout.fragment_maquina_detalle);
     }
 
@@ -30,7 +30,7 @@ public class FragmentMaquinaDetalle extends Fragment {
 
         int idMaquina = getArguments() != null ? getArguments().getInt("id_maquina") : 0;
         MaquinaDao maquinaDao = new MaquinaDao(requireContext());
-        Maquina maquina = maquinaDao.obtenerPorId(idMaquina);
+        Maquina maquina = maquinaDao.getById(idMaquina);
         maquinaDao.close();
 
         txvNombreMaquina.setText(maquina.getNombre());

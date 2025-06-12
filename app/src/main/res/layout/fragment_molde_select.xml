@@ -21,7 +21,7 @@
         android:id="@+id/rcvMoldeSelect"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:contentDescription="@string/list_moldes"
+        android:contentDescription="@string/header_molde_list"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

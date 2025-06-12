@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/layoutMoldeLista"
+    android:id="@+id/layoutMoldeList"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="6dp"
@@ -10,33 +10,33 @@
 
     <TextView
         android:id="@+id/txvMoldeListHeader"
-        android:text="@string/list_moldes"
+        android:text="@string/header_molde_list"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         style="@style/onAllAppHeader"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewMolde"
+        android:id="@+id/rcvMoldeList"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:contentDescription="@string/list_moldes"
+        android:paddingBottom="72dp"
+        android:contentDescription="@string/cont_desc_rcv_molde"
         app:layout_constraintTop_toBottomOf="@id/txvMoldeListHeader"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:clipToPadding="false"
-        android:paddingBottom="72dp" />
+        android:clipToPadding="false" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabBack"
+        android:id="@+id/fabNavHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
         android:src="@drawable/ic_home"
-        android:contentDescription="@string/fab_back"
-        app:backgroundTint="@color/verde3"
+        android:contentDescription="@string/cont_desc_fab_nav_home"
         app:tint="@color/gris1"
+        app:backgroundTint="@color/verde3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -44,12 +44,12 @@
         android:id="@+id/fabNewMolde"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:contentDescription="@string/new_molde"
+        android:layout_marginEnd="16dp"
         android:src="@drawable/ic_add"
-        app:backgroundTint="@color/verde3"
+        android:contentDescription="@string/cont_desc_fab_new_molde"
         app:tint="@color/gris1"
+        app:backgroundTint="@color/verde3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

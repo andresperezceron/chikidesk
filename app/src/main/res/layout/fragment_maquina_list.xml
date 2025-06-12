@@ -28,13 +28,13 @@
         android:paddingBottom="72dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabBack"
+        android:id="@+id/fabNavHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
         android:src="@drawable/ic_home"
-        android:contentDescription="@string/fab_back"
+        android:contentDescription="@string/cont_desc_fab_nav_back"
         app:backgroundTint="@color/verde3"
         app:tint="@color/gris1"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -33,7 +33,7 @@ public class FragmentMoldeSelect extends Fragment {
 
         int idMaquina = getArguments() != null ? getArguments().getInt("id_maquina") : 0;
         MoldeDao dao = new MoldeDao(getContext());
-        List<Molde> moldes = dao.obtenerMoldesNoConfigurados(idMaquina);
+        List<Molde> moldes = dao.getMoldesNotConfig(idMaquina);
         dao.close();
 
         AdapterMoldeLista.OnItemClickListener listener = molde -> {

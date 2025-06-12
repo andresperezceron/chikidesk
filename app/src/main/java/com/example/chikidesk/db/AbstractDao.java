@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractDao<T> implements BaseDao<T> {
+public abstract class AbstractDao<T> {
     protected final SQLiteDatabase db;
     protected final MiDbHelper dbHelper;
 
@@ -22,69 +22,69 @@ public abstract class AbstractDao<T> implements BaseDao<T> {
     protected abstract ContentValues getContentValues(T obj);
     protected abstract int getId(T obj);
 
-
-    @Override
-    public int actualizar(T obj) {
-        ContentValues values = getContentValues(obj);
-        int id = getId(obj);
-        return db.update(getTableName(), values, "id = ?", new String[]{String.valueOf(id)});
+    public long insert(T obj) {
+        return db.insert(getTableName(), null, getContentValues(obj));
     }
 
-    @Override
-    public int eliminarPorId(int id) {
-        return db.delete(getTableName(), "id = ?", new String[]{String.valueOf(id)});
+    public int update(T obj) {
+        return db.update(getTableName(), getContentValues(obj), "id = ?",
+                new String[]{String.valueOf(getId(obj))});
     }
 
-    @Override
-    public List<T> obtenerTodos() {
-        List<T> lista = new ArrayList<>();
-        Cursor cursor = null;
-        try {
-            cursor = db.rawQuery("SELECT * FROM " + getTableName(), null);
+    public int delete(T obj) {
+        String strId = String.valueOf(getId(obj));
+        return db.delete(getTableName(), "id =?", new String[]{strId});
+    }
+
+    public List<T> getAll() {
+        List<T> list = new ArrayList<>();
+        try(Cursor cursor = db.rawQuery("SELECT * FROM " + getTableName(), null)) {
             if(cursor.moveToFirst())
-                do lista.add(fromCursor(cursor));
+                do list.add(fromCursor(cursor));
                 while(cursor.moveToNext());
-
-        }finally { if(cursor != null) cursor.close(); }
-        return lista;
+        }
+        return list;
     }
 
-    @Override
-    public T buscarPorNombre(String nombre) {
-        try (Cursor cursor = db.rawQuery(
-                "SELECT * FROM " + getTableName() + " WHERE nombre = ?",
-                new String[]{nombre}
-        )) {
+    public List<T> getAllOderBy(String orderBy) {
+        List<T> list = new ArrayList<>();
+        String query = "SELECT * FROM " + getTableName() + " ORDER BY " + orderBy + ";";
+        try(Cursor cursor = db.rawQuery(query, null)) {
+            if(cursor.moveToFirst())
+                do list.add(fromCursor(cursor));
+                while(cursor.moveToNext());
+        }
+        return list;
+    }
 
-            if (cursor.moveToFirst())
+    public T getById(int id) {
+        String query = "SELECT * FROM " + getTableName() + " WHERE id =?";
+        String strId = String.valueOf(id);
+        try(Cursor cursor = db.rawQuery(query, new String[]{strId})) {
+            if(cursor.moveToFirst())
                 return fromCursor(cursor);
-
         }
         return null;
     }
-    @Override
-    public T obtenerPorId(int id) {
-        String query = "SELECT * FROM " + getTableName() + " WHERE id =" + id +";";
-        Cursor cursor = db.rawQuery(query, null);
-        if(cursor.moveToFirst()) {
-            return fromCursor(cursor);
-        }
 
+    public T getByUniqueKey(String keyName, Object value) {
+        String query = "SELECT * FROM " + getTableName() + " WHERE " + keyName + "=?";
+        String strValue = String.valueOf(value);
+        try(Cursor cursor = db.rawQuery(query, new String[]{strValue})) {
+            if(cursor.moveToFirst())
+                return fromCursor(cursor);
+        }
         return null;
     }
 
-    @Override
-    public T obtenerPorIdConfig(int idConfig) {
-        String query = "SELECT * FROM " + getTableName() + " WHERE id_configuracion =" + idConfig +";";
-        Cursor cursor = db.rawQuery(query, null);
-        if(cursor.moveToFirst()) {
-            return fromCursor(cursor);
-        }
-
-        return null;
+    public boolean duplicateUniqueKey(String uniqueKeyName, Object value) {
+        String query = "SELECT * FROM " + getTableName() + " WHERE " + uniqueKeyName + "=?";
+        String strValue = String.valueOf(value);
+        try(Cursor cursor = db.rawQuery(query, new String[]{strValue})) {
+            return cursor.moveToFirst();
+        }catch(Exception e) { return true; }
     }
 
-    @Override
     public void close() {
         db.close();
         dbHelper.close();

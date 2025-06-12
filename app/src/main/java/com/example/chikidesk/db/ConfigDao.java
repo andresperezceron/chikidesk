@@ -57,7 +57,7 @@ public class ConfigDao extends AbstractDao<Configuracion> {
     }
 
     @Override
-    public long insertar(Configuracion configuracion) {
+    public long insert(Configuracion configuracion) {
         return db.insert(getTableName(), null, getContentValues(configuracion));
     }
 

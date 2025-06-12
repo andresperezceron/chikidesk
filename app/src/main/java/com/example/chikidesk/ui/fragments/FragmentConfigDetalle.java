@@ -38,27 +38,27 @@ public class FragmentConfigDetalle extends Fragment {
                 ? getArguments().getParcelable("configuracion") : null;
 
         MaquinaDao maquinaDao = new MaquinaDao(getContext());
-        Maquina maquina = maquinaDao.obtenerPorId(config.getId_maquina());
+        Maquina maquina = maquinaDao.getById(config.getId_maquina());
         maquinaDao.close();
 
         MoldeDao moldeDao = new MoldeDao(getContext());
-        Molde molde = moldeDao.obtenerPorId(config.getId_molde());
+        Molde molde = moldeDao.getById(config.getId_molde());
         moldeDao.close();
 
         TemperaturaDao temperaturaDao = new TemperaturaDao(getContext());
-        Temperatura temperatura = temperaturaDao.obtenerPorIdConfig(config.getId());
+        Temperatura temperatura = temperaturaDao.getByConfig(config);
         temperaturaDao.close();
 
         InyeccionDao inyeccionDao = new InyeccionDao(getContext());
-        Inyeccion inyeccion = inyeccionDao.obtenerPorIdConfig(config.getId());
+        Inyeccion inyeccion = inyeccionDao.getByConfig(config);
         inyeccionDao.close();
 
         RetenPresionDao retenDao = new RetenPresionDao(getContext());
-        RetenPresion reten = retenDao.obtenerPorIdConfig(config.getId());
+        RetenPresion reten = retenDao.getByConfig(config);
         retenDao.close();
 
         ExpulsorDao expulsorDao = new ExpulsorDao(getContext());
-        Expulsor expulsor = expulsorDao.obtenerPorIdConfig(config.getId());
+        Expulsor expulsor = expulsorDao.getByConfig(config);
         expulsorDao.close();
 
         TextView txvNombreMaquina = view.findViewById(R.id.txvNombreMaquina);

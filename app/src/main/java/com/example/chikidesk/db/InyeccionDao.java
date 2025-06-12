@@ -4,9 +4,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
+import com.example.chikidesk.model.Configuracion;
 import com.example.chikidesk.model.Inyeccion;
 
-public class InyeccionDao extends AbstractDao<Inyeccion> {
+public class InyeccionDao extends AbstractDao<Inyeccion> implements SubTableConfig<Inyeccion> {
     public InyeccionDao(Context context) {
         super(context);
     }
@@ -19,7 +20,7 @@ public class InyeccionDao extends AbstractDao<Inyeccion> {
     @Override
     protected Inyeccion fromCursor(Cursor cursor) {
         return new Inyeccion(
-                cursor.getInt(cursor.getColumnIndexOrThrow("id_configuracion")),
+                cursor.getInt(cursor.getColumnIndexOrThrow("id")),
                 cursor.getString(cursor.getColumnIndexOrThrow("velocidad1")),
                 cursor.getString(cursor.getColumnIndexOrThrow("presion1")),
                 cursor.getString(cursor.getColumnIndexOrThrow("velocidad2")),
@@ -36,7 +37,7 @@ public class InyeccionDao extends AbstractDao<Inyeccion> {
     @Override
     protected ContentValues getContentValues(Inyeccion inyeccion) {
         ContentValues values = new ContentValues();
-        values.put("id_configuracion", inyeccion.getId_configuracion());
+        values.put("id", inyeccion.getId());
         values.put("velocidad1", inyeccion.getVelocidad1());
         values.put("presion1", inyeccion.getPresion1());
         values.put("velocidad2", inyeccion.getVelocidad2());
@@ -52,11 +53,16 @@ public class InyeccionDao extends AbstractDao<Inyeccion> {
 
     @Override
     protected int getId(Inyeccion inyeccion) {
-        return inyeccion.getId_configuracion();
+        return inyeccion.getId();
     }
 
     @Override
-    public long insertar(Inyeccion inyeccion) {
+    public long insert(Inyeccion inyeccion) {
         return db.insert(getTableName(), null, getContentValues(inyeccion));
+    }
+
+    @Override
+    public Inyeccion getByConfig(Configuracion config) {
+        return getById(config.getId());
     }
 }

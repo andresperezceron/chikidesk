@@ -1,26 +1,26 @@
 package com.example.chikidesk.model;
 
 public class Temperatura {
-    private int id_configuracion;
+    private int id;
     private String temp1;
     private String temp2;
     private String temp3;
     private String temp4;
 
-    public Temperatura(int id_configuracion, String temp1, String temp2, String temp3, String temp4) {
-        this.id_configuracion = id_configuracion;
+    public Temperatura(int id, String temp1, String temp2, String temp3, String temp4) {
+        this.id = id;
         this.temp1 = temp1;
         this.temp2 = temp2;
         this.temp3 = temp3;
         this.temp4 = temp4;
     }
 
-    public int getId_configuracion() {
-        return id_configuracion;
+    public int getId() {
+        return id;
     }
 
-    public void setId_configuracion(int id_configuracion) {
-        this.id_configuracion = id_configuracion;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTemp1() {

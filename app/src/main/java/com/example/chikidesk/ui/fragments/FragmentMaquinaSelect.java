@@ -33,7 +33,7 @@ public class FragmentMaquinaSelect extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         MaquinaDao maquinaDao = new MaquinaDao(requireContext());
-        List<Maquina> maquinas = new ArrayList<>(maquinaDao.obtenerTodos());
+        List<Maquina> maquinas = new ArrayList<>(maquinaDao.getAll());
         maquinaDao.close();
 
         AdapterMaquinaLista.OnItemClickListener listener = maquina -> {

@@ -125,37 +125,12 @@
     </style>
 
     <!-- On Star App !-->
-    <style name="onStarAppHeader">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:text">@string/chikidesk</item>
-        <item name="android:textSize">32sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:layout_marginBottom">48dp</item>
-    </style>
-
-
-    <style name="onStarAppLinearLayoutMain">
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:orientation">vertical</item>
-        <item name="android:gravity">center_horizontal</item>
-        <item name="android:padding">28dp</item>
-        <item name="android:background">@drawable/bg_main</item>
-    </style>
-
     <style name="onStartAppButtons">
         <item name="android:layout_width">240dp</item>
         <item name="android:layout_height">70dp</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/gris1</item>
-    </style>
-
-    <style name="onStarAppSpace">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">16dp</item>
     </style>
 
     <!-- onMoldeForm !-->
@@ -174,4 +149,11 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <!-- onMoldeShow !-->
+    <style name="onMoldeShowLabels">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingStart">20dp</item>
+
+    </style>
 </resources>

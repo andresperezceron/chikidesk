@@ -3,29 +3,83 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/fragmentInicio">
+    app:startDestination="@id/fragmentStartApp">
 
     <fragment
-        android:id="@+id/fragmentInicio"
+        android:id="@+id/fragmentStartApp"
         android:name="com.example.chikidesk.ui.fragments.FragmentStartApp"
         android:label="Inicio" >
         <action
-            android:id="@+id/action_inicio_to_moldes"
-            app:destination="@+id/fragmentMoldeLista" />
+            android:id="@+id/action_startApp_to_moldeList"
+            app:destination="@+id/fragmentMoldeList" />
 
         <action
-            android:id="@+id/action_inicio_to_maquinas"
-            app:destination="@id/fragmentMaquinaLista" />
+            android:id="@+id/action_startApp_to_maquinaList"
+            app:destination="@id/fragmentMaquinaList" />
 
         <action
-            android:id="@+id/action_inicio_to_configuraciones"
-            app:destination="@id/fragmentConfigLista" />
+            android:id="@+id/action_startApp_to_configList"
+            app:destination="@id/fragmentConfigList" />
     </fragment>
 
     <fragment
-        android:id="@+id/fragmentConfigLista"
-        android:name="com.example.chikidesk.ui.fragments.FragmentConfigLista"
-        android:label="Configuraciones" >
+        android:id="@+id/fragmentMoldeList"
+        android:name="com.example.chikidesk.ui.fragments.FragmentMoldeList"
+        android:label="Listando Moldes" >
+        <action
+            android:id="@+id/action_moldeList_to_moldeForm"
+            app:destination="@id/fragmentMoldeForm" />
+        <action
+            android:id="@+id/action_moldeList_to_moldeShow"
+            app:destination="@id/fragmentMoldeShow" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentMoldeForm"
+        android:name="com.example.chikidesk.ui.fragments.FragmentMoldeForm"
+        android:label="Formulario nuevo molde" >
+        <action
+            android:id="@+id/action_moldeForm_to_home"
+            app:destination="@+id/fragmentStartApp" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentMoldeShow"
+        android:name="com.example.chikidesk.ui.fragments.FragmentMoldeShow"
+        android:label="Descripcion molde" >
+        <action
+            android:id="@+id/action_moldeShow_to_home"
+            app:destination="@+id/fragmentStartApp" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentMaquinaList"
+        android:name="com.example.chikidesk.ui.fragments.FragmentMaquinaList"
+        android:label="Lista Máquinas" >
+        <action
+            android:id="@+id/action_maquinaList_to_maquinaForm"
+            app:destination="@id/fragmentMaquinaForm" />
+        <action
+            android:id="@+id/action_maquinaList_to_maquinaShow"
+            app:destination="@id/fragmentMaquinaShow" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentMaquinaForm"
+        android:name="com.example.chikidesk.ui.fragments.FragmentMaquinaForm"
+        android:label="Formulario nueva maquina" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentMaquinaShow"
+        android:name="com.example.chikidesk.ui.fragments.FragmentMaquinaShow"
+        android:label="Descripcion Máquina" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentConfigList"
+        android:name="com.example.chikidesk.ui.fragments.FragmentConfigList"
+        android:label="Lista de configuraciones" >
 
         <action
             android:id="@+id/action_configLista_to_maquinaSelect"
@@ -43,7 +97,7 @@
 
         <action
             android:id="@+id/action_configSelect_to_configDetalle"
-            app:destination="@id/fragmentConfigDetalle" />
+            app:destination="@id/fragmentConfigShow" />
     </fragment>
 
     <fragment
@@ -53,24 +107,11 @@
     </fragment>
 
     <fragment
-        android:id="@+id/fragmentConfigDetalle"
+        android:id="@+id/fragmentConfigShow"
         android:name="com.example.chikidesk.ui.fragments.FragmentConfigDetalle"
         android:label="Mostrando Configuracion" >
     </fragment>
 
-
-
-    <fragment
-        android:id="@+id/fragmentMaquinaLista"
-        android:name="com.example.chikidesk.ui.fragments.FragmentMaquinaList"
-        android:label="Lista de Máquinas" >
-        <action
-            android:id="@+id/action_maquinaLista_to_maquinaDetalle"
-            app:destination="@id/fragmentMaquinaDetalle" />
-        <action
-            android:id="@+id/action_maquinaLista_to_maquinaFormulario"
-            app:destination="@id/fragmentMaquinaFormulario" />
-    </fragment>
 
     <fragment
         android:id="@+id/fragmentMaquinaSelect"
@@ -82,51 +123,12 @@
     </fragment>
 
     <fragment
-        android:id="@+id/fragmentMaquinaFormulario"
-        android:name="com.example.chikidesk.ui.fragments.FragmentMaquinaForm"
-        android:label="Creando Máquina" >
-    </fragment>
-
-    <fragment
-        android:id="@+id/fragmentMaquinaDetalle"
-        android:name="com.example.chikidesk.ui.fragments.FragmentMaquinaDetalle"
-        android:label="Descripcion Máquina" >
-    </fragment>
-
-    <fragment
-        android:id="@+id/fragmentMoldeLista"
-        android:name="com.example.chikidesk.ui.fragments.FragmentMoldeList"
-        android:label="Listando Moldes" >
-        <action
-            android:id="@+id/action_moldeLista_to_moldeDetalle"
-            app:destination="@id/fragmentMoldeDetalle" />
-        <action
-            android:id="@+id/action_moldeLista_to_moldeFormulario"
-            app:destination="@id/fragmentMoldeFormulario" />
-    </fragment>
-
-    <fragment
         android:id="@+id/fragmentMoldeSelect"
         android:name="com.example.chikidesk.ui.fragments.FragmentMoldeSelect"
         android:label="Seleccionar Molde" >
         <action
             android:id="@+id/action_moldeSelect_to_configForm"
             app:destination="@+id/fragmentConfigForm" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/fragmentMoldeFormulario"
-        android:name="com.example.chikidesk.ui.fragments.FragmentMoldeForm"
-        android:label="Agregar Molde" >
-        <action
-            android:id="@+id/action_moldeForm_to_home"
-            app:destination="@+id/fragmentInicio" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/fragmentMoldeDetalle"
-        android:name="com.example.chikidesk.ui.fragments.FragmentMoldeShow"
-        android:label="Descripcion Máquina" >
     </fragment>
 
 </navigation>

@@ -41,15 +41,15 @@ public class MiDbHelper extends SQLiteOpenHelper {
                 "FOREIGN KEY(id_molde) REFERENCES molde(id))");
 
         db.execSQL("CREATE TABLE temperatura (" +
-                "id_configuracion INTEGER PRIMARY KEY, " +
+                "id INTEGER PRIMARY KEY, " +
                 "temp1 TEXT, " +
                 "temp2 TEXT, " +
                 "temp3 TEXT, " +
                 "temp4 TEXT, " +
-                "FOREIGN KEY(id_configuracion) REFERENCES configuracion(id));");
+                "FOREIGN KEY(id) REFERENCES configuracion(id));");
 
         db.execSQL("CREATE TABLE inyeccion (" +
-                "id_configuracion INTEGER PRIMARY KEY, " +
+                "id INTEGER PRIMARY KEY, " +
                 "velocidad1 TEXT, " +
                 "presion1 TEXT, " +
                 "velocidad2 TEXT, " +
@@ -60,24 +60,24 @@ public class MiDbHelper extends SQLiteOpenHelper {
                 "presion4 TEXT, " +
                 "velocidad5 TEXT, " +
                 "presion5 TEXT, " +
-                "FOREIGN KEY(id_configuracion) REFERENCES configuracion(id));");
+                "FOREIGN KEY(id) REFERENCES configuracion(id));");
 
         db.execSQL("CREATE TABLE retenpresion (" +
-                "id_configuracion INTEGER PRIMARY KEY, " +
+                "id INTEGER PRIMARY KEY, " +
                 "velocidad TEXT, " +
                 "presion TEXT, " +
                 "tiempo TEXT, " +
-                "FOREIGN KEY(id_configuracion) REFERENCES configuracion(id));");
+                "FOREIGN KEY(id) REFERENCES configuracion(id));");
 
         db.execSQL("CREATE TABLE expulsor (" +
-                "id_configuracion INTEGER PRIMARY KEY, " +
+                "id INTEGER PRIMARY KEY, " +
                 "velocidad1 TEXT, " +
                 "presion1 TEXT, " +
                 "posicion1 TEXT, " +
                 "velocidad2 TEXT, " +
                 "presion2 TEXT, " +
                 "posicion2 TEXT, " +
-                "FOREIGN KEY(id_configuracion) REFERENCES configuracion(id));");
+                "FOREIGN KEY(id) REFERENCES configuracion(id));");
     }
 
     @Override

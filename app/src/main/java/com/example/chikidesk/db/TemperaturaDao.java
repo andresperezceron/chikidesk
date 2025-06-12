@@ -4,9 +4,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
+import com.example.chikidesk.model.Configuracion;
 import com.example.chikidesk.model.Temperatura;
 
-public class TemperaturaDao extends AbstractDao<Temperatura> {
+public class TemperaturaDao extends AbstractDao<Temperatura> implements SubTableConfig<Temperatura>{
     public TemperaturaDao(Context context) {
         super(context);
     }
@@ -19,7 +20,7 @@ public class TemperaturaDao extends AbstractDao<Temperatura> {
     @Override
     protected Temperatura fromCursor(Cursor cursor) {
         return new Temperatura(
-                cursor.getInt(cursor.getColumnIndexOrThrow("id_configuracion")),
+                cursor.getInt(cursor.getColumnIndexOrThrow("id")),
                 cursor.getString(cursor.getColumnIndexOrThrow("temp1")),
                 cursor.getString(cursor.getColumnIndexOrThrow("temp2")),
                 cursor.getString(cursor.getColumnIndexOrThrow("temp3")),
@@ -30,7 +31,7 @@ public class TemperaturaDao extends AbstractDao<Temperatura> {
     @Override
     protected ContentValues getContentValues(Temperatura temperatura) {
         ContentValues values = new ContentValues();
-        values.put("id_configuracion", temperatura.getId_configuracion());
+        values.put("id", temperatura.getId());
         values.put("temp1", temperatura.getTemp1());
         values.put("temp2", temperatura.getTemp2());
         values.put("temp3", temperatura.getTemp3());
@@ -40,11 +41,16 @@ public class TemperaturaDao extends AbstractDao<Temperatura> {
 
     @Override
     protected int getId(Temperatura temperatura) {
-        return temperatura.getId_configuracion();
+        return temperatura.getId();
     }
 
     @Override
-    public long insertar(Temperatura temperatura) {
+    public long insert(Temperatura temperatura) {
         return db.insert(getTableName(), null, getContentValues(temperatura));
+    }
+
+    @Override
+    public Temperatura getByConfig(Configuracion config) {
+        return getById(config.getId());
     }
 }

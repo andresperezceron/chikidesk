@@ -1,7 +1,7 @@
 package com.example.chikidesk.model;
 
 public class Expulsor {
-    private int id_configuracion;
+    private int id;
     private String velocidad1;
     private String presion1;
     private String posicion1;
@@ -9,9 +9,9 @@ public class Expulsor {
     private String presion2;
     private String posicion2;
 
-    public Expulsor(int id_configuracion, String velocidad1, String presion1, String posicion1,
+    public Expulsor(int id, String velocidad1, String presion1, String posicion1,
                     String velocidad2, String presion2, String posicion2) {
-        this.id_configuracion = id_configuracion;
+        this.id = id;
         this.velocidad1 = velocidad1;
         this.presion1 = presion1;
         this.posicion1 = posicion1;
@@ -20,12 +20,12 @@ public class Expulsor {
         this.posicion2 = posicion2;
     }
 
-    public int getId_configuracion() {
-        return id_configuracion;
+    public int getId() {
+        return id;
     }
 
-    public void setId_configuracion(int id_configuracion) {
-        this.id_configuracion = id_configuracion;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getVelocidad1() {
@@ -79,7 +79,7 @@ public class Expulsor {
     @Override
     public String toString() {
         return "Expulsor{" +
-                "id_maquina=" + id_configuracion +
+                "id_maquina=" + id +
                 ", velocidad1='" + velocidad1 + '\'' +
                 ", presion1='" + presion1 + '\'' +
                 ", tiempo1='" + posicion1 + '\'' +

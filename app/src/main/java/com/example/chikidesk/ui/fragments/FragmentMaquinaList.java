@@ -36,25 +36,25 @@ public class FragmentMaquinaList extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         MaquinaDao maquinaDao = new MaquinaDao(requireContext());
-        List<Maquina> maquinas = new ArrayList<>(maquinaDao.obtenerTodos());
+        List<Maquina> maquinas = new ArrayList<>(maquinaDao.getAll());
         maquinaDao.close();
 
         AdapterMaquinaLista.OnItemClickListener listener = maquina -> {
             Bundle bundle = new Bundle();
             bundle.putInt("id_maquina", maquina.getId());
             NavHostFragment.findNavController(this)
-                    .navigate(R.id.action_maquinaLista_to_maquinaDetalle, bundle);
+                    .navigate(R.id.action_maquinaList_to_maquinaShow, bundle);
         };
         recyclerView.setAdapter(new AdapterMaquinaLista(maquinas, listener));
 
-        FloatingActionButton fabHome = view.findViewById(R.id.fabBack);
+        FloatingActionButton fabHome = view.findViewById(R.id.fabNavHome);
         fabHome.setOnClickListener(v -> {
             Navigation.findNavController(view).popBackStack();
         });
 
         FloatingActionButton fabAgregar = view.findViewById(R.id.fabNewMaquina);
         fabAgregar.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigate(R.id.action_maquinaLista_to_maquinaFormulario);
+            Navigation.findNavController(v).navigate(R.id.action_maquinaList_to_maquinaForm);
         });
 
         return view;

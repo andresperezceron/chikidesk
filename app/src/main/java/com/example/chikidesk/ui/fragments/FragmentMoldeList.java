@@ -19,6 +19,7 @@ import com.example.chikidesk.model.Molde;
 import com.example.chikidesk.ui.adapters.AdapterMoldeLista;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FragmentMoldeList extends Fragment {
@@ -32,30 +33,27 @@ public class FragmentMoldeList extends Fragment {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_molde_list, container, false);
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerViewMolde);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        RecyclerView rcvMoldeList = view.findViewById(R.id.rcvMoldeList);
+        rcvMoldeList.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        FloatingActionButton fabNavHome = view.findViewById(R.id.fabNavHome);
+        FloatingActionButton fabNewMolde = view.findViewById(R.id.fabNewMolde);
 
         MoldeDao moldeDao = new MoldeDao(requireContext());
-        List<Molde> listaMoldes = moldeDao.obtenerTodos();
+        List<Molde> listMoldes = moldeDao.getAllOderBy("nombre");
         moldeDao.close();
 
         AdapterMoldeLista.OnItemClickListener listener = molde -> {
             Bundle bundle = new Bundle();
             bundle.putParcelable("molde", molde);
             NavHostFragment.findNavController(this)
-                    .navigate(R.id.action_moldeLista_to_moldeDetalle, bundle);
+                    .navigate(R.id.action_moldeList_to_moldeShow, bundle);
         };
-        recyclerView.setAdapter(new AdapterMoldeLista(listaMoldes, listener));
+        rcvMoldeList.setAdapter(new AdapterMoldeLista(listMoldes, listener));
 
-        FloatingActionButton fabHome = view.findViewById(R.id.fabBack);
-        fabHome.setOnClickListener(v -> {
-            Navigation.findNavController(view).popBackStack();
-        });
-
-        FloatingActionButton fabAgregar = view.findViewById(R.id.fabNewMolde);
-        fabAgregar.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigate(R.id.action_moldeLista_to_moldeFormulario);
-        });
+        fabNavHome.setOnClickListener(v -> Navigation.findNavController(view).popBackStack());
+        fabNewMolde.setOnClickListener(v ->
+                Navigation.findNavController(v).navigate(R.id.action_moldeList_to_moldeForm));
 
         return view;
     }

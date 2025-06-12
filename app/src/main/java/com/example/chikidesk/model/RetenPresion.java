@@ -1,24 +1,24 @@
 package com.example.chikidesk.model;
 
 public class RetenPresion {
-    private int id_configuracion;
+    private int id;
     private String velocidad;
     private String presion;
     private String tiempo;
 
-    public RetenPresion(int id_configuracion, String velocidad, String presion, String tiempo) {
-        this.id_configuracion = id_configuracion;
+    public RetenPresion(int id, String velocidad, String presion, String tiempo) {
+        this.id = id;
         this.velocidad = velocidad;
         this.presion = presion;
         this.tiempo = tiempo;
     }
 
-    public int getId_configuracion() {
-        return id_configuracion;
+    public int getId() {
+        return id;
     }
 
-    public void setId_configuracion(int id_configuracion) {
-        this.id_configuracion = id_configuracion;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getVelocidad() {

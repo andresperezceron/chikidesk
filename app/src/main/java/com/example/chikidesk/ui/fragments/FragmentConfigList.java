@@ -19,11 +19,10 @@ import com.example.chikidesk.model.Maquina;
 import com.example.chikidesk.ui.adapters.AdapterConfigLista;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.HashMap;
 import java.util.Map;
 
-public class FragmentConfigLista extends Fragment {
-    public FragmentConfigLista() {}
+public class FragmentConfigList extends Fragment {
+    public FragmentConfigList() {}
 
 
     @Nullable

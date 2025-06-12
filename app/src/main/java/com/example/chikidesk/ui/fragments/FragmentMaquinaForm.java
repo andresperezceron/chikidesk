@@ -39,7 +39,7 @@ public class FragmentMaquinaForm extends Fragment {
             }
 
             MaquinaDao dao = new MaquinaDao(requireContext());
-            dao.insertar(new Maquina(0, nombre, referencia, descripcion));
+            dao.insert(new Maquina(0, nombre, referencia, descripcion));
             dao.close();
 
             Toast.makeText(getContext(), "Maquina guardada", Toast.LENGTH_SHORT).show();
