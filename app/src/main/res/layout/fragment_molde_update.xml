@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layoutMoldeUpdate"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/padding_x1"
+    android:background="@drawable/bg_main">
+
+    <TextView
+        android:id="@+id/txvMoldeUpdateHeader"
+        android:layout_marginTop="@dimen/margin_x1"
+        android:text="@string/header_molde_update"
+        style="@style/headers"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilMoldeUpdateNombre"
+        android:layout_width="@dimen/widthTil_x6"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_x6"
+        android:hint="@string/property_nombre"
+        android:autofillHints=""
+        android:textColorHint="@color/lab_fore_gre106"
+        app:hintTextColor="@color/purple_200"
+        app:hintTextAppearance="@style/MyHintAppearance"
+        app:boxBackgroundColor="@android:color/transparent"
+        app:boxBackgroundMode="outline"
+        app:layout_constraintTop_toBottomOf="@id/txvMoldeUpdateHeader"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtMoldeUpdateNombre"
+            style="@style/edtOnMoldeMaquinaForm" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilMoldeUpdateRef"
+        android:layout_width="@dimen/widthTil_x6"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_x2"
+        android:hint="@string/property_referencia"
+        android:autofillHints=""
+        android:textColorHint="@color/lab_fore_gre106"
+        app:hintTextColor="@color/purple_200"
+        app:hintTextAppearance="@style/MyHintAppearance"
+        app:boxBackgroundColor="@android:color/transparent"
+        app:boxBackgroundMode="outline"
+        app:layout_constraintTop_toBottomOf="@id/tilMoldeUpdateNombre"
+        app:layout_constraintStart_toStartOf="@id/tilMoldeUpdateNombre" >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtMoldeUpdateRef"
+            style="@style/edtOnMoldeMaquinaForm" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilMoldeUpdateDesc"
+        android:layout_width="@dimen/widthTil_x6"
+        android:layout_height="@dimen/heightDesc_til"
+        android:layout_marginTop="@dimen/margin_x2"
+        android:hint="@string/property_descripcion"
+        android:autofillHints=""
+        android:textColorHint="@color/lab_fore_gre106"
+        app:hintTextColor="@color/purple_200"
+        app:hintTextAppearance="@style/MyHintAppearance"
+        app:boxBackgroundColor="@android:color/transparent"
+        app:boxBackgroundMode="outline"
+        app:layout_constraintTop_toBottomOf="@id/tilMoldeUpdateRef"
+        app:layout_constraintStart_toStartOf="@id/tilMoldeUpdateRef" >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtMoldeUpdateDesc"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            style="@style/edtOnMoldeMaquinaForm" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnMoldeUpdateUpdate"
+        android:layout_width="@dimen/widthButton_x2"
+        android:layout_height="@dimen/heightButton_x2"
+        android:layout_marginTop="@dimen/margin_x4"
+        android:text="@string/btn_text_actualizar"
+        android:textColor="@color/text_gre108"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:cornerRadius="@dimen/strokeRadius_x1"
+        app:strokeWidth="@dimen/strokeWidth_x1"
+        app:strokeColor="@color/strokes_gre107"
+        app:backgroundTint="@color/btn_back_gre105"
+        app:layout_constraintTop_toBottomOf="@id/tilMoldeUpdateDesc"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabMoldeUpdateBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_x2"
+        android:src="@drawable/ic_back"
+        android:contentDescription="@string/cont_desc_fab_nav_back"
+        app:tint="@color/fab_fore_gre108"
+        app:backgroundTint="@color/fab_back_gre101"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabMoldeUpdateHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_x2"
+        android:src="@drawable/ic_home"
+        android:contentDescription="@string/cont_desc_fab_nav_home"
+        app:tint="@color/fab_fore_gre108"
+        app:backgroundTint="@color/fab_back_gre101"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

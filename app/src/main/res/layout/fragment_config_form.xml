@@ -1,0 +1,761 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layoutConfigForm"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/margin_x4"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/txvConfigFormHeader"
+            android:text="@string/header_config_form"
+            style="@style/headers"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilConfigFormMaquina"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_x1"
+            android:hint="@string/lab_text_maquina"
+            android:autofillHints=""
+            android:textColorHint="@color/lab_fore_gre106"
+            app:hintTextAppearance="@style/MyHintAppearance"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:boxBackgroundMode="none"
+            app:layout_constraintTop_toBottomOf="@+id/txvConfigFormHeader"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtConfigFormMaquina"
+                android:padding="1dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                style="@style/editTextOnlyRead" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilConfigFormMolde"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_x1"
+            android:hint="@string/lab_text_molde"
+            android:autofillHints=""
+            android:textColorHint="@color/lab_fore_gre106"
+            app:hintTextAppearance="@style/MyHintAppearance"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:boxBackgroundMode="none"
+            app:layout_constraintTop_toBottomOf="@+id/tilConfigFormMaquina"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtConfigFormMolde"
+                android:padding="1dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                style="@style/editTextOnlyRead" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/txvConfigFormLabelTemperatura"
+            android:layout_marginTop="@dimen/margin_x2"
+            android:text="@string/lab_text_temperaturas"
+            style="@style/labelsShowDefault"
+            app:layout_constraintTop_toBottomOf="@+id/tilConfigFormMolde"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilConfigFormTemp1"
+            android:layout_width="@dimen/widthTil_x2"
+            android:layout_height="wrap_content"
+            android:hint="@string/property_temperatura1"
+            android:autofillHints=""
+            android:textColorHint="@color/lab_fore_gre106"
+            app:errorIconDrawable="@null"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintTop_toBottomOf="@+id/txvConfigFormLabelTemperatura"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tilConfigFormTemp2">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtConfigFormTemp1"
+                style="@style/editTextOnlyNumericFiveDigits" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilConfigFormTemp2"
+            android:layout_width="@dimen/widthTil_x2"
+            android:layout_height="wrap_content"
+            android:hint="@string/property_temperatura2"
+            android:autofillHints=""
+            android:textColorHint="@color/lab_fore_gre106"
+            app:errorIconDrawable="@null"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintTop_toBottomOf="@+id/txvConfigFormLabelTemperatura"
+            app:layout_constraintStart_toEndOf="@+id/tilConfigFormTemp1"
+            app:layout_constraintEnd_toStartOf="@+id/tilConfigFormTemp3">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtConfigFormTemp2"
+                style="@style/editTextOnlyNumericFiveDigits" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilConfigFormTemp3"
+            android:layout_width="@dimen/widthTil_x2"
+            android:layout_height="wrap_content"
+            android:hint="@string/property_temperatura3"
+            android:autofillHints=""
+            android:textColorHint="@color/lab_fore_gre106"
+            app:errorIconDrawable="@null"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintTop_toBottomOf="@+id/txvConfigFormLabelTemperatura"
+            app:layout_constraintStart_toEndOf="@id/tilConfigFormTemp2"
+            app:layout_constraintEnd_toStartOf="@+id/tilConfigFormTemp4">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtConfigFormTemp3"
+                style="@style/editTextOnlyNumericFiveDigits" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilConfigFormTemp4"
+            android:layout_width="@dimen/widthTil_x2"
+            android:layout_height="wrap_content"
+            android:hint="@string/property_temperatura4"
+            android:autofillHints=""
+            android:textColorHint="@color/lab_fore_gre106"
+            app:errorIconDrawable="@null"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintTop_toBottomOf="@+id/txvConfigFormLabelTemperatura"
+            app:layout_constraintStart_toEndOf="@id/tilConfigFormTemp3"
+            app:layout_constraintEnd_toEndOf="parent">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtConfigFormTemp4"
+                style="@style/editTextOnlyNumericFiveDigits"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/txvConfigFormLabelInyeccion"
+            android:layout_marginTop="@dimen/margin_x4"
+            android:text="@string/lab_text_inyeccion"
+            style="@style/labelsShowDefault"
+            app:layout_constraintTop_toBottomOf="@+id/tilConfigFormTemp1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilConfigFormInyVel1"
+            android:layout_width="@dimen/widthTil_x1"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:hint="@string/property_iny_vel1"
+            android:autofillHints=""
+            android:textColorHint="@color/lab_fore_gre106"
+            app:errorIconDrawable="@null"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintTop_toBottomOf="@+id/txvConfigFormLabelInyeccion"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tilConfigFormInyVel2">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtConfigFormInyVel1"
+                android:textSize="@dimen/textSize_x1"
+                style="@style/editTextOnlyNumericFiveDigits" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilConfigFormInyVel2"
+            android:layout_width="@dimen/widthTil_x1"
+            android:layout_height="wrap_content"
+            android:hint="@string/property_iny_vel2"
+            android:autofillHints=""
+            android:textColorHint="@color/lab_fore_gre106"
+            app:errorIconDrawable="@null"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintBottom_toBottomOf="@id/tilConfigFormInyVel1"
+            app:layout_constraintStart_toEndOf="@id/tilConfigFormInyVel1"
+            app:layout_constraintEnd_toEndOf="@id/tilConfigFormInyVel3">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtConfigFormInyVel2"
+                android:textSize="@dimen/textSize_x1"
+                style="@style/editTextOnlyNumericFiveDigits" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilConfigFormInyVel3"
+            android:layout_width="@dimen/widthTil_x1"
+            android:layout_height="wrap_content"
+            android:hint="@string/property_iny_vel3"
+            android:autofillHints=""
+            android:textColorHint="@color/lab_fore_gre106"
+            app:errorIconDrawable="@null"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintTop_toBottomOf="@+id/txvConfigFormLabelInyeccion"
+            app:layout_constraintStart_toEndOf="@id/tilConfigFormInyVel2"
+            app:layout_constraintEnd_toStartOf="@id/tilConfigFormInyVel4">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtConfigFormInyVel3"
+                android:textSize="@dimen/textSize_x1"
+                style="@style/editTextOnlyNumericFiveDigits" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilConfigFormInyVel4"
+            android:layout_width="@dimen/widthTil_x1"
+            android:layout_height="wrap_content"
+            android:hint="@string/property_iny_vel4"
+            android:autofillHints=""
+            android:textColorHint="@color/lab_fore_gre106"
+            app:errorIconDrawable="@null"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintTop_toBottomOf="@+id/txvConfigFormLabelInyeccion"
+            app:layout_constraintStart_toEndOf="@id/tilConfigFormInyVel3"
+            app:layout_constraintEnd_toStartOf="@id/tilConfigFormInyVel5">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtConfigFormInyVel4"
+                android:textSize="@dimen/textSize_x1"
+                style="@style/editTextOnlyNumericFiveDigits" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilConfigFormInyVel5"
+            android:layout_width="@dimen/widthTil_x1"
+            android:layout_height="wrap_content"
+            android:hint="@string/property_iny_vel5"
+            android:autofillHints=""
+            android:textColorHint="@color/lab_fore_gre106"
+            app:errorIconDrawable="@null"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintTop_toTopOf="@+id/tilConfigFormInyVel1"
+            app:layout_constraintStart_toEndOf="@id/tilConfigFormInyVel4"
+            app:layout_constraintEnd_toEndOf="parent">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtConfigFormInyVel5"
+                android:textSize="@dimen/textSize_x1"
+                style="@style/editTextOnlyNumericFiveDigits" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilConfigFormInyPre1"
+            android:layout_width="@dimen/widthTil_x1"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:hint="@string/property_iny_pre1"
+            android:autofillHints=""
+            android:textColorHint="@color/lab_fore_gre106"
+            app:errorIconDrawable="@null"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintTop_toBottomOf="@+id/tilConfigFormInyVel1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tilConfigFormInyPre2">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtConfigFormInyPre1"
+                android:textSize="@dimen/textSize_x1"
+                style="@style/editTextOnlyNumericFiveDigits" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilConfigFormInyPre2"
+            android:layout_width="@dimen/widthTil_x1"
+            android:layout_height="wrap_content"
+            android:hint="@string/property_iny_pre2"
+            android:autofillHints=""
+            android:textColorHint="@color/lab_fore_gre106"
+            app:errorIconDrawable="@null"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintTop_toTopOf="@+id/tilConfigFormInyPre1"
+            app:layout_constraintStart_toEndOf="@id/tilConfigFormInyPre1"
+            app:layout_constraintEnd_toStartOf="@id/tilConfigFormInyPre3">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtConfigFormInyPre2"
+                android:textSize="@dimen/textSize_x1"
+                style="@style/editTextOnlyNumericFiveDigits" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilConfigFormInyPre3"
+            android:layout_width="@dimen/widthTil_x1"
+            android:layout_height="wrap_content"
+            android:hint="@string/property_iny_pre3"
+            android:autofillHints=""
+            android:textColorHint="@color/lab_fore_gre106"
+            app:errorIconDrawable="@null"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintTop_toTopOf="@+id/tilConfigFormInyPre1"
+            app:layout_constraintStart_toEndOf="@id/tilConfigFormInyPre2"
+            app:layout_constraintEnd_toStartOf="@id/tilConfigFormInyPre4">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtConfigFormInyPre3"
+                android:textSize="@dimen/textSize_x1"
+                style="@style/editTextOnlyNumericFiveDigits" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilConfigFormInyPre4"
+            android:layout_width="@dimen/widthTil_x1"
+            android:layout_height="wrap_content"
+            android:hint="@string/property_iny_pre4"
+            android:autofillHints=""
+            android:textColorHint="@color/lab_fore_gre106"
+            app:errorIconDrawable="@null"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintTop_toTopOf="@+id/tilConfigFormInyPre1"
+            app:layout_constraintStart_toEndOf="@id/tilConfigFormInyPre3"
+            app:layout_constraintEnd_toStartOf="@id/tilConfigFormInyPre5">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtConfigFormInyPre4"
+                android:textSize="@dimen/textSize_x1"
+                style="@style/editTextOnlyNumericFiveDigits" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilConfigFormInyPre5"
+            android:layout_width="@dimen/widthTil_x1"
+            android:layout_height="wrap_content"
+            android:hint="@string/property_iny_pre5"
+            android:autofillHints=""
+            android:textColorHint="@color/lab_fore_gre106"
+            app:errorIconDrawable="@null"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintTop_toTopOf="@+id/tilConfigFormInyPre1"
+            app:layout_constraintStart_toEndOf="@id/tilConfigFormInyPre4"
+            app:layout_constraintEnd_toEndOf="parent">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtConfigFormInyPre5"
+                android:textSize="@dimen/textSize_x1"
+                style="@style/editTextOnlyNumericFiveDigits" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/txvConfigFormLabelReten"
+            android:layout_marginTop="@dimen/margin_x4"
+            android:text="@string/lab_text_reten"
+            style="@style/labelsShowDefault"
+            app:layout_constraintTop_toBottomOf="@+id/tilConfigFormInyPre1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilConfigFormRetenVel"
+            android:layout_width="@dimen/widthTil_x3"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:hint="@string/property_velocidad"
+            android:autofillHints=""
+            android:textColorHint="@color/lab_fore_gre106"
+            app:errorIconDrawable="@null"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintTop_toBottomOf="@+id/txvConfigFormLabelReten"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tilConfigFormRetenPre">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtConfigFormRetenVel"
+                style="@style/editTextOnlyNumericFiveDigits" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilConfigFormRetenPre"
+            android:layout_width="@dimen/widthTil_x3"
+            android:layout_height="wrap_content"
+            android:hint="@string/property_presion"
+            android:autofillHints=""
+            android:textColorHint="@color/lab_fore_gre106"
+            app:errorIconDrawable="@null"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintTop_toTopOf="@+id/tilConfigFormRetenVel"
+            app:layout_constraintStart_toEndOf="@id/tilConfigFormRetenVel"
+            app:layout_constraintEnd_toStartOf="@id/tilConfigFormRetenTmp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtConfigFormRetenPre"
+                style="@style/editTextOnlyNumericFiveDigits" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilConfigFormRetenTmp"
+            android:layout_width="@dimen/widthTil_x3"
+            android:layout_height="wrap_content"
+            android:hint="@string/property_tiempo"
+            android:autofillHints=""
+            android:textColorHint="@color/lab_fore_gre106"
+            app:errorIconDrawable="@null"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintTop_toTopOf="@+id/tilConfigFormRetenVel"
+            app:layout_constraintStart_toEndOf="@id/tilConfigFormRetenPre"
+            app:layout_constraintEnd_toEndOf="parent">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtConfigFormRetenTmp"
+                style="@style/editTextOnlyNumericFiveDigits" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Campo plastificación -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilConfigFormPlastifico"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_x4"
+            android:layout_marginStart="@dimen/margin_x2"
+            android:layout_marginEnd="@dimen/margin_x2"
+            android:hint="@string/lab_text_plastificacion"
+            android:autofillHints=""
+            android:textColorHint="@color/lab_fore_gre106"
+            app:hintTextAppearance="@style/MyHintAppearance"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:boxBackgroundMode="none"
+            app:layout_constraintTop_toBottomOf="@+id/tilConfigFormRetenVel"
+            app:layout_constraintStart_toStartOf="@id/tilConfigFormRetenVel"
+            app:layout_constraintEnd_toEndOf="@id/tilConfigFormRetenTmp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtConfigFormPlastico"
+                style="@style/editTextOneItem" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/txvConfigFormLabelExpulsor"
+            android:layout_marginTop="@dimen/margin_x4"
+            android:text="@string/lab_text_expulsor"
+            style="@style/labelsShowDefault"
+            app:layout_constraintTop_toBottomOf="@+id/tilConfigFormPlastifico"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilConfigFormExpulsorVel1"
+            android:layout_width="@dimen/widthTil_x3"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:hint="@string/property_exp_vel1"
+            android:autofillHints=""
+            android:textColorHint="@color/lab_fore_gre106"
+            app:errorIconDrawable="@null"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintTop_toBottomOf="@+id/txvConfigFormLabelExpulsor"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tilConfigFormExpulsorPre1">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtConfigFormExpulsorVel1"
+                style="@style/editTextOnlyNumericFiveDigits" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilConfigFormExpulsorPre1"
+            android:layout_width="@dimen/widthTil_x3"
+            android:layout_height="wrap_content"
+            android:hint="@string/property_exp_pre1"
+            android:autofillHints=""
+            android:textColorHint="@color/lab_fore_gre106"
+            app:errorIconDrawable="@null"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintTop_toTopOf="@+id/tilConfigFormExpulsorVel1"
+            app:layout_constraintStart_toEndOf="@id/tilConfigFormExpulsorVel1"
+            app:layout_constraintEnd_toStartOf="@id/tilConfigFormExpulsorPos1">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtConfigFormExpulsorPre1"
+                style="@style/editTextOnlyNumericFiveDigits" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilConfigFormExpulsorPos1"
+            android:layout_width="@dimen/widthTil_x3"
+            android:layout_height="wrap_content"
+            android:hint="@string/property_exp_pos1"
+            android:autofillHints=""
+            android:textColorHint="@color/lab_fore_gre106"
+            app:errorIconDrawable="@null"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintTop_toTopOf="@+id/tilConfigFormExpulsorVel1"
+            app:layout_constraintStart_toEndOf="@id/tilConfigFormExpulsorPre1"
+            app:layout_constraintEnd_toEndOf="parent">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtConfigFormExpulsorPos1"
+                style="@style/editTextOnlyNumericFiveDigits" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilConfigFormExpulsorVel2"
+            android:layout_width="@dimen/widthTil_x3"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:hint="@string/property_exp_vel2"
+            android:autofillHints=""
+            android:textColorHint="@color/lab_fore_gre106"
+            app:errorIconDrawable="@null"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintTop_toBottomOf="@+id/tilConfigFormExpulsorVel1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tilConfigFormExpulsorPre2">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtConfigFormExpulsorVel2"
+                style="@style/editTextOnlyNumericFiveDigits" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilConfigFormExpulsorPre2"
+            android:layout_width="@dimen/widthTil_x3"
+            android:layout_height="wrap_content"
+            android:hint="@string/property_exp_pre2"
+            android:autofillHints=""
+            android:textColorHint="@color/lab_fore_gre106"
+            app:errorIconDrawable="@null"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintTop_toTopOf="@+id/tilConfigFormExpulsorVel2"
+            app:layout_constraintStart_toEndOf="@id/tilConfigFormExpulsorVel2"
+            app:layout_constraintEnd_toStartOf="@id/tilConfigFormExpulsorPos2">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtConfigFormExpulsorPre2"
+                style="@style/editTextOnlyNumericFiveDigits" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilConfigFormExpulsorPos2"
+            android:layout_width="@dimen/widthTil_x3"
+            android:layout_height="wrap_content"
+            android:hint="@string/property_exp_pos2"
+            android:autofillHints=""
+            android:textColorHint="@color/lab_fore_gre106"
+            app:errorIconDrawable="@null"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintTop_toTopOf="@+id/tilConfigFormExpulsorVel2"
+            app:layout_constraintStart_toEndOf="@id/tilConfigFormExpulsorPre2"
+            app:layout_constraintEnd_toEndOf="parent">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtConfigFormExpulsorPos2"
+                style="@style/editTextOnlyNumericFiveDigits" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/txvConfigFormLabelTempCiclo"
+            android:layout_marginTop="@dimen/margin_x4"
+            android:text="@string/lab_text_temp_ciclo"
+            style="@style/labelsShowDefault"
+            app:layout_constraintTop_toBottomOf="@+id/tilConfigFormExpulsorVel2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilConfigFormCiclo"
+            android:layout_width="@dimen/widthTil_x3"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:hint="@string/property_ciclo"
+            android:autofillHints=""
+            android:textColorHint="@color/lab_fore_gre106"
+            app:errorIconDrawable="@null"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintTop_toBottomOf="@+id/txvConfigFormLabelTempCiclo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tilConfigFormCicloReal">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtConfigFormCiclo"
+                style="@style/editTextOnlyNumericFiveDigits" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilConfigFormCicloReal"
+            android:layout_width="@dimen/widthTil_x3"
+            android:layout_height="wrap_content"
+            android:hint="@string/property_ciclo_real"
+            android:autofillHints=""
+            android:textColorHint="@color/lab_fore_gre106"
+            app:errorIconDrawable="@null"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintTop_toTopOf="@id/tilConfigFormCiclo"
+            app:layout_constraintStart_toEndOf="@id/tilConfigFormCiclo"
+            app:layout_constraintEnd_toStartOf="@id/tilConfigFormTimeOut">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtConfigFormCicloReal"
+                style="@style/editTextOnlyNumericFiveDigits" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilConfigFormTimeOut"
+            android:layout_width="@dimen/widthTil_x3"
+            android:layout_height="wrap_content"
+            android:hint="@string/lab_text_time_out"
+            android:autofillHints=""
+            android:textColorHint="@color/lab_fore_gre106"
+            app:errorIconDrawable="@null"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintTop_toTopOf="@+id/tilConfigFormCiclo"
+            app:layout_constraintStart_toEndOf="@id/tilConfigFormCicloReal"
+            app:layout_constraintEnd_toEndOf="parent">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtConfigFormTimeOut"
+                style="@style/editTextOnlyNumericFiveDigits" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilConfigFormEnfriar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_x4"
+            android:layout_marginStart="@dimen/margin_x2"
+            android:layout_marginEnd="@dimen/margin_x2"
+            android:hint="@string/lab_text_temp_enfriamento"
+            android:autofillHints=""
+            android:textColorHint="@color/lab_fore_gre106"
+            app:errorIconDrawable="@null"
+            app:hintTextAppearance="@style/MyHintAppearance"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:boxBackgroundMode="none"
+            app:layout_constraintTop_toBottomOf="@+id/tilConfigFormCiclo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtConfigFormEnfriar"
+                style="@style/editTextOneItem" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilConfigFormMaterial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_x2"
+            android:layout_marginStart="@dimen/margin_x2"
+            android:layout_marginEnd="@dimen/margin_x2"
+            android:hint="@string/lab_text_material"
+            android:autofillHints=""
+            android:textColorHint="@color/lab_fore_gre106"
+            app:errorIconDrawable="@null"
+            app:hintTextAppearance="@style/MyHintAppearance"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:boxBackgroundMode="none"
+            app:layout_constraintTop_toBottomOf="@+id/tilConfigFormEnfriar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtConfigFormMaterial"
+                style="@style/editTextOneItem" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilConfigFormObservaciones"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_marginTop="@dimen/margin_x2"
+            android:layout_marginStart="@dimen/margin_x2"
+            android:layout_marginEnd="@dimen/margin_x2"
+            android:textColorHint="@color/lab_fore_gre106"
+            android:hint="@string/lab_text_observaciones"
+            android:autofillHints=""
+            app:errorIconDrawable="@null"
+            app:hintTextAppearance="@style/MyHintAppearance"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintTop_toBottomOf="@+id/tilConfigFormMaterial"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtConfigFormObservaciones"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="@dimen/textSize_x3"
+                android:gravity="top|start"
+                android:inputType="textMultiLine" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnConfigFormNew"
+            android:layout_width="@dimen/widthButton_x1"
+            android:layout_height="@dimen/heightButton_x2"
+            android:layout_marginTop="@dimen/margin_x4"
+            android:text="@string/btn_text_guardar"
+            android:textColor="@color/text_gre108"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:cornerRadius="@dimen/strokeRadius_x1"
+            app:strokeWidth="@dimen/strokeWidth_x1"
+            app:strokeColor="@color/strokes_gre107"
+            app:backgroundTint="@color/btn_back_gre105"
+            app:layout_constraintTop_toBottomOf="@+id/tilConfigFormObservaciones"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btnConfigFormOk"/>
+
+        <Button
+            android:id="@+id/btnConfigFormOk"
+            android:layout_width="@dimen/widthButton_x1"
+            android:layout_height="@dimen/heightButton_x2"
+            android:layout_marginTop="@dimen/margin_x4"
+            android:text="@string/msn_ok"
+            android:textColor="@color/text_gre108"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:cornerRadius="@dimen/strokeRadius_x1"
+            app:strokeWidth="@dimen/strokeWidth_x1"
+            app:strokeColor="@color/strokes_gre107"
+            app:backgroundTint="@color/btn_back_gre105"
+            app:layout_constraintTop_toBottomOf="@+id/tilConfigFormObservaciones"
+            app:layout_constraintStart_toEndOf="@id/btnConfigFormNew"
+            app:layout_constraintEnd_toStartOf="@id/btnConfigFormReset"/>
+
+        <Button
+            android:id="@+id/btnConfigFormReset"
+            android:layout_width="@dimen/widthButton_x1"
+            android:layout_height="@dimen/heightButton_x2"
+            android:layout_marginTop="@dimen/margin_x4"
+            android:text="@string/btn_text_reset"
+            android:textColor="@color/text_gre108"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:cornerRadius="@dimen/strokeRadius_x1"
+            app:strokeWidth="@dimen/strokeWidth_x1"
+            app:strokeColor="@color/strokes_gre107"
+            app:backgroundTint="@color/btn_back_gre105"
+            app:layout_constraintTop_toBottomOf="@+id/tilConfigFormObservaciones"
+            app:layout_constraintStart_toEndOf="@id/btnConfigFormOk"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabConfigFormBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_x4"
+            android:src="@drawable/ic_back"
+            android:contentDescription="@string/cont_desc_fab_nav_back"
+            app:tint="@color/fab_fore_gre108"
+            app:backgroundTint="@color/fab_back_gre101"
+            app:layout_constraintTop_toBottomOf="@id/btnConfigFormNew"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabConfigFormHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_x4"
+            android:src="@drawable/ic_home"
+            android:contentDescription="@string/cont_desc_fab_nav_home"
+            app:tint="@color/fab_fore_gre108"
+            app:backgroundTint="@color/fab_back_gre101"
+            app:layout_constraintTop_toBottomOf="@id/btnConfigFormNew"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

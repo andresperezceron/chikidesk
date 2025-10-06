@@ -1,0 +1,56 @@
+# ================================================
+#  Archivos de compilación de Java y Gradle
+# ================================================
+# La carpeta 'build' es donde Gradle y el compilador de Java (javac)
+# guardan los archivos .class compilados, los recursos procesados,
+# los APKs, etc. Es la carpeta más importante a ignorar.
+/build/
+
+# Caché local de Gradle. Contiene dependencias descargadas y otros
+# archivos temporales que no deben ir en el repositorio.
+.gradle/
+
+# Archivos específicos generados por el wrapper de Gradle.
+/gradlew
+/gradlew.bat
+/gradle/wrapper/
+
+
+# ================================================
+#  Archivos del IDE (Android Studio / IntelliJ)
+# ================================================
+# IntelliJ (y Android Studio) crea esta carpeta para guardar la
+# configuración del proyecto, el historial local, etc.
+# Es específico de tu máquina.
+.idea/
+
+# Archivos de módulo de IntelliJ. También son específicos del entorno.
+*.iml
+
+# ================================================
+#  Archivos de configuración LOCAL
+# ================================================
+# Este archivo contiene rutas específicas de tu ordenador,
+# como la ubicación del SDK de Android. NUNCA se debe subir.
+local.properties
+
+
+# ================================================
+#  Archivos de seguridad (¡CRÍTICO!)
+# ================================================
+# Si generas una clave para firmar tu aplicación, se guarda en un
+# archivo de estos. Subir esto a un repositorio público es un
+# fallo de seguridad gravísimo.
+*.jks
+*.keystore
+
+
+# ================================================
+#  Otros archivos
+# ================================================
+# Archivos de log, reportes, etc.
+*.log
+
+# Archivos temporales del sistema operativo (macOS)
+.DS_Store
+

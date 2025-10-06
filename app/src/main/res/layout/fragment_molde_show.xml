@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layoutMoldeShow"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/padding_x1"
+    android:background="@drawable/bg_main">
+
+    <ImageView
+        android:id="@+id/imgMoldeShow"
+        android:layout_width="@dimen/widthImgVie"
+        android:layout_height="@dimen/heightImgVie"
+        android:layout_marginTop="@dimen/margin_x6"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        android:background="@drawable/imgview_rounded"
+        android:contentDescription="@string/cont_desc_img_molde"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabMoldeShowDeleteImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_x2"
+        android:src="@drawable/ic_del1"
+        android:contentDescription="@string/cont_desc_fab_delete_img"
+        app:tint="@color/fab_fore_gre108"
+        app:backgroundTint="@color/fab_back_gre101"
+        app:layout_constraintTop_toBottomOf="@id/imgMoldeShow"
+        app:layout_constraintStart_toStartOf="@id/imgMoldeShow" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabMoldeShowSelectImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_x2"
+        android:src="@drawable/ic_img"
+        android:contentDescription="@string/cont_desc_fab_select_img"
+        app:tint="@color/fab_fore_gre108"
+        app:backgroundTint="@color/fab_back_gre101"
+        app:layout_constraintTop_toBottomOf="@id/imgMoldeShow"
+        app:layout_constraintEnd_toEndOf="@id/imgMoldeShow" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilMoldeShowNombre"
+        android:layout_width="@dimen/widthTil_x5"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_x3"
+        android:hint="@string/property_nombre"
+        android:autofillHints=""
+        android:textColorHint="@color/lab_fore_gre106"
+        app:hintTextAppearance="@style/MyHintAppearance"
+        app:boxBackgroundColor="@android:color/transparent"
+        app:boxBackgroundMode="none"
+        app:layout_constraintTop_toBottomOf="@+id/fabMoldeShowSelectImg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtMoldeShowNombre"
+            android:padding="0dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            style="@style/editTextOnlyRead" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilMoldeShowRef"
+        android:layout_width="@dimen/widthTil_x5"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_x3"
+        android:hint="@string/property_referencia"
+        android:autofillHints=""
+        android:textColorHint="@color/lab_fore_gre106"
+        app:hintTextAppearance="@style/MyHintAppearance"
+        app:boxBackgroundColor="@android:color/transparent"
+        app:boxBackgroundMode="none"
+        app:layout_constraintTop_toBottomOf="@+id/tilMoldeShowNombre"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtMoldeShowRef"
+            android:padding="0dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            style="@style/editTextOnlyRead" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilMoldeShowDesc"
+        android:layout_width="@dimen/widthTil_x5"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_x6"
+        android:hint="@string/property_descripcion"
+        android:autofillHints=""
+        android:textColorHint="@color/lab_fore_gre106"
+        app:hintTextAppearance="@style/MyHintAppearance"
+        app:boxBackgroundMode="none"
+        app:boxBackgroundColor="@android:color/transparent"
+        app:layout_constraintTop_toBottomOf="@id/tilMoldeShowRef"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtMoldeShowDesc"
+            android:gravity="start|top"
+            android:padding="0dp"
+            style="@style/editTextOnlyRead" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabMoldeShowBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_x2"
+        android:src="@drawable/ic_back"
+        android:contentDescription="@string/cont_desc_fab_nav_back"
+        app:tint="@color/fab_fore_gre108"
+        app:backgroundTint="@color/fab_back_gre101"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabMoldeShowUpdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_x2"
+        android:src="@drawable/ic_edit"
+        android:contentDescription="@string/cont_desc_fab_nav_update"
+        app:tint="@color/fab_fore_gre108"
+        app:backgroundTint="@color/fab_back_gre101"
+        app:layout_constraintStart_toEndOf="@id/fabMoldeShowBack"
+        app:layout_constraintEnd_toStartOf="@id/fabMoldeShowDelete"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabMoldeShowDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_x2"
+        android:src="@drawable/ic_delete"
+        android:contentDescription="@string/cont_desc_fab_nav_delete"
+        app:tint="@color/fab_fore_gre108"
+        app:backgroundTint="@color/fab_back_gre101"
+        app:layout_constraintStart_toEndOf="@id/fabMoldeShowUpdate"
+        app:layout_constraintEnd_toStartOf="@id/fabMoldeShowHome"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabMoldeShowHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_x2"
+        android:src="@drawable/ic_home"
+        android:contentDescription="@string/cont_desc_fab_nav_home"
+        app:tint="@color/fab_fore_gre108"
+        app:backgroundTint="@color/fab_back_gre101"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

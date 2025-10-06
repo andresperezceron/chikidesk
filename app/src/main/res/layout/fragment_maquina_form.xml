@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layoutMaquinaForm"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/padding_x1"
+    android:background="@drawable/bg_main">
+
+    <TextView
+        android:id="@+id/txvMaquinaFormHeader"
+        android:layout_marginTop="@dimen/margin_x1"
+        android:text="@string/header_maquina_form"
+        style="@style/headers"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilMaquinaFormNombre"
+        android:layout_width="@dimen/widthTil_x6"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_x6"
+        android:hint="@string/property_nombre"
+        android:autofillHints=""
+        android:textColorHint="@color/lab_fore_gre106"
+        app:hintTextColor="@color/purple_200"
+        app:hintTextAppearance="@style/MyHintAppearance"
+        app:boxBackgroundMode="outline"
+        app:boxBackgroundColor="@android:color/transparent"
+        app:layout_constraintTop_toBottomOf="@id/txvMaquinaFormHeader"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtMaquinaFormNombre"
+            style="@style/edtOnMoldeMaquinaForm" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilMaquinaFormRef"
+        android:layout_width="@dimen/widthTil_x6"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_x2"
+        android:hint="@string/property_referencia"
+        android:autofillHints=""
+        android:textColorHint="@color/lab_fore_gre106"
+        app:hintTextColor="@color/purple_200"
+        app:hintTextAppearance="@style/MyHintAppearance"
+        app:boxBackgroundMode="outline"
+        app:boxBackgroundColor="@android:color/transparent"
+        app:layout_constraintTop_toBottomOf="@id/tilMaquinaFormNombre"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtMaquinaFormRef"
+            style="@style/edtOnMoldeMaquinaForm" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilMaquinaFormDesc"
+        android:layout_width="@dimen/widthTil_x6"
+        android:layout_height="@dimen/heightDesc_til"
+        android:layout_marginTop="@dimen/margin_x2"
+        android:hint="@string/property_descripcion"
+        android:autofillHints=""
+        android:textColorHint="@color/lab_fore_gre106"
+        app:hintTextColor="@color/purple_200"
+        app:hintTextAppearance="@style/MyHintAppearance"
+        app:boxBackgroundMode="outline"
+        app:boxBackgroundColor="@android:color/transparent"
+        app:layout_constraintTop_toBottomOf="@id/tilMaquinaFormRef"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtMaquinaFormDesc"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            style="@style/edtOnMoldeMaquinaForm" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnMaquinaFormNew"
+        android:layout_width="@dimen/widthButton_x2"
+        android:layout_height="@dimen/heightButton_x2"
+        android:layout_marginTop="@dimen/margin_x6"
+        android:text="@string/btn_text_guardar"
+        android:textColor="@color/text_gre108"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:cornerRadius="@dimen/strokeRadius_x1"
+        app:strokeWidth="@dimen/strokeWidth_x1"
+        app:strokeColor="@color/strokes_gre107"
+        app:backgroundTint="@color/btn_back_gre105"
+        app:layout_constraintTop_toBottomOf="@id/tilMaquinaFormDesc"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabMaquinaFormBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_x2"
+        android:src="@drawable/ic_back"
+        android:contentDescription="@string/cont_desc_fab_nav_back"
+        app:tint="@color/fab_fore_gre108"
+        app:backgroundTint="@color/fab_back_gre101"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabMaquinaFormHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_x2"
+        android:src="@drawable/ic_home"
+        android:contentDescription="@string/cont_desc_fab_nav_home"
+        app:tint="@color/fab_fore_gre108"
+        app:backgroundTint="@color/fab_back_gre101"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

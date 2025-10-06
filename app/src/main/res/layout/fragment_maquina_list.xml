@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layoutMaquinaList"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/padding_x1"
+    android:background="@drawable/bg_main" >
+
+    <TextView
+        android:id="@+id/txvMaquinaListHeader"
+        android:text="@string/header_maquina_list"
+        style="@style/headers"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvMaquinaList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/margin_x2"
+        android:paddingBottom="@dimen/paddingBottom_rcv"
+        android:clipToPadding="false"
+        android:contentDescription="@string/cont_desc_rcv_maquina"
+        app:layout_constraintTop_toBottomOf="@id/txvMaquinaListHeader"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabMaquinaListHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_x2"
+        android:src="@drawable/ic_home"
+        android:contentDescription="@string/cont_desc_fab_nav_home"
+        app:tint="@color/fab_fore_gre108"
+        app:backgroundTint="@color/fab_back_gre101"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabMaquinaListNew"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_x2"
+        android:src="@drawable/ic_add"
+        android:contentDescription="@string/cont_desc_fab_new_maquina"
+        app:tint="@color/fab_fore_gre108"
+        app:backgroundTint="@color/fab_back_gre101"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
