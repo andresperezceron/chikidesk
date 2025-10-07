@@ -58,9 +58,10 @@ public class FragmentMoldeUpdate extends Fragment {
             );
             if(check.getCheckStatus()) {
                 if(dao.update(check.getCheckedEntity()) > 0) {
-                    Toast.makeText(getContext(), "Molde actualizado",
+                    Toast.makeText(getContext(), R.string.tot_upd_molde,
                             Toast.LENGTH_SHORT).show();
-                } else Log.d("", "Error MoldeDao.update");
+                } else Log.d(getString(R.string.tag_dao_error),
+                        getString(R.string.log_del_molde));
                 Bundle bundle = new Bundle();
                 bundle.putParcelable("molde", check.getCheckedEntity());
                 NavHostFragment.findNavController(this)

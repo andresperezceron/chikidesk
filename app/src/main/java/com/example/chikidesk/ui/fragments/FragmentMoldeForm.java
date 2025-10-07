@@ -1,6 +1,7 @@
 package com.example.chikidesk.ui.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,9 +48,11 @@ public class FragmentMoldeForm extends Fragment {
                     getTextFrom(binding.edtMoldeFormDesc)));
 
             if(check.getCheckStatus()) {
-                dao.insert(check.getCheckedEntity());
-                Toast.makeText(getContext(), "Molde guardado", Toast.LENGTH_SHORT).show();
-                Navigation.findNavController(v).popBackStack(); // Volver a la lista
+                if(dao.insert(check.getCheckedEntity()) > 0) {
+                    Toast.makeText(getContext(), R.string.tot_new_molde,
+                            Toast.LENGTH_SHORT).show();
+                } else Log.d(getString(R.string.tag_dao_error), getString(R.string.log_new_molde));
+                Navigation.findNavController(v).popBackStack();
             }
             dao.close();
         });

@@ -38,6 +38,7 @@ public class FragmentMoldeList extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         binding.rcvMoldeList.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.rcvMoldeList.setHasFixedSize(true);
 
         MoldeDao dao = new MoldeDao(requireContext());
         List<Molde> list = dao.getAllOderBy("nombre");

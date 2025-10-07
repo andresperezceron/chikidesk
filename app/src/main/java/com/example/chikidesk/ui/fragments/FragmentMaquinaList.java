@@ -15,31 +15,35 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.chikidesk.R;
+import com.example.chikidesk.databinding.FragmentMaquinaListBinding;
 import com.example.chikidesk.db.MaquinaDao;
 import com.example.chikidesk.model.Maquina;
 import com.example.chikidesk.ui.adapters.AdapterMaquinaList;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
 public class FragmentMaquinaList extends Fragment {
+    private FragmentMaquinaListBinding binding;
+
     public FragmentMaquinaList() {}
 
-    @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_maquina_list, container, false);
-        RecyclerView recyclerView = view.findViewById(R.id.rcvMaquinaList);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding = FragmentMaquinaListBinding.inflate(inflater, container, false);
+        return binding.getRoot();
+    }
 
-        FloatingActionButton fabHome = view.findViewById(R.id.fabMaquinaListHome);
-        FloatingActionButton fabNew = view.findViewById(R.id.fabMaquinaListNew);
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        binding.rcvMaquinaList.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.rcvMaquinaList.setHasFixedSize(true);
 
         MaquinaDao dao = new MaquinaDao(requireContext());
         List<Maquina> list = dao.getAllOderBy("nombre");
-        dao.close();
 
         AdapterMaquinaList.OnItemClickListener listener = maquina -> {
             Bundle bundle = new Bundle();
@@ -47,13 +51,12 @@ public class FragmentMaquinaList extends Fragment {
             NavHostFragment.findNavController(this)
                     .navigate(R.id.action_maquinaList_to_maquinaShow, bundle);
         };
-        recyclerView.setAdapter(new AdapterMaquinaList(list, listener));
+        binding.rcvMaquinaList.setAdapter(new AdapterMaquinaList(list, listener));
 
-        fabHome.setOnClickListener(v ->
+        binding.fabMaquinaListHome.setOnClickListener(v ->
                 Navigation.findNavController(v).navigate(R.id.action_maquinaList_to_home));
-        fabNew.setOnClickListener(v ->
+        binding.fabMaquinaListNew.setOnClickListener(v ->
                 Navigation.findNavController(v).navigate(R.id.action_maquinaList_to_maquinaForm));
 
-        return view;
     }
 }

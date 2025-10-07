@@ -67,14 +67,14 @@ public class FragmentMoldeDelete extends Fragment {
                                 MoldeDao dao = new MoldeDao(getContext());
                                 if(dao.delete(molde)) {
                                     Toast.makeText(getContext(),
-                                            getString(R.string.msn_del_molde_ok),
+                                            getString(R.string.tot_del_molde),
                                             Toast.LENGTH_SHORT).show();
-                                } else Log.e(getString(R.string.log_tag_delete),
+                                } else Log.e(getString(R.string.tag_dao_error),
                                         getString(R.string.log_del_molde));
                                 if(savedImage.exists()) {
                                     binding.imgMoldeDelete.setImageBitmap(null);
                                     if(savedImage.delete())
-                                        Log.d("", getString(R.string.msn_img_delete));
+                                        Log.d("", getString(R.string.tot_del_img));
                                 }
                                 Navigation.findNavController(v).
                                         navigate(R.id.action_moldeDelete_to_moldeList);

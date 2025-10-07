@@ -1,6 +1,5 @@
 package com.example.chikidesk.ui.fragments;
 
-
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -48,7 +47,8 @@ public class FragmentMoldeShow extends Fragment {
         binding.edtMoldeShowRef.setText(molde.getReferencia());
         binding.edtMoldeShowDesc.setText(molde.getDescripcion());
 
-        File savedImage = new File(requireContext().getFilesDir(), "molde_" + molde.getId() + ".jpg");
+        File savedImage = new File(requireContext().getFilesDir(), "molde_" +
+                molde.getId() + ".jpg");
         if(savedImage.exists()) {
             Bitmap bitmap = BitmapFactory.decodeFile(savedImage.getAbsolutePath());
             binding.imgMoldeShow.setImageBitmap(bitmap);
@@ -81,9 +81,10 @@ public class FragmentMoldeShow extends Fragment {
             if(savedImage.exists()) {
                 binding.imgMoldeShow.setImageBitmap(null);
                 if(savedImage.delete()) {
-                    Toast.makeText(requireContext(), R.string.msn_img_delete,
+                    Toast.makeText(requireContext(), R.string.tot_del_img,
                             Toast.LENGTH_SHORT).show();
-                } else Log.d("Error FragmenteMoldeShow", "Error al actualizar molde");
+                } else Log.d(getString(R.string.tag_img_error),
+                        getString(R.string.log_del_img_molde));
             }
         });
     }
