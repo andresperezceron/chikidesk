@@ -54,7 +54,6 @@ public class FragmentMoldeForm extends Fragment {
                 } else Log.d(getString(R.string.tag_dao_error), getString(R.string.log_new_molde));
                 Navigation.findNavController(v).popBackStack();
             }
-            dao.close();
         });
 
         binding.fabMoldeFormBack.setOnClickListener(v ->

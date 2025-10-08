@@ -1,4 +1,5 @@
 package com.example.chikidesk.ui.fragments;
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -62,23 +63,20 @@ public class FragmentMoldeDelete extends Fragment {
             new AlertDialog.Builder(requireContext())
                     .setMessage(R.string.dialog_del_molde)
                     .setCancelable(false)
-                    .setPositiveButton(getString(R.string.dialog_confirm),
-                            (dialogInterface, i) -> {
-                                MoldeDao dao = new MoldeDao(getContext());
-                                if(dao.delete(molde)) {
-                                    Toast.makeText(getContext(),
-                                            getString(R.string.tot_del_molde),
-                                            Toast.LENGTH_SHORT).show();
-                                } else Log.e(getString(R.string.tag_dao_error),
-                                        getString(R.string.log_del_molde));
-                                if(savedImage.exists()) {
-                                    binding.imgMoldeDelete.setImageBitmap(null);
-                                    if(savedImage.delete())
-                                        Log.d("", getString(R.string.tot_del_img));
-                                }
-                                Navigation.findNavController(v).
-                                        navigate(R.id.action_moldeDelete_to_moldeList);
-                            })
+                    .setPositiveButton(getString(R.string.dialog_confirm), (dialogInterface, i) -> {
+                        MoldeDao dao = new MoldeDao(getContext());
+                        if(dao.delete(molde)) {
+                            Toast.makeText(getContext(), getString(R.string.tot_del_molde),
+                                    Toast.LENGTH_SHORT).show();
+                        } else Log.e(getString(R.string.tag_dao_error), getString(R.string.log_del_molde));
+                        if(savedImage.exists()) {
+                            binding.imgMoldeDelete.setImageBitmap(null);
+                            if(savedImage.delete())
+                                Log.d("", getString(R.string.log_del_img));
+                        }
+                        Navigation.findNavController(v).
+                                navigate(R.id.action_moldeDelete_to_moldeList);
+                    })
                     .setNegativeButton("No", null)
                     .show();
         });

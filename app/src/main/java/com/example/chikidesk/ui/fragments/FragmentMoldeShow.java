@@ -81,7 +81,7 @@ public class FragmentMoldeShow extends Fragment {
             if(savedImage.exists()) {
                 binding.imgMoldeShow.setImageBitmap(null);
                 if(savedImage.delete()) {
-                    Toast.makeText(requireContext(), R.string.tot_del_img,
+                    Toast.makeText(requireContext(), R.string.log_del_img,
                             Toast.LENGTH_SHORT).show();
                 } else Log.d(getString(R.string.tag_img_error),
                         getString(R.string.log_del_img_molde));
