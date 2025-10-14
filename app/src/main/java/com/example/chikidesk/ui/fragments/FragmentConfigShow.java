@@ -140,8 +140,8 @@ public class FragmentConfigShow extends Fragment {
         fabUpdate.setOnClickListener(v -> {
             Bundle bundle = new Bundle();
             bundle.putParcelable("configuracion", config);
-            //NavHostFragment.findNavController(this)
-            //        .navigate(R.id.action_configShow_to_configUpdate, bundle);
+            NavHostFragment.findNavController(this)
+                    .navigate(R.id.action_configShow_to_configUpdate, bundle);
         });
     }
 }

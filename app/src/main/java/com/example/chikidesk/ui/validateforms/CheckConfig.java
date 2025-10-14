@@ -1,7 +1,6 @@
 package com.example.chikidesk.ui.validateforms;
 
 
-import com.example.chikidesk.db.ConfigDao;
 import com.example.chikidesk.model.Configuracion;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -69,7 +68,9 @@ public class CheckConfig extends BaseCheck<Configuracion, Integer> {
 
     @Override
     public void checkUpdate(Configuracion oldEntity, Configuracion newEntity) {
-        if(areEquals(oldEntity, newEntity)) {
+        configChecked = newEntity;
+        equalToUpdate = areEquals(oldEntity, newEntity);
+        if(equalToUpdate) {
             checkStatus = false;
             isEmpty = false;
             return;
@@ -77,8 +78,6 @@ public class CheckConfig extends BaseCheck<Configuracion, Integer> {
 
         checkStatus = true;
         isEmpty = false;
-        configChecked = newEntity;
-        configChecked.setId(oldEntity.getId());
         resetAllTils();
 
         if(configChecked.getPlastificacion().isEmpty()) {
@@ -120,7 +119,7 @@ public class CheckConfig extends BaseCheck<Configuracion, Integer> {
 
     @Override
     public Configuracion getCheckedEntity() {
-        return checkStatus ? configChecked : null;
+        return checkStatus ?  configChecked : null;
     }
 
     @Override
@@ -132,5 +131,9 @@ public class CheckConfig extends BaseCheck<Configuracion, Integer> {
                 oldEntity.getTimeOut().equals(newEntity.getTimeOut()) &&
                 oldEntity.getMaterial().equals(newEntity.getMaterial()) &&
                 oldEntity.getObservaciones().equals(newEntity.getObservaciones());
+    }
+
+    public Configuracion getConfigForBundle() {
+        return configChecked;
     }
 }

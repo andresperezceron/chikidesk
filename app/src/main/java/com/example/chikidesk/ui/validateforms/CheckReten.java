@@ -41,7 +41,9 @@ public class CheckReten extends BaseCheck<RetenPresion, Integer> {
 
     @Override
     public void checkUpdate(RetenPresion oldEntity, RetenPresion newEntity) {
-        if(areEquals(oldEntity, newEntity)){
+        retenChecked = newEntity;
+        equalToUpdate = areEquals(oldEntity, newEntity);
+        if(equalToUpdate){
             checkStatus = false;
             isEmpty = false;
             return;
@@ -49,8 +51,6 @@ public class CheckReten extends BaseCheck<RetenPresion, Integer> {
 
         checkStatus = true;
         isEmpty = false;
-        retenChecked = newEntity;
-        retenChecked.setId(oldEntity.getId());
         resetAllTils();
 
         if(retenChecked.getVelocidad().isEmpty()) {

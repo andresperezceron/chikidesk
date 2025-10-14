@@ -9,6 +9,7 @@
     <string name="btn_text_guardar">Guardar</string>
     <string name="btn_text_actualizar">Actualizar</string>
     <string name="btn_text_reset">Reiniciar</string>
+    <string name="btn_text_continue">Continuar</string>
     <string name="item_text_total_config">Total configuraciones: 0</string>
     <string name="lab_text_advertencia">¡Advertencia!</string>
     <string name="lab_text_confirm">¿Estás de acuerdo?</string>
@@ -79,6 +80,8 @@
     <string name="tot_new_maquina">Maquina creada</string>
     <string name="tot_upd_maquina">Maquina Actualizada</string>
     <string name="tot_del_maquina">Maquina Eliminada</string>
+    <string name="tot_new_config">Configuracion creada.</string>
+    <string name="tot_upd_config">Configuracion actualizada.</string>
     <string name="msn_img">img</string>
     <string name="msn_delete1">Se ELIMINARAN</string>
     <string name="msn_delete2">configuracion/es.</string>

@@ -192,6 +192,9 @@
         <action
             android:id="@+id/action_configShow_to_home"
             app:destination="@id/fragmentStartApp" />
+        <action
+            android:id="@+id/action_configShow_to_configUpdate"
+            app:destination="@id/fragmentConfigUpdate" />
     </fragment>
 
     <fragment
@@ -201,6 +204,9 @@
         <action
             android:id="@+id/action_configUpdate_to_home"
             app:destination="@id/fragmentStartApp" />
+        <action
+            android:id="@+id/action_configUpdate_to_configShow"
+            app:destination="@id/fragmentConfigShow" />
     </fragment>
 
     <fragment

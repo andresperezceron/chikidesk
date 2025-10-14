@@ -9,7 +9,7 @@ import java.util.List;
 
 public abstract class BaseCheck<T extends IEntity<K>, K> {
     protected final TextInputLayout[] arrayTils;
-    protected boolean checkStatus, isEmpty;
+    protected boolean checkStatus, isEmpty, equalToUpdate;
     protected List<String> info;
 
     public BaseCheck(TextInputLayout[] arrayTils) {
@@ -24,6 +24,10 @@ public abstract class BaseCheck<T extends IEntity<K>, K> {
 
     public boolean getCheckStatus() {
         return checkStatus;
+    }
+
+    public boolean isEqualToUpdate() {
+        return equalToUpdate;
     }
 
     public TextInputLayout getTil(int indexTil) {

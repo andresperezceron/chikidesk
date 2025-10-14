@@ -91,7 +91,9 @@ public class CheckInyeccion extends BaseCheck<Inyeccion, Integer> {
 
     @Override
     public void checkUpdate(Inyeccion oldEntity, Inyeccion newEntity) {
-        if(areEquals(oldEntity, newEntity)) {
+        inyChecked = newEntity;
+        equalToUpdate = areEquals(oldEntity, newEntity);
+        if(equalToUpdate) {
             checkStatus = false;
             isEmpty = false;
             return;
@@ -99,8 +101,6 @@ public class CheckInyeccion extends BaseCheck<Inyeccion, Integer> {
 
         checkStatus = true;
         isEmpty = false;
-        inyChecked = newEntity;
-        inyChecked.setId(oldEntity.getId());
         resetAllTils();
 
         if(inyChecked.getVelocidad1().isEmpty()) {

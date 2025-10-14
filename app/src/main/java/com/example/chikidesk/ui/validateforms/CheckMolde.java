@@ -97,7 +97,7 @@ public class CheckMolde extends BaseCheck<Molde, Integer> {
 
     @Override
     public Molde getCheckedEntity() {
-        return checkStatus ? moldeChecked : null;
+        return moldeChecked;
     }
 
     @Override

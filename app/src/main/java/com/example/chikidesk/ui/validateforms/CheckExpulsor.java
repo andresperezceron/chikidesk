@@ -62,7 +62,9 @@ public class CheckExpulsor extends BaseCheck<Expulsor, Integer> {
 
     @Override
     public void checkUpdate(Expulsor oldEntity, Expulsor newEntity) {
-        if(areEquals(oldEntity, newEntity)) {
+        expChecked = newEntity;
+        equalToUpdate = areEquals(oldEntity, newEntity);
+        if(equalToUpdate) {
             checkStatus = false;
             isEmpty = false;
             return;
@@ -70,8 +72,6 @@ public class CheckExpulsor extends BaseCheck<Expulsor, Integer> {
 
         checkStatus = true;
         isEmpty = false;
-        expChecked = newEntity;
-        expChecked.setId(oldEntity.getId());
         resetAllTils();
 
         if(expChecked.getVelocidad1().isEmpty()) {
@@ -108,7 +108,7 @@ public class CheckExpulsor extends BaseCheck<Expulsor, Integer> {
 
     @Override
     public Expulsor getCheckedEntity() {
-        return checkStatus ? expChecked : null;
+        return checkStatus ?  expChecked : null;
     }
 
     @Override

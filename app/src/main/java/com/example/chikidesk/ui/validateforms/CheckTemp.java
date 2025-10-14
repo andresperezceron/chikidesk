@@ -48,7 +48,9 @@ public class CheckTemp extends BaseCheck<Temperatura, Integer> {
 
     @Override
     public void checkUpdate(Temperatura oldEntity, Temperatura newEntity) {
-        if(areEquals(oldEntity, newEntity)) {
+        tempChecked = newEntity;
+        equalToUpdate = areEquals(oldEntity, newEntity);
+        if(equalToUpdate) {
             checkStatus = false;
             isEmpty = false;
             return;
@@ -57,8 +59,6 @@ public class CheckTemp extends BaseCheck<Temperatura, Integer> {
         checkStatus = true;
         isEmpty = false;
         resetAllTils();
-        tempChecked = newEntity;
-        tempChecked.setId(oldEntity.getId());
 
         if(newEntity.getTemp1().isEmpty()) {
             checkStatus = false;
