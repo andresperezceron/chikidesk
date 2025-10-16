@@ -61,9 +61,9 @@ public class FragmentMoldeDelete extends Fragment {
 
         binding.btnMoldeDeleteDelete.setOnClickListener(v -> {
             new AlertDialog.Builder(requireContext())
-                    .setMessage(R.string.dialog_del_molde)
+                    .setMessage(R.string.alert_new_molde)
                     .setCancelable(false)
-                    .setPositiveButton(getString(R.string.dialog_confirm), (dialogInterface, i) -> {
+                    .setPositiveButton(getString(R.string.alert_confirm), (dialogInterface, i) -> {
                         MoldeDao dao = new MoldeDao(getContext());
                         if(dao.delete(molde)) {
                             Toast.makeText(getContext(), getString(R.string.tot_del_molde),

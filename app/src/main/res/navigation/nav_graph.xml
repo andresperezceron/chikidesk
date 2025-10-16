@@ -29,9 +29,6 @@
         <action
             android:id="@+id/action_moldeList_to_moldeShow"
             app:destination="@id/fragmentMoldeShow" />
-        <action
-            android:id="@+id/action_moldeList_to_home"
-            app:destination="@id/fragmentStartApp" />
     </fragment>
 
     <fragment
@@ -39,8 +36,10 @@
         android:name="com.example.chikidesk.ui.fragments.FragmentMoldeForm"
         android:label="Formulario nuevo molde" >
         <action
-            android:id="@+id/action_moldeForm_to_home"
-            app:destination="@+id/fragmentStartApp" />
+            android:id="@+id/action_moldeForm_to_moldeList"
+            app:destination="@+id/fragmentMoldeList"
+            app:popUpTo="@id/fragmentMoldeList"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -48,17 +47,15 @@
         android:name="com.example.chikidesk.ui.fragments.FragmentMoldeShow"
         android:label="Descripcion molde" >
         <action
-            android:id="@+id/action_moldeShow_to_home"
-            app:destination="@+id/fragmentStartApp" />
-        <action
-            android:id="@+id/action_moldeShow_to_moldeList"
-            app:destination="@+id/fragmentMoldeList" />
-        <action
             android:id="@+id/action_moldeShow_to_moldeUpdate"
             app:destination="@+id/fragmentMoldeUpdate" />
         <action
             android:id="@+id/action_moldeShow_to_moldeDelete"
             app:destination="@+id/fragmentMoldeDelete" />
+        <action
+            android:id="@+id/action_moldeShow_to_home"
+            app:destination="@+id/fragmentStartApp"
+            app:popUpTo="@id/fragmentStartApp" />
     </fragment>
 
     <fragment
@@ -67,10 +64,14 @@
         android:label="Actualizando molde" >
         <action
             android:id="@+id/action_moldeUpdate_to_moldeShow"
-            app:destination="@+id/fragmentMoldeShow" />
+            app:destination="@+id/fragmentMoldeShow"
+            app:popUpTo="@id/fragmentMoldeShow"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_moldeUpdate_to_home"
-            app:destination="@+id/fragmentStartApp" />
+            app:destination="@+id/fragmentStartApp"
+            app:popUpTo="@id/fragmentStartApp"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment

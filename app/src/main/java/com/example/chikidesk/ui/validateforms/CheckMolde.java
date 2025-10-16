@@ -20,84 +20,68 @@ public class CheckMolde extends BaseCheck<Molde, Integer> {
 
     @Override
     public void checkInsert(Molde newEntity) {
-        String nombre = newEntity.getNombre();
-        String ref = newEntity.getReferencia();
-        String des = newEntity.getDescripcion();
-        tilNombre.setError(null);
-        tilRef.setError(null);
+        moldeChecked = newEntity;
+        resetAllTils();
 
         checkStatus = true;
-        if(nombre.isEmpty()) {
+        if(newEntity.getNombre().isEmpty()) {
             checkStatus = false;
             tilNombre.setError("El campo Nombre es obligatorio");
-        }else if(dao.duplicateUniqueKey("nombre", nombre)) {
+        }else if(dao.duplicateUniqueKey("nombre", newEntity.getNombre())) {
             tilNombre.setError("Nombre ulizado por otro molde");
             checkStatus = false;
         }
 
-        if(ref.isEmpty()) {
+        if(newEntity.getReferencia().isEmpty()) {
             checkStatus = false;
             tilRef.setError("El campo Referencia es obligatorio");
-        }else if(dao.duplicateUniqueKey("referencia", ref)) {
+        }else if(dao.duplicateUniqueKey("referencia", newEntity.getReferencia())) {
             tilRef.setError("Referencia ulizada por otro molde");
             checkStatus = false;
         }
 
-        des = des.isEmpty() ? "Sin descripcion." : des;
-
-        if(checkStatus) {
-            info.add("Molde creado correctamente.");
-            moldeChecked = new Molde(0, nombre, ref, des);
-        }
+        if(newEntity.getDescripcion().isEmpty())
+            moldeChecked.setDescripcion("Sin descripcon");
     }
 
     @Override
     public void checkUpdate(Molde oldEntity, Molde newEntity) {
-        checkStatus = true;
-        if(areEquals(oldEntity, newEntity)) {
+        moldeChecked = newEntity;
+        equalToUpdate = areEquals(oldEntity, newEntity);
+        if(equalToUpdate) {
             checkStatus = false;
             return;
         }
 
-        int id = oldEntity.getId();
-        String nombre = newEntity.getNombre();
-        String ref = newEntity.getReferencia();
-        String des = newEntity.getDescripcion();
-        tilNombre.setError(null);
-        tilRef.setError(null);
+        checkStatus = true;
+        resetAllTils();
 
-        if(!oldEntity.getNombre().equals(nombre)) {
-            if(nombre.isEmpty()) {
+        if(!oldEntity.getNombre().equals(newEntity.getNombre())) {
+            if(newEntity.getNombre().isEmpty()) {
                 checkStatus = false;
                 tilNombre.setError("El campo Nombre es obligatorio");
-            }else if(dao.duplicateUniqueKey("nombre", nombre)) {
+            }else if(dao.duplicateUniqueKey("nombre", newEntity.getNombre())) {
                 checkStatus = false;
                 tilNombre.setError("Ya hay un molde con este nombre");
-            }else addInfo("Nombre: " + oldEntity.getNombre() + " -> " + nombre);
+            }else addInfo("Nombre: " + oldEntity.getNombre() + " -> " + newEntity.getNombre());
         }
-        if(!oldEntity.getReferencia().equals(ref)) {
-            if(ref.isEmpty()) {
+        if(!oldEntity.getReferencia().equals(newEntity.getReferencia())) {
+            if(newEntity.getReferencia().isEmpty()) {
                 checkStatus = false;
                 tilNombre.setError("El campo Nombre es obligatorio");
-            }else if(dao.duplicateUniqueKey("referencia", ref)) {
+            }else if(dao.duplicateUniqueKey("referencia", newEntity.getReferencia())) {
                 checkStatus = false;
                 tilRef.setError("Ya hay un molde con esta referencia");
-            }else addInfo("Ref: " + oldEntity.getReferencia() + " -> " + ref);
-        }
-        if(!oldEntity.getDescripcion().equals(des)) {
-            des = des.isEmpty() ? "Sin descripcion." : des;
-            addInfo("Desc: " + oldEntity.getDescripcion() + "->" + des);
+            }else addInfo("Ref: " + oldEntity.getReferencia() + " -> " + newEntity.getReferencia());
         }
 
-        if(checkStatus) {
-            moldeChecked = new Molde(id, nombre, ref, des);
-            addInfo("Molde modificado correctamente.");
-        }
+        if(newEntity.getDescripcion().isEmpty())
+            moldeChecked.setDescripcion("Sin descripcion");
     }
 
     @Override
     public Molde getCheckedEntity() {
-        return moldeChecked;
+        return checkStatus ? moldeChecked : null;
     }
 
     @Override

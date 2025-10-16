@@ -22,13 +22,22 @@ import java.util.List;
 
 public class FragmentMoldeList extends Fragment {
     private FragmentMoldeListBinding binding;
+    private List<Molde> list;
 
     public FragmentMoldeList() {}
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        MoldeDao dao = new MoldeDao(requireContext());
+        list = dao.getAllOderBy("nombre");
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        if(binding != null) return binding.getRoot();
         binding = FragmentMoldeListBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
@@ -40,9 +49,6 @@ public class FragmentMoldeList extends Fragment {
         binding.rcvMoldeList.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.rcvMoldeList.setHasFixedSize(true);
 
-        MoldeDao dao = new MoldeDao(requireContext());
-        List<Molde> list = dao.getAllOderBy("nombre");
-
         AdapterMoldeList.OnItemClickListener listener = molde -> {
             Bundle bundle = new Bundle();
             bundle.putParcelable("molde", molde);
@@ -52,15 +58,8 @@ public class FragmentMoldeList extends Fragment {
         binding.rcvMoldeList.setAdapter(new AdapterMoldeList(list, listener));
 
         binding.fabMoldeListHome.setOnClickListener(v ->
-                Navigation.findNavController(v).navigate(R.id.action_moldeList_to_home));
+                Navigation.findNavController(v).popBackStack());
         binding.fabMoldeListNew.setOnClickListener(v ->
                 Navigation.findNavController(v).navigate(R.id.action_moldeList_to_moldeForm));
-
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
     }
 }

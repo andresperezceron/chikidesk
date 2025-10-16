@@ -50,22 +50,28 @@ public class FragmentMoldeUpdate extends Fragment {
             MoldeDao dao = new MoldeDao(getContext());
             CheckMolde check = new CheckMolde(dao, new TextInputLayout[]{
                     binding.tilMoldeUpdateNombre, binding.tilMoldeUpdateRef});
-            check.checkUpdate(oldMolde, new Molde(
-                    oldMolde.getId(),
+            check.checkUpdate(oldMolde, new Molde(oldMolde.getId(),
                     getTextFrom(binding.edtMoldeUpdateNombre),
                     getTextFrom(binding.edtMoldeUpdateRef),
-                    getTextFrom(binding.edtMoldeUpdateDesc))
-            );
+                    getTextFrom(binding.edtMoldeUpdateDesc)));
+
+            if(check.isEqualToUpdate()) {
+                Toast.makeText(getContext(),"Sin cambios. Nada que actualizar",
+                        Toast.LENGTH_SHORT).show();
+                Navigation.findNavController(v).popBackStack();
+                return;
+            }
+
             if(check.getCheckStatus()) {
                 if(dao.update(check.getCheckedEntity()) > 0) {
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelable("molde", check.getCheckedEntity());
+                    NavHostFragment.findNavController(this)
+                            .navigate(R.id.action_moldeUpdate_to_moldeShow, bundle);
                     Toast.makeText(getContext(), R.string.tot_upd_molde,
                             Toast.LENGTH_SHORT).show();
                 } else Log.d(getString(R.string.tag_dao_error),
                         getString(R.string.log_del_molde));
-                Bundle bundle = new Bundle();
-                bundle.putParcelable("molde", check.getCheckedEntity());
-                NavHostFragment.findNavController(this)
-                        .navigate(R.id.action_moldeUpdate_to_moldeShow, bundle);
             }
         });
 

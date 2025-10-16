@@ -41,7 +41,6 @@ public class FragmentConfigUpdate extends Fragment {
 
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Es un buen lugar para inicializar objetos que no dependen de la vista
         configRepository = new ConfigRepository(requireContext());
     }
 
@@ -85,6 +84,13 @@ public class FragmentConfigUpdate extends Fragment {
                 NavHostFragment.findNavController(this)
                         .navigate(R.id.action_configUpdate_to_configShow, bundle);
             }
+        });
+
+        binding.fabConfigUpdateBack.setOnClickListener(v -> {
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("configuracion", oldConfig);
+            NavHostFragment.findNavController(this)
+                    .navigate(R.id.action_configUpdate_to_configShow, bundle);
         });
 
         binding.fabConfigUpdateHome.setOnClickListener(v ->

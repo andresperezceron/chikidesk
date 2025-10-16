@@ -13,11 +13,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+        /*getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
                 // No hacemos nada → botón back queda ignorado
             }
-        });
+        });*/
     }
 }

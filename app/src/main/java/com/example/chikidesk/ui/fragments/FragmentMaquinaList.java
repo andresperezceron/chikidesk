@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.chikidesk.R;
 import com.example.chikidesk.databinding.FragmentMaquinaListBinding;

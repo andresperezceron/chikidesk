@@ -62,7 +62,7 @@ public class FragmentMaquinaDelete extends Fragment {
                 new AlertDialog.Builder(requireContext())
                         .setMessage(R.string.tot_del_maquina)
                         .setCancelable(false)
-                        .setPositiveButton(getString(R.string.dialog_confirm), (dialogInterface, i) -> {
+                        .setPositiveButton(getString(R.string.alert_confirm), (dialogInterface, i) -> {
                             MaquinaDao dao = new MaquinaDao(getContext());
                             if(dao.delete(maquina)) {
                                 Toast.makeText(getContext(),getString(R.string.tot_del_maquina),

@@ -89,8 +89,10 @@
     <string name="msn_default_value">Los campos en rojo tomarán valores por defecto.</string>
     <string name="msn_update_empty">No puede haber campos vacíos al actualizar.\nLos campos en rojo deben tener valor.</string>
     <string name="dialog_empty_fields">Campos Vacíos</string>
-    <string name="dialog_confirm">Si estoy de acuerdo.</string>
-    <string name="dialog_del_molde">Eliminando Molde</string>
+    <string name="alert_confirm">Si estoy de acuerdo.</string>
+    <string name="alert_ok">OK</string>
+    <string name="alert_title_error">ERROR</string>
+    <string name="alert_new_molde">Fallo inesperado al crear nuevo molde./nIntentelo de nuevo más tarde.</string>
     <string name="tag_dao_error">Error en Dao</string>
     <string name="tag_img_error">Error en Img</string>
     <string name="log_new_molde">MoldeDao.insert</string>

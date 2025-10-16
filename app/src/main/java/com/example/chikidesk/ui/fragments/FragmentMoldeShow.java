@@ -59,7 +59,7 @@ public class FragmentMoldeShow extends Fragment {
         binding.fabMoldeShowSelectImg.setOnClickListener(v -> piker.launch());
 
         binding.fabMoldeShowBack.setOnClickListener(v ->
-                Navigation.findNavController(v).navigate(R.id.action_moldeShow_to_moldeList));
+                Navigation.findNavController(v).popBackStack());
         binding.fabMoldeShowHome.setOnClickListener(v ->
                 Navigation.findNavController(v).navigate(R.id.action_moldeShow_to_home));
 
