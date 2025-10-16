@@ -26,13 +26,10 @@ public class FragmentMoldeShow extends Fragment {
     private FragmentMoldeShowBinding binding;
     private ImgPickerHelper piker;
 
-    public FragmentMoldeShow() {
-        super();
-    }
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        if(binding != null) return binding.getRoot();
         binding = FragmentMoldeShowBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
@@ -42,17 +39,7 @@ public class FragmentMoldeShow extends Fragment {
 
         Molde molde = getArguments() != null ? getArguments().getParcelable("molde") : null;
         assert molde != null;
-
-        binding.edtMoldeShowNombre.setText(molde.getNombre());
-        binding.edtMoldeShowRef.setText(molde.getReferencia());
-        binding.edtMoldeShowDesc.setText(molde.getDescripcion());
-
-        File savedImage = new File(requireContext().getFilesDir(), "molde_" +
-                molde.getId() + ".jpg");
-        if(savedImage.exists()) {
-            Bitmap bitmap = BitmapFactory.decodeFile(savedImage.getAbsolutePath());
-            binding.imgMoldeShow.setImageBitmap(bitmap);
-        }
+        File savedImage = populateForm(molde);
 
         piker = new ImgPickerHelper(this, molde.getId(), "molde_", "jpg",
                 binding.imgMoldeShow);
@@ -61,7 +48,7 @@ public class FragmentMoldeShow extends Fragment {
         binding.fabMoldeShowBack.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack());
         binding.fabMoldeShowHome.setOnClickListener(v ->
-                Navigation.findNavController(v).navigate(R.id.action_moldeShow_to_home));
+                Navigation.findNavController(v).popBackStack(R.id.fragmentStartApp, false));
 
         binding.fabMoldeShowUpdate.setOnClickListener(v -> {
             Bundle bundle = new Bundle();
@@ -89,9 +76,17 @@ public class FragmentMoldeShow extends Fragment {
         });
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
+    private File populateForm(Molde molde) {
+        binding.edtMoldeShowNombre.setText(molde.getNombre());
+        binding.edtMoldeShowRef.setText(molde.getReferencia());
+        binding.edtMoldeShowDesc.setText(molde.getDescripcion());
+
+        File savedImage = new File(requireContext().getFilesDir(), "molde_" +
+                molde.getId() + ".jpg");
+        if(savedImage.exists()) {
+            Bitmap bitmap = BitmapFactory.decodeFile(savedImage.getAbsolutePath());
+            binding.imgMoldeShow.setImageBitmap(bitmap);
+        }
+        return savedImage;
     }
 }

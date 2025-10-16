@@ -93,11 +93,10 @@
     <string name="alert_ok">OK</string>
     <string name="alert_title_error">ERROR</string>
     <string name="alert_new_molde">Fallo inesperado al crear nuevo molde./nIntentelo de nuevo más tarde.</string>
+    <string name="alert_new_maquina">Fallo inesperado al crear nueva maquina./nIntentelo de nuevo más tarde.</string>
     <string name="tag_dao_error">Error en Dao</string>
     <string name="tag_img_error">Error en Img</string>
-    <string name="log_new_molde">MoldeDao.insert</string>
     <string name="log_del_molde">MoldeDao.delete</string>
-    <string name="log_new_maquina">MaquinaDao.insert</string>
     <string name="log_del_maquina">MaquinaDao.delete</string>
     <string name="log_upd_maquina">MaquinaDao.update</string>
     <string name="log_del_img">Imagen eliminada.</string>

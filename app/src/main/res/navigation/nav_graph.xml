@@ -91,9 +91,6 @@
         android:name="com.example.chikidesk.ui.fragments.FragmentMaquinaList"
         android:label="Lista Máquinas" >
         <action
-            android:id="@+id/action_maquinaList_to_home"
-            app:destination="@id/fragmentStartApp" />
-        <action
             android:id="@+id/action_maquinaList_to_maquinaForm"
             app:destination="@id/fragmentMaquinaForm" />
         <action
@@ -106,8 +103,10 @@
         android:name="com.example.chikidesk.ui.fragments.FragmentMaquinaForm"
         android:label="Formulario nueva maquina" >
         <action
-            android:id="@+id/action_maquinaForm_to_home"
-            app:destination="@+id/fragmentStartApp" />
+            android:id="@+id/action_maquinaForm_to_maquinaList"
+            app:destination="@+id/fragmentMaquinaList"
+            app:popUpTo="@id/fragmentMaquinaList"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment

@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -23,13 +22,22 @@ import java.util.List;
 
 public class FragmentMaquinaList extends Fragment {
     private FragmentMaquinaListBinding binding;
+    private List<Maquina> list;
 
     public FragmentMaquinaList() {}
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        MaquinaDao dao = new MaquinaDao(requireContext());
+        list = dao.getAllOderBy("nombre");
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        if(binding != null) return binding.getRoot();
         binding = FragmentMaquinaListBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
@@ -41,9 +49,6 @@ public class FragmentMaquinaList extends Fragment {
         binding.rcvMaquinaList.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.rcvMaquinaList.setHasFixedSize(true);
 
-        MaquinaDao dao = new MaquinaDao(requireContext());
-        List<Maquina> list = dao.getAllOderBy("nombre");
-
         AdapterMaquinaList.OnItemClickListener listener = maquina -> {
             Bundle bundle = new Bundle();
             bundle.putParcelable("maquina", maquina);
@@ -53,9 +58,8 @@ public class FragmentMaquinaList extends Fragment {
         binding.rcvMaquinaList.setAdapter(new AdapterMaquinaList(list, listener));
 
         binding.fabMaquinaListHome.setOnClickListener(v ->
-                Navigation.findNavController(v).navigate(R.id.action_maquinaList_to_home));
+                Navigation.findNavController(v).popBackStack());
         binding.fabMaquinaListNew.setOnClickListener(v ->
                 Navigation.findNavController(v).navigate(R.id.action_maquinaList_to_maquinaForm));
-
     }
 }
