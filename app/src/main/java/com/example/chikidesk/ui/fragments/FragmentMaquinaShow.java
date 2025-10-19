@@ -1,9 +1,6 @@
 package com.example.chikidesk.ui.fragments;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +9,16 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.chikidesk.R;
 import com.example.chikidesk.databinding.FragmentMaquinaShowBinding;
 import com.example.chikidesk.model.Maquina;
+import com.example.chikidesk.utils.ImageManager;
 import com.example.chikidesk.utils.ImgPickerHelper;
+import com.example.chikidesk.viewmodel.AppCacheViewModel;
 
 import java.io.File;
 
@@ -26,8 +26,18 @@ import java.io.File;
 public class FragmentMaquinaShow extends Fragment {
     private FragmentMaquinaShowBinding binding;
     private ImgPickerHelper piker;
+    private ImageManager imageManager;
+    private Maquina maquina;
 
-    public FragmentMaquinaShow() {}
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        AppCacheViewModel appCache;
+        appCache = new ViewModelProvider(requireActivity()).get(AppCacheViewModel.class);
+        maquina = appCache.getMaquinaById(getArguments() != null ?
+                getArguments().getInt("id") : 0);
+        assert maquina != null;
+        imageManager = new ImageManager(requireContext(), "molde_", "jpg");
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
@@ -39,52 +49,50 @@ public class FragmentMaquinaShow extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Maquina maquina = getArguments() != null ? getArguments().getParcelable("maquina") : null;
-        assert maquina != null;
-
         binding.edtMaquinaShowNombre.setText(maquina.getNombre());
         binding.edtMaquinaShowRef.setText(maquina.getReferencia());
         binding.edtMaquinaShowDesc.setText(maquina.getDescripcion());
+        imageManager.loadImageInto(maquina.getId(), binding.imgMaquinaShow);
+        setupButtons();
+    }
 
-        File savedImage = new File(requireContext().getFilesDir(),
-                "maquina_" + maquina.getId() + ".jpg");
-        if(savedImage.exists()) {
-            Bitmap bitmap = BitmapFactory.decodeFile(savedImage.getAbsolutePath());
-            binding.imgMaquinaShow.setImageBitmap(bitmap);
-        }
+    private void setupButtons() {
+        // --- Lógica de Imagen ---
+        // El Piker se crea aquí porque depende del ImageView y del Fragment (para el launcher)
+        File destinationFile = imageManager.getImageFile(maquina.getId());
+        piker = new ImgPickerHelper(this, destinationFile, binding.imgMaquinaShow);
 
-        piker = new ImgPickerHelper(this, maquina.getId(), "maquina_",
-                "jpg", binding.imgMaquinaShow);
         binding.fabMaquinaShowSelectImg.setOnClickListener(v -> piker.launch());
+
+        binding.fabMaquinaShowDeleteImg.setOnClickListener(v -> {
+            if(imageManager.deleteImage(maquina.getId())) {
+                binding.imgMaquinaShow.setImageBitmap(null); // Limpia la vista
+                Toast.makeText(requireContext(), R.string.log_del_img, Toast.LENGTH_SHORT).show();
+            } else {
+                // Opcional: mostrar un toast de que no había imagen que borrar
+                Toast.makeText(requireContext(), "No había imagen para borrar", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // --- Lógica de Navegación ---
+        binding.fabMaquinaShowBack.setOnClickListener(v ->
+                Navigation.findNavController(v).popBackStack());
+
+        binding.fabMaquinaShowHome.setOnClickListener(v ->
+                Navigation.findNavController(v).popBackStack(R.id.fragmentStartApp, false));
 
         binding.fabMaquinaShowUpdate.setOnClickListener(v -> {
             Bundle bundle = new Bundle();
-            bundle.putParcelable("maquina", maquina);
+            bundle.putInt("id", maquina.getId());
             NavHostFragment.findNavController(this)
-                    .navigate(R.id.action_maquinaShow_to_maquinaUpdate, bundle);
-        } );
+                    .navigate(R.id.action_moldeShow_to_moldeUpdate, bundle);
+        });
 
         binding.fabMaquinaShowDelete.setOnClickListener(v -> {
             Bundle bundle = new Bundle();
             bundle.putParcelable("maquina", maquina);
             NavHostFragment.findNavController(this)
-                    .navigate(R.id.action_maquinaShow_to_maquinaDelete, bundle);
-        });
-
-        binding.fabMaquinaShowBack.setOnClickListener(v ->
-                Navigation.findNavController(v).navigate(R.id.action_maquinaShow_to_maquinaList));
-        binding.fabMaquinaShowHome.setOnClickListener(v ->
-                Navigation.findNavController(v).navigate(R.id.action_maquinaShow_to_home));
-
-        binding.fabMaquinaShowDeleteImg.setOnClickListener(v -> {
-            if(savedImage.exists()) {
-                binding.imgMaquinaShow.setImageBitmap(null);
-                if(savedImage.delete()) {
-                    Toast.makeText(requireContext(), R.string.log_del_img,
-                            Toast.LENGTH_SHORT).show();
-                } else Log.d(getString(R.string.tag_img_error),
-                        getString(R.string.log_del_img_maquina));
-            }
+                    .navigate(R.id.action_moldeShow_to_moldeDelete, bundle);
         });
     }
 

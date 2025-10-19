@@ -63,15 +63,15 @@
         android:name="com.example.chikidesk.ui.fragments.FragmentMoldeUpdate"
         android:label="Actualizando molde" >
         <action
-            android:id="@+id/action_moldeUpdate_to_moldeShow"
-            app:destination="@+id/fragmentMoldeShow"
-            app:popUpTo="@id/fragmentMoldeShow"
+            android:id="@+id/action_moldeUpdate_to_moldeList"
+            app:destination="@+id/fragmentMoldeList"
+            app:popUpTo="@id/fragmentMoldeList"
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_moldeUpdate_to_home"
             app:destination="@+id/fragmentStartApp"
             app:popUpTo="@id/fragmentStartApp"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="false" />
     </fragment>
 
     <fragment

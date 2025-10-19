@@ -38,6 +38,11 @@ public class RetenPresionDao extends AbstractDao<RetenPresion, Integer> implemen
     }
 
     @Override
+    protected Integer getId(RetenPresion entity) {
+        return entity.getId();
+    }
+
+    @Override
     public RetenPresion getByConfig(Configuracion config) {
         return getById(config.getId());
     }

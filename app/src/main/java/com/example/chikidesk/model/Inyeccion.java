@@ -1,8 +1,7 @@
 package com.example.chikidesk.model;
 
-import com.example.chikidesk.db.IEntity;
 
-public class Inyeccion implements IEntity<Integer> {
+public class Inyeccion {
     private int id;
     private String velocidad1;
     private String presion1;
@@ -31,12 +30,11 @@ public class Inyeccion implements IEntity<Integer> {
         this.presion5 = presion5;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    @Override
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 

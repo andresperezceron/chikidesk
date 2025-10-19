@@ -4,7 +4,7 @@ import com.example.chikidesk.db.RetenPresionDao;
 import com.example.chikidesk.model.RetenPresion;
 import com.google.android.material.textfield.TextInputLayout;
 
-public class CheckReten extends BaseCheck<RetenPresion, Integer> {
+public class CheckReten extends BaseCheck<RetenPresion> {
     private final int VELOCIDAD = 0;
     private final int PRESION = 1;
     private final int TIEMPO = 2;

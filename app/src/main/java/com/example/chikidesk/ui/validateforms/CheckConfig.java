@@ -4,7 +4,7 @@ package com.example.chikidesk.ui.validateforms;
 import com.example.chikidesk.model.Configuracion;
 import com.google.android.material.textfield.TextInputLayout;
 
-public class CheckConfig extends BaseCheck<Configuracion, Integer> {
+public class CheckConfig extends BaseCheck<Configuracion> {
     private Configuracion configChecked;
     private final int PLASTIFICACION = 0;
     private final int CICLO = 1;

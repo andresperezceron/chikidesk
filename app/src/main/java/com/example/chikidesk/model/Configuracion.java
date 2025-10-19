@@ -5,9 +5,8 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
-import com.example.chikidesk.db.IEntity;
 
-public class Configuracion implements IEntity<Integer>, Parcelable {
+public class Configuracion implements Parcelable {
     private int id;
     private int id_maquina;
     private int id_molde;
@@ -61,7 +60,7 @@ public class Configuracion implements IEntity<Integer>, Parcelable {
         parcel.writeString(observaciones);
     }
 
-    public static final Creator<Configuracion> CREATOR = new Creator<Configuracion>() {
+    public static final Creator<Configuracion> CREATOR = new Creator<>() {
         @Override
         public Configuracion createFromParcel(Parcel in) {
             return new Configuracion(in);
@@ -78,12 +77,11 @@ public class Configuracion implements IEntity<Integer>, Parcelable {
         return 0;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    @Override
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 

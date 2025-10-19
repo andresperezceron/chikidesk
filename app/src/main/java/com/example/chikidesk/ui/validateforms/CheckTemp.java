@@ -3,7 +3,7 @@ package com.example.chikidesk.ui.validateforms;
 import com.example.chikidesk.model.Temperatura;
 import com.google.android.material.textfield.TextInputLayout;
 
-public class CheckTemp extends BaseCheck<Temperatura, Integer> {
+public class CheckTemp extends BaseCheck<Temperatura> {
     private Temperatura tempChecked;
     private final int TEMP1 = 0;
     private final int TEMP2 = 1;

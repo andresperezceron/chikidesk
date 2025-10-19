@@ -1,8 +1,6 @@
 package com.example.chikidesk.model;
 
-import com.example.chikidesk.db.IEntity;
-
-public class Temperatura implements IEntity<Integer> {
+public class Temperatura {
     private int id;
     private String temp1;
     private String temp2;
@@ -17,12 +15,11 @@ public class Temperatura implements IEntity<Integer> {
         this.temp4 = temp4;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    @Override
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 

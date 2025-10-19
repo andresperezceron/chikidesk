@@ -41,7 +41,7 @@ public class FragmentMaquinaForm extends Fragment {
             MaquinaDao dao = new MaquinaDao(getContext());
             CheckMaquina check = createCheck(dao);
 
-            if(check.getCheckStatus()) {
+            /*if(check.getCheckStatus()) {
                 if(dao.insert(check.getCheckedEntity()) > 0) {
                     Navigation.findNavController(v).navigate(R.id.action_maquinaForm_to_maquinaList);
                     Toast.makeText(getContext(), R.string.tot_new_maquina, Toast.LENGTH_SHORT).show();
@@ -50,7 +50,7 @@ public class FragmentMaquinaForm extends Fragment {
                         .setMessage(R.string.alert_new_maquina)
                         .setPositiveButton(getString(R.string.alert_ok), null)
                         .show();
-            }
+            }*/
         });
 
         binding.fabMaquinaFormBack.setOnClickListener(v ->

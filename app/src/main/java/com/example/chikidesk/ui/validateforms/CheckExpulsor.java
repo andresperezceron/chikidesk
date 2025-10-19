@@ -3,7 +3,7 @@ package com.example.chikidesk.ui.validateforms;
 import com.example.chikidesk.model.Expulsor;
 import com.google.android.material.textfield.TextInputLayout;
 
-public class CheckExpulsor extends BaseCheck<Expulsor, Integer> {
+public class CheckExpulsor extends BaseCheck<Expulsor> {
     private final int VEL1 = 0;
     private final int VEL2 = 1;
     private final int PRE1 = 2;

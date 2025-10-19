@@ -42,7 +42,6 @@ public class FragmentConfigForm extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Es un buen lugar para inicializar objetos que no dependen de la vista
         configRepository = new ConfigRepository(requireContext());
     }
 
@@ -111,7 +110,6 @@ public class FragmentConfigForm extends Fragment {
      * Navega a la siguiente pantalla si la operación tiene éxito.
      */
     private void saveConfiguration(View view) {
-        // ¡La magia está aquí! Una sola llamada al repositorio.
         boolean success = configRepository.insertFullConfig(
                 checkFullConfig.getCheckConfig().getCheckedEntity(),
                 checkFullConfig.getCheckTemp().getCheckedEntity(),
@@ -123,7 +121,6 @@ public class FragmentConfigForm extends Fragment {
             Toast.makeText(getContext(), R.string.tot_new_config, Toast.LENGTH_SHORT).show();
             Navigation.findNavController(view).navigate(R.id.action_configForm_to_configList);
         } else {
-            // Si algo falla, el repositorio ya ha hecho rollback. Solo informamos al usuario.
             new AlertDialog.Builder(requireContext())
                     .setTitle("Error")
                     .setMessage("No se pudo guardar la configuración. Por favor, inténtelo de nuevo.")

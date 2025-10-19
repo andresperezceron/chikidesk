@@ -21,26 +21,41 @@ import com.example.chikidesk.model.FullConfig;
 import com.example.chikidesk.model.Inyeccion;
 import com.example.chikidesk.model.RetenPresion;
 import com.example.chikidesk.model.Temperatura;
+import com.example.chikidesk.viewmodel.AppCacheViewModel;
 
 public class ConfigRepository {
     private final MoldeDao moldeDao;
     private final MaquinaDao maquinaDao;
     private final ConfigDao configDao;
-    private final TemperaturaDao temperaturaDao;
-    private final InyeccionDao inyeccionDao;
-    private final RetenPresionDao retenPresionDao;
-    private final ExpulsorDao expulsorDao;
+    private final TemperaturaDao tempDao;
+    private final InyeccionDao inyDao;
+    private final RetenPresionDao retenDao;
+    private final ExpulsorDao expDao;
     private final MiDbHelper dbHelper;
+    private final AppCacheViewModel appCache;
+
+    public ConfigRepository(Context context, AppCacheViewModel appCache) {
+        this.appCache = appCache;
+        this.moldeDao = new MoldeDao(context);
+        this.maquinaDao = new MaquinaDao(context);
+        this.configDao = new ConfigDao(context);
+        this.tempDao = new TemperaturaDao(context);
+        this.inyDao = new InyeccionDao(context);
+        this.retenDao = new RetenPresionDao(context);
+        this.expDao = new ExpulsorDao(context);
+        this.dbHelper = MiDbHelper.getInstance(context);
+    }
 
     public ConfigRepository(Context context) {
         this.moldeDao = new MoldeDao(context);
         this.maquinaDao = new MaquinaDao(context);
         this.configDao = new ConfigDao(context);
-        this.temperaturaDao = new TemperaturaDao(context);
-        this.inyeccionDao = new InyeccionDao(context);
-        this.retenPresionDao = new RetenPresionDao(context);
-        this.expulsorDao = new ExpulsorDao(context);
+        this.tempDao = new TemperaturaDao(context);
+        this.inyDao = new InyeccionDao(context);
+        this.retenDao = new RetenPresionDao(context);
+        this.expDao = new ExpulsorDao(context);
         this.dbHelper = MiDbHelper.getInstance(context);
+        appCache = null;
     }
 
     public FullConfig createFullConfigByConfig(Configuracion configuracion) {
@@ -48,10 +63,10 @@ public class ConfigRepository {
                 moldeDao.getById(configuracion.getId_molde()),
                 maquinaDao.getById(configuracion.getId_maquina()),
                 configuracion,
-                temperaturaDao.getByConfig(configuracion),
-                inyeccionDao.getByConfig(configuracion),
-                retenPresionDao.getByConfig(configuracion),
-                expulsorDao.getByConfig(configuracion)
+                tempDao.getByConfig(configuracion),
+                inyDao.getByConfig(configuracion),
+                retenDao.getByConfig(configuracion),
+                expDao.getByConfig(configuracion)
         );
     }
 
@@ -62,11 +77,16 @@ public class ConfigRepository {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         db.beginTransaction();
         try {
-            if(config != null && configDao.update(config) < 1) return false;
-            if(temp != null && temperaturaDao.update(temp) < 1) return false;
-            if(iny != null && inyeccionDao.update(iny) < 1) return false;
-            if(reten != null && retenPresionDao.update(reten) < 1) return false;
-            if(exp != null && expulsorDao.update(exp) < 1) return false;
+            if(config != null && !appCache.setConfigList(configDao.exeCrudAction(config,
+                    ConfigDao.ACTION_UPDATE))) return false;
+            if(temp != null && !appCache.setTempList(tempDao.exeCrudAction(temp,
+                    ConfigDao.ACTION_UPDATE))) return false;
+            if(iny != null && !appCache.setInyList(inyDao.exeCrudAction(iny,
+                    ConfigDao.ACTION_UPDATE))) return false;
+            if(reten != null && !appCache.setRetenList(retenDao.exeCrudAction(reten,
+                    ConfigDao.ACTION_UPDATE))) return false;
+            if(exp != null && !appCache.setExpList(expDao.exeCrudAction(exp,
+                    ConfigDao.ACTION_UPDATE))) return false;
 
             db.setTransactionSuccessful();
             return true;
@@ -76,33 +96,29 @@ public class ConfigRepository {
         } finally { db.endTransaction(); }
     }
 
-    public boolean insertFullConfig(@NonNull Configuracion config, @NonNull Temperatura temperatura,
-                                    @NonNull Inyeccion inyeccion, @NonNull RetenPresion reten,
-                                    @NonNull Expulsor expulsor) {
+    public boolean insertFullConfig(@NonNull Configuracion config, @NonNull Temperatura temp,
+                                    @NonNull Inyeccion iny, @NonNull RetenPresion reten,
+                                    @NonNull Expulsor exp) {
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         db.beginTransaction();
         try {
-            // 2. Insertar la entidad principal (Configuracion) para obtener su ID
-            long newConfigId = configDao.insert(config);
+            if(!appCache.setConfigList(configDao.exeCrudAction(config, ConfigDao.ACTION_INSERT)))
+                return false;
 
-            // Si la inserción principal falla, no se puede continuar.
-            if(newConfigId == -1) {
-                Log.e("ConfigRepository", "Falló la inserción de la entidad Configuracion principal.");
-                return false; // Esto causará un rollback en el bloque 'finally'
-            }
+            temp.setId(configDao.getIdNewConfig());
+            iny.setId(configDao.getIdNewConfig());
+            reten.setId(configDao.getIdNewConfig());
+            exp.setId(configDao.getIdNewConfig());
 
-            // 3. Asignar el nuevo ID a todas las entidades hijas
-            temperatura.setId((int) newConfigId);
-            inyeccion.setId((int) newConfigId);
-            reten.setId((int) newConfigId);
-            expulsor.setId((int) newConfigId);
-
-            // 4. Insertar las entidades hijas
-            if (temperaturaDao.insert(temperatura) == -1) return false;
-            if (inyeccionDao.insert(inyeccion) == -1) return false;
-            if (retenPresionDao.insert(reten) == -1) return false;
-            if (expulsorDao.insert(expulsor) == -1) return false;
+            if(!appCache.setTempList(tempDao.exeCrudAction(temp, ConfigDao.ACTION_INSERT)))
+                return false;
+            if(!appCache.setInyList(inyDao.exeCrudAction(iny, ConfigDao.ACTION_INSERT)))
+                return false;
+            if(!appCache.setRetenList(retenDao.exeCrudAction(reten, ConfigDao.ACTION_INSERT)))
+                return false;
+            if(!appCache.setExpList(expDao.exeCrudAction(exp, ConfigDao.ACTION_INSERT)))
+                return false;
 
             // 5. Si todo ha ido bien, marcamos la transacción como exitosa
             db.setTransactionSuccessful();

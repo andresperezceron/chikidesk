@@ -4,7 +4,7 @@ package com.example.chikidesk.ui.validateforms;
 import com.example.chikidesk.model.Inyeccion;
 import com.google.android.material.textfield.TextInputLayout;
 
-public class CheckInyeccion extends BaseCheck<Inyeccion, Integer> {
+public class CheckInyeccion extends BaseCheck<Inyeccion> {
     private Inyeccion inyChecked;
     private final int V1 = 0;
     private final int V2 = 1;

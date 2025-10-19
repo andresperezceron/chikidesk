@@ -1,7 +1,6 @@
 package com.example.chikidesk.ui.fragments;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,18 +15,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.chikidesk.R;
 import com.example.chikidesk.databinding.FragmentMoldeListBinding;
-import com.example.chikidesk.db.MoldeDao;
-import com.example.chikidesk.model.Molde;
 import com.example.chikidesk.ui.adapters.AdapterMoldeList;
 import com.example.chikidesk.viewmodel.AppCacheViewModel;
-
-import java.util.List;
 
 public class FragmentMoldeList extends Fragment {
     private FragmentMoldeListBinding binding;
     private AppCacheViewModel appCache;
-
-    public FragmentMoldeList() {}
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,19 +39,25 @@ public class FragmentMoldeList extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if(appCache.getListaMoldes() == null)
-            Log.d("MiLOG", "appCache es null");
-        binding.rcvMoldeList.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.rcvMoldeList.setHasFixedSize(true);
+
+        populateForm();
+        setupNavigationButtons();
 
         AdapterMoldeList.OnItemClickListener listener = molde -> {
             Bundle bundle = new Bundle();
-            bundle.putParcelable("molde", molde);
+            bundle.putInt("id", molde.getId());
             NavHostFragment.findNavController(this)
                     .navigate(R.id.action_moldeList_to_moldeShow, bundle);
         };
-        binding.rcvMoldeList.setAdapter(new AdapterMoldeList(appCache.getListaMoldes(), listener));
+        binding.rcvMoldeList.setAdapter(new AdapterMoldeList(appCache.getMoldeList(), listener));
+    }
 
+    private void populateForm() {
+        binding.rcvMoldeList.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.rcvMoldeList.setHasFixedSize(true);
+    }
+
+    private void setupNavigationButtons() {
         binding.fabMoldeListHome.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack());
         binding.fabMoldeListNew.setOnClickListener(v ->

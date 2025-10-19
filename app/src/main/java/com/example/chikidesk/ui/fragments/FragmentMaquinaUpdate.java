@@ -56,11 +56,11 @@ public class FragmentMaquinaUpdate extends Fragment {
                     getTextFrom(binding.edtMaquinaUpdateDesc))
             );
             if(check.getCheckStatus()) {
-                if(dao.update(check.getCheckedEntity()) > 0) {
+                /*if(dao.update(check.getCheckedEntity()) > 0) {
                     Toast.makeText(getContext(), R.string.tot_upd_maquina,
                             Toast.LENGTH_SHORT).show();
                 } else Log.d(getString(R.string.tag_dao_error),
-                        getString(R.string.log_upd_maquina));
+                        getString(R.string.log_upd_maquina));*/
                 Bundle bundle = new Bundle();
                 bundle.putParcelable("maquina", check.getCheckedEntity());
                 NavHostFragment.findNavController(this)

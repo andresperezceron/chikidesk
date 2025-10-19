@@ -1,8 +1,6 @@
 package com.example.chikidesk.model;
 
-import com.example.chikidesk.db.IEntity;
-
-public class Expulsor implements IEntity<Integer> {
+public class Expulsor {
     private int id;
     private String velocidad1;
     private String presion1;
@@ -22,12 +20,11 @@ public class Expulsor implements IEntity<Integer> {
         this.posicion2 = posicion2;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    @Override
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 

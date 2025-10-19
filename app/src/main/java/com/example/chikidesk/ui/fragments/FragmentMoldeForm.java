@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.example.chikidesk.R;
@@ -18,17 +19,21 @@ import com.example.chikidesk.databinding.FragmentMoldeFormBinding;
 import com.example.chikidesk.db.MoldeDao;
 import com.example.chikidesk.model.Molde;
 import com.example.chikidesk.ui.validateforms.CheckMolde;
+import com.example.chikidesk.viewmodel.AppCacheViewModel;
 import com.google.android.material.textfield.TextInputLayout;
+
 
 public class FragmentMoldeForm extends Fragment {
     private FragmentMoldeFormBinding binding;
 
-    public FragmentMoldeForm() {}
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        if(binding != null) return binding.getRoot();
         binding = FragmentMoldeFormBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
@@ -40,9 +45,12 @@ public class FragmentMoldeForm extends Fragment {
         binding.btnMoldeFormNew.setOnClickListener(v -> {
             MoldeDao dao = new MoldeDao(getContext());
             CheckMolde check = createCheck(dao);
+            AppCacheViewModel appCache;
 
             if(check.getCheckStatus()) {
-                if(dao.insert(check.getCheckedEntity()) > 0) {
+                appCache = new ViewModelProvider(requireActivity()).get(AppCacheViewModel.class);
+                if(appCache.setMoldeList(dao.exeCrudAction(check.getCheckedEntity(),
+                        MoldeDao.ACTION_INSERT))) {
                     Navigation.findNavController(v).navigate(R.id.action_moldeForm_to_moldeList);
                     Toast.makeText(getContext(), R.string.tot_new_molde,
                             Toast.LENGTH_SHORT).show();

@@ -5,9 +5,8 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
-import com.example.chikidesk.db.IEntity;
 
-public class Maquina implements IEntity<Integer>, Parcelable {
+public class Maquina implements Parcelable {
     private int id;
     private String nombre;
     private String referencia;
@@ -39,12 +38,11 @@ public class Maquina implements IEntity<Integer>, Parcelable {
         }
     };
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    @Override
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 

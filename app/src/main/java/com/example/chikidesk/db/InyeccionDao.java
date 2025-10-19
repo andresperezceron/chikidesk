@@ -52,6 +52,11 @@ public class InyeccionDao extends AbstractDao<Inyeccion, Integer> implements Sub
     }
 
     @Override
+    protected Integer getId(Inyeccion entity) {
+        return entity.getId();
+    }
+
+    @Override
     public Inyeccion getByConfig(Configuracion config) {
         return getById(config.getId());
     }

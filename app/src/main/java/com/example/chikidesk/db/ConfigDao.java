@@ -55,8 +55,16 @@ public class ConfigDao extends AbstractDao<Configuracion, Integer> {
         return values;
     }
 
+    @Override
+    protected Integer getId(Configuracion entity) {
+        return entity.getId();
+    }
+
+    public int getIdNewConfig() {
+        return (int) idLastEntityCreated;
+    }
+
     public Map<Configuracion, String> getListToNewConfig(Maquina maquina) {
-        open();
         Map<Configuracion, String> mapList = new HashMap<>();
         String query = "SELECT c.id, c.id_maquina, c.id_molde, c.plastificacion, c.tiempo_ciclo, " +
                 "c.tiempo_ciclo_real, c.tiempo_enfriar, c.time_out, c.material, c.observaciones, " +
@@ -76,7 +84,6 @@ public class ConfigDao extends AbstractDao<Configuracion, Integer> {
     }
 
     public int getTotalConfigsByMolde(Molde molde) {
-        open();
         String strIdMolde = String.valueOf(molde.getId());
         String query = "SELECT COUNT(*) FROM " + getTableName() + " WHERE id_molde=?";
 
@@ -88,7 +95,6 @@ public class ConfigDao extends AbstractDao<Configuracion, Integer> {
     }
 
     public int getTotalConfigsByMaquina(Maquina maquina) {
-        open();
         String strIdMaquina = String.valueOf(maquina.getId());
         String query = "SELECT COUNT(*) FROM " + getTableName() + " WHERE id_maquina=?";
 
@@ -100,7 +106,6 @@ public class ConfigDao extends AbstractDao<Configuracion, Integer> {
     }
 
     public List<Configuracion> getConfigsByMolde(Molde molde) {
-        open();
         List<Configuracion> list = new ArrayList<>();
         String strIdMolde = String.valueOf(molde.getId());
         String query = "SELECT * FROM " + getTableName() + " WHERE id_molde=?";
@@ -114,7 +119,6 @@ public class ConfigDao extends AbstractDao<Configuracion, Integer> {
     }
 
     public List<Configuracion> getConfigsByMaquina(Maquina maquina) {
-        open();
         List<Configuracion> list = new ArrayList<>();
         String strIdMaquina = String.valueOf(maquina.getId());
         String query = "SELECT * FROM " + getTableName() + " WHERE id_maquina=?";

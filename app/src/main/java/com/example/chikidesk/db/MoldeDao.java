@@ -38,8 +38,20 @@ public class MoldeDao extends AbstractDao<Molde, Integer> {
         return values;
     }
 
+    @Override
+    protected Integer getId(Molde entity) {
+        return entity.getId();
+    }
+
+    public boolean isNameDuplicate(String nombreMolde) {
+        return duplicateUniqueKey("nombre", nombreMolde);
+    }
+
+    public boolean isRefDuplicate(String refMolde) {
+        return duplicateUniqueKey("referencia", refMolde);
+    }
+
     public List<Molde> getMoldesNotConfig(int idMaquina) {
-        open();
         List<Molde> moldes = new ArrayList<>();
         String query = "SELECT m.id, m.nombre, m.referencia, m.descripcion " +
                 "FROM molde m " +

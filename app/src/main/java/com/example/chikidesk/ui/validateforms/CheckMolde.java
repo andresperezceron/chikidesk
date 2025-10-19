@@ -4,7 +4,7 @@ import com.example.chikidesk.db.MoldeDao;
 import com.example.chikidesk.model.Molde;
 import com.google.android.material.textfield.TextInputLayout;
 
-public class CheckMolde extends BaseCheck<Molde, Integer> {
+public class CheckMolde extends BaseCheck<Molde> {
     private final TextInputLayout tilNombre;
     private final TextInputLayout tilRef;
     private final MoldeDao dao;
@@ -27,7 +27,7 @@ public class CheckMolde extends BaseCheck<Molde, Integer> {
         if(newEntity.getNombre().isEmpty()) {
             checkStatus = false;
             tilNombre.setError("El campo Nombre es obligatorio");
-        }else if(dao.duplicateUniqueKey("nombre", newEntity.getNombre())) {
+        }else if(dao.isNameDuplicate(newEntity.getNombre())) {
             tilNombre.setError("Nombre ulizado por otro molde");
             checkStatus = false;
         }
@@ -35,7 +35,7 @@ public class CheckMolde extends BaseCheck<Molde, Integer> {
         if(newEntity.getReferencia().isEmpty()) {
             checkStatus = false;
             tilRef.setError("El campo Referencia es obligatorio");
-        }else if(dao.duplicateUniqueKey("referencia", newEntity.getReferencia())) {
+        }else if(dao.isRefDuplicate(newEntity.getReferencia())) {
             tilRef.setError("Referencia ulizada por otro molde");
             checkStatus = false;
         }
@@ -60,7 +60,7 @@ public class CheckMolde extends BaseCheck<Molde, Integer> {
             if(newEntity.getNombre().isEmpty()) {
                 checkStatus = false;
                 tilNombre.setError("El campo Nombre es obligatorio");
-            }else if(dao.duplicateUniqueKey("nombre", newEntity.getNombre())) {
+            }else if(dao.isNameDuplicate(newEntity.getNombre())) {
                 checkStatus = false;
                 tilNombre.setError("Ya hay un molde con este nombre");
             }else addInfo("Nombre: " + oldEntity.getNombre() + " -> " + newEntity.getNombre());
@@ -68,8 +68,8 @@ public class CheckMolde extends BaseCheck<Molde, Integer> {
         if(!oldEntity.getReferencia().equals(newEntity.getReferencia())) {
             if(newEntity.getReferencia().isEmpty()) {
                 checkStatus = false;
-                tilNombre.setError("El campo Nombre es obligatorio");
-            }else if(dao.duplicateUniqueKey("referencia", newEntity.getReferencia())) {
+                tilNombre.setError("El campo Referencia es obligatorio");
+            }else if(dao.isRefDuplicate(newEntity.getReferencia())) {
                 checkStatus = false;
                 tilRef.setError("Ya hay un molde con esta referencia");
             }else addInfo("Ref: " + oldEntity.getReferencia() + " -> " + newEntity.getReferencia());

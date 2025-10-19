@@ -1,13 +1,11 @@
 package com.example.chikidesk.ui.validateforms;
 
-
-import com.example.chikidesk.db.IEntity;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class BaseCheck<T extends IEntity<K>, K> {
+public abstract class BaseCheck<T> {
     protected final TextInputLayout[] arrayTils;
     protected boolean checkStatus, isEmpty, equalToUpdate;
     protected List<String> info;

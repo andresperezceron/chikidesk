@@ -19,11 +19,11 @@ public class AdapterConfigList extends RecyclerView.Adapter<AdapterConfigList.Co
         void onItemClick(Maquina maquina);
     }
 
-    private final Map<Maquina, Integer> mapConfiguracion;
+    private final Map<Maquina, Long> mapConfiguracion;
     private final ArrayList<Maquina> keyList;
     private final OnItemClickListener listener;
 
-    public AdapterConfigList(Map<Maquina, Integer> mapConfiguracion, OnItemClickListener listener) {
+    public AdapterConfigList(Map<Maquina, Long> mapConfiguracion, OnItemClickListener listener) {
         this.mapConfiguracion = mapConfiguracion;
         keyList = new ArrayList<>(mapConfiguracion.keySet());
         this.listener = listener;
@@ -57,7 +57,7 @@ public class AdapterConfigList extends RecyclerView.Adapter<AdapterConfigList.Co
             txvTotalConfiguraciones = itemView.findViewById(R.id.txvItemTotalConfig);
         }
 
-        public void bind(Maquina maquina, Integer total, OnItemClickListener listener) {
+        public void bind(Maquina maquina, Long total, OnItemClickListener listener) {
             String mostrandoTotal = "Configuraciones: " + total;
             txvNombreMaquina.setText(maquina.getNombre());
             txvTotalConfiguraciones.setText(mostrandoTotal);

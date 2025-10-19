@@ -39,7 +39,6 @@ public class FragmentSelectConfig extends Fragment {
 
         ConfigDao dao = new ConfigDao(getContext());
         Map<Configuracion, String> mapList = dao.getListToNewConfig(maquina);
-        dao.close();
 
         FloatingActionButton fabHome = view.findViewById(R.id.fabSelectConfigHome);
         FloatingActionButton fabBack = view.findViewById(R.id.fabSelectConfigBack);

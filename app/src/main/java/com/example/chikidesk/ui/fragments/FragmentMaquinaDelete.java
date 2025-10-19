@@ -64,10 +64,10 @@ public class FragmentMaquinaDelete extends Fragment {
                         .setCancelable(false)
                         .setPositiveButton(getString(R.string.alert_confirm), (dialogInterface, i) -> {
                             MaquinaDao dao = new MaquinaDao(getContext());
-                            if(dao.delete(maquina)) {
+                            /*if(dao.exeCrudAction(maquina, MaquinaDao.ACTION_DELETE)) {
                                 Toast.makeText(getContext(),getString(R.string.tot_del_maquina),
                                         Toast.LENGTH_SHORT).show();
-                            }else Log.e(getString(R.string.tag_dao_error), getString(R.string.log_del_maquina));
+                            }else Log.e(getString(R.string.tag_dao_error), getString(R.string.log_del_maquina));*/
 
                             if(savedImage.exists()) {
                                 binding.imgMaquinaDelete.setImageBitmap(null);

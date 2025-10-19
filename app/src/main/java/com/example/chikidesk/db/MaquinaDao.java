@@ -38,8 +38,20 @@ public class MaquinaDao extends AbstractDao<Maquina, Integer> {
         return values;
     }
 
+    @Override
+    protected Integer getId(Maquina entity) {
+        return entity.getId();
+    }
+
+    public boolean isNameDuplicate(String nombreMaquina) {
+        return duplicateUniqueKey("nombre", nombreMaquina);
+    }
+
+    public boolean isRefDuplicate(String refMaquina) {
+        return duplicateUniqueKey("referencia", refMaquina);
+    }
+
     public Map<Maquina, Integer> getConfigList() {
-        open();
         Map<Maquina, Integer> resultado = new HashMap<>();
         String query = "SELECT m.id, m.nombre, m.referencia, m.descripcion, COUNT(c.id) as total " +
                 "FROM configuracion c " +

@@ -45,6 +45,11 @@ public class ExpulsorDao extends AbstractDao<Expulsor, Integer> implements SubTa
     }
 
     @Override
+    protected Integer getId(Expulsor entity) {
+        return entity.getId();
+    }
+
+    @Override
     public Expulsor getByConfig(Configuracion config) {
         return getById(config.getId());
     }

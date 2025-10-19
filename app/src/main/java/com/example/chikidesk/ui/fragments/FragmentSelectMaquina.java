@@ -40,7 +40,7 @@ public class FragmentSelectMaquina extends Fragment {
         binding.rcvSelectMaquina.setHasFixedSize(true);
 
         MaquinaDao dao = new MaquinaDao(requireContext());
-        List<Maquina> list = new ArrayList<>(dao.getAllOderBy("nombre"));
+        List<Maquina> list = new ArrayList<>(dao.getAll());
 
         AdapterMaquinaList.OnItemClickListener listener = maquina -> {
             Bundle bundle = new Bundle();

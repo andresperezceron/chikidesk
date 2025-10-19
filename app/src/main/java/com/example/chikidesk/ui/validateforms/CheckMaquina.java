@@ -6,7 +6,7 @@ import com.example.chikidesk.db.MaquinaDao;
 import com.example.chikidesk.model.Maquina;
 import com.google.android.material.textfield.TextInputLayout;
 
-public class CheckMaquina extends BaseCheck<Maquina, Integer> {
+public class CheckMaquina extends BaseCheck<Maquina> {
     private final TextInputLayout tilNombre;
     private final TextInputLayout tilRef;
     private final MaquinaDao dao;
@@ -16,92 +16,77 @@ public class CheckMaquina extends BaseCheck<Maquina, Integer> {
         this.dao = dao;
         tilNombre = arrayTils[0];
         tilRef = arrayTils[1];
+        checkStatus = false;
     }
 
     @Override
     public void checkInsert(@NonNull Maquina newEntity) {
-        String nombre = newEntity.getNombre();
-        String ref = newEntity.getReferencia();
-        String des = newEntity.getDescripcion();
-        tilNombre.setError(null);
-        tilRef.setError(null);
+        maquinaChecked = newEntity;
+        resetAllTils();
 
         checkStatus = true;
-        if(nombre.isEmpty()) {
+        if(newEntity.getNombre().isEmpty()) {
             checkStatus = false;
             tilNombre.setError("El campo Nombre es obligatorio");
         }else {
-            if(dao.duplicateUniqueKey("nombre", nombre)) {
+            if(dao.isNameDuplicate(newEntity.getNombre())) {
                 tilNombre.setError("Nombre ulizado por otra maquina");
                 checkStatus = false;
             }
         }
 
-        if(ref.isEmpty()) {
+        if(newEntity.getReferencia().isEmpty()) {
             checkStatus = false;
             tilRef.setError("El campo Referencia es obligatorio");
         }else {
-            if(dao.duplicateUniqueKey("referencia", ref)) {
+            if(dao.isRefDuplicate(newEntity.getReferencia())) {
                 tilRef.setError("Referencia ulizada por otra maquina");
                 checkStatus = false;
             }
         }
 
-        des = des.isEmpty() ? "Sin descripcion." : des;
-
-        if(checkStatus) {
-            info.add("Maquina creada correctamente.");
-            maquinaChecked = new Maquina(0, nombre, ref, des);
-        }
+        if(newEntity.getDescripcion().isEmpty())
+            maquinaChecked.setDescripcion("Sin descripcon");
     }
 
     @Override
     public void checkUpdate(Maquina oldEntity, Maquina newEntity) {
-        checkStatus = true;
-        if(areEquals(oldEntity, newEntity)) {
+        maquinaChecked = newEntity;
+        equalToUpdate = areEquals(oldEntity, newEntity);
+        if(equalToUpdate) {
             checkStatus = false;
             return;
         }
 
-        int id = oldEntity.getId();
-        String nombre = newEntity.getNombre();
-        String ref = newEntity.getReferencia();
-        String des = newEntity.getDescripcion();
-        tilNombre.setError(null);
-        tilRef.setError(null);
+        checkStatus = true;
+        resetAllTils();
 
-        if(!oldEntity.getNombre().equals(nombre)) {
-            if(nombre.isEmpty()) {
+        if(!oldEntity.getNombre().equals(newEntity.getNombre())) {
+            if(newEntity.getNombre().isEmpty()) {
                 checkStatus = false;
                 tilNombre.setError("El campo Nombre es obligatorio");
-            }else if(dao.duplicateUniqueKey("nombre", nombre)) {
+            }else if(dao.isNameDuplicate(newEntity.getNombre())) {
                 checkStatus = false;
                 tilNombre.setError("Ya hay una maquina con este nombre");
-            }else addInfo("Nombre: " + oldEntity.getNombre() + " -> " + nombre);
+            }else addInfo("Nombre: " + oldEntity.getNombre() + " -> " + newEntity.getNombre());
         }
-        if(!oldEntity.getReferencia().equals(ref)) {
-            if(nombre.isEmpty()) {
+        if(!oldEntity.getReferencia().equals(newEntity.getReferencia())) {
+            if(newEntity.getReferencia().isEmpty()) {
                 checkStatus = false;
-                tilNombre.setError("El campo Nombre es obligatorio");
-            }else if(dao.duplicateUniqueKey("referencia", ref)) {
+                tilNombre.setError("El campo Referencia es obligatorio");
+            }else if(dao.isRefDuplicate(newEntity.getReferencia())) {
                 checkStatus = false;
                 tilRef.setError("Ya hay una maquina con esta referencia");
-            }else addInfo("Ref: " + oldEntity.getReferencia() + " -> " + ref);
-        }
-        if(!oldEntity.getDescripcion().equals(des)) {
-            des = des.isEmpty() ? "Sin descripcion." : des;
-            addInfo("Desc: " + oldEntity.getDescripcion() + "->" + des);
+            }else addInfo("Ref: " + oldEntity.getReferencia() + " -> " + newEntity.getReferencia());
         }
 
-        if(checkStatus) {
-            maquinaChecked = new Maquina(id, nombre, ref, des);
-            addInfo("Maquina modificada correctamente.");
-        }
+        if(newEntity.getDescripcion().isEmpty())
+            maquinaChecked.setDescripcion("Sin descripcion");
     }
 
     @Override
     public Maquina getCheckedEntity() {
-        return maquinaChecked;
+        return checkStatus ? maquinaChecked : null;
     }
 
     @Override

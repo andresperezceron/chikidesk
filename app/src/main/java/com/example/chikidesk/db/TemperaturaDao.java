@@ -40,6 +40,11 @@ public class TemperaturaDao extends AbstractDao<Temperatura, Integer> implements
     }
 
     @Override
+    protected Integer getId(Temperatura entity) {
+        return entity.getId();
+    }
+
+    @Override
     public Temperatura getByConfig(Configuracion config) {
         return getById(config.getId());
     }
