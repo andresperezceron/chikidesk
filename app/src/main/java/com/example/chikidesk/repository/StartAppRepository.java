@@ -24,13 +24,13 @@ public class StartAppRepository {
         RetenPresionDao retenPresionDao = new RetenPresionDao(context);
         ExpulsorDao expulsorDao = new ExpulsorDao(context);
 
-        appCache.setMaquinaList(maquinaDao.getAll());
-        appCache.setMoldeList(moldeDao.getAll());
-        appCache.setConfigList(configDao.getAll());
-        appCache.setTempList(temperaturaDao.getAll());
-        appCache.setInyList(inyeccionDao.getAll());
-        appCache.setRetenList(retenPresionDao.getAll());
-        appCache.setExpList(expulsorDao.getAll());
+        appCache.maquinaList = maquinaDao.getAll();
+        appCache.moldeList = moldeDao.getAll();
+        appCache.configList =configDao.getAll();
+        appCache.temperaturaList = temperaturaDao.getAll();
+        appCache.inyeccionList = inyeccionDao.getAll();
+        appCache.retenPresionList = retenPresionDao.getAll();
+        appCache.expulsorList = expulsorDao.getAll();
 
         loadDataSuccess = appCache.getStatus();
     }

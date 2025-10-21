@@ -9,11 +9,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.chikidesk.R;
+import com.example.chikidesk.handles.HandleMaquinaList;
 import com.example.chikidesk.databinding.FragmentMaquinaListBinding;
 import com.example.chikidesk.ui.adapters.AdapterMaquinaList;
 import com.example.chikidesk.viewmodel.AppCacheViewModel;
@@ -21,12 +20,14 @@ import com.example.chikidesk.viewmodel.AppCacheViewModel;
 
 public class FragmentMaquinaList extends Fragment {
     private FragmentMaquinaListBinding binding;
-    private AppCacheViewModel appCache;
+    private HandleMaquinaList handle;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        appCache = new ViewModelProvider(requireActivity()).get(AppCacheViewModel.class);
+        handle = new HandleMaquinaList(
+                new ViewModelProvider(requireActivity()).get(AppCacheViewModel.class),
+                requireContext());
     }
 
     @Override
@@ -34,6 +35,7 @@ public class FragmentMaquinaList extends Fragment {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         binding = FragmentMaquinaListBinding.inflate(inflater, container, false);
+        handle.setBinding(binding);
         return binding.getRoot();
     }
 
@@ -41,8 +43,8 @@ public class FragmentMaquinaList extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.rcvMaquinaList.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.rcvMaquinaList.setHasFixedSize(true);
+        handle.populateForm();
+        handle.setupNavigationButtons();
 
         AdapterMaquinaList.OnItemClickListener listener = maquina -> {
             Bundle bundle = new Bundle();
@@ -50,12 +52,7 @@ public class FragmentMaquinaList extends Fragment {
             NavHostFragment.findNavController(this)
                     .navigate(R.id.action_maquinaList_to_maquinaShow, bundle);
         };
-        binding.rcvMaquinaList.setAdapter(new AdapterMaquinaList(appCache.getMaquinaList(), listener));
-
-        binding.fabMaquinaListHome.setOnClickListener(v ->
-                Navigation.findNavController(v).popBackStack());
-        binding.fabMaquinaListNew.setOnClickListener(v ->
-                Navigation.findNavController(v).navigate(R.id.action_maquinaList_to_maquinaForm));
+        binding.rcvMaquinaList.setAdapter(new AdapterMaquinaList(handle.getList(), listener));
     }
 
     @Override

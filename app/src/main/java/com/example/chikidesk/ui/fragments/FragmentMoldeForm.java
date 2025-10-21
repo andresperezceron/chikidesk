@@ -4,31 +4,30 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 
-import com.example.chikidesk.R;
+import com.example.chikidesk.handles.HandleBinding;
+import com.example.chikidesk.handles.HandleMoldeForm;
 import com.example.chikidesk.databinding.FragmentMoldeFormBinding;
 import com.example.chikidesk.db.MoldeDao;
-import com.example.chikidesk.model.Molde;
-import com.example.chikidesk.ui.validateforms.CheckMolde;
 import com.example.chikidesk.viewmodel.AppCacheViewModel;
-import com.google.android.material.textfield.TextInputLayout;
 
 
-public class FragmentMoldeForm extends Fragment {
+public class FragmentMoldeForm extends Fragment implements HandleBinding {
     private FragmentMoldeFormBinding binding;
+    private HandleMoldeForm handle;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        handle = new HandleMoldeForm(
+                new ViewModelProvider(requireActivity()).get(AppCacheViewModel.class),
+                new MoldeDao(requireContext()),
+                this);
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -42,44 +41,19 @@ public class FragmentMoldeForm extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.btnMoldeFormNew.setOnClickListener(v -> {
-            MoldeDao dao = new MoldeDao(getContext());
-            CheckMolde check = createCheck(dao);
-            AppCacheViewModel appCache;
-
-            if(check.getCheckStatus()) {
-                appCache = new ViewModelProvider(requireActivity()).get(AppCacheViewModel.class);
-                if(appCache.setMoldeList(dao.exeCrudAction(check.getCheckedEntity(),
-                        MoldeDao.ACTION_INSERT))) {
-                    Navigation.findNavController(v).navigate(R.id.action_moldeForm_to_moldeList);
-                    Toast.makeText(getContext(), R.string.tot_new_molde,
-                            Toast.LENGTH_SHORT).show();
-                } else new AlertDialog.Builder(requireContext())
-                        .setTitle(R.string.alert_title_error)
-                        .setMessage(R.string.alert_new_molde)
-                        .setPositiveButton(getString(R.string.alert_ok), null)
-                        .show();
-            }
-        });
-
-        binding.fabMoldeFormBack.setOnClickListener(v ->
-                Navigation.findNavController(v).popBackStack());
-        binding.fabMoldeFormHome.setOnClickListener(v ->
-                Navigation.findNavController(v).popBackStack(R.id.fragmentStartApp, false));
+        handle.setBinding();
+        handle.setupNavigationButtons();
+        binding.btnMoldeFormNew.setOnClickListener(v -> handle.insert());
     }
 
-    private CheckMolde createCheck(MoldeDao dao) {
-        CheckMolde check = new CheckMolde(dao, new TextInputLayout[]{
-                binding.tilMoldeFormNombre, binding.tilMoldeFormRef});
-        check.checkInsert(new Molde(0,
-                getTextFrom(binding.edtMoldeFormNombre),
-                getTextFrom(binding.edtMoldeFormRef),
-                getTextFrom(binding.edtMoldeFormDesc)));
-        return check;
+    @Override
+    public Object getBinding() {
+        return this.binding;
     }
 
-    private String getTextFrom(EditText editText) {
-        return (editText == null || editText.getText() == null) ? "" :
-                editText.getText().toString().trim();
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 }

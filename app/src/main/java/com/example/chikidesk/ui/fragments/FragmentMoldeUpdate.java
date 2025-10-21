@@ -44,7 +44,7 @@ public class FragmentMoldeUpdate extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Molde oldMolde = appCache.getMoldeById(id);
+        /*Molde oldMolde = appCache.getMoldeById(id);
 
         binding.edtMoldeUpdateNombre.setText(oldMolde.getNombre());
         binding.edtMoldeUpdateRef.setText(oldMolde.getReferencia());
@@ -67,14 +67,14 @@ public class FragmentMoldeUpdate extends Fragment {
             }
 
             if(check.getCheckStatus()) {
-                if(appCache.setMoldeList(dao.exeCrudAction(check.getCheckedEntity(), MoldeDao.ACTION_UPDATE))) {
+                /*if(appCache.setMoldeList(dao.exeCrudAction(check.getCheckedEntity(), MoldeDao.ACTION_UPDATE))) {
                     Navigation.findNavController(v).navigate(R.id.action_moldeUpdate_to_moldeList);
                     Toast.makeText(getContext(), R.string.tot_upd_molde,
                             Toast.LENGTH_SHORT).show();
                 } else Log.d(getString(R.string.tag_dao_error),
                         getString(R.string.log_del_molde));
             }
-        });
+        });*/
 
         binding.fabMoldeUpdateBack.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack());

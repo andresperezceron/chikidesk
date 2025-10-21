@@ -20,29 +20,28 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class AppCacheViewModel extends ViewModel {
-    private List<Molde> moldeList;
-    private List<Maquina> maquinaList;
-    private List<Configuracion> configList;
-    private List<Temperatura> temperaturaList;
-    private List<Inyeccion> inyeccionList;
-    private List<RetenPresion> retenPresionList;
-    private List<Expulsor> expulsorList;
+    public List<Molde> moldeList;
+    public List<Maquina> maquinaList;
+    public List<Configuracion> configList;
+    public List<Temperatura> temperaturaList;
+    public List<Inyeccion> inyeccionList;
+    public List<RetenPresion> retenPresionList;
+    public List<Expulsor> expulsorList;
 
-    public boolean setMoldeList(@Nullable List<Molde> moldeList) {
-        if(moldeList == null) return false;
-        this.moldeList = moldeList.stream()
-                .sorted(Comparator.comparing(Molde::getNombre, String.CASE_INSENSITIVE_ORDER))
-                .collect(Collectors.toList());
-        return true;
+    public boolean getStatus() {
+        return maquinaList != null && moldeList != null && configList != null &&
+                temperaturaList != null && inyeccionList != null && retenPresionList != null &&
+                expulsorList != null;
     }
 
-    public boolean setMaquinaList(@Nullable List<Maquina> maquinaList) {
-        if(maquinaList == null) return false;
-        this.maquinaList = maquinaList.stream()
-                .sorted(Comparator.comparing(Maquina::getNombre, String.CASE_INSENSITIVE_ORDER))
-                .collect(Collectors.toList());
-        return true;
-    }
+
+
+
+
+
+
+
+
 
     public boolean setConfigList(@Nullable List<Configuracion> configList) {
         if(configList == null) return false;
@@ -74,24 +73,6 @@ public class AppCacheViewModel extends ViewModel {
         return true;
     }
 
-    public Maquina getMaquinaById(Integer id) {
-        return maquinaList.stream()
-                .filter(m -> Objects.equals(m.getId(), id))
-                .findFirst().orElse(null);
-    }
-
-    public Molde getMoldeById(Integer id) {
-        return moldeList.stream()
-                .filter(m -> Objects.equals(m.getId(), id))
-                .findFirst().orElse(null);
-    }
-
-    public int getTotalConfigByMolde(Integer id) {
-        return (int) configList.stream()
-                .filter(c -> Objects.equals(c.getId_molde(), id))
-                .count();
-    }
-
     public Map<Maquina, Long> getMapToConfigList() {
         return maquinaList.stream()
                 .sorted(Comparator.comparing(Maquina::getNombre, String.CASE_INSENSITIVE_ORDER))
@@ -103,23 +84,5 @@ public class AppCacheViewModel extends ViewModel {
                                 (oldValue, newValue) -> oldValue,
                                 LinkedHashMap::new
                         ));
-    }
-
-    public List<Maquina> getMaquinaList() {
-        return maquinaList;
-    }
-
-    public List<Molde> getMoldeList() {
-        return moldeList;
-    }
-
-    public List<Configuracion> getConfigList() {
-        return configList;
-    }
-
-    public boolean getStatus() {
-        return maquinaList != null && moldeList != null && configList != null &&
-                temperaturaList != null && inyeccionList != null && retenPresionList != null &&
-                expulsorList != null;
     }
 }
