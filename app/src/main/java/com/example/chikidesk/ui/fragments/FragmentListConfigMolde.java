@@ -21,10 +21,10 @@ import com.example.chikidesk.ui.adapters.AdapterMoldeList;
 
 import java.util.List;
 
-public class FragmentSelectMolde extends Fragment {
+public class FragmentListConfigMolde extends Fragment {
     private FragmentSelectMoldeBinding binding;
 
-    public FragmentSelectMolde() {}
+    public FragmentListConfigMolde() {}
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,

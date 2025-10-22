@@ -211,7 +211,7 @@
 
     <fragment
         android:id="@+id/fragmentSelectMolde"
-        android:name="com.example.chikidesk.ui.fragments.FragmentSelectMolde"
+        android:name="com.example.chikidesk.ui.fragments.FragmentListConfigMolde"
         android:label="Seleccionar Molde" >
         <action
             android:id="@+id/action_selectMolde_to_configForm"
@@ -223,7 +223,7 @@
 
     <fragment
         android:id="@+id/fragmentSelectMaquina"
-        android:name="com.example.chikidesk.ui.fragments.FragmentSelectMaquina"
+        android:name="com.example.chikidesk.ui.fragments.FragmentListConfigMaquina"
         android:label="Seleccionar maquina" >
         <action
             android:id="@+id/action_selectMaquina_to_selectMolde"

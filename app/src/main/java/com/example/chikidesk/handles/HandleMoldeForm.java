@@ -1,6 +1,5 @@
 package com.example.chikidesk.handles;
 
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -19,35 +18,23 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-public class HandleMoldeForm implements HandleFragment {
-    private final AppCacheViewModel appCache;
-    private final MoldeDao dao;
-    private final FragmentMoldeForm fragment;
-    private FragmentMoldeFormBinding binding;
-    private final View v;
+public class HandleMoldeForm extends HandleFragment<FragmentMoldeForm, FragmentMoldeFormBinding, Integer> {
+    private MoldeDao dao;
+    private CheckMoldeForm check;
 
-    public HandleMoldeForm(AppCacheViewModel appCache, MoldeDao dao, FragmentMoldeForm fragment) {
-        this.appCache = appCache;
-        this.dao = dao;
-        this.fragment = fragment;
-        v = fragment.getView();
+    public HandleMoldeForm(AppCacheViewModel appCache, FragmentMoldeForm fragment) {
+        super(appCache, fragment);
     }
 
-    @Override
-    public void setBinding() {
-        this.binding = (FragmentMoldeFormBinding) fragment.getBinding();
-    }
-
-    public void insert() {
-        CheckMoldeForm check = new CheckMoldeForm(appCache, binding);
+    private void insert() {
         Molde newMolde = check.checkData();
-        if(newMolde == null) return;
+        if(newMolde == null) return; //aqui los los TextImputLayout avisaran.
         List<Molde> newList = dao.exeCrudAction(newMolde, MoldeDao.ACTION_INSERT);
         if(newList != null) {
             appCache.moldeList = newList.stream()
                     .sorted(Comparator.comparing(Molde::getNombre, String.CASE_INSENSITIVE_ORDER))
                     .collect(Collectors.toList());
-            Navigation.findNavController(v).navigate(R.id.action_moldeForm_to_moldeList);
+            Navigation.findNavController(getView()).navigate(R.id.action_moldeForm_to_moldeList);
             Toast.makeText(fragment.requireContext(), R.string.tot_new_molde, Toast.LENGTH_SHORT).show();
         } else new AlertDialog
                 .Builder(fragment.requireContext())
@@ -55,6 +42,19 @@ public class HandleMoldeForm implements HandleFragment {
                 .setMessage(R.string.alert_new_molde)
                 .setPositiveButton("OK", null)
                 .show();
+    }
+
+    @Override
+    public FragmentMoldeFormBinding setBinding(FragmentMoldeFormBinding binding) {
+        super.binding = binding;
+        check = new CheckMoldeForm(appCache, binding);
+        dao = new MoldeDao(getContext());
+        return binding;
+    }
+
+    @Override
+    public void setupListener() {
+        binding.btnMoldeFormNew.setOnClickListener(v -> insert());
     }
 
     @Override
@@ -67,4 +67,14 @@ public class HandleMoldeForm implements HandleFragment {
         binding.fabMoldeFormHome.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack(R.id.fragmentStartApp, false));
     }
+
+    @Override
+    public void destroyHandle() {
+        super.onDestroyHandle();
+        check = null;
+        dao = null;
+    }
+
+    @Override
+    protected void setKeysByBundle() {}
 }

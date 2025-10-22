@@ -10,50 +10,39 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.chikidesk.handles.HandleBinding;
 import com.example.chikidesk.handles.HandleMoldeForm;
 import com.example.chikidesk.databinding.FragmentMoldeFormBinding;
-import com.example.chikidesk.db.MoldeDao;
 import com.example.chikidesk.viewmodel.AppCacheViewModel;
 
 
-public class FragmentMoldeForm extends Fragment implements HandleBinding {
-    private FragmentMoldeFormBinding binding;
+public class FragmentMoldeForm extends Fragment {
     private HandleMoldeForm handle;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        handle = new HandleMoldeForm(
-                new ViewModelProvider(requireActivity()).get(AppCacheViewModel.class),
-                new MoldeDao(requireContext()),
-                this);
+        handle = new HandleMoldeForm(new ViewModelProvider(requireActivity())
+                .get(AppCacheViewModel.class), this);
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        binding = FragmentMoldeFormBinding.inflate(inflater, container, false);
-        return binding.getRoot();
+        return handle.setBinding(FragmentMoldeFormBinding
+                .inflate(inflater, container, false)).getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        handle.setBinding();
+        handle.populateForm();
+        handle.setupListener();
         handle.setupNavigationButtons();
-        binding.btnMoldeFormNew.setOnClickListener(v -> handle.insert());
-    }
-
-    @Override
-    public Object getBinding() {
-        return this.binding;
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null;
+        handle.destroyHandle();
     }
 }

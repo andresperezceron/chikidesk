@@ -10,29 +10,27 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.chikidesk.databinding.FragmentMoldeUpdateBinding;
-import com.example.chikidesk.handles.HandleMoldeUpdate;
+import com.example.chikidesk.databinding.FragmentSelectMaquinaBinding;
+import com.example.chikidesk.handles.HandleSelectMaquina;
 import com.example.chikidesk.viewmodel.AppCacheViewModel;
 
 
-public class FragmentMoldeUpdate extends Fragment {
-    private HandleMoldeUpdate handle;
+public class FragmentListConfigMaquina extends Fragment {
+    private HandleSelectMaquina handle;
 
-    @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        handle = new HandleMoldeUpdate(new ViewModelProvider(requireActivity())
+        handle = new HandleSelectMaquina(new ViewModelProvider(requireActivity())
                 .get(AppCacheViewModel.class), this);
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return handle.setBinding(FragmentMoldeUpdateBinding
+        return handle.setBinding(FragmentSelectMaquinaBinding
                 .inflate(inflater, container, false)).getRoot();
     }
 
-    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         handle.populateForm();

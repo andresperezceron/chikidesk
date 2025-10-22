@@ -72,17 +72,4 @@ public class AppCacheViewModel extends ViewModel {
         this.expulsorList = expulsorList;
         return true;
     }
-
-    public Map<Maquina, Long> getMapToConfigList() {
-        return maquinaList.stream()
-                .sorted(Comparator.comparing(Maquina::getNombre, String.CASE_INSENSITIVE_ORDER))
-                .collect(Collectors
-                        .toMap(Function.identity(),
-                                maquina -> configList.stream()
-                                        .filter(config -> config.getId_maquina() == maquina.getId())
-                                        .count(),
-                                (oldValue, newValue) -> oldValue,
-                                LinkedHashMap::new
-                        ));
-    }
 }

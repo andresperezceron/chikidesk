@@ -1,9 +1,7 @@
 package com.example.chikidesk.handles;
 
-import android.view.View;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.navigation.Navigation;
 
@@ -20,46 +18,49 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-public class HandleMoldeDelete implements HandleFragment{
-    private FragmentMoldeDeleteBinding binding;
-    private final Molde molde;
-    private final ImageManager imageManager;
-    private final MoldeDao dao;
-    private final AppCacheViewModel appCache;
-    private final FragmentMoldeDelete fragment;
-    private final View v;
+public class HandleMoldeDelete extends HandleFragment<FragmentMoldeDelete, FragmentMoldeDeleteBinding, Integer> {
+    private Molde molde;
+    private ImageManager imageManager;
+    private MoldeDao dao;
 
-    public HandleMoldeDelete(@NonNull AppCacheViewModel appCache, MoldeDao dao, int id,
-                             ImageManager imageManager, @NonNull FragmentMoldeDelete fragment) {
-        this.appCache = appCache;
-        this.dao = dao;
-        this.imageManager = imageManager;
-        this.fragment = fragment;
-        v = fragment.getView();
+    public HandleMoldeDelete(AppCacheViewModel appCache, FragmentMoldeDelete fragment) {
+        super(appCache, fragment);
+    }
+
+
+    @Override
+    public FragmentMoldeDeleteBinding setBinding(FragmentMoldeDeleteBinding binding) {
+        super.binding = binding;
+        this.dao = new MoldeDao(getContext());
+        imageManager = new ImageManager(getContext(), "molde_", "jpg");
         molde = appCache.moldeList.stream()
                 .filter(m -> m.getId() == id)
                 .findFirst().orElse(null);
+        return binding;
     }
 
-    public void delete() {
-        new AlertDialog.Builder(fragment.requireContext())
-                .setMessage(R.string.alert_new_molde)
-                .setCancelable(false)
-                .setPositiveButton("Si, estoy de acuerdo",
-                        (dialogInterface, i) -> acceptDelete())
-                .setNegativeButton("No", null)
-                .show();
+    @Override
+    public void setupListener() {
+        binding.btnMoldeDeleteDelete.setOnClickListener(v ->
+                new AlertDialog.Builder(getContext())
+                        .setMessage("Se eliminará el molde de forma permanente.")
+                        .setCancelable(false)
+                        .setPositiveButton("Si estoy de acuerdo",
+                                (dialogInterface, i) -> delete())
+                        .setNegativeButton("No", null)
+                        .show()
+        );
     }
 
-    private void acceptDelete() {
+    private void delete() {
         List<Molde> list = dao.exeCrudAction(molde, MoldeDao.ACTION_DELETE);
         if(list != null) {
             appCache.moldeList = list.stream()
                     .sorted(Comparator.comparing(Molde::getNombre, String.CASE_INSENSITIVE_ORDER))
                     .collect(Collectors.toList());
-            imageManager.deleteImage(molde.getId());
-            Navigation.findNavController(v).navigate(R.id.action_moldeDelete_to_moldeList);
-            Toast.makeText(v.getContext(), "Molde Eliminado", Toast.LENGTH_SHORT).show();
+            imageManager.deleteImage(id);
+            Navigation.findNavController(getView()).navigate(R.id.action_moldeDelete_to_moldeList);
+            Toast.makeText(getContext(), "Molde Eliminado", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -71,7 +72,7 @@ public class HandleMoldeDelete implements HandleFragment{
         binding.txvMoldeDeleteAlert.setText(msn);
         binding.edtMoldeDeleteNombre.setText(molde.getNombre());
         binding.edtMoldeDeleteRef.setText(molde.getReferencia());
-        imageManager.loadImageInto(molde.getId(), binding.imgMoldeDelete);
+        imageManager.loadImageInto(id, binding.imgMoldeDelete);
     }
 
     @Override
@@ -83,13 +84,22 @@ public class HandleMoldeDelete implements HandleFragment{
     }
 
     @Override
-    public void setBinding() {
-        this.binding = (FragmentMoldeDeleteBinding) fragment.getBinding();
+    public void destroyHandle() {
+        super.onDestroyHandle();
+        dao = null;
+        molde = null;
+        imageManager = null;
     }
+
+    @Override
+    protected void setKeysByBundle() {
+        id = getBundle() != null ? getBundle().getInt("id") : 0;
+    }
+
 
     private int totalConfigByMolde() {
         return (int) appCache.configList.stream()
-                .filter(c -> c.getId_molde() == molde.getId())
+                .filter(c -> c.getId_molde() == id)
                 .count();
     }
 }

@@ -6,12 +6,10 @@ import com.example.chikidesk.viewmodel.AppCacheViewModel;
 
 import java.util.Objects;
 
-public class CheckMoldeForm extends BaseCheckFragment<Molde>{
-    private final FragmentMoldeFormBinding binding;
+public class CheckMoldeForm extends BaseCheck<Molde, FragmentMoldeFormBinding> {
 
     public CheckMoldeForm(AppCacheViewModel appCache, FragmentMoldeFormBinding binding) {
-        super(appCache);
-        this.binding = binding;
+        super(appCache, binding);
     }
 
     @Override
@@ -39,7 +37,7 @@ public class CheckMoldeForm extends BaseCheckFragment<Molde>{
             success = false;
         }
 
-        if (newMolde.getDescripcion().isEmpty())
+        if(newMolde.getDescripcion().isEmpty())
             newMolde.setDescripcion("Sin descripcon");
 
         return success ? newMolde : null;
@@ -51,5 +49,15 @@ public class CheckMoldeForm extends BaseCheckFragment<Molde>{
                 getTextFrom(binding.edtMoldeFormNombre),
                 getTextFrom(binding.edtMoldeFormRef),
                 getTextFrom(binding.edtMoldeFormDesc));
+    }
+
+    @Override
+    protected boolean areEquals(Molde oldEntity, Molde newEntity) {
+        return false;
+    }
+
+    @Override
+    public Molde checkData(Molde oldEntity) {
+        return null;
     }
 }
