@@ -10,24 +10,24 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.chikidesk.databinding.FragmentSelectMaquinaBinding;
-import com.example.chikidesk.handles.HandleSelectMaquina;
+import com.example.chikidesk.databinding.FragmentNewConMaqBinding;
+import com.example.chikidesk.handles.HandleNewConMaq;
 import com.example.chikidesk.viewmodel.AppCacheViewModel;
 
 
-public class FragmentListConfigMaquina extends Fragment {
-    private HandleSelectMaquina handle;
+public class FragmenNewConMaq extends Fragment {
+    private HandleNewConMaq handle;
 
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        handle = new HandleSelectMaquina(new ViewModelProvider(requireActivity())
+        handle = new HandleNewConMaq(new ViewModelProvider(requireActivity())
                 .get(AppCacheViewModel.class), this);
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return handle.setBinding(FragmentSelectMaquinaBinding
+        return handle.setBinding(FragmentNewConMaqBinding
                 .inflate(inflater, container, false)).getRoot();
     }
 

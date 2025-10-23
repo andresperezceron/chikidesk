@@ -14,13 +14,10 @@ import com.example.chikidesk.ui.fragments.FragmentMoldeUpdate;
 import com.example.chikidesk.viewmodel.AppCacheViewModel;
 
 import java.util.Comparator;
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class HandleMoldeUpdate extends HandleFragment<FragmentMoldeUpdate, FragmentMoldeUpdateBinding, Integer> {
     private Molde oldMolde;
-    private CheckMoldeUpdate check;
-    private MoldeDao dao;
 
     public HandleMoldeUpdate(@NonNull AppCacheViewModel appCache, @NonNull FragmentMoldeUpdate fragment) {
         super(appCache, fragment);
@@ -29,8 +26,6 @@ public class HandleMoldeUpdate extends HandleFragment<FragmentMoldeUpdate, Fragm
     @Override
     public FragmentMoldeUpdateBinding setBinding(FragmentMoldeUpdateBinding binding) {
         super.binding = binding;
-        check = new CheckMoldeUpdate(appCache, binding);
-        dao = new MoldeDao(getContext());
         oldMolde = appCache.moldeList.stream()
                 .filter(m -> m.getId() == id)
                 .findFirst().orElse(null);
@@ -38,23 +33,26 @@ public class HandleMoldeUpdate extends HandleFragment<FragmentMoldeUpdate, Fragm
     }
 
     private void update() {
-        Molde newMolde = check.checkData(oldMolde);
-        if(newMolde == null) return;
+        CheckMoldeUpdate check = new CheckMoldeUpdate(appCache, binding, oldMolde);
+        MoldeDao dao = new MoldeDao(getContext());
         if(check.isAreEqualsToUpdate()) {
             Toast.makeText(getContext(),"Sin cambios. Nada que actualizar",
                     Toast.LENGTH_SHORT).show();
             Navigation.findNavController(getView()).popBackStack();
             return;
         }
-        List<Molde> newList = dao.exeCrudAction(newMolde, MoldeDao.ACTION_UPDATE);
-        if(newList != null) {
-            appCache.moldeList = newList.stream()
-                    .sorted(Comparator.comparing(Molde::getNombre, String.CASE_INSENSITIVE_ORDER))
-                    .collect(Collectors.toList());
+
+        if(check.isNotSuccess()) return;
+
+        appCache.moldeList = dao.exeCrudAction(check.getEntity(), MoldeDao.ACTION_UPDATE)
+                .stream()
+                .sorted(Comparator.comparing(Molde::getNombre, String.CASE_INSENSITIVE_ORDER))
+                .collect(Collectors.toList());
+
+        if(appCache.getStatus()) {
             Navigation.findNavController(getView()).navigate(R.id.action_moldeUpdate_to_moldeList);
-            Toast.makeText(getContext(), R.string.tot_upd_molde,
-                    Toast.LENGTH_SHORT).show();
-        } else Toast.makeText(getContext(),"Error en update", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.tot_upd_molde, Toast.LENGTH_SHORT).show();
+        } else assert false;
     }
 
     @Override
@@ -74,20 +72,17 @@ public class HandleMoldeUpdate extends HandleFragment<FragmentMoldeUpdate, Fragm
         binding.fabMoldeUpdateBack.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack());
         binding.fabMoldeUpdateHome.setOnClickListener(v ->
-                Navigation.findNavController(v).navigate(R.id.action_moldeUpdate_to_home));
+                Navigation.findNavController(v).popBackStack(R.id.fragmentStartApp, false));
     }
 
     @Override
     public void destroyHandle() {
         super.onDestroyHandle();
         this.oldMolde = null;
-        this.check = null;
-        this.dao = null;
     }
 
     @Override
     protected void setKeysByBundle() {
-        super.id = getBundle() != null ? getBundle().getInt("id_molde") : 0;
-        super.idAux1 = getBundle() != null ? getBundle().getInt("id_maquina") : 0;
+        super.id = getBundle() != null ? getBundle().getInt("id") : 0;
     }
 }

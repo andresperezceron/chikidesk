@@ -13,7 +13,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.chikidesk.R;
-import com.example.chikidesk.databinding.FragmentSelectMoldeBinding;
+import com.example.chikidesk.databinding.FragmentListMoldeConfigBinding;
 import com.example.chikidesk.db.MoldeDao;
 import com.example.chikidesk.model.Maquina;
 import com.example.chikidesk.model.Molde;
@@ -22,21 +22,21 @@ import com.example.chikidesk.ui.adapters.AdapterMoldeList;
 import java.util.List;
 
 public class FragmentListConfigMolde extends Fragment {
-    private FragmentSelectMoldeBinding binding;
+    private FragmentListMoldeConfigBinding binding;
 
     public FragmentListConfigMolde() {}
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        binding = FragmentSelectMoldeBinding.inflate(inflater, container, false);
+        binding = FragmentListMoldeConfigBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.rcvSelectMolde.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.rcvListMoldeConfig.setLayoutManager(new LinearLayoutManager(getContext()));
 
         Maquina maquina = getArguments() != null ? getArguments().getParcelable("maquina") : null;
         assert maquina != null;
@@ -52,11 +52,11 @@ public class FragmentListConfigMolde extends Fragment {
                     .navigate(R.id.action_selectMolde_to_configForm, bundle);
         };
 
-        binding.rcvSelectMolde.setAdapter(new AdapterMoldeList(moldes, listener));
+        binding.rcvListMoldeConfig.setAdapter(new AdapterMoldeList(moldes, listener));
 
-        binding.fabSelectMoldeHome.setOnClickListener(v ->
+        binding.fabListMoldeConfigHome.setOnClickListener(v ->
                 Navigation.findNavController(v).navigate(R.id.action_selectMolde_to_home));
-        binding.fabSelectMoldeBack.setOnClickListener(v ->
+        binding.fabListMoldeConfigBack.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack());
     }
 

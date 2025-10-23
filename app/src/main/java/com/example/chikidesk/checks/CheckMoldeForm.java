@@ -13,38 +13,37 @@ public class CheckMoldeForm extends BaseCheck<Molde, FragmentMoldeFormBinding> {
     }
 
     @Override
-    public Molde checkData() {
-        Molde newMolde = loadData();
+    protected Molde chekingNewEntity() {
         success = true;
         binding.tilMoldeFormNombre.setError(null);
-        if(newMolde.getNombre().isEmpty()) {
+        if(newEntity.getNombre().isEmpty()) {
             binding.tilMoldeFormNombre.setError("El campo Nombre es obligatorio");
             success = false;
         }
         if(appCache.moldeList.stream().anyMatch(molde ->
-                Objects.equals(molde.getNombre(), newMolde.getNombre()))) {
+                Objects.equals(molde.getNombre(), newEntity.getNombre()))) {
             binding.tilMoldeFormNombre.setError("Nombre ulizado por otro molde");
             success = false;
         }
 
         binding.tilMoldeFormRef.setError(null);
-        if(newMolde.getReferencia().isEmpty()) {
+        if(newEntity.getReferencia().isEmpty()) {
             success = false;
             binding.tilMoldeFormRef.setError("El campo Referencia es obligatorio");
         } else if (appCache.moldeList.stream().anyMatch(molde ->
-                molde.getReferencia().equals(newMolde.getReferencia()))) {
+                molde.getReferencia().equals(newEntity.getReferencia()))) {
             binding.tilMoldeFormRef.setError("Referencia ulizada por otro molde");
             success = false;
         }
 
-        if(newMolde.getDescripcion().isEmpty())
-            newMolde.setDescripcion("Sin descripcon");
+        if(newEntity.getDescripcion().isEmpty())
+            newEntity.setDescripcion("Sin descripcon");
 
-        return success ? newMolde : null;
+        return success ? newEntity : null;
     }
 
     @Override
-    protected Molde loadData() {
+    protected Molde newEntityByBinding() {
         return new Molde(0,
                 getTextFrom(binding.edtMoldeFormNombre),
                 getTextFrom(binding.edtMoldeFormRef),
@@ -52,12 +51,7 @@ public class CheckMoldeForm extends BaseCheck<Molde, FragmentMoldeFormBinding> {
     }
 
     @Override
-    protected boolean areEquals(Molde oldEntity, Molde newEntity) {
+    protected boolean areEquals() {
         return false;
-    }
-
-    @Override
-    public Molde checkData(Molde oldEntity) {
-        return null;
     }
 }

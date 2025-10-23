@@ -2,34 +2,34 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/layoutSelectMaquina"
+    android:id="@+id/layoutListMoldeConfig"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/padding_x1"
-    android:background="@drawable/bg_main" >
+    android:background="@drawable/bg_main">
 
     <TextView
-        android:id="@+id/txvSelectMaquinaHeader"
-        android:text="@string/header_select_maquina"
+        android:id="@+id/txvListMoldeConfigHeader"
+        android:text="@string/header_select_molde"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         style="@style/headers"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcvSelectMaquina"
+        android:id="@+id/rcvListMoldeConfig"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/margin_x2"
         android:clipToPadding="false"
         android:paddingBottom="@dimen/paddingBottom_rcv"
-        android:contentDescription="@string/cont_desc_rcv_select_maquina"
-        app:layout_constraintTop_toBottomOf="@id/txvSelectMaquinaHeader"
+        android:contentDescription="@string/cont_desc_rcv_select_molde"
+        app:layout_constraintTop_toBottomOf="@id/txvListMoldeConfigHeader"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabSelectMaquinaBack"
+        android:id="@+id/fabListMoldeConfigBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_x3"
@@ -41,7 +41,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabSelectMaquinaHome"
+        android:id="@+id/fabListMoldeConfigHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_x3"

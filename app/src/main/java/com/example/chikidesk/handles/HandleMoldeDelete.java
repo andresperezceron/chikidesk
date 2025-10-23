@@ -80,7 +80,7 @@ public class HandleMoldeDelete extends HandleFragment<FragmentMoldeDelete, Fragm
         binding.fabMoldeDeleteBack.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack());
         binding.fabMoldeDeleteHome.setOnClickListener(v ->
-                Navigation.findNavController(v).navigate(R.id.action_moldeDelete_to_home));
+                Navigation.findNavController(v).popBackStack(R.id.fragmentStartApp, false));
     }
 
     @Override

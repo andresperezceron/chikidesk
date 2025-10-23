@@ -52,10 +52,6 @@
         <action
             android:id="@+id/action_moldeShow_to_moldeDelete"
             app:destination="@+id/fragmentMoldeDelete" />
-        <action
-            android:id="@+id/action_moldeShow_to_home"
-            app:destination="@+id/fragmentStartApp"
-            app:popUpTo="@id/fragmentStartApp" />
     </fragment>
 
     <fragment
@@ -67,11 +63,6 @@
             app:destination="@+id/fragmentMoldeList"
             app:popUpTo="@id/fragmentMoldeList"
             app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_moldeUpdate_to_home"
-            app:destination="@+id/fragmentStartApp"
-            app:popUpTo="@id/fragmentStartApp"
-            app:popUpToInclusive="false" />
     </fragment>
 
     <fragment
@@ -80,10 +71,9 @@
         android:label="Eliminando molde" >
         <action
             android:id="@+id/action_moldeDelete_to_moldeList"
-            app:destination="@+id/fragmentMoldeList" />
-        <action
-            android:id="@+id/action_moldeDelete_to_home"
-            app:destination="@+id/fragmentStartApp" />
+            app:destination="@+id/fragmentMoldeList"
+            app:popUpTo="@id/fragmentMoldeList"
+            app:popUpToInclusive="true"/>
     </fragment>
 
     <fragment
@@ -164,7 +154,7 @@
             app:destination="@id/fragmentSelectConfig" />
         <action
             android:id="@+id/action_configList_to_selectMaquina"
-            app:destination="@id/fragmentSelectMaquina" />
+            app:destination="@id/fragmentListMaquinaConfig" />
     </fragment>
 
     <fragment
@@ -179,7 +169,7 @@
             app:destination="@id/fragmentConfigList" />
         <action
             android:id="@+id/action_configForm_to_selectMolde"
-            app:destination="@id/fragmentSelectMolde" />
+            app:destination="@id/fragmentListMoldeConfig" />
         <action
             android:id="@+id/action_configForm_to_home"
             app:destination="@id/fragmentStartApp" />
@@ -210,7 +200,7 @@
     </fragment>
 
     <fragment
-        android:id="@+id/fragmentSelectMolde"
+        android:id="@+id/fragmentListMoldeConfig"
         android:name="com.example.chikidesk.ui.fragments.FragmentListConfigMolde"
         android:label="Seleccionar Molde" >
         <action
@@ -222,15 +212,12 @@
     </fragment>
 
     <fragment
-        android:id="@+id/fragmentSelectMaquina"
-        android:name="com.example.chikidesk.ui.fragments.FragmentListConfigMaquina"
+        android:id="@+id/fragmentListMaquinaConfig"
+        android:name="com.example.chikidesk.ui.fragments.FragmenNewConMaq"
         android:label="Seleccionar maquina" >
         <action
-            android:id="@+id/action_selectMaquina_to_selectMolde"
-            app:destination="@id/fragmentSelectMolde" />
-        <action
-            android:id="@+id/action_selectMaquina_to_home"
-            app:destination="@id/fragmentStartApp" />
+            android:id="@+id/action_listMaquinaConfig_to_listMoldeConfig"
+            app:destination="@id/fragmentListMoldeConfig" />
     </fragment>
 
     <fragment
