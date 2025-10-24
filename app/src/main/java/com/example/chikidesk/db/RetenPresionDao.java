@@ -7,7 +7,7 @@ import android.database.Cursor;
 import com.example.chikidesk.model.Configuracion;
 import com.example.chikidesk.model.RetenPresion;
 
-public class RetenPresionDao extends AbstractDao<RetenPresion, Integer> implements SubTableConfig<RetenPresion> {
+public class RetenPresionDao extends BaseDao<RetenPresion, Integer> implements SubTableConfig<RetenPresion> {
     public RetenPresionDao(Context context) {
         super(context);
     }

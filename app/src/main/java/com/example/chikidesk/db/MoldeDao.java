@@ -9,7 +9,7 @@ import com.example.chikidesk.model.Molde;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MoldeDao extends AbstractDao<Molde, Integer> {
+public class MoldeDao extends BaseDao<Molde, Integer> {
     public MoldeDao(Context context) {
         super(context);
     }

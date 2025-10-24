@@ -1,6 +1,5 @@
 package com.example.chikidesk.ui.validateforms;
 
-import com.example.chikidesk.db.RetenPresionDao;
 import com.example.chikidesk.model.RetenPresion;
 import com.google.android.material.textfield.TextInputLayout;
 

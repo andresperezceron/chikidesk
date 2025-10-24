@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/fragmentStartApp"
-        android:name="com.example.chikidesk.ui.fragments.FragmentStartApp"
+        android:name="com.example.chikidesk.ui.fragment.FragmentStartApp"
         android:label="Inicio" >
         <action
             android:id="@+id/action_startApp_to_moldeList"
@@ -21,7 +21,7 @@
 
     <fragment
         android:id="@+id/fragmentMoldeList"
-        android:name="com.example.chikidesk.ui.fragments.FragmentMoldeList"
+        android:name="com.example.chikidesk.ui.fragment.FragmentMoldeList"
         android:label="Listando Moldes" >
         <action
             android:id="@+id/action_moldeList_to_moldeForm"
@@ -33,7 +33,7 @@
 
     <fragment
         android:id="@+id/fragmentMoldeForm"
-        android:name="com.example.chikidesk.ui.fragments.FragmentMoldeForm"
+        android:name="com.example.chikidesk.ui.fragment.FragmentMoldeForm"
         android:label="Formulario nuevo molde" >
         <action
             android:id="@+id/action_moldeForm_to_moldeList"
@@ -44,7 +44,7 @@
 
     <fragment
         android:id="@+id/fragmentMoldeShow"
-        android:name="com.example.chikidesk.ui.fragments.FragmentMoldeShow"
+        android:name="com.example.chikidesk.ui.fragment.FragmentMoldeShow"
         android:label="Descripcion molde" >
         <action
             android:id="@+id/action_moldeShow_to_moldeUpdate"
@@ -56,7 +56,7 @@
 
     <fragment
         android:id="@+id/fragmentMoldeUpdate"
-        android:name="com.example.chikidesk.ui.fragments.FragmentMoldeUpdate"
+        android:name="com.example.chikidesk.ui.fragment.FragmentMoldeUpdate"
         android:label="Actualizando molde" >
         <action
             android:id="@+id/action_moldeUpdate_to_moldeList"
@@ -67,7 +67,7 @@
 
     <fragment
         android:id="@+id/fragmentMoldeDelete"
-        android:name="com.example.chikidesk.ui.fragments.FragmentMoldeDelete"
+        android:name="com.example.chikidesk.ui.fragment.FragmentMoldeDelete"
         android:label="Eliminando molde" >
         <action
             android:id="@+id/action_moldeDelete_to_moldeList"
@@ -78,7 +78,7 @@
 
     <fragment
         android:id="@+id/fragmentMaquinaList"
-        android:name="com.example.chikidesk.ui.fragments.FragmentMaquinaList"
+        android:name="com.example.chikidesk.ui.fragment.FragmentMaquinaList"
         android:label="Lista Máquinas" >
         <action
             android:id="@+id/action_maquinaList_to_maquinaForm"
@@ -90,7 +90,7 @@
 
     <fragment
         android:id="@+id/fragmentMaquinaForm"
-        android:name="com.example.chikidesk.ui.fragments.FragmentMaquinaForm"
+        android:name="com.example.chikidesk.ui.fragment.FragmentMaquinaForm"
         android:label="Formulario nueva maquina" >
         <action
             android:id="@+id/action_maquinaForm_to_maquinaList"
@@ -101,7 +101,7 @@
 
     <fragment
         android:id="@+id/fragmentMaquinaShow"
-        android:name="com.example.chikidesk.ui.fragments.FragmentMaquinaShow"
+        android:name="com.example.chikidesk.ui.fragment.FragmentMaquinaShow"
         android:label="Descripcion Máquina" >
         <action
             android:id="@+id/action_maquinaShow_to_maquinaList"
@@ -119,7 +119,7 @@
 
     <fragment
         android:id="@+id/fragmentMaquinaUpdate"
-        android:name="com.example.chikidesk.ui.fragments.FragmentMaquinaUpdate"
+        android:name="com.example.chikidesk.ui.fragment.FragmentMaquinaUpdate"
         android:label="Actualizando maquina" >
         <action
             android:id="@+id/action_maquinaUpdate_to_maquinaShow"
@@ -132,7 +132,7 @@
 
     <fragment
         android:id="@+id/fragmentMaquinaDelete"
-        android:name="com.example.chikidesk.ui.fragments.FragmentMaquinaDelete"
+        android:name="com.example.chikidesk.ui.fragment.FragmentMaquinaDelete"
         android:label="Eliminando maquina" >
         <action
             android:id="@+id/action_maquinaDelete_to_maquinaList"
@@ -144,7 +144,7 @@
 
     <fragment
         android:id="@+id/fragmentConfigList"
-        android:name="com.example.chikidesk.ui.fragments.FragmentConfigList"
+        android:name="com.example.chikidesk.ui.fragment.FragmentConfigList"
         android:label="Lista de configuraciones" >
         <action
             android:id="@+id/action_configList_to_home"
@@ -159,7 +159,7 @@
 
     <fragment
         android:id="@+id/fragmentConfigForm"
-        android:name="com.example.chikidesk.ui.fragments.FragmentConfigForm"
+        android:name="com.example.chikidesk.ui.fragment.FragmentConfigForm"
         android:label="Configuraciones" >
         <action
             android:id="@+id/action_resetForm"
@@ -177,7 +177,7 @@
 
     <fragment
         android:id="@+id/fragmentConfigShow"
-        android:name="com.example.chikidesk.ui.fragments.FragmentConfigShow"
+        android:name="com.example.chikidesk.ui.fragment.FragmentConfigShow"
         android:label="Mostrando configuracion" >
         <action
             android:id="@+id/action_configShow_to_home"
@@ -189,7 +189,7 @@
 
     <fragment
         android:id="@+id/fragmentConfigUpdate"
-        android:name="com.example.chikidesk.ui.fragments.FragmentConfigUpdate"
+        android:name="com.example.chikidesk.ui.fragment.FragmentConfigUpdate"
         android:label="Actualizando configuracion" >
         <action
             android:id="@+id/action_configUpdate_to_home"
@@ -201,7 +201,7 @@
 
     <fragment
         android:id="@+id/fragmentListMoldeConfig"
-        android:name="com.example.chikidesk.ui.fragments.FragmentListConfigMolde"
+        android:name="com.example.chikidesk.ui.fragment.FragmentListConfigMolde"
         android:label="Seleccionar Molde" >
         <action
             android:id="@+id/action_selectMolde_to_configForm"
@@ -213,7 +213,7 @@
 
     <fragment
         android:id="@+id/fragmentListMaquinaConfig"
-        android:name="com.example.chikidesk.ui.fragments.FragmenNewConMaq"
+        android:name="com.example.chikidesk.ui.fragment.FragmenNewConMaq"
         android:label="Seleccionar maquina" >
         <action
             android:id="@+id/action_listMaquinaConfig_to_listMoldeConfig"
@@ -222,7 +222,7 @@
 
     <fragment
         android:id="@+id/fragmentSelectConfig"
-        android:name="com.example.chikidesk.ui.fragments.FragmentSelectConfig"
+        android:name="com.example.chikidesk.ui.fragment.FragmentSelectConfig"
         android:label="Seleccion de configuracion" >
         <action
             android:id="@+id/action_selectConfig_to_home"

@@ -7,7 +7,7 @@ import android.database.Cursor;
 import com.example.chikidesk.model.Configuracion;
 import com.example.chikidesk.model.Inyeccion;
 
-public class InyeccionDao extends AbstractDao<Inyeccion, Integer> implements SubTableConfig<Inyeccion> {
+public class InyeccionDao extends BaseDao<Inyeccion, Integer> implements SubTableConfig<Inyeccion> {
     public InyeccionDao(Context context) {
         super(context);
     }

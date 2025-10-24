@@ -7,7 +7,7 @@ import android.database.Cursor;
 import com.example.chikidesk.model.Configuracion;
 import com.example.chikidesk.model.Expulsor;
 
-public class ExpulsorDao extends AbstractDao<Expulsor, Integer> implements SubTableConfig<Expulsor> {
+public class ExpulsorDao extends BaseDao<Expulsor, Integer> implements SubTableConfig<Expulsor> {
 
     public ExpulsorDao(Context context) {
         super(context);

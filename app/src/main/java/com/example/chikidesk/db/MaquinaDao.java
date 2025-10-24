@@ -9,7 +9,7 @@ import com.example.chikidesk.model.Maquina;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MaquinaDao extends AbstractDao<Maquina, Integer> {
+public class MaquinaDao extends BaseDao<Maquina, Integer> {
     public MaquinaDao(Context context) {
         super(context);
     }
