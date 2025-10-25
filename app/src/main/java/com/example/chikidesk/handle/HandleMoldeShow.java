@@ -92,13 +92,17 @@ public class HandleMoldeShow extends BaseHandle<FragmentMoldeShow,FragmentMoldeS
         });
     }
 
-    @Override
     public void destroyHandle() {
-        super.onDestroyHandle();
+        super.onDestroyDriver();
         this.imageManager = null;
         this.molde = null;
     }
 
     @Override
     protected void driveActionDao() {}
+
+    @Override
+    protected void setAdapters() {
+
+    }
 }

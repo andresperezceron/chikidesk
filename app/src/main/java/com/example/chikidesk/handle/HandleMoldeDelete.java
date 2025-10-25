@@ -46,6 +46,11 @@ public class HandleMoldeDelete extends BaseHandle<FragmentMoldeDelete, FragmentM
     }
 
     @Override
+    protected void setAdapters() {
+
+    }
+
+    @Override
     public void initProperties() {
         dao = new MoldeDao(getContext());
         imageManager = new ImageManager(getContext(), "molde_", "jpg");
@@ -86,9 +91,8 @@ public class HandleMoldeDelete extends BaseHandle<FragmentMoldeDelete, FragmentM
                 Navigation.findNavController(v).popBackStack(R.id.fragmentStartApp, false));
     }
 
-    @Override
     public void destroyHandle() {
-        super.onDestroyHandle();
+        super.onDestroyDriver();
         dao = null;
         molde = null;
         imageManager = null;

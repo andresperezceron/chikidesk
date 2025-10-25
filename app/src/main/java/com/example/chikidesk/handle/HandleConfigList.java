@@ -32,6 +32,12 @@ public class HandleConfigList extends BaseHandle<FragmentConfigList, FragmentCon
 
     @Override
     protected void driveActionDao() {}
+
+    @Override
+    protected void setAdapters() {
+
+    }
+
     @Override
     public void initProperties() {}
 
@@ -61,9 +67,8 @@ public class HandleConfigList extends BaseHandle<FragmentConfigList, FragmentCon
                 Navigation.findNavController(v).navigate(R.id.action_configList_to_home));
     }
 
-    @Override
     public void destroyHandle() {
-        super.onDestroyHandle();
+        super.onDestroyDriver();
     }
 
     @Override

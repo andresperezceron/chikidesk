@@ -9,6 +9,7 @@ import com.example.chikidesk.R;
 import com.example.chikidesk.check.CheckMoldeUpdate;
 import com.example.chikidesk.databinding.FragmentMoldeUpdateBinding;
 import com.example.chikidesk.db.MoldeDao;
+import com.example.chikidesk.driver.DriverUpdate;
 import com.example.chikidesk.model.Molde;
 import com.example.chikidesk.ui.fragment.FragmentMoldeUpdate;
 import com.example.chikidesk.viewmodel.AppCacheViewModel;
@@ -16,7 +17,9 @@ import com.example.chikidesk.viewmodel.AppCacheViewModel;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
-public class HandleMoldeUpdate extends BaseHandle<FragmentMoldeUpdate, FragmentMoldeUpdateBinding, Integer> {
+public class HandleMoldeUpdate
+        extends BaseHandle<FragmentMoldeUpdate, FragmentMoldeUpdateBinding, Integer>
+        implements DriverUpdate {
     private Molde oldMolde;
 
     public HandleMoldeUpdate(@NonNull AppCacheViewModel appCache, @NonNull FragmentMoldeUpdate fragment) {
@@ -25,27 +28,22 @@ public class HandleMoldeUpdate extends BaseHandle<FragmentMoldeUpdate, FragmentM
 
     @Override
     public void drive() {
-        setKeysByBundle();
-        initProperties();
-        populateForm();
-        setupListeners();
-        setupNavigationButtons();
     }
 
     @Override
-    protected void setKeysByBundle() {
+    public void setKeysByBundle() {
         super.id = getBundle() != null ? getBundle().getInt("id") : 0;
     }
 
     @Override
-    protected void initProperties() {
+    public void initProperties() {
         oldMolde = appCache.moldeList.stream()
                 .filter(m -> m.getId() == id)
                 .findFirst().orElse(null);
     }
 
     @Override
-    protected void driveActionDao() {
+    public void driveActionDao() {
         CheckMoldeUpdate check = new CheckMoldeUpdate(appCache, binding, oldMolde);
         MoldeDao dao = new MoldeDao(getContext());
         if(check.isAreEqualsToUpdate()) {
@@ -69,28 +67,29 @@ public class HandleMoldeUpdate extends BaseHandle<FragmentMoldeUpdate, FragmentM
     }
 
     @Override
-    protected void populateForm() {
+    public void populateForm() {
         binding.edtMoldeUpdateNombre.setText(oldMolde.getNombre());
         binding.edtMoldeUpdateRef.setText(oldMolde.getReferencia());
         binding.edtMoldeUpdateDesc.setText(oldMolde.getDescripcion());
     }
 
     @Override
-    protected void setupListeners() {
+    public void setupListeners() {
         binding.btnMoldeUpdateUpdate.setOnClickListener(v -> driveActionDao());
     }
 
     @Override
-    protected void setupNavigationButtons() {
+    public void setupNavigationButtons() {
         binding.fabMoldeUpdateBack.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack());
         binding.fabMoldeUpdateHome.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack(R.id.fragmentStartApp, false));
     }
 
-    @Override
     public void destroyHandle() {
-        super.onDestroyHandle();
+        super.onDestroyDriver();
         this.oldMolde = null;
     }
+
+    protected void setAdapters() {}
 }

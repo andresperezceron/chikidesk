@@ -15,7 +15,7 @@ import com.example.chikidesk.databinding.FragmentMoldeShowBinding;
 import com.example.chikidesk.viewmodel.AppCacheViewModel;
 
 
-public class FragmentMoldeShow extends Fragment implements HandleDriver<HandleMoldeShow>{
+public class FragmentMoldeShow extends Fragment {
     private HandleMoldeShow handle;
 
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -24,22 +24,17 @@ public class FragmentMoldeShow extends Fragment implements HandleDriver<HandleMo
                 .get(AppCacheViewModel.class), this);
     }
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
+    public View driveOnCreateView(@NonNull LayoutInflater inflater,
+                                  @Nullable ViewGroup container,
+                                  @Nullable Bundle savedInstanceState) {
         return handle.setBinding(FragmentMoldeShowBinding
                         .inflate(inflater, container, false)).getRoot();
     }
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        startDriving(handle);
     }
 
-    @Override
-    public void startDriving(@NonNull HandleMoldeShow handleBound) {
-        handleBound.drive();
-    }
 
     @Override
     public void onDestroyView() {

@@ -29,6 +29,11 @@ public class HandleNewConMaq extends BaseHandle<FragmenNewConMaq, FragmentNewCon
     }
 
     @Override
+    protected void setAdapters() {
+
+    }
+
+    @Override
     public void initProperties() {
 
     }
@@ -68,9 +73,8 @@ public class HandleNewConMaq extends BaseHandle<FragmenNewConMaq, FragmentNewCon
 
     }
 
-    @Override
     public void destroyHandle() {
-        super.onDestroyHandle();
+        super.onDestroyDriver();
     }
 
     @Override

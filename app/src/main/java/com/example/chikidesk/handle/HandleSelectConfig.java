@@ -23,6 +23,11 @@ public class HandleSelectConfig extends BaseHandle<FragmentSelectConfig, Fragmen
     }
 
     @Override
+    protected void setAdapters() {
+
+    }
+
+    @Override
     public void initProperties() {
 
     }
@@ -71,9 +76,8 @@ public class HandleSelectConfig extends BaseHandle<FragmentSelectConfig, Fragmen
 
     }
 
-    @Override
     public void destroyHandle() {
-        super.onDestroyHandle();
+        super.onDestroyDriver();
 
     }
 

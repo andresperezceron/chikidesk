@@ -22,20 +22,25 @@ public abstract class BaseHandle<F extends Fragment, B, K> {
         setKeysByBundle();
     }
 
-    public abstract void drive();
-
+    protected abstract void drive();
     protected abstract void setKeysByBundle();
     protected abstract void initProperties();
     protected abstract void populateForm();
     protected abstract void driveActionDao();
+    protected abstract void setAdapters();
     protected abstract void setupListeners();
     protected abstract void setupNavigationButtons();
-    public abstract void destroyHandle();
 
     public B setBinding(B binding) {
         this.binding = binding;
         return binding;
     }
+
+    protected void onDestroyDriver() {
+        binding = null;
+    }
+
+
 
     protected View getView() {
         return fragment.getView();
@@ -44,12 +49,8 @@ public abstract class BaseHandle<F extends Fragment, B, K> {
     protected Context getContext() {
         return fragment.requireContext();
     }
-
     protected Bundle getBundle() {
         return fragment.getArguments();
     }
 
-    protected void onDestroyHandle() {
-        binding = null;
-    }
 }

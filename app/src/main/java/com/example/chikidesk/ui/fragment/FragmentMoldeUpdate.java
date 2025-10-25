@@ -15,7 +15,7 @@ import com.example.chikidesk.handle.HandleMoldeUpdate;
 import com.example.chikidesk.viewmodel.AppCacheViewModel;
 
 
-public class FragmentMoldeUpdate extends Fragment implements HandleDriver<HandleMoldeUpdate>{
+public class FragmentMoldeUpdate extends Fragment {
     private HandleMoldeUpdate handle;
 
     @Override
@@ -26,8 +26,8 @@ public class FragmentMoldeUpdate extends Fragment implements HandleDriver<Handle
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
-                             @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
+                                  @Nullable ViewGroup container,
+                                  @Nullable Bundle savedInstanceState) {
         return handle.setBinding(FragmentMoldeUpdateBinding
                 .inflate(inflater, container, false)).getRoot();
     }
@@ -35,13 +35,8 @@ public class FragmentMoldeUpdate extends Fragment implements HandleDriver<Handle
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        startDriving(handle);
     }
 
-    @Override
-    public void startDriving(@NonNull HandleMoldeUpdate handleBound) {
-        handleBound.drive();
-    }
 
     @Override
     public void onDestroyView() {

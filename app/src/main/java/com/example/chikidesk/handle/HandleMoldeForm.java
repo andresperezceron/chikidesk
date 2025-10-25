@@ -44,6 +44,11 @@ public class HandleMoldeForm extends BaseHandle<FragmentMoldeForm, FragmentMolde
     }
 
     @Override
+    protected void setAdapters() {
+
+    }
+
+    @Override
     public void setupListeners() {
         binding.btnMoldeFormNew.setOnClickListener(v -> driveActionDao());
     }
@@ -63,9 +68,8 @@ public class HandleMoldeForm extends BaseHandle<FragmentMoldeForm, FragmentMolde
                 Navigation.findNavController(v).popBackStack(R.id.fragmentStartApp, false));
     }
 
-    @Override
     public void destroyHandle() {
-        super.onDestroyHandle();
+        super.onDestroyDriver();
     }
 
     @Override
