@@ -10,11 +10,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.chikidesk.R;
 import com.example.chikidesk.databinding.FragmentNewConMaqBinding;
 import com.example.chikidesk.ui.adapter.AdapterMaquinaList;
+import com.example.chikidesk.ui.fragment.BaseFragment;
 import com.example.chikidesk.ui.fragment.FragmenNewConMaq;
 import com.example.chikidesk.viewmodel.AppCacheViewModel;
 
-public class HandleNewConMaq extends BaseHandle<FragmenNewConMaq, FragmentNewConMaqBinding , Integer> {
-    public HandleNewConMaq(@NonNull AppCacheViewModel appCache, @NonNull FragmenNewConMaq fragment) {
+public class HandleNewConMaq extends BaseHandle<BaseFragment, Integer> {
+    public HandleNewConMaq(@NonNull AppCacheViewModel appCache, @NonNull BaseFragment fragment) {
         super(appCache, fragment);
     }
 
@@ -39,12 +40,6 @@ public class HandleNewConMaq extends BaseHandle<FragmenNewConMaq, FragmentNewCon
     }
 
     @Override
-    public FragmentNewConMaqBinding setBinding(FragmentNewConMaqBinding binding) {
-        super.binding = binding;
-        return binding;
-    }
-
-    @Override
     public void setupListeners() {
         AdapterMaquinaList.OnItemClickListener listener = maquina -> {
             Bundle bundle = new Bundle();
@@ -52,29 +47,33 @@ public class HandleNewConMaq extends BaseHandle<FragmenNewConMaq, FragmentNewCon
             NavHostFragment.findNavController(fragment)
                     .navigate(R.id.action_listMaquinaConfig_to_listMoldeConfig, bundle);
         };
-        binding.rcvNewConMaq
-                .setAdapter(new AdapterMaquinaList(appCache.maquinaList, listener));
+        //binding.rcvNewConMaq.setAdapter(new AdapterMaquinaList(appCache.maquinaList, listener));
 
     }
 
     @Override
     public void populateForm() {
-        binding.rcvNewConMaq.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.rcvNewConMaq.setHasFixedSize(true);
+        //binding.rcvNewConMaq.setLayoutManager(new LinearLayoutManager(getContext()));
+        //binding.rcvNewConMaq.setHasFixedSize(true);
 
     }
 
     @Override
     public void setupNavigationButtons() {
-            binding.fabNewConMaqHome.setOnClickListener(v ->
+            /*binding.fabNewConMaqHome.setOnClickListener(v ->
                     Navigation.findNavController(v).popBackStack(R.id.fragmentStartApp, false));
             binding.fabNewConMaqBack.setOnClickListener(v ->
-                    Navigation.findNavController(v).popBackStack());
+                    Navigation.findNavController(v).popBackStack());*/
+
+    }
+
+    @Override
+    protected void destroyDriver() {
 
     }
 
     public void destroyHandle() {
-        super.onDestroyDriver();
+        //super.onDestroyDriver();
     }
 
     @Override

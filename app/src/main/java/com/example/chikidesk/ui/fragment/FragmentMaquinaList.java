@@ -17,22 +17,23 @@ import com.example.chikidesk.viewmodel.AppCacheViewModel;
 
 
 public class FragmentMaquinaList extends Fragment {
-    private DriverList<FragmentMaquinaListBinding> driver;
+    private DriverList driver;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        driver = new HandleMaquinaList(
-                new ViewModelProvider(requireActivity()).get(AppCacheViewModel.class),
-                this);
+        //driver = new HandleMaquinaList(
+                //new ViewModelProvider(requireActivity()).get(AppCacheViewModel.class),
+                //this);
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                                   @Nullable ViewGroup container,
                                   @Nullable Bundle savedInstanceState) {
-        return driver.setBinding(FragmentMaquinaListBinding
-                        .inflate(inflater, container, false)).getRoot();
+        //return driver.setBinding(FragmentMaquinaListBinding
+          //              .inflate(inflater, container, false)).getRoot();
+        return null;
     }
 
     @Override

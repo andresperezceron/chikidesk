@@ -4,21 +4,24 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
+import androidx.viewbinding.ViewBinding;
 
+import com.example.chikidesk.driver.BaseDriver;
+import com.example.chikidesk.ui.fragment.BaseFragment;
 import com.example.chikidesk.viewmodel.AppCacheViewModel;
 
-public abstract class BaseHandle<F extends Fragment, B, K> {
+public abstract class BaseHandle<F extends BaseFragment, K>  {
     protected F fragment;
-    protected B binding;
     protected K id;
     protected K idAux1, idAux2, idAux3;
     protected final AppCacheViewModel appCache;
+    protected ViewBinding bindingInflated;
+    protected BaseDriver driver;
 
-    public BaseHandle(@NonNull AppCacheViewModel appCache, @NonNull F fragment) {
-        this.fragment = fragment;
+    public BaseHandle(AppCacheViewModel appCache, F fragment) {
         this.appCache = appCache;
+        this.fragment = fragment;
+        bindingInflated = fragment.getBindingInflated();
         setKeysByBundle();
     }
 
@@ -30,17 +33,7 @@ public abstract class BaseHandle<F extends Fragment, B, K> {
     protected abstract void setAdapters();
     protected abstract void setupListeners();
     protected abstract void setupNavigationButtons();
-
-    public B setBinding(B binding) {
-        this.binding = binding;
-        return binding;
-    }
-
-    protected void onDestroyDriver() {
-        binding = null;
-    }
-
-
+    protected abstract void destroyDriver();
 
     protected View getView() {
         return fragment.getView();
@@ -52,5 +45,4 @@ public abstract class BaseHandle<F extends Fragment, B, K> {
     protected Bundle getBundle() {
         return fragment.getArguments();
     }
-
 }

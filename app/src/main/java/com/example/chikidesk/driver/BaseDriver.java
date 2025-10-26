@@ -1,7 +1,9 @@
 package com.example.chikidesk.driver;
 
-public interface BaseDriver<B> {
+import androidx.viewbinding.ViewBinding;
+
+public interface BaseDriver {
     void drive();
-    B setBinding(B binding);
+
     void destroyDriver();
 }

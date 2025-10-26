@@ -13,17 +13,17 @@ import com.example.chikidesk.databinding.FragmentMaquinaListBinding;
 import com.example.chikidesk.driver.DriverList;
 import com.example.chikidesk.model.Maquina;
 import com.example.chikidesk.ui.adapter.AdapterMaquinaList;
+import com.example.chikidesk.ui.fragment.BaseFragment;
 import com.example.chikidesk.ui.fragment.FragmentMaquinaList;
 import com.example.chikidesk.viewmodel.AppCacheViewModel;
 
 import java.util.List;
 
 public class HandleMaquinaList
-        extends BaseHandle<FragmentMaquinaList, FragmentMaquinaListBinding, Integer>
-        implements DriverList<FragmentMaquinaListBinding> {
+        extends BaseHandle<BaseFragment, Integer> implements DriverList{
 
 
-    public HandleMaquinaList(@NonNull AppCacheViewModel appCache, @NonNull FragmentMaquinaList fragment) {
+    public HandleMaquinaList(@NonNull AppCacheViewModel appCache, @NonNull BaseFragment fragment) {
         super(appCache, fragment);
     }
 
@@ -36,12 +36,12 @@ public class HandleMaquinaList
 
     @Override
     public void setAdapters() {
-        binding.rcvMaquinaList.setAdapter(new AdapterMaquinaList(appCache.maquinaList, maquina -> {
+        /*binding.rcvMaquinaList.setAdapter(new AdapterMaquinaList(appCache.maquinaList, maquina -> {
             Bundle bundle = new Bundle();
             bundle.putInt("id", maquina.getId());
             NavHostFragment.findNavController(fragment)
                     .navigate(R.id.action_maquinaList_to_maquinaShow, bundle);
-        }));
+        }));*/
     }
 
     @Override
@@ -56,7 +56,7 @@ public class HandleMaquinaList
 
     @Override
     public void destroyDriver() {
-        super.onDestroyDriver();
+        //super.onDestroyDriver();
     }
 
     @Override

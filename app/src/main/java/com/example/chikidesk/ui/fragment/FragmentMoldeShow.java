@@ -20,15 +20,16 @@ public class FragmentMoldeShow extends Fragment {
 
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        handle = new HandleMoldeShow(new ViewModelProvider(requireActivity())
-                .get(AppCacheViewModel.class), this);
+        //handle = new HandleMoldeShow(new ViewModelProvider(requireActivity())
+        //        .get(AppCacheViewModel.class), this);
     }
 
     public View driveOnCreateView(@NonNull LayoutInflater inflater,
                                   @Nullable ViewGroup container,
                                   @Nullable Bundle savedInstanceState) {
-        return handle.setBinding(FragmentMoldeShowBinding
-                        .inflate(inflater, container, false)).getRoot();
+        //return handle.setBinding(FragmentMoldeShowBinding
+        //                .inflate(inflater, container, false)).getRoot();
+        return null;
     }
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {

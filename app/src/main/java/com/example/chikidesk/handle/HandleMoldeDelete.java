@@ -9,6 +9,7 @@ import com.example.chikidesk.R;
 import com.example.chikidesk.databinding.FragmentMoldeDeleteBinding;
 import com.example.chikidesk.db.MoldeDao;
 import com.example.chikidesk.model.Molde;
+import com.example.chikidesk.ui.fragment.BaseFragment;
 import com.example.chikidesk.ui.fragment.FragmentMoldeDelete;
 import com.example.chikidesk.util.ImageManager;
 import com.example.chikidesk.viewmodel.AppCacheViewModel;
@@ -18,12 +19,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-public class HandleMoldeDelete extends BaseHandle<FragmentMoldeDelete, FragmentMoldeDeleteBinding, Integer> {
+public class HandleMoldeDelete extends BaseHandle<BaseFragment, Integer> {
     private Molde molde;
     private ImageManager imageManager;
     private MoldeDao dao;
 
-    public HandleMoldeDelete(AppCacheViewModel appCache, FragmentMoldeDelete fragment) {
+    public HandleMoldeDelete(AppCacheViewModel appCache, BaseFragment fragment) {
         super(appCache, fragment);
     }
 
@@ -39,7 +40,7 @@ public class HandleMoldeDelete extends BaseHandle<FragmentMoldeDelete, FragmentM
             appCache.moldeList = list.stream()
                     .sorted(Comparator.comparing(Molde::getNombre, String.CASE_INSENSITIVE_ORDER))
                     .collect(Collectors.toList());
-            imageManager.deleteImage(id);
+            //imageManager.deleteImage(id);
             Navigation.findNavController(getView()).navigate(R.id.action_moldeDelete_to_moldeList);
             Toast.makeText(getContext(), "Molde Eliminado", Toast.LENGTH_SHORT).show();
         }
@@ -52,16 +53,16 @@ public class HandleMoldeDelete extends BaseHandle<FragmentMoldeDelete, FragmentM
 
     @Override
     public void initProperties() {
-        dao = new MoldeDao(getContext());
+        /*dao = new MoldeDao(getContext());
         imageManager = new ImageManager(getContext(), "molde_", "jpg");
         molde = appCache.moldeList.stream()
                 .filter(m -> m.getId() == id)
-                .findFirst().orElse(null);
+                .findFirst().orElse(null);*/
     }
 
     @Override
     public void setupListeners() {
-        binding.btnMoldeDeleteDelete.setOnClickListener(v ->
+       /* binding.btnMoldeDeleteDelete.setOnClickListener(v ->
                 new AlertDialog.Builder(getContext())
                         .setMessage("Se eliminará el molde de forma permanente.")
                         .setCancelable(false)
@@ -69,30 +70,35 @@ public class HandleMoldeDelete extends BaseHandle<FragmentMoldeDelete, FragmentM
                                 (dialogInterface, i) -> driveActionDao())
                         .setNegativeButton("No", null)
                         .show()
-        );
+        );*/
     }
 
     @Override
     public void populateForm() {
-        String msn = "Se ELIMINARAN " + totalConfigByMolde() + "\n\nCuando eliminamos un molde o " +
+       /* String msn = "Se ELIMINARAN " + totalConfigByMolde() + "\n\nCuando eliminamos un molde o " +
             "una maquina, también se eliminan las configuraciones donde aparezcan. Los campos en " +
             "rojo tomarán valores por defecto.";
         binding.txvMoldeDeleteAlert.setText(msn);
         binding.edtMoldeDeleteNombre.setText(molde.getNombre());
         binding.edtMoldeDeleteRef.setText(molde.getReferencia());
-        imageManager.loadImageInto(id, binding.imgMoldeDelete);
+        imageManager.loadImageInto(id, binding.imgMoldeDelete);*/
     }
 
     @Override
     public void setupNavigationButtons() {
-        binding.fabMoldeDeleteBack.setOnClickListener(v ->
+        /*binding.fabMoldeDeleteBack.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack());
         binding.fabMoldeDeleteHome.setOnClickListener(v ->
-                Navigation.findNavController(v).popBackStack(R.id.fragmentStartApp, false));
+                Navigation.findNavController(v).popBackStack(R.id.fragmentStartApp, false));*/
+    }
+
+    @Override
+    protected void destroyDriver() {
+
     }
 
     public void destroyHandle() {
-        super.onDestroyDriver();
+        //super.onDestroyDriver();
         dao = null;
         molde = null;
         imageManager = null;
@@ -100,13 +106,13 @@ public class HandleMoldeDelete extends BaseHandle<FragmentMoldeDelete, FragmentM
 
     @Override
     protected void setKeysByBundle() {
-        id = getBundle() != null ? getBundle().getInt("id") : 0;
+        //id = getBundle() != null ? getBundle().getInt("id") : 0;
     }
 
 
-    private int totalConfigByMolde() {
+    /*private int totalConfigByMolde() {
         return (int) appCache.configList.stream()
                 .filter(c -> c.getId_molde() == id)
                 .count();
-    }
+    }*/
 }

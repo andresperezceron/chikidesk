@@ -1,12 +1,12 @@
 package com.example.chikidesk.check;
 
-import com.example.chikidesk.databinding.FragmentMoldeUpdateBinding;
+import com.example.chikidesk.databinding.MoldeUpdateBinding;
 import com.example.chikidesk.model.Molde;
 import com.example.chikidesk.viewmodel.AppCacheViewModel;
 
-public class CheckMoldeUpdate extends BaseCheck<Molde, FragmentMoldeUpdateBinding> {
+public class CheckMoldeUpdate extends BaseCheck<Molde, MoldeUpdateBinding> {
 
-    public CheckMoldeUpdate(AppCacheViewModel appCache, FragmentMoldeUpdateBinding binding, Molde oldMolde) {
+    public CheckMoldeUpdate(AppCacheViewModel appCache, MoldeUpdateBinding binding, Molde oldMolde) {
         super(appCache, binding, oldMolde);
     }
 

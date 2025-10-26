@@ -4,11 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.chikidesk.databinding.FragmentSelectConfigBinding;
+import com.example.chikidesk.ui.fragment.BaseFragment;
 import com.example.chikidesk.ui.fragment.FragmentSelectConfig;
 import com.example.chikidesk.viewmodel.AppCacheViewModel;
 
-public class HandleSelectConfig extends BaseHandle<FragmentSelectConfig, FragmentSelectConfigBinding, Integer> {
-    public HandleSelectConfig(@NonNull AppCacheViewModel appCache, @NonNull FragmentSelectConfig fragment) {
+public class HandleSelectConfig extends BaseHandle<BaseFragment, Integer> {
+    public HandleSelectConfig(@NonNull AppCacheViewModel appCache, @NonNull BaseFragment fragment) {
         super(appCache, fragment);
     }
 
@@ -30,12 +31,6 @@ public class HandleSelectConfig extends BaseHandle<FragmentSelectConfig, Fragmen
     @Override
     public void initProperties() {
 
-    }
-
-    @Override
-    public FragmentSelectConfigBinding setBinding(FragmentSelectConfigBinding binding) {
-        super.binding = binding;
-        return binding;
     }
 
     @Override
@@ -66,8 +61,8 @@ public class HandleSelectConfig extends BaseHandle<FragmentSelectConfig, Fragmen
 
     @Override
     public void populateForm() {
-        binding.rcvSelectConfig.setLayoutManager(new LinearLayoutManager(fragment.getContext()));
-        binding.rcvSelectConfig.setHasFixedSize(true);
+        //binding.rcvSelectConfig.setLayoutManager(new LinearLayoutManager(fragment.getContext()));
+        //binding.rcvSelectConfig.setHasFixedSize(true);
 
     }
 
@@ -76,8 +71,13 @@ public class HandleSelectConfig extends BaseHandle<FragmentSelectConfig, Fragmen
 
     }
 
+    @Override
+    protected void destroyDriver() {
+
+    }
+
     public void destroyHandle() {
-        super.onDestroyDriver();
+        //super.onDestroyDriver();
 
     }
 

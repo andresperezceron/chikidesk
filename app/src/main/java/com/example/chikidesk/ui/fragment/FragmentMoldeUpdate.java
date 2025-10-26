@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.chikidesk.databinding.FragmentMoldeUpdateBinding;
+import com.example.chikidesk.databinding.MoldeUpdateBinding;
 import com.example.chikidesk.handle.HandleMoldeUpdate;
 import com.example.chikidesk.viewmodel.AppCacheViewModel;
 
@@ -21,15 +21,16 @@ public class FragmentMoldeUpdate extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        handle = new HandleMoldeUpdate(new ViewModelProvider(requireActivity())
-                .get(AppCacheViewModel.class), this);
+        //handle = new HandleMoldeUpdate(new ViewModelProvider(requireActivity())
+        //        .get(AppCacheViewModel.class), this);
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                                   @Nullable ViewGroup container,
                                   @Nullable Bundle savedInstanceState) {
-        return handle.setBinding(FragmentMoldeUpdateBinding
-                .inflate(inflater, container, false)).getRoot();
+        //return handle.setBinding(FragmentMoldeUpdateBinding
+        //        .inflate(inflater, container, false)).getRoot();
+        return null;
     }
 
     @Override

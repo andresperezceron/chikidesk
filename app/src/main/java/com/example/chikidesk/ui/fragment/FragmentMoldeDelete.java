@@ -21,15 +21,16 @@ public class FragmentMoldeDelete extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        handle = new HandleMoldeDelete(new ViewModelProvider(requireActivity())
-                .get(AppCacheViewModel.class) , this);
+        //handle = new HandleMoldeDelete(new ViewModelProvider(requireActivity())
+        //        .get(AppCacheViewModel.class) , this);
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return handle.setBinding(FragmentMoldeDeleteBinding
-                .inflate(inflater, container, false)).getRoot();
+        return null;
+        //return handle.setBinding(FragmentMoldeDeleteBinding
+        //        .inflate(inflater, container, false)).getRoot();
     }
 
     @Override

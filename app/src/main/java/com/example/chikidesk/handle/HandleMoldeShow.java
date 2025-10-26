@@ -9,6 +9,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.chikidesk.R;
 import com.example.chikidesk.databinding.FragmentMoldeShowBinding;
 import com.example.chikidesk.model.Molde;
+import com.example.chikidesk.ui.fragment.BaseFragment;
 import com.example.chikidesk.ui.fragment.FragmentMoldeShow;
 import com.example.chikidesk.util.ImageManager;
 import com.example.chikidesk.util.ImgPickerHelper;
@@ -17,10 +18,10 @@ import com.example.chikidesk.viewmodel.AppCacheViewModel;
 import java.io.File;
 import java.util.Objects;
 
-public class HandleMoldeShow extends BaseHandle<FragmentMoldeShow,FragmentMoldeShowBinding, Integer> {
+public class HandleMoldeShow extends BaseHandle<BaseFragment, Integer> {
     private ImageManager imageManager;
     private Molde molde;
-    public HandleMoldeShow(AppCacheViewModel appCache, FragmentMoldeShow fragment) {
+    public HandleMoldeShow(AppCacheViewModel appCache, BaseFragment fragment) {
         super(appCache, fragment);
     }
 
@@ -48,15 +49,15 @@ public class HandleMoldeShow extends BaseHandle<FragmentMoldeShow,FragmentMoldeS
 
     @Override
     protected void populateForm() {
-        binding.edtMoldeShowNombre.setText(molde.getNombre());
+        /*binding.edtMoldeShowNombre.setText(molde.getNombre());
         binding.edtMoldeShowRef.setText(molde.getReferencia());
         binding.edtMoldeShowDesc.setText(molde.getDescripcion());
-        imageManager.loadImageInto(id, binding.imgMoldeShow);
+        imageManager.loadImageInto(id, binding.imgMoldeShow);*/
     }
 
     @Override
     protected void setupListeners() {
-        File destinationFile = imageManager.getImageFile(id);
+        /*File destinationFile = imageManager.getImageFile(id);
         ImgPickerHelper piker = new ImgPickerHelper(fragment, destinationFile, binding.imgMoldeShow);
         binding.fabMoldeShowSelectImg.setOnClickListener(v -> piker.launch());
 
@@ -67,12 +68,12 @@ public class HandleMoldeShow extends BaseHandle<FragmentMoldeShow,FragmentMoldeS
             } else {
                 Toast.makeText(fragment.getContext(), "No había imagen para borrar", Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
     }
 
     @Override
     protected void setupNavigationButtons() {
-        Bundle wellKnownNextBundle = new Bundle();
+        /*Bundle wellKnownNextBundle = new Bundle();
         wellKnownNextBundle.putInt("id", id);
 
         binding.fabMoldeShowBack.setOnClickListener(v ->
@@ -89,11 +90,16 @@ public class HandleMoldeShow extends BaseHandle<FragmentMoldeShow,FragmentMoldeS
         binding.fabMoldeShowDelete.setOnClickListener(v -> {
             NavHostFragment.findNavController(fragment)
                     .navigate(R.id.action_moldeShow_to_moldeDelete, wellKnownNextBundle);
-        });
+        });*/
+    }
+
+    @Override
+    protected void destroyDriver() {
+
     }
 
     public void destroyHandle() {
-        super.onDestroyDriver();
+        //super.onDestroyDriver();
         this.imageManager = null;
         this.molde = null;
     }
