@@ -11,15 +11,14 @@ import com.example.chikidesk.databinding.MoldeListBinding;
 import com.example.chikidesk.driver.DriverList;
 import com.example.chikidesk.ui.adapter.AdapterMoldeList;
 import com.example.chikidesk.ui.fragment.BaseFragment;
-import com.example.chikidesk.viewmodel.AppCacheViewModel;
 
 
 public class HandleMoldeList extends BaseHandle<BaseFragment, Integer> implements DriverList {
-    private MoldeListBinding binding;
+    private final MoldeListBinding binding;
 
-    public HandleMoldeList(AppCacheViewModel appCache, BaseFragment fragment) {
-        super(appCache, fragment);
-        this.binding = (MoldeListBinding) super.bindingInflated;
+    public HandleMoldeList(BaseFragment fragment) {
+        super(fragment);
+        this.binding = (MoldeListBinding) super.binding;
     }
 
     @Override
@@ -55,9 +54,7 @@ public class HandleMoldeList extends BaseHandle<BaseFragment, Integer> implement
     }
 
     @Override
-    public void destroyDriver() {
-        binding = null;
-    }
+    public void destroyDriver() {}
 
     @Override
     protected void setKeysByBundle() {}

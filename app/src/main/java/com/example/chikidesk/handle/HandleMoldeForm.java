@@ -6,31 +6,32 @@ import androidx.navigation.Navigation;
 
 import com.example.chikidesk.R;
 import com.example.chikidesk.check.CheckMoldeForm;
-import com.example.chikidesk.databinding.FragmentMoldeFormBinding;
+import com.example.chikidesk.databinding.MoldeFormBinding;
 import com.example.chikidesk.db.MoldeDao;
+import com.example.chikidesk.driver.DriverForm;
 import com.example.chikidesk.model.Molde;
 import com.example.chikidesk.ui.fragment.BaseFragment;
-import com.example.chikidesk.ui.fragment.FragmentMoldeForm;
-import com.example.chikidesk.viewmodel.AppCacheViewModel;
 
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
 
-public class HandleMoldeForm extends BaseHandle<BaseFragment, Integer> {
-
-    public HandleMoldeForm(AppCacheViewModel appCache, BaseFragment fragment) {
-        super(appCache, fragment);
+public class HandleMoldeForm extends BaseHandle<BaseFragment, Integer> implements DriverForm {
+    private final MoldeFormBinding binding;
+    public HandleMoldeForm(BaseFragment fragment) {
+        super(fragment);
+        binding = (MoldeFormBinding) super.binding;
     }
 
     @Override
     public void drive() {
-
+        setupListeners();
+        setupNavigationButtons();
     }
 
     @Override
     protected void driveActionDao() {
-        /*CheckMoldeForm check = new CheckMoldeForm(appCache, binding);
+        CheckMoldeForm check = new CheckMoldeForm(appCache, binding);
         if(check.isNotSuccess()) return;
 
         MoldeDao dao = new MoldeDao(getContext());
@@ -41,43 +42,31 @@ public class HandleMoldeForm extends BaseHandle<BaseFragment, Integer> {
         if(appCache.getStatus()) {
             Navigation.findNavController(getView()).navigate(R.id.action_moldeForm_to_moldeList);
             Toast.makeText(fragment.requireContext(), R.string.tot_new_molde, Toast.LENGTH_SHORT).show();
-        } else assert false;*/
-    }
-
-    @Override
-    protected void setAdapters() {
-
+        } else assert false;
     }
 
     @Override
     public void setupListeners() {
-        //binding.btnMoldeFormNew.setOnClickListener(v -> driveActionDao());
+        binding.btnMoldeFormNew.setOnClickListener(v -> driveActionDao());
     }
-
-    @Override
-    public void initProperties() {}
-
-
-    @Override
-    public void populateForm() {}
 
     @Override
     public void setupNavigationButtons() {
-        /*binding.fabMoldeFormBack.setOnClickListener(v ->
+        binding.fabMoldeFormBack.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack());
         binding.fabMoldeFormHome.setOnClickListener(v ->
-                Navigation.findNavController(v).popBackStack(R.id.fragmentStartApp, false));*/
+                Navigation.findNavController(v).popBackStack(R.id.fragmentStartApp, false));
     }
 
     @Override
-    protected void destroyDriver() {
-
-    }
-
-    public void destroyHandle() {
-        //super.onDestroyDriver();
-    }
+    public void destroyDriver() {}
 
     @Override
     protected void setKeysByBundle() {}
+    @Override
+    protected void initProperties() {}
+    @Override
+    protected void populateForm() {}
+    @Override
+    protected void setAdapters() {}
 }

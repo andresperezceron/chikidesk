@@ -16,7 +16,7 @@ import com.example.chikidesk.viewmodel.AppCacheViewModel;
 
 public class HandleNewConMaq extends BaseHandle<BaseFragment, Integer> {
     public HandleNewConMaq(@NonNull AppCacheViewModel appCache, @NonNull BaseFragment fragment) {
-        super(appCache, fragment);
+        super(fragment);
     }
 
     @Override

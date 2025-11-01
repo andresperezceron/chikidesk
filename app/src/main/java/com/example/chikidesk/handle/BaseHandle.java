@@ -6,7 +6,6 @@ import android.view.View;
 
 import androidx.viewbinding.ViewBinding;
 
-import com.example.chikidesk.driver.BaseDriver;
 import com.example.chikidesk.ui.fragment.BaseFragment;
 import com.example.chikidesk.viewmodel.AppCacheViewModel;
 
@@ -15,13 +14,12 @@ public abstract class BaseHandle<F extends BaseFragment, K>  {
     protected K id;
     protected K idAux1, idAux2, idAux3;
     protected final AppCacheViewModel appCache;
-    protected ViewBinding bindingInflated;
-    protected BaseDriver driver;
+    protected ViewBinding binding;
 
-    public BaseHandle(AppCacheViewModel appCache, F fragment) {
-        this.appCache = appCache;
+    public BaseHandle(F fragment) {
         this.fragment = fragment;
-        bindingInflated = fragment.getBindingInflated();
+        appCache = fragment.getAppCache();
+        binding = fragment.getBinding();
         setKeysByBundle();
     }
 

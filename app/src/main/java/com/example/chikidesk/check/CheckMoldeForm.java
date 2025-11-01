@@ -1,14 +1,14 @@
 package com.example.chikidesk.check;
 
-import com.example.chikidesk.databinding.FragmentMoldeFormBinding;
+import com.example.chikidesk.databinding.MoldeFormBinding;
 import com.example.chikidesk.model.Molde;
 import com.example.chikidesk.viewmodel.AppCacheViewModel;
 
 import java.util.Objects;
 
-public class CheckMoldeForm extends BaseCheck<Molde, FragmentMoldeFormBinding> {
+public class CheckMoldeForm extends BaseCheck<Molde, MoldeFormBinding> {
 
-    public CheckMoldeForm(AppCacheViewModel appCache, FragmentMoldeFormBinding binding) {
+    public CheckMoldeForm(AppCacheViewModel appCache, MoldeFormBinding binding) {
         super(appCache, binding);
     }
 

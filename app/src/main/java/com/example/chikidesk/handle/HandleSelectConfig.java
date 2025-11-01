@@ -10,7 +10,7 @@ import com.example.chikidesk.viewmodel.AppCacheViewModel;
 
 public class HandleSelectConfig extends BaseHandle<BaseFragment, Integer> {
     public HandleSelectConfig(@NonNull AppCacheViewModel appCache, @NonNull BaseFragment fragment) {
-        super(appCache, fragment);
+        super(fragment);
     }
 
     @Override

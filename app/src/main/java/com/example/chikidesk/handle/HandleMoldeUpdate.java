@@ -2,7 +2,6 @@ package com.example.chikidesk.handle;
 
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.navigation.Navigation;
 
 import com.example.chikidesk.R;
@@ -12,39 +11,42 @@ import com.example.chikidesk.db.MoldeDao;
 import com.example.chikidesk.driver.DriverUpdate;
 import com.example.chikidesk.model.Molde;
 import com.example.chikidesk.ui.fragment.BaseFragment;
-import com.example.chikidesk.ui.fragment.FragmentMoldeUpdate;
-import com.example.chikidesk.viewmodel.AppCacheViewModel;
 
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
-public class HandleMoldeUpdate
-        extends BaseHandle<BaseFragment, Integer> implements DriverUpdate {
+public class HandleMoldeUpdate extends BaseHandle<BaseFragment, Integer> implements DriverUpdate {
+    private final MoldeUpdateBinding binding;
     private Molde oldMolde;
 
-    public HandleMoldeUpdate(@NonNull AppCacheViewModel appCache, @NonNull BaseFragment fragment) {
-        super(appCache, fragment);
+    public HandleMoldeUpdate(BaseFragment fragment) {
+        super(fragment);
+        binding = (MoldeUpdateBinding) super.binding;
     }
 
     @Override
     public void drive() {
+        initProperties();
+        populateForm();
+        setupListeners();
+        setupNavigationButtons();
     }
 
     @Override
     public void setKeysByBundle() {
-        //super.id = getBundle() != null ? getBundle().getInt("id") : 0;
+        super.id = getBundle() != null ? getBundle().getInt("id") : 0;
     }
 
     @Override
     public void initProperties() {
-        /*oldMolde = appCache.moldeList.stream()
+        oldMolde = appCache.moldeList.stream()
                 .filter(m -> m.getId() == id)
-                .findFirst().orElse(null);*/
+                .findFirst().orElse(null);
     }
 
     @Override
     public void driveActionDao() {
-        /*CheckMoldeUpdate check = new CheckMoldeUpdate(appCache, binding, oldMolde);
+        CheckMoldeUpdate check = new CheckMoldeUpdate(appCache, binding, oldMolde);
         MoldeDao dao = new MoldeDao(getContext());
         if(check.isAreEqualsToUpdate()) {
             Toast.makeText(getContext(),"Sin cambios. Nada que actualizar",
@@ -63,38 +65,34 @@ public class HandleMoldeUpdate
         if(appCache.getStatus()) {
             Navigation.findNavController(getView()).navigate(R.id.action_moldeUpdate_to_moldeList);
             Toast.makeText(getContext(), R.string.tot_upd_molde, Toast.LENGTH_SHORT).show();
-        } else assert false; */
+        } else assert false;
     }
 
     @Override
     public void populateForm() {
-        //binding.edtMoldeUpdateNombre.setText(oldMolde.getNombre());
-        //binding.edtMoldeUpdateRef.setText(oldMolde.getReferencia());
-        //binding.edtMoldeUpdateDesc.setText(oldMolde.getDescripcion());
+        binding.edtMoldeUpdateNombre.setText(oldMolde.getNombre());
+        binding.edtMoldeUpdateRef.setText(oldMolde.getReferencia());
+        binding.edtMoldeUpdateDesc.setText(oldMolde.getDescripcion());
     }
 
     @Override
     public void setupListeners() {
-        //binding.btnMoldeUpdateUpdate.setOnClickListener(v -> driveActionDao());
+        binding.btnMoldeUpdateUpdate.setOnClickListener(v -> driveActionDao());
     }
 
     @Override
     public void setupNavigationButtons() {
-        /*binding.fabMoldeUpdateBack.setOnClickListener(v ->
+        binding.fabMoldeUpdateBack.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack());
         binding.fabMoldeUpdateHome.setOnClickListener(v ->
-                Navigation.findNavController(v).popBackStack(R.id.fragmentStartApp, false));*/
+                Navigation.findNavController(v).popBackStack(R.id.fragmentStartApp, false));
     }
 
     @Override
-    protected void destroyDriver() {
-
+    public void destroyDriver() {
+        oldMolde = null;
     }
 
-    public void destroyHandle() {
-        //super.onDestroyDriver();
-        this.oldMolde = null;
-    }
-
+    @Override
     protected void setAdapters() {}
 }

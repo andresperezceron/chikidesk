@@ -24,7 +24,7 @@ public class HandleMaquinaList
 
 
     public HandleMaquinaList(@NonNull AppCacheViewModel appCache, @NonNull BaseFragment fragment) {
-        super(appCache, fragment);
+        super(fragment);
     }
 
     @Override

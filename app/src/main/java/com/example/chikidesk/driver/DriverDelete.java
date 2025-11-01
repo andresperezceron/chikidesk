@@ -1,9 +1,8 @@
 package com.example.chikidesk.driver;
 
-public interface DriverUpdate extends BaseDriver {
+public interface DriverDelete extends BaseDriver {
     void setKeysByBundle();
     void initProperties();
-    void driveActionDao();
     void populateForm();
     void setupListeners();
     void setupNavigationButtons();

@@ -11,9 +11,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewbinding.ViewBinding;
 
+import com.example.chikidesk.cofigurator.Configurator;
 import com.example.chikidesk.driver.BaseDriver;
-import com.example.chikidesk.factory.FactoryBinding;
-import com.example.chikidesk.factory.FactoryDriver;
 import com.example.chikidesk.viewmodel.AppCacheViewModel;
 
 public abstract class BaseFragment extends Fragment {
@@ -21,11 +20,13 @@ public abstract class BaseFragment extends Fragment {
     protected ViewBinding binding;
     protected AppCacheViewModel appCache;
 
+    private ViewGroup container;
+    private LayoutInflater inflater;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         appCache = new ViewModelProvider(requireActivity()).get(AppCacheViewModel.class);
-
     }
 
     @Nullable
@@ -34,8 +35,9 @@ public abstract class BaseFragment extends Fragment {
             @NonNull LayoutInflater inflater,
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
-        binding = FactoryBinding.getInflatedBinding(getClass(), inflater,container);
-        driver = FactoryDriver.getDriver(getClass(), this);
+        this.inflater = inflater;
+        this.container = container;
+        new Configurator(this);
         return binding != null ? binding.getRoot() : null;
     }
 
@@ -49,13 +51,30 @@ public abstract class BaseFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         driver.destroyDriver();
-    }
-
-    public ViewBinding getBindingInflated() {
-        return binding;
+        binding = null;
     }
 
     public AppCacheViewModel getAppCache() {
         return appCache;
+    }
+
+    public void setBinding(ViewBinding binding) {
+        this.binding = binding;
+    }
+
+    public void setDriver(BaseDriver driver) {
+        this.driver = driver;
+    }
+
+    public ViewBinding getBinding() {
+        return binding;
+    }
+
+    public ViewGroup getContainer() {
+        return container;
+    }
+
+    public LayoutInflater getInflater() {
+        return inflater;
     }
 }
