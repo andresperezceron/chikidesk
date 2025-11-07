@@ -12,11 +12,11 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.viewbinding.ViewBinding;
 
 import com.example.chikidesk.cofigurator.Configurator;
-import com.example.chikidesk.driver.BaseDriver;
+import com.example.chikidesk.driver.Driver;
 import com.example.chikidesk.viewmodel.AppCacheViewModel;
 
-public abstract class BaseFragment extends Fragment {
-    protected BaseDriver driver;
+public abstract class MainFragment extends Fragment {
+    protected Driver driver;
     protected ViewBinding binding;
     protected AppCacheViewModel appCache;
 
@@ -62,7 +62,7 @@ public abstract class BaseFragment extends Fragment {
         this.binding = binding;
     }
 
-    public void setDriver(BaseDriver driver) {
+    public void setDriver(Driver driver) {
         this.driver = driver;
     }
 

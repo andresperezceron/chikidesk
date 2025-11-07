@@ -5,21 +5,21 @@ import android.widget.Toast;
 import androidx.navigation.Navigation;
 
 import com.example.chikidesk.R;
-import com.example.chikidesk.check.CheckMoldeUpdate;
+import com.example.chikidesk.check.CheckUpdateMolde;
 import com.example.chikidesk.databinding.MoldeUpdateBinding;
 import com.example.chikidesk.db.MoldeDao;
 import com.example.chikidesk.driver.DriverUpdate;
 import com.example.chikidesk.model.Molde;
-import com.example.chikidesk.ui.fragment.BaseFragment;
+import com.example.chikidesk.ui.fragment.MainFragment;
 
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
-public class HandleMoldeUpdate extends BaseHandle<BaseFragment, Integer> implements DriverUpdate {
-    private final MoldeUpdateBinding binding;
+public class HandleMoldeUpdate extends Handle<MainFragment, Integer> implements DriverUpdate {
+    private MoldeUpdateBinding binding;
     private Molde oldMolde;
 
-    public HandleMoldeUpdate(BaseFragment fragment) {
+    public HandleMoldeUpdate(MainFragment fragment) {
         super(fragment);
         binding = (MoldeUpdateBinding) super.binding;
     }
@@ -46,7 +46,7 @@ public class HandleMoldeUpdate extends BaseHandle<BaseFragment, Integer> impleme
 
     @Override
     public void driveActionDao() {
-        CheckMoldeUpdate check = new CheckMoldeUpdate(appCache, binding, oldMolde);
+        CheckUpdateMolde check = new CheckUpdateMolde(appCache, binding, oldMolde);
         MoldeDao dao = new MoldeDao(getContext());
         if(check.isAreEqualsToUpdate()) {
             Toast.makeText(getContext(),"Sin cambios. Nada que actualizar",
@@ -91,6 +91,7 @@ public class HandleMoldeUpdate extends BaseHandle<BaseFragment, Integer> impleme
     @Override
     public void destroyDriver() {
         oldMolde = null;
+        this.binding = null;
     }
 
     @Override

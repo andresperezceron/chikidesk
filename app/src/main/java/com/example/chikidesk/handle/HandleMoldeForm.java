@@ -5,20 +5,20 @@ import android.widget.Toast;
 import androidx.navigation.Navigation;
 
 import com.example.chikidesk.R;
-import com.example.chikidesk.check.CheckMoldeForm;
+import com.example.chikidesk.check.CheckNewMolde;
 import com.example.chikidesk.databinding.MoldeFormBinding;
 import com.example.chikidesk.db.MoldeDao;
 import com.example.chikidesk.driver.DriverForm;
 import com.example.chikidesk.model.Molde;
-import com.example.chikidesk.ui.fragment.BaseFragment;
+import com.example.chikidesk.ui.fragment.MainFragment;
 
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
 
-public class HandleMoldeForm extends BaseHandle<BaseFragment, Integer> implements DriverForm {
-    private final MoldeFormBinding binding;
-    public HandleMoldeForm(BaseFragment fragment) {
+public class HandleMoldeForm extends Handle<MainFragment, Integer> implements DriverForm {
+    private MoldeFormBinding binding;
+    public HandleMoldeForm(MainFragment fragment) {
         super(fragment);
         binding = (MoldeFormBinding) super.binding;
     }
@@ -31,7 +31,7 @@ public class HandleMoldeForm extends BaseHandle<BaseFragment, Integer> implement
 
     @Override
     protected void driveActionDao() {
-        CheckMoldeForm check = new CheckMoldeForm(appCache, binding);
+        CheckNewMolde check = new CheckNewMolde(appCache, binding);
         if(check.isNotSuccess()) return;
 
         MoldeDao dao = new MoldeDao(getContext());
@@ -59,8 +59,7 @@ public class HandleMoldeForm extends BaseHandle<BaseFragment, Integer> implement
     }
 
     @Override
-    public void destroyDriver() {}
-
+    public void destroyDriver() { this.binding = null;}
     @Override
     protected void setKeysByBundle() {}
     @Override

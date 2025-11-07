@@ -72,7 +72,7 @@ public class HandleMaquinaShow {
         binding.fabMaquinaShowDeleteImg.setOnClickListener(v -> {
             if(imageManager.deleteImage(maquina.getId())) {
                 binding.imgMaquinaShow.setImageBitmap(null); // Limpia la vista
-                Toast.makeText(fragment.getContext(), R.string.log_del_img, Toast.LENGTH_SHORT).show();
+                Toast.makeText(fragment.getContext(), R.string.tot_del_img, Toast.LENGTH_SHORT).show();
             } else {
                 // Opcional: mostrar un toast de que no había imagen que borrar
                 Toast.makeText(fragment.getContext(), "No había imagen para borrar", Toast.LENGTH_SHORT).show();

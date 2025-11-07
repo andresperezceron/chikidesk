@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class ConfigDao extends BaseDao<Configuracion, Integer> {
+public class ConfigDao extends Dao<Configuracion, Integer> {
     public ConfigDao(Context context) {
         super(context);
     }

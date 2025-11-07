@@ -25,7 +25,7 @@ import com.example.chikidesk.model.Temperatura;
 import com.example.chikidesk.repository.ConfigRepository;
 import com.example.chikidesk.ui.validateforms.CheckConfig;
 import com.example.chikidesk.ui.validateforms.CheckExpulsor;
-import com.example.chikidesk.ui.validateforms.CheckFullConfig;
+import com.example.chikidesk.check.CheckFullConfig;
 import com.example.chikidesk.ui.validateforms.CheckInyeccion;
 import com.example.chikidesk.ui.validateforms.CheckReten;
 import com.example.chikidesk.ui.validateforms.CheckTemp;

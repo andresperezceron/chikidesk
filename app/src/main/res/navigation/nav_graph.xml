@@ -147,14 +147,11 @@
         android:name="com.example.chikidesk.ui.fragment.FragmentConfigList"
         android:label="Lista de configuraciones" >
         <action
-            android:id="@+id/action_configList_to_home"
-            app:destination="@id/fragmentStartApp" />
-        <action
             android:id="@+id/action_configList_to_selectConfig"
             app:destination="@id/fragmentSelectConfig" />
         <action
             android:id="@+id/action_configList_to_selectMaquina"
-            app:destination="@id/fragmentListMaquinaConfig" />
+            app:destination="@id/fragmentSelectMaquina" />
     </fragment>
 
     <fragment
@@ -169,7 +166,7 @@
             app:destination="@id/fragmentConfigList" />
         <action
             android:id="@+id/action_configForm_to_selectMolde"
-            app:destination="@id/fragmentListMoldeConfig" />
+            app:destination="@id/fragmentSelectMolde" />
         <action
             android:id="@+id/action_configForm_to_home"
             app:destination="@id/fragmentStartApp" />
@@ -200,24 +197,21 @@
     </fragment>
 
     <fragment
-        android:id="@+id/fragmentListMoldeConfig"
-        android:name="com.example.chikidesk.ui.fragment.FragmentListConfigMolde"
+        android:id="@+id/fragmentSelectMaquina"
+        android:name="com.example.chikidesk.ui.fragment.FragmentSelectMaquina"
+        android:label="Seleccionar maquina" >
+        <action
+            android:id="@+id/action_selectMaquina_to_selectMolde"
+            app:destination="@id/fragmentSelectMolde" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentSelectMolde"
+        android:name="com.example.chikidesk.ui.fragment.FragmentSelectMolde"
         android:label="Seleccionar Molde" >
         <action
             android:id="@+id/action_selectMolde_to_configForm"
             app:destination="@+id/fragmentConfigForm" />
-        <action
-            android:id="@+id/action_selectMolde_to_home"
-            app:destination="@id/fragmentStartApp" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/fragmentListMaquinaConfig"
-        android:name="com.example.chikidesk.ui.fragment.FragmenNewConMaq"
-        android:label="Seleccionar maquina" >
-        <action
-            android:id="@+id/action_listMaquinaConfig_to_listMoldeConfig"
-            app:destination="@id/fragmentListMoldeConfig" />
     </fragment>
 
     <fragment

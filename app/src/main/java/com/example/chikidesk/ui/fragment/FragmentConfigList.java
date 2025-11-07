@@ -1,3 +1,3 @@
 package com.example.chikidesk.ui.fragment;
 
-public class FragmentConfigList extends BaseFragment {}
+public class FragmentConfigList extends MainFragment {}

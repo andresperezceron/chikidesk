@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class BaseDao<T, K> {
+public abstract class Dao<T, K> {
     public static final int ACTION_INSERT = 0;
     public static final int ACTION_UPDATE = 1;
     public static final int ACTION_DELETE = 2;
@@ -18,7 +18,7 @@ public abstract class BaseDao<T, K> {
     protected final MiDbHelper miDbHelperSingleton;
     protected long idLastEntityCreated;
 
-    public BaseDao(Context context) {
+    public Dao(Context context) {
         this.miDbHelperSingleton = MiDbHelper.getInstance(context);
         this.db = this.miDbHelperSingleton.getWritableDatabase();
     }

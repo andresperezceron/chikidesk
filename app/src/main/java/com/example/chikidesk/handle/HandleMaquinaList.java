@@ -1,29 +1,16 @@
 package com.example.chikidesk.handle;
 
-import android.content.Context;
-import android.os.Bundle;
-
 import androidx.annotation.NonNull;
-import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.chikidesk.R;
-import com.example.chikidesk.databinding.FragmentMaquinaListBinding;
 import com.example.chikidesk.driver.DriverList;
-import com.example.chikidesk.model.Maquina;
-import com.example.chikidesk.ui.adapter.AdapterMaquinaList;
-import com.example.chikidesk.ui.fragment.BaseFragment;
-import com.example.chikidesk.ui.fragment.FragmentMaquinaList;
+import com.example.chikidesk.ui.fragment.MainFragment;
 import com.example.chikidesk.viewmodel.AppCacheViewModel;
 
-import java.util.List;
-
 public class HandleMaquinaList
-        extends BaseHandle<BaseFragment, Integer> implements DriverList{
+        extends Handle<MainFragment, Integer> implements DriverList{
 
 
-    public HandleMaquinaList(@NonNull AppCacheViewModel appCache, @NonNull BaseFragment fragment) {
+    public HandleMaquinaList(@NonNull AppCacheViewModel appCache, @NonNull MainFragment fragment) {
         super(fragment);
     }
 

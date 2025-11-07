@@ -11,8 +11,7 @@ import com.example.chikidesk.databinding.ConfigListBinding;
 import com.example.chikidesk.driver.DriverList;
 import com.example.chikidesk.model.Maquina;
 import com.example.chikidesk.ui.adapter.AdapterConfigList;
-import com.example.chikidesk.ui.fragment.BaseFragment;
-import com.example.chikidesk.ui.fragment.FragmentConfigList;
+import com.example.chikidesk.ui.fragment.MainFragment;
 
 import java.util.Comparator;
 import java.util.LinkedHashMap;
@@ -20,9 +19,9 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class HandleConfigList extends BaseHandle<BaseFragment, Integer> implements DriverList {
+public class HandleConfigList extends Handle<MainFragment, Integer> implements DriverList {
     private ConfigListBinding binding;
-    public HandleConfigList(BaseFragment fragment) {
+    public HandleConfigList(MainFragment fragment) {
         super(fragment);
         binding = (ConfigListBinding) super.binding;
     }
@@ -55,12 +54,12 @@ public class HandleConfigList extends BaseHandle<BaseFragment, Integer> implemen
         binding.fabConfigListNew.setOnClickListener(v ->
                 Navigation.findNavController(v).navigate(R.id.action_configList_to_selectMaquina));
         binding.fabConfigListHome.setOnClickListener(v ->
-                Navigation.findNavController(v).navigate(R.id.action_configList_to_home));
+                Navigation.findNavController(v).popBackStack());
     }
 
     @Override
     public void destroyDriver() {
-        binding = null;
+        this.binding = null;
     }
 
     @Override

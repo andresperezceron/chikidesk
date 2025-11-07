@@ -2,34 +2,34 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/layoutNewConMaq"
+    android:id="@+id/layoutSelectMaquina"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/padding_x1"
     android:background="@drawable/bg_main" >
 
     <TextView
-        android:id="@+id/txvNewConMaqHeader"
+        android:id="@+id/txvSelectMaquinaHeader"
         android:text="@string/header_select_maquina"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         style="@style/headers"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcvNewConMaq"
+        android:id="@+id/rcvSelectMaquina"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/margin_x2"
         android:clipToPadding="false"
         android:paddingBottom="@dimen/paddingBottom_rcv"
         android:contentDescription="@string/cont_desc_rcv_select_maquina"
-        app:layout_constraintTop_toBottomOf="@id/txvNewConMaqHeader"
+        app:layout_constraintTop_toBottomOf="@id/txvSelectMaquinaHeader"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabNewConMaqBack"
+        android:id="@+id/fabSelectMaquinaBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_x3"
@@ -41,7 +41,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabNewConMaqHome"
+        android:id="@+id/fabSelectMaquinaHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_x3"

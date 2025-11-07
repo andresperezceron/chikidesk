@@ -11,20 +11,19 @@ import com.example.chikidesk.R;
 import com.example.chikidesk.databinding.MoldeShowBinding;
 import com.example.chikidesk.driver.DriverShow;
 import com.example.chikidesk.model.Molde;
-import com.example.chikidesk.ui.fragment.BaseFragment;
-import com.example.chikidesk.ui.fragment.FragmentMoldeShow;
+import com.example.chikidesk.ui.fragment.MainFragment;
 import com.example.chikidesk.util.ImageManager;
 import com.example.chikidesk.util.ImgPickerHelper;
 
 import java.io.File;
 import java.util.Objects;
 
-public class HandleMoldeShow extends BaseHandle<BaseFragment, Integer> implements DriverShow {
-    private final MoldeShowBinding binding;
+public class HandleMoldeShow extends Handle<MainFragment, Integer> implements DriverShow {
+    private MoldeShowBinding binding;
     private ImageManager imageManager;
     private Molde molde;
 
-    public HandleMoldeShow(BaseFragment fragment) {
+    public HandleMoldeShow(MainFragment fragment) {
         super(fragment);
         binding = (MoldeShowBinding) super.binding;
     }
@@ -68,10 +67,7 @@ public class HandleMoldeShow extends BaseHandle<BaseFragment, Integer> implement
         binding.fabMoldeShowDeleteImg.setOnClickListener(v -> {
             if(imageManager.deleteImage(id)) {
                 binding.imgMoldeShow.setImageBitmap(null);
-                Toast.makeText(fragment.getContext(), R.string.log_del_img, Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(fragment.getContext(),
-                        "No había imagen para borrar", Toast.LENGTH_SHORT).show();
+                Toast.makeText(fragment.getContext(), R.string.tot_del_img, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -102,6 +98,7 @@ public class HandleMoldeShow extends BaseHandle<BaseFragment, Integer> implement
     public void destroyDriver() {
         this.imageManager = null;
         this.molde = null;
+        this.binding = null;
     }
 
     @Override

@@ -4,7 +4,7 @@ import android.widget.EditText;
 
 import com.example.chikidesk.viewmodel.AppCacheViewModel;
 
-public abstract class BaseCheck<T, B> {
+public abstract class Check<T, B> {
     protected AppCacheViewModel appCache;
     protected final B binding;
     protected final T oldEntity;
@@ -14,7 +14,7 @@ public abstract class BaseCheck<T, B> {
     protected  boolean empty;
     protected final boolean areEqualsToUpdate;
 
-    public BaseCheck(AppCacheViewModel appCache, B binding) {
+    public Check(AppCacheViewModel appCache, B binding) {
         this.appCache = appCache;
         this.binding = binding;
         oldEntity = null;
@@ -23,7 +23,7 @@ public abstract class BaseCheck<T, B> {
         areEqualsToUpdate = false;
     }
 
-    public BaseCheck(AppCacheViewModel appCache, B binding, T oldEntity) {
+    public Check(AppCacheViewModel appCache, B binding, T oldEntity) {
         this.appCache = appCache;
         this.binding = binding;
         this.oldEntity = oldEntity;
@@ -42,7 +42,6 @@ public abstract class BaseCheck<T, B> {
     public boolean isNotSuccess() {
         return entityChecked == null;
     }
-
     public boolean isAreEqualsToUpdate() {
         return areEqualsToUpdate;
     }

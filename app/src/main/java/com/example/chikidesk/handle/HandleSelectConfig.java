@@ -1,15 +1,12 @@
 package com.example.chikidesk.handle;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.chikidesk.databinding.FragmentSelectConfigBinding;
-import com.example.chikidesk.ui.fragment.BaseFragment;
-import com.example.chikidesk.ui.fragment.FragmentSelectConfig;
+import com.example.chikidesk.ui.fragment.MainFragment;
 import com.example.chikidesk.viewmodel.AppCacheViewModel;
 
-public class HandleSelectConfig extends BaseHandle<BaseFragment, Integer> {
-    public HandleSelectConfig(@NonNull AppCacheViewModel appCache, @NonNull BaseFragment fragment) {
+public class HandleSelectConfig extends Handle<MainFragment, Integer> {
+    public HandleSelectConfig(@NonNull AppCacheViewModel appCache, @NonNull MainFragment fragment) {
         super(fragment);
     }
 

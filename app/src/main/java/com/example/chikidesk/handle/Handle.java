@@ -6,21 +6,20 @@ import android.view.View;
 
 import androidx.viewbinding.ViewBinding;
 
-import com.example.chikidesk.ui.fragment.BaseFragment;
+import com.example.chikidesk.ui.fragment.MainFragment;
 import com.example.chikidesk.viewmodel.AppCacheViewModel;
 
-public abstract class BaseHandle<F extends BaseFragment, K>  {
+public abstract class Handle<F extends MainFragment, K>  {
     protected F fragment;
     protected K id;
     protected K idAux1, idAux2, idAux3;
     protected final AppCacheViewModel appCache;
     protected ViewBinding binding;
 
-    public BaseHandle(F fragment) {
+    public Handle(F fragment) {
         this.fragment = fragment;
         appCache = fragment.getAppCache();
         binding = fragment.getBinding();
-        setKeysByBundle();
     }
 
     protected abstract void drive();

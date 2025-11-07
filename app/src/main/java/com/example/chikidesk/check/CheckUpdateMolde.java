@@ -4,9 +4,9 @@ import com.example.chikidesk.databinding.MoldeUpdateBinding;
 import com.example.chikidesk.model.Molde;
 import com.example.chikidesk.viewmodel.AppCacheViewModel;
 
-public class CheckMoldeUpdate extends BaseCheck<Molde, MoldeUpdateBinding> {
+public class CheckUpdateMolde extends Check<Molde, MoldeUpdateBinding> {
 
-    public CheckMoldeUpdate(AppCacheViewModel appCache, MoldeUpdateBinding binding, Molde oldMolde) {
+    public CheckUpdateMolde(AppCacheViewModel appCache, MoldeUpdateBinding binding, Molde oldMolde) {
         super(appCache, binding, oldMolde);
     }
 

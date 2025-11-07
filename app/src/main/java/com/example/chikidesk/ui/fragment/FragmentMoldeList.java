@@ -1,4 +1,4 @@
 package com.example.chikidesk.ui.fragment;
 
 
-public class FragmentMoldeList extends BaseFragment {}
+public class FragmentMoldeList extends MainFragment {}

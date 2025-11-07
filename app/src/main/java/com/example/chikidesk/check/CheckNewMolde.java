@@ -6,9 +6,9 @@ import com.example.chikidesk.viewmodel.AppCacheViewModel;
 
 import java.util.Objects;
 
-public class CheckMoldeForm extends BaseCheck<Molde, MoldeFormBinding> {
+public class CheckNewMolde extends Check<Molde, MoldeFormBinding> {
 
-    public CheckMoldeForm(AppCacheViewModel appCache, MoldeFormBinding binding) {
+    public CheckNewMolde(AppCacheViewModel appCache, MoldeFormBinding binding) {
         super(appCache, binding);
     }
 

@@ -75,23 +75,40 @@ public class ConfigRepository {
                                     @Nullable Expulsor exp) {
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
+        RollBackConfig roll = appCache.createRollBackConfig();
         db.beginTransaction();
         try {
-            if(config != null && !appCache.setConfigList(configDao.exeCrudAction(config,
-                    ConfigDao.ACTION_UPDATE))) return false;
-            if(temp != null && !appCache.setTempList(tempDao.exeCrudAction(temp,
-                    ConfigDao.ACTION_UPDATE))) return false;
-            if(iny != null && !appCache.setInyList(inyDao.exeCrudAction(iny,
-                    ConfigDao.ACTION_UPDATE))) return false;
-            if(reten != null && !appCache.setRetenList(retenDao.exeCrudAction(reten,
-                    ConfigDao.ACTION_UPDATE))) return false;
-            if(exp != null && !appCache.setExpList(expDao.exeCrudAction(exp,
-                    ConfigDao.ACTION_UPDATE))) return false;
+            if(config != null) {
+                appCache.configList = configDao.exeCrudAction(config, ConfigDao.ACTION_UPDATE);
+                if(!appCache.getStatus())
+                    throw new Exception("Falló la actualización de Configuración");
+            }
+            if(temp != null) {
+                appCache.temperaturaList = tempDao.exeCrudAction(temp, TemperaturaDao.ACTION_UPDATE);
+                if(!appCache.getStatus())
+                    throw new Exception("Falló la actualización de Temperatura");
+            }
+            if(iny != null) {
+                appCache.inyeccionList = inyDao.exeCrudAction(iny, InyeccionDao.ACTION_UPDATE);
+                if(!appCache.getStatus())
+                    throw new Exception("Falló la actualización de Inyección");
+            }
+            if(reten != null) {
+                appCache.retenPresionList = retenDao.exeCrudAction(reten, RetenPresionDao.ACTION_UPDATE);
+                if(!appCache.getStatus())
+                    throw new Exception("Falló la actualizacion de RetenPresion");
+            }
+            if(exp != null) {
+                appCache.expulsorList = expDao.exeCrudAction(exp, ConfigDao.ACTION_UPDATE);
+                if(!appCache.getStatus())
+                    throw new Exception("Falló la actualización de RetenPresión");
+            }
 
             db.setTransactionSuccessful();
             return true;
         } catch(Exception e) {
-            Log.e("ConfigRepository", "...", e);
+            Log.e("ConfigRepository", "Error durante la transaccion de actualización", e);
+            appCache.loadRollBackConfig(roll);
             return false;
         } finally { db.endTransaction(); }
     }
@@ -101,37 +118,34 @@ public class ConfigRepository {
                                     @NonNull Expulsor exp) {
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
+        RollBackConfig roll = appCache.createRollBackConfig();
         db.beginTransaction();
         try {
-            if(!appCache.setConfigList(configDao.exeCrudAction(config, ConfigDao.ACTION_INSERT)))
-                return false;
+            appCache.configList = configDao.exeCrudAction(config, ConfigDao.ACTION_INSERT);
+            if(!appCache.getStatus()) {
+                throw new Exception("Falló la inserción de Configuracion");
+            }
 
             temp.setId(configDao.getIdNewConfig());
             iny.setId(configDao.getIdNewConfig());
             reten.setId(configDao.getIdNewConfig());
             exp.setId(configDao.getIdNewConfig());
+            appCache.temperaturaList = tempDao.exeCrudAction(temp, TemperaturaDao.ACTION_INSERT);
+            appCache.inyeccionList = inyDao.exeCrudAction(iny, InyeccionDao.ACTION_INSERT);
+            appCache.retenPresionList = retenDao.exeCrudAction(reten, RetenPresionDao.ACTION_INSERT);
+            appCache.expulsorList = expDao.exeCrudAction(exp, ExpulsorDao.ACTION_INSERT);
 
-            if(!appCache.setTempList(tempDao.exeCrudAction(temp, ConfigDao.ACTION_INSERT)))
-                return false;
-            if(!appCache.setInyList(inyDao.exeCrudAction(iny, ConfigDao.ACTION_INSERT)))
-                return false;
-            if(!appCache.setRetenList(retenDao.exeCrudAction(reten, ConfigDao.ACTION_INSERT)))
-                return false;
-            if(!appCache.setExpList(expDao.exeCrudAction(exp, ConfigDao.ACTION_INSERT)))
-                return false;
+            if(!appCache.getStatus()) {
+                throw new Exception("Falló la inserción de los detalles de Configuracion");
+            }
 
-            // 5. Si todo ha ido bien, marcamos la transacción como exitosa
             db.setTransactionSuccessful();
             return true;
 
-        } catch (Exception e) {
+        } catch(Exception e) {
             Log.e("ConfigRepository", "Error durante la transacción de inserción.", e);
+            appCache.loadRollBackConfig(roll);
             return false;
-        } finally {
-            // 6. Finalizar la transacción.
-            // Si setTransactionSuccessful() se llamó, se aplicarán los cambios (commit).
-            // Si no se llamó (porque hubo un error o un return false), se desharán todos los cambios (rollback).
-            db.endTransaction();
-        }
+        } finally { db.endTransaction(); }
     }
 }

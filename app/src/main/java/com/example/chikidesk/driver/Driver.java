@@ -1,6 +1,6 @@
 package com.example.chikidesk.driver;
 
-public interface BaseDriver {
+public interface Driver {
     void drive();
     void destroyDriver();
 }

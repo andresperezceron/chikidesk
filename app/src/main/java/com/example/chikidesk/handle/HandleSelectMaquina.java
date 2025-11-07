@@ -7,18 +7,17 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.chikidesk.R;
-import com.example.chikidesk.databinding.MoldeListBinding;
+import com.example.chikidesk.databinding.SelectMaquinaBinding;
 import com.example.chikidesk.driver.DriverList;
-import com.example.chikidesk.ui.adapter.AdapterMoldeList;
+import com.example.chikidesk.ui.adapter.AdapterMaquinaList;
 import com.example.chikidesk.ui.fragment.MainFragment;
 
+public class HandleSelectMaquina extends Handle<MainFragment, Integer> implements DriverList {
+    private SelectMaquinaBinding binding;
 
-public class HandleMoldeList extends Handle<MainFragment, Integer> implements DriverList {
-    private MoldeListBinding binding;
-
-    public HandleMoldeList(MainFragment fragment) {
+    public HandleSelectMaquina(MainFragment fragment) {
         super(fragment);
-        this.binding = (MoldeListBinding) super.binding;
+        this.binding = (SelectMaquinaBinding) super.binding;
     }
 
     @Override
@@ -30,27 +29,28 @@ public class HandleMoldeList extends Handle<MainFragment, Integer> implements Dr
 
     @Override
     public void setAdapters() {
-        binding.rcvMoldeList.setAdapter(new AdapterMoldeList(appCache.moldeList, molde -> {
+        binding.rcvSelectMaquina.setAdapter(new AdapterMaquinaList(appCache.maquinaList, maquina -> {
             Bundle bundle = new Bundle();
-            bundle.putInt("id", molde.getId());
+            bundle.putInt("id", maquina.getId());
             NavHostFragment.findNavController(fragment)
-                    .navigate(R.id.action_moldeList_to_moldeShow, bundle);
+                    .navigate(R.id.action_selectMaquina_to_selectMolde, bundle);
         }));
     }
 
     @Override
     public void populateForm() {
-        binding.rcvMoldeList.setLayoutManager(new LinearLayoutManager(fragment.getContext()));
-        binding.rcvMoldeList.setHasFixedSize(true);
+        binding.rcvSelectMaquina.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.rcvSelectMaquina.setHasFixedSize(true);
     }
 
     @Override
     public void setupNavigationButtons() {
-        binding.fabMoldeListHome.setOnClickListener(v ->
+        binding.fabSelectMaquinaHome.setOnClickListener(v ->
+                Navigation.findNavController(v).popBackStack(R.id.fragmentStartApp, false));
+        binding.fabSelectMaquinaBack.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack());
-        binding.fabMoldeListNew.setOnClickListener(v ->
-                Navigation.findNavController(v).navigate(R.id.action_moldeList_to_moldeForm));
     }
+
     @Override
     public void destroyDriver() {
         this.binding = null;

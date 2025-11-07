@@ -10,25 +10,26 @@ import com.example.chikidesk.databinding.MoldeDeleteBinding;
 import com.example.chikidesk.db.MoldeDao;
 import com.example.chikidesk.driver.DriverDelete;
 import com.example.chikidesk.model.Molde;
-import com.example.chikidesk.ui.fragment.BaseFragment;
+import com.example.chikidesk.ui.fragment.MainFragment;
 import com.example.chikidesk.util.ImageManager;
 
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
 
-public class HandleMoldeDelete extends BaseHandle<BaseFragment, Integer> implements DriverDelete {
-    private final MoldeDeleteBinding binding;
+public class HandleMoldeDelete extends Handle<MainFragment, Integer> implements DriverDelete {
+    private MoldeDeleteBinding binding;
     private Molde molde;
     private ImageManager imageManager;
 
-    public HandleMoldeDelete(BaseFragment fragment) {
+    public HandleMoldeDelete(MainFragment fragment) {
         super(fragment);
         binding = (MoldeDeleteBinding) super.binding;
     }
 
     @Override
     public void drive() {
+        setKeysByBundle();
         initProperties();
         populateForm();
         setupListeners();
@@ -50,9 +51,8 @@ public class HandleMoldeDelete extends BaseHandle<BaseFragment, Integer> impleme
 
     @Override
     public void populateForm() {
-        String msn = "Se ELIMINARAN " + totalConfigByMolde() + "\n\nCuando eliminamos un molde o " +
-                "una maquina, también se eliminan las configuraciones donde aparezcan. Los campos en " +
-                "rojo tomarán valores por defecto.";
+        String msn = fragment.getString(R.string.msn_delete1) + " " + totalConfigByMolde() + " " +
+                fragment.getString(R.string.msn_delete2) + fragment.getString(R.string.msn_delete3);
         binding.txvMoldeDeleteAlert.setText(msn);
         binding.edtMoldeDeleteNombre.setText(molde.getNombre());
         binding.edtMoldeDeleteRef.setText(molde.getReferencia());
@@ -69,7 +69,7 @@ public class HandleMoldeDelete extends BaseHandle<BaseFragment, Integer> impleme
         if(appCache.getStatus()) {
             imageManager.deleteImage(id);
             Navigation.findNavController(getView()).navigate(R.id.action_moldeDelete_to_moldeList);
-            Toast.makeText(getContext(), "Molde Eliminado", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.tot_del_molde, Toast.LENGTH_SHORT).show();
         } else assert false;
     }
 
@@ -77,11 +77,12 @@ public class HandleMoldeDelete extends BaseHandle<BaseFragment, Integer> impleme
     public void setupListeners() {
         binding.btnMoldeDeleteDelete.setOnClickListener(v ->
                 new AlertDialog.Builder(getContext())
-                        .setMessage("Se eliminará el molde de forma permanente.")
+                        .setTitle(R.string.alert_title_aviso)
+                        .setMessage(R.string.alert_del_molde)
                         .setCancelable(false)
-                        .setPositiveButton("Si estoy de acuerdo",
+                        .setPositiveButton(R.string.alert_confirm,
                                 (dialogInterface, i) -> driveActionDao())
-                        .setNegativeButton("No", null)
+                        .setNegativeButton(R.string.alert_no, null)
                         .show()
         );
     }
@@ -98,6 +99,7 @@ public class HandleMoldeDelete extends BaseHandle<BaseFragment, Integer> impleme
     public void destroyDriver() {
         molde = null;
         imageManager = null;
+        this.binding = null;
     }
 
     @Override

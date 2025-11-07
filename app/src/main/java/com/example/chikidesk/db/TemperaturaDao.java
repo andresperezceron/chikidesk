@@ -7,7 +7,7 @@ import android.database.Cursor;
 import com.example.chikidesk.model.Configuracion;
 import com.example.chikidesk.model.Temperatura;
 
-public class TemperaturaDao extends BaseDao<Temperatura, Integer> implements SubTableConfig<Temperatura>{
+public class TemperaturaDao extends Dao<Temperatura, Integer> implements SubTableConfig<Temperatura>{
     public TemperaturaDao(Context context) {
         super(context);
     }

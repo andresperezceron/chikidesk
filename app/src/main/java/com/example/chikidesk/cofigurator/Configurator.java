@@ -2,11 +2,11 @@ package com.example.chikidesk.cofigurator;
 
 import androidx.annotation.NonNull;
 
-import com.example.chikidesk.ui.fragment.BaseFragment;
+import com.example.chikidesk.ui.fragment.MainFragment;
 
 public class Configurator {
-    private final BaseFragment fragment;
-    public Configurator(@NonNull BaseFragment fragment) {
+    private final MainFragment fragment;
+    public Configurator(@NonNull MainFragment fragment) {
         this.fragment = fragment;
         fragment.setBinding(findBinding().createBinding());
         fragment.setDriver(findHandle().createDriver());

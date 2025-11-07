@@ -1,6 +1,6 @@
 package com.example.chikidesk.viewmodel;
 
-import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 
 import com.example.chikidesk.model.Configuracion;
@@ -10,6 +10,7 @@ import com.example.chikidesk.model.Maquina;
 import com.example.chikidesk.model.Molde;
 import com.example.chikidesk.model.RetenPresion;
 import com.example.chikidesk.model.Temperatura;
+import com.example.chikidesk.repository.RollBackConfig;
 
 import java.util.List;
 
@@ -28,42 +29,16 @@ public class AppCacheViewModel extends ViewModel {
                 expulsorList != null;
     }
 
-
-
-
-
-
-
-
-
-
-    public boolean setConfigList(@Nullable List<Configuracion> configList) {
-        if(configList == null) return false;
-        this.configList = configList;
-        return true;
+    public RollBackConfig createRollBackConfig() {
+        return new RollBackConfig(configList, temperaturaList, inyeccionList, retenPresionList,
+                expulsorList);
     }
 
-    public boolean setTempList(@Nullable List<Temperatura> temperaturaList) {
-        if(temperaturaList == null) return false;
-        this.temperaturaList = temperaturaList;
-        return true;
-    }
-
-    public boolean setInyList(@Nullable List<Inyeccion> inyeccionList) {
-        if(inyeccionList == null) return false;
-        this.inyeccionList = inyeccionList;
-        return true;
-    }
-
-    public boolean setRetenList(@Nullable List<RetenPresion> retenPresionList) {
-        if(retenPresionList == null) return false;
-        this.retenPresionList = retenPresionList;
-        return true;
-    }
-
-    public boolean setExpList(@Nullable List<Expulsor> expulsorList) {
-        if(expulsorList == null) return false;
-        this.expulsorList = expulsorList;
-        return true;
+    public void loadRollBackConfig(@NonNull RollBackConfig rollBack) {
+        configList = rollBack.getConfig();
+        temperaturaList = rollBack.getTemp();
+        inyeccionList = rollBack.getInyec();
+        retenPresionList = rollBack.getReten();
+        expulsorList = rollBack.getExpulsorList();
     }
 }

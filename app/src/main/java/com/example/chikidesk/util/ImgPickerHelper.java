@@ -58,10 +58,10 @@ public class ImgPickerHelper {
             Bitmap bitmap = getBitmapFromUri(uri);
             saveBitmapToFile(bitmap);
             imageView.setImageBitmap(bitmap); // Actualiza la UI inmediatamente
-            Toast.makeText(fragment.requireContext(), R.string.log_del_img, Toast.LENGTH_SHORT).show();
+            Toast.makeText(fragment.requireContext(), R.string.tot_del_img, Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             Log.e("ImgPickerHelper", "Error al procesar la imagen", e);
-            Toast.makeText(fragment.requireContext(), R.string.log_del_img, Toast.LENGTH_SHORT).show();
+            Toast.makeText(fragment.requireContext(), R.string.tot_del_img, Toast.LENGTH_SHORT).show();
         }
     }
 

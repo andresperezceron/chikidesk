@@ -6,5 +6,8 @@ public enum Ids {
     FragmentMoldeForm,
     FragmentMoldeUpdate,
     FragmentMoldeDelete,
-    FragmentConfigList
+    FragmentConfigList,
+    FragmentConfigForm,
+    FragmentSelectMaquina,
+    FragmentSelectMolde
 }

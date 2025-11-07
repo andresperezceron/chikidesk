@@ -71,7 +71,7 @@ public class FragmentMaquinaDelete extends Fragment {
                             if(savedImage.exists()) {
                                 binding.imgMaquinaDelete.setImageBitmap(null);
                                 if(savedImage.delete())
-                                    Log.d("",getString(R.string.log_del_img));
+                                    Log.d("",getString(R.string.tot_del_img));
                             }
                             Navigation.findNavController(v).
                                     navigate(R.id.action_maquinaDelete_to_maquinaList);
