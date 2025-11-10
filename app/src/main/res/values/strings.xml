@@ -92,6 +92,7 @@
     <string name="dialog_empty_fields">Campos Vacíos</string>
     <string name="alert_title_aviso">Aviso!.</string>
     <string name="alert_del_molde">Se eliminará el Molde de forma permanente.</string>
+    <string name="alert_del_maquina">Se eliminará la Máquina de forma permanente.</string>
     <string name="alert_confirm">Si estoy de acuerdo.</string>
     <string name="alert_ok">OK</string>
     <string name="alert_no">No</string>

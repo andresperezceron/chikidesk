@@ -5,6 +5,11 @@ import androidx.annotation.NonNull;
 import com.example.chikidesk.driver.Driver;
 import com.example.chikidesk.handle.HandleConfigForm;
 import com.example.chikidesk.handle.HandleConfigList;
+import com.example.chikidesk.handle.HandleMaquinaDelete;
+import com.example.chikidesk.handle.HandleMaquinaForm;
+import com.example.chikidesk.handle.HandleMaquinaList;
+import com.example.chikidesk.handle.HandleMaquinaShow;
+import com.example.chikidesk.handle.HandleMaquinaUpdate;
 import com.example.chikidesk.handle.HandleMoldeDelete;
 import com.example.chikidesk.handle.HandleMoldeForm;
 import com.example.chikidesk.handle.HandleMoldeList;
@@ -20,25 +25,25 @@ public class HandleStream {
     public Stream<ItemHandle> stream(@NonNull MainFragment fragment) {
         String idFragment = fragment.getClass().getSimpleName();
         return Stream.of(
-            new ItemHandle() {
+            new ItemHandle() { //MOLDE LIST
                 @Override
                 public boolean getId() { return idFragment.equals(Ids.FragmentMoldeList.name()); }
                 @Override
                 public Driver createDriver() { return new HandleMoldeList(fragment); }
             },
-            new ItemHandle() {
+            new ItemHandle() { //MOLDE SHOW
                 @Override
                 public boolean getId() { return idFragment.equals(Ids.FragmentMoldeShow.name()); }
                 @Override
                 public Driver createDriver() { return new HandleMoldeShow(fragment); }
             },
-            new ItemHandle() {
+            new ItemHandle() { //MOLDE FORM
                 @Override
                 public boolean getId() { return idFragment.equals(Ids.FragmentMoldeForm.name()); }
                 @Override
                 public Driver createDriver() { return new HandleMoldeForm(fragment); }
             },
-            new ItemHandle() {
+            new ItemHandle() { //MOLDE UPDATE
                 @Override
                 public boolean getId() {
                     return idFragment.equals(Ids.FragmentMoldeUpdate.name());
@@ -48,7 +53,7 @@ public class HandleStream {
                     return new HandleMoldeUpdate(fragment);
                 }
             },
-            new ItemHandle() { //MoldeDelete
+            new ItemHandle() { //MOLDE DELETE
                 @Override
                 public boolean getId() {
                     return idFragment.equals(Ids.FragmentMoldeDelete.name());
@@ -58,41 +63,59 @@ public class HandleStream {
                     return new HandleMoldeDelete(fragment);
                 }
             },
-            new ItemHandle() {
+            new ItemHandle() { /* MAQUINA LIST */
                 @Override
-                public boolean getId() {
-                    return idFragment.equals(Ids.FragmentConfigList.name());
-                }
+                public boolean getId() { return idFragment.equals(Ids.FragmentMaquinaList.name()); }
                 @Override
-                public Driver createDriver() {
-                    return new HandleConfigList(fragment);
-                }
+                public Driver createDriver() { return new HandleMaquinaList(fragment); }
             },
-            new ItemHandle() {
+            new ItemHandle() { /* MAQUINA SHOW */
                 @Override
-                public boolean getId() {
-                    return idFragment.equals(Ids.FragmentConfigForm.name());
-                }
+                public boolean getId() { return idFragment.equals(Ids.FragmentMaquinaShow.name()); }
                 @Override
-                public Driver createDriver() {
-                    return new HandleConfigForm(fragment);
-                }
+                public Driver createDriver() { return new HandleMaquinaShow(fragment); }
             },
-            new ItemHandle() {
+            new ItemHandle() { /* MAQUINA FORM */
                 @Override
-                public boolean getId() {return idFragment.equals(Ids.FragmentSelectMaquina.name()); }
+                public boolean getId() { return idFragment.equals(Ids.FragmentMaquinaForm.name()); }
                 @Override
-                public Driver createDriver() {
-                    return new HandleSelectMaquina(fragment);
-                }
+                public Driver createDriver() { return new HandleMaquinaForm(fragment); }
             },
-            new ItemHandle() {
+            new ItemHandle() { /* MAQUINA UPDATE */
+                @Override
+                public boolean getId() { return idFragment.equals(Ids.FragmentMaquinaUpdate.name()); }
+                @Override
+                public Driver createDriver() { return new HandleMaquinaUpdate(fragment); }
+            },
+            new ItemHandle() { /* MAQUINA DELETE */
+                @Override
+                public boolean getId() { return idFragment.equals(Ids.FragmentMaquinaDelete.name()); }
+                @Override
+                public Driver createDriver() { return new HandleMaquinaDelete(fragment); }
+            },
+            new ItemHandle() { //CONFIG LIST
+                @Override
+                public boolean getId() { return idFragment.equals(Ids.FragmentConfigList.name()); }
+                @Override
+                public Driver createDriver() { return new HandleConfigList(fragment); }
+            },
+            new ItemHandle() { //CONFIG FORM
+                @Override
+                public boolean getId() { return idFragment.equals(Ids.FragmentConfigForm.name()); }
+                @Override
+                public Driver createDriver() { return new HandleConfigForm(fragment); }
+            },
+            new ItemHandle() { //SELECT MAQUINA
+                @Override
+                public boolean getId() { return idFragment.equals(Ids.FragmentSelectMaquina.name()); }
+                @Override
+                public Driver createDriver() { return new HandleSelectMaquina(fragment); }
+            },
+            new ItemHandle() { //SELECT MOLDE
                 @Override
                 public boolean getId() {return idFragment.equals(Ids.FragmentSelectMolde.name()); }
                 @Override
-                public Driver createDriver() {
-                    return new HandleSelectMolde(fragment);
-                }
+                public Driver createDriver() { return new HandleSelectMolde(fragment); }
             }
         );
     }

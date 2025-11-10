@@ -65,7 +65,7 @@ public class FragmentConfigUpdate extends Fragment {
             if(checkFullConfig.areEqualToUpdate())
                 return;
 
-            if(checkFullConfig.isEmpty()) {
+            /*if(checkFullConfig.isEmpty()) {
                 new AlertDialog.Builder(requireContext())
                         .setTitle(getString(R.string.dialog_empty_fields))
                         .setMessage(R.string.msn_update_empty)
@@ -83,7 +83,7 @@ public class FragmentConfigUpdate extends Fragment {
                 Toast.makeText(getContext(), R.string.tot_upd_config, Toast.LENGTH_SHORT).show();
                 NavHostFragment.findNavController(this)
                         .navigate(R.id.action_configUpdate_to_configShow, bundle);
-            }
+            }*/
         });
 
         binding.fabConfigUpdateBack.setOnClickListener(v -> {
@@ -173,7 +173,8 @@ public class FragmentConfigUpdate extends Fragment {
                 getTextFrom(binding.edtConfigUpdateExpulsorPre2),
                 getTextFrom(binding.edtConfigUpdateExpulsorPos2)));
 
-        return new CheckFullConfig(checkConfig, checkInyeccion, checkTemp, checkExpulsor, checkReten);
+        //return new CheckFullConfig(checkConfig, checkInyeccion, checkTemp, checkExpulsor, checkReten);
+        return null;
     }
     private void populateForm() {
         binding.edtConfigUpdateMaquina.setText(oldFullConfig.getMaquina().getNombre());

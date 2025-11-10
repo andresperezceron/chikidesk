@@ -5,6 +5,11 @@ import androidx.viewbinding.ViewBinding;
 
 import com.example.chikidesk.databinding.ConfigFormBinding;
 import com.example.chikidesk.databinding.ConfigListBinding;
+import com.example.chikidesk.databinding.MaquinaDeleteBinding;
+import com.example.chikidesk.databinding.MaquinaFormBinding;
+import com.example.chikidesk.databinding.MaquinaListBinding;
+import com.example.chikidesk.databinding.MaquinaShowBinding;
+import com.example.chikidesk.databinding.MaquinaUpdateBinding;
 import com.example.chikidesk.databinding.MoldeDeleteBinding;
 import com.example.chikidesk.databinding.MoldeFormBinding;
 import com.example.chikidesk.databinding.MoldeListBinding;
@@ -20,7 +25,7 @@ public class BindingStream {
     public Stream<ItemBinding> stream(@NonNull MainFragment fragment) {
         String idFragment = fragment.getClass().getSimpleName();
         return Stream.of(
-            new ItemBinding() {
+            new ItemBinding() { //MOLDE LIST
                 @Override
                 public boolean getId() {
                     return idFragment.equals(Ids.FragmentMoldeList.name());
@@ -31,7 +36,7 @@ public class BindingStream {
                             .inflate(fragment.getInflater(), fragment.getContainer(), false);
                 }
             },
-            new ItemBinding() {
+            new ItemBinding() { //MOLDE SHOW
                 @Override
                 public boolean getId() { return idFragment.equals(Ids.FragmentMoldeShow.name()); }
                 @Override
@@ -40,7 +45,7 @@ public class BindingStream {
                             .inflate(fragment.getInflater(), fragment.getContainer(), false);
                 }
             },
-            new ItemBinding() {
+            new ItemBinding() { //MOLDE FORM
                 @Override
                 public boolean getId() {
                     return idFragment.equals(Ids.FragmentMoldeForm.name());
@@ -51,7 +56,7 @@ public class BindingStream {
                             .inflate(fragment.getInflater(), fragment.getContainer(), false);
                 }
             },
-            new ItemBinding() {
+            new ItemBinding() { //MOLDE UPDATE
                 @Override
                 public boolean getId() {
                     return idFragment.equals(Ids.FragmentMoldeUpdate.name());
@@ -62,29 +67,70 @@ public class BindingStream {
                             .inflate(fragment.getInflater(), fragment.getContainer(), false);
                 }
             },
-            new ItemBinding() {
+            new ItemBinding() { /* MOLDE DELETE */
                 @Override
-                public boolean getId() {
-                    return idFragment.equals(Ids.FragmentMoldeDelete.name());
-                }
+                public boolean getId() { return idFragment.equals(Ids.FragmentMoldeDelete.name()); }
                 @Override
                 public ViewBinding createBinding() {
                     return MoldeDeleteBinding
                             .inflate(fragment.getInflater(), fragment.getContainer(), false);
                 }
             },
-            new ItemBinding() {
+            new ItemBinding() { /* MAQUINA LIST */
                 @Override
-                public boolean getId() {
-                    return idFragment.equals(Ids.FragmentConfigList.name());
+                public boolean getId() { return idFragment.equals(Ids.FragmentMaquinaList.name()); }
+                @Override
+                public ViewBinding createBinding() {
+                    return MaquinaListBinding
+                            .inflate(fragment.getInflater(), fragment.getContainer(), false);
                 }
+            },
+            new ItemBinding() { //MAQUINA SHOW
+                @Override
+                public boolean getId() { return idFragment.equals(Ids.FragmentMaquinaShow.name()); }
+                @Override
+                public ViewBinding createBinding() {
+                    return MaquinaShowBinding
+                            .inflate(fragment.getInflater(), fragment.getContainer(), false);
+                }
+            },
+            new ItemBinding() { //MAQUINA FORM
+                @Override
+                public boolean getId() { return idFragment.equals(Ids.FragmentMaquinaForm.name()); }
+                @Override
+                public ViewBinding createBinding() {
+                    return MaquinaFormBinding
+                            .inflate(fragment.getInflater(), fragment.getContainer(), false);
+                }
+            },
+            new ItemBinding() { //MAQUINA UPDATE
+                @Override
+                public boolean getId() { return idFragment.equals(Ids.FragmentMaquinaUpdate.name()); }
+                @Override
+                public ViewBinding createBinding() {
+                    return MaquinaUpdateBinding
+                            .inflate(fragment.getInflater(), fragment.getContainer(), false);
+                }
+            },
+            new ItemBinding() { //MAQUINA DELETE
+                @Override
+                public boolean getId() { return idFragment.equals(Ids.FragmentMaquinaDelete.name()); }
+                @Override
+                public ViewBinding createBinding() {
+                    return MaquinaDeleteBinding
+                            .inflate(fragment.getInflater(), fragment.getContainer(), false);
+                }
+            },
+            new ItemBinding() { /* CONFIG LIST */
+                @Override
+                public boolean getId() { return idFragment.equals(Ids.FragmentConfigList.name()); }
                 @Override
                 public ViewBinding createBinding() {
                     return ConfigListBinding
                             .inflate(fragment.getInflater(), fragment.getContainer(), false);
                 }
             },
-            new ItemBinding() {
+            new ItemBinding() { //CONFIG FORM
                 @Override
                 public boolean getId() {
                     return idFragment.equals(Ids.FragmentConfigForm.name());
@@ -95,7 +141,7 @@ public class BindingStream {
                             .inflate(fragment.getInflater(), fragment.getContainer(), false);
                 }
             },
-            new ItemBinding() {
+            new ItemBinding() { //SELECT MAQUINA
                 @Override
                 public boolean getId() {
                     return idFragment.equals(Ids.FragmentSelectMaquina.name());
@@ -106,7 +152,7 @@ public class BindingStream {
                             .inflate(fragment.getInflater(), fragment.getContainer(), false);
                 }
             },
-            new ItemBinding() {
+            new ItemBinding() { //SELECT MOLDE
                 @Override
                 public boolean getId() {
                     return idFragment.equals(Ids.FragmentSelectMolde.name());

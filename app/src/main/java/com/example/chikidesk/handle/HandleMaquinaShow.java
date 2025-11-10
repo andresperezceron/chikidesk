@@ -3,49 +3,79 @@ package com.example.chikidesk.handle;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.chikidesk.R;
-import com.example.chikidesk.databinding.FragmentMaquinaShowBinding;
+import com.example.chikidesk.databinding.MaquinaShowBinding;
+import com.example.chikidesk.driver.DriverShow;
 import com.example.chikidesk.model.Maquina;
+import com.example.chikidesk.ui.fragment.MainFragment;
 import com.example.chikidesk.util.ImageManager;
 import com.example.chikidesk.util.ImgPickerHelper;
-import com.example.chikidesk.viewmodel.AppCacheViewModel;
 
 import java.io.File;
+import java.util.Objects;
 
-public class HandleMaquinaShow {
-    private FragmentMaquinaShowBinding binding;
-    private final Maquina maquina;
-    private final ImageManager imageManager;
-    private ImgPickerHelper piker;
-    private final Fragment fragment;
-    private final Bundle bundle;
+public class HandleMaquinaShow extends Handle<MainFragment, Integer> implements DriverShow {
+    private MaquinaShowBinding binding;
+    private ImageManager imageManager;
+    private Maquina maquina;
+    private Bundle wellKnownNextBundle;
 
-    public HandleMaquinaShow(AppCacheViewModel appCache, int id, ImageManager imageManager,
-                           Fragment fragment) {
+    public HandleMaquinaShow(MainFragment fragment) {
+        super(fragment);
+        this.binding = (MaquinaShowBinding) super.binding;
+    }
+
+    @Override
+    public void drive() {
+        setKeysByBundle();
+        initProperties();
+        populateForm();
+        setupListeners();
+        setupNavigationButtons();
+    }
+
+    @Override
+    public void setKeysByBundle() {
+        id = getBundle() != null ? getBundle().getInt("id") : 0;
         assert id != 0;
-        this.imageManager = imageManager;
-        this.fragment = fragment;
-        maquina = appCache.maquinaList.stream()
-                .filter(m -> m.getId() == id)
-                .findFirst().orElse(null);
-        bundle = createBundle();
     }
 
-    public void setBinding(FragmentMaquinaShowBinding binding) {
-        this.binding = binding;
+    @Override
+    public void initProperties() {
+        imageManager = new ImageManager(getContext(), "maquina_", "jpg");
+        maquina = appCache.maquinaList.stream()
+                .filter(m -> Objects.equals(m.getId(), id))
+                .findFirst().orElse(null);
+        wellKnownNextBundle = new Bundle();
+        wellKnownNextBundle.putInt("id", id);
     }
+
+    @Override
     public void populateForm() {
         binding.edtMaquinaShowNombre.setText(maquina.getNombre());
         binding.edtMaquinaShowRef.setText(maquina.getReferencia());
         binding.edtMaquinaShowDesc.setText(maquina.getDescripcion());
-        imageManager.loadImageInto(maquina.getId(), binding.imgMaquinaShow);
-        setupImageButtons();
+        imageManager.loadImageInto(id, binding.imgMaquinaShow);
     }
 
+    @Override
+    public void setupListeners() {
+        File destinationFile = imageManager.getImageFile(id);
+        ImgPickerHelper piker = new ImgPickerHelper(fragment, destinationFile, binding.imgMaquinaShow);
+        binding.fabMaquinaShowSelectImg.setOnClickListener(v -> piker.launch());
+
+        binding.fabMaquinaShowDeleteImg.setOnClickListener(v -> {
+            if(imageManager.deleteImage(id)) {
+                binding.imgMaquinaShow.setImageBitmap(null);
+                Toast.makeText(fragment.getContext(), R.string.tot_del_img, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
     public void setupNavigationButtons() {
         binding.fabMaquinaShowBack.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack());
@@ -53,36 +83,25 @@ public class HandleMaquinaShow {
         binding.fabMaquinaShowHome.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack(R.id.fragmentStartApp, false));
 
-        binding.fabMaquinaShowUpdate.setOnClickListener(v -> {
+        binding.fabMaquinaShowUpdate.setOnClickListener(v ->
             NavHostFragment.findNavController(fragment)
-                    .navigate(R.id.action_moldeShow_to_moldeUpdate, bundle);
-        });
+                    .navigate(R.id.action_maquinaShow_to_maquinaUpdate, wellKnownNextBundle));
 
-        binding.fabMaquinaShowDelete.setOnClickListener(v -> {
+        binding.fabMaquinaShowDelete.setOnClickListener(v ->
             NavHostFragment.findNavController(fragment)
-                    .navigate(R.id.action_moldeShow_to_moldeDelete, bundle);
-        });
+                    .navigate(R.id.action_maquinaShow_to_maquinaDelete, wellKnownNextBundle));
     }
 
-    private void setupImageButtons() {
-        File destinationFile = imageManager.getImageFile(maquina.getId());
-        piker = new ImgPickerHelper(fragment, destinationFile, binding.imgMaquinaShow);
-        binding.fabMaquinaShowSelectImg.setOnClickListener(v -> piker.launch());
-
-        binding.fabMaquinaShowDeleteImg.setOnClickListener(v -> {
-            if(imageManager.deleteImage(maquina.getId())) {
-                binding.imgMaquinaShow.setImageBitmap(null); // Limpia la vista
-                Toast.makeText(fragment.getContext(), R.string.tot_del_img, Toast.LENGTH_SHORT).show();
-            } else {
-                // Opcional: mostrar un toast de que no había imagen que borrar
-                Toast.makeText(fragment.getContext(), "No había imagen para borrar", Toast.LENGTH_SHORT).show();
-            }
-        });
+    @Override
+    public void destroyDriver() {
+        this.imageManager = null;
+        this.maquina = null;
+        this.wellKnownNextBundle = null;
+        this.binding = null;
     }
 
-    private Bundle createBundle() {
-        Bundle bundle = new Bundle();
-        bundle.putInt("id", maquina.getId());
-        return bundle;
-    }
+    @Override
+    protected void driveActionDao() {}
+    @Override
+    protected void setAdapters() {}
 }

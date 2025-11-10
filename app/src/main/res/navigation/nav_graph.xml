@@ -104,12 +104,6 @@
         android:name="com.example.chikidesk.ui.fragment.FragmentMaquinaShow"
         android:label="Descripcion Máquina" >
         <action
-            android:id="@+id/action_maquinaShow_to_maquinaList"
-            app:destination="@id/fragmentMaquinaList" />
-        <action
-            android:id="@+id/action_maquinaShow_to_home"
-            app:destination="@id/fragmentStartApp" />
-        <action
             android:id="@+id/action_maquinaShow_to_maquinaUpdate"
             app:destination="@+id/fragmentMaquinaUpdate" />
         <action
@@ -122,11 +116,10 @@
         android:name="com.example.chikidesk.ui.fragment.FragmentMaquinaUpdate"
         android:label="Actualizando maquina" >
         <action
-            android:id="@+id/action_maquinaUpdate_to_maquinaShow"
-            app:destination="@+id/fragmentMaquinaShow" />
-        <action
-            android:id="@+id/action_maquinaUpdate_to_home"
-            app:destination="@+id/fragmentStartApp" />
+            android:id="@+id/action_maquinaUpdate_to_maquinaList"
+            app:destination="@+id/fragmentMaquinaList"
+            app:popUpTo="@id/fragmentMaquinaList"
+            app:popUpToInclusive="true" />
 
     </fragment>
 
@@ -136,10 +129,9 @@
         android:label="Eliminando maquina" >
         <action
             android:id="@+id/action_maquinaDelete_to_maquinaList"
-            app:destination="@+id/fragmentMaquinaList" />
-        <action
-            android:id="@+id/action_maquinaDelete_to_home"
-            app:destination="@+id/fragmentStartApp" />
+            app:destination="@+id/fragmentMaquinaList"
+            app:popUpTo="@id/fragmentMaquinaList"
+            app:popUpToInclusive="true"/>
     </fragment>
 
     <fragment
@@ -160,16 +152,12 @@
         android:label="Configuraciones" >
         <action
             android:id="@+id/action_resetForm"
-            app:destination="@id/fragmentConfigForm" />
+            app:destination="@+id/fragmentConfigForm" />
         <action
             android:id="@+id/action_configForm_to_configList"
-            app:destination="@id/fragmentConfigList" />
-        <action
-            android:id="@+id/action_configForm_to_selectMolde"
-            app:destination="@id/fragmentSelectMolde" />
-        <action
-            android:id="@+id/action_configForm_to_home"
-            app:destination="@id/fragmentStartApp" />
+            app:destination="@+id/fragmentConfigList"
+            app:popUpTo="@id/fragmentConfigList"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment

@@ -5,8 +5,10 @@ import com.example.chikidesk.model.Temperatura;
 import com.example.chikidesk.viewmodel.AppCacheViewModel;
 
 public class CheckNewTemperatura extends Check<Temperatura, ConfigFormBinding> {
-    public CheckNewTemperatura(AppCacheViewModel appCache, ConfigFormBinding binding) {
-        super(appCache, binding);
+    public CheckNewTemperatura(ConfigFormBinding binding) {
+        super(binding);
+        newEntity = newEntityByBinding();
+        entityChecked = checkingNewEntity();
     }
 
     @Override
@@ -19,7 +21,7 @@ public class CheckNewTemperatura extends Check<Temperatura, ConfigFormBinding> {
     }
 
     @Override
-    protected Temperatura chekingNewEntity() {
+    protected Temperatura checkingNewEntity() {
         empty = false;
         binding.tilConfigFormTemp1.setError(null);
         if(newEntity.getTemp1().isEmpty()) {

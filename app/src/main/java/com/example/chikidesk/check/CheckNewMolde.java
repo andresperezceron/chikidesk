@@ -4,24 +4,26 @@ import com.example.chikidesk.databinding.MoldeFormBinding;
 import com.example.chikidesk.model.Molde;
 import com.example.chikidesk.viewmodel.AppCacheViewModel;
 
-import java.util.Objects;
 
 public class CheckNewMolde extends Check<Molde, MoldeFormBinding> {
+    private final AppCacheViewModel appCache;
 
     public CheckNewMolde(AppCacheViewModel appCache, MoldeFormBinding binding) {
-        super(appCache, binding);
+        super(binding);
+        this.appCache = appCache;
+        newEntity = newEntityByBinding();
+        entityChecked = checkingNewEntity();
     }
 
     @Override
-    protected Molde chekingNewEntity() {
+    protected Molde checkingNewEntity() {
         success = true;
         binding.tilMoldeFormNombre.setError(null);
         if(newEntity.getNombre().isEmpty()) {
             binding.tilMoldeFormNombre.setError("El campo Nombre es obligatorio");
             success = false;
-        }
-        if(appCache.moldeList.stream().anyMatch(molde ->
-                Objects.equals(molde.getNombre(), newEntity.getNombre()))) {
+        } else if(appCache.moldeList.stream().anyMatch(molde ->
+                molde.getNombre().equals(newEntity.getNombre()))) {
             binding.tilMoldeFormNombre.setError("Nombre ulizado por otro molde");
             success = false;
         }

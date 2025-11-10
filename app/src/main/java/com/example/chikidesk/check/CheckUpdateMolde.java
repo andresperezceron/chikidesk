@@ -5,13 +5,18 @@ import com.example.chikidesk.model.Molde;
 import com.example.chikidesk.viewmodel.AppCacheViewModel;
 
 public class CheckUpdateMolde extends Check<Molde, MoldeUpdateBinding> {
+    private final AppCacheViewModel appCache;
 
     public CheckUpdateMolde(AppCacheViewModel appCache, MoldeUpdateBinding binding, Molde oldMolde) {
-        super(appCache, binding, oldMolde);
+        super(binding, oldMolde);
+        this.appCache = appCache;
+        super.newEntity = newEntityByBinding();
+        super.entityChecked = checkingNewEntity();
+        super.areEqualsToUpdate = areEquals();
     }
 
     @Override
-    protected Molde chekingNewEntity() {
+    protected Molde checkingNewEntity() {
         success = true;
         binding.tilMoldeUpdateNombre.setError(null);
         if(!oldEntity.getNombre().equals(newEntity.getNombre())) {
@@ -37,7 +42,6 @@ public class CheckUpdateMolde extends Check<Molde, MoldeUpdateBinding> {
         }
         return success ? newEntity : null;
     }
-
 
     @Override
     protected Molde newEntityByBinding() {

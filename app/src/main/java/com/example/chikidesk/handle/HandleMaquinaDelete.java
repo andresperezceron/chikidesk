@@ -6,25 +6,24 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.navigation.Navigation;
 
 import com.example.chikidesk.R;
-import com.example.chikidesk.databinding.MoldeDeleteBinding;
-import com.example.chikidesk.db.MoldeDao;
+import com.example.chikidesk.databinding.MaquinaDeleteBinding;
+import com.example.chikidesk.db.MaquinaDao;
 import com.example.chikidesk.driver.DriverDelete;
-import com.example.chikidesk.model.Molde;
+import com.example.chikidesk.model.Maquina;
 import com.example.chikidesk.ui.fragment.MainFragment;
 import com.example.chikidesk.util.ImageManager;
 
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
-
-public class HandleMoldeDelete extends Handle<MainFragment, Integer> implements DriverDelete {
-    private MoldeDeleteBinding binding;
-    private Molde molde;
+public class HandleMaquinaDelete extends Handle<MainFragment, Integer> implements DriverDelete {
+    private MaquinaDeleteBinding binding;
+    private Maquina maquina;
     private ImageManager imageManager;
 
-    public HandleMoldeDelete(MainFragment fragment) {
+    public HandleMaquinaDelete(MainFragment fragment) {
         super(fragment);
-        binding = (MoldeDeleteBinding) super.binding;
+        this.binding = (MaquinaDeleteBinding) super.binding;
     }
 
     @Override
@@ -44,42 +43,28 @@ public class HandleMoldeDelete extends Handle<MainFragment, Integer> implements 
 
     @Override
     public void initProperties() {
-        imageManager = new ImageManager(getContext(), "molde_", "jpg");
-        molde = appCache.moldeList.stream()
+        imageManager = new ImageManager(getContext(), "maquina_", "jpg");
+        maquina = appCache.maquinaList.stream()
                 .filter(m -> m.getId() == id)
                 .findFirst().orElse(null);
     }
 
     @Override
     public void populateForm() {
-        String msn = fragment.getString(R.string.msn_delete1) + " " + totalConfigByMolde() + " " +
+        String msn = fragment.getString(R.string.msn_delete1) + " " + totalConfigByMaquina() + " " +
                 fragment.getString(R.string.msn_delete2) + fragment.getString(R.string.msn_delete3);
-        binding.txvMoldeDeleteAlert.setText(msn);
-        binding.edtMoldeDeleteNombre.setText(molde.getNombre());
-        binding.edtMoldeDeleteRef.setText(molde.getReferencia());
-        imageManager.loadImageInto(id, binding.imgMoldeDelete);
-    }
-
-    @Override
-    protected void driveActionDao() {
-        MoldeDao dao = new MoldeDao(getContext());
-        appCache.moldeList = dao.exeCrudAction(molde, MoldeDao.ACTION_DELETE).stream()
-                .sorted(Comparator.comparing(Molde::getNombre, String.CASE_INSENSITIVE_ORDER))
-                .collect(Collectors.toList());
-
-        if(appCache.getStatus()) {
-            imageManager.deleteImage(id);
-            Navigation.findNavController(getView()).navigate(R.id.action_moldeDelete_to_moldeList);
-            Toast.makeText(getContext(), R.string.tot_del_molde, Toast.LENGTH_SHORT).show();
-        } else assert false;
+        binding.txvMaquinaDeleteAlert.setText(msn);
+        binding.edtMaquinaDeleteNombre.setText(maquina.getNombre());
+        binding.edtMaquinaDeleteRef.setText(maquina.getReferencia());
+        imageManager.loadImageInto(id, binding.imgMaquinaDelete);
     }
 
     @Override
     public void setupListeners() {
-        binding.btnMoldeDeleteDelete.setOnClickListener(v ->
+        binding.btnMaquinaDeleteDelete.setOnClickListener(v ->
                 new AlertDialog.Builder(getContext())
                         .setTitle(R.string.alert_title_aviso)
-                        .setMessage(R.string.alert_del_molde)
+                        .setMessage(R.string.alert_del_maquina)
                         .setCancelable(false)
                         .setPositiveButton(R.string.alert_confirm,
                                 (dialogInterface, i) -> driveActionDao())
@@ -90,25 +75,39 @@ public class HandleMoldeDelete extends Handle<MainFragment, Integer> implements 
 
     @Override
     public void setupNavigationButtons() {
-        binding.fabMoldeDeleteBack.setOnClickListener(v ->
+        binding.fabMaquinaDeleteBack.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack());
-        binding.fabMoldeDeleteHome.setOnClickListener(v ->
+        binding.fabMaquinaDeleteHome.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack(R.id.fragmentStartApp, false));
     }
 
     @Override
     public void destroyDriver() {
-        molde = null;
+        maquina = null;
         imageManager = null;
         this.binding = null;
     }
 
     @Override
+    protected void driveActionDao() {
+        MaquinaDao dao = new MaquinaDao(getContext());
+        appCache.maquinaList = dao.exeCrudAction(maquina, MaquinaDao.ACTION_DELETE).stream()
+                .sorted(Comparator.comparing(Maquina::getNombre, String.CASE_INSENSITIVE_ORDER))
+                .collect(Collectors.toList());
+
+        if(appCache.getStatus()) {
+            imageManager.deleteImage(id);
+            Navigation.findNavController(getView()).navigate(R.id.action_maquinaDelete_to_maquinaList);
+            Toast.makeText(getContext(), R.string.tot_del_molde, Toast.LENGTH_SHORT).show();
+        } else assert false;
+    }
+
+    @Override
     protected void setAdapters() {}
 
-    private int totalConfigByMolde() {
+    private int totalConfigByMaquina() {
         return (int) appCache.configList.stream()
-                .filter(c -> c.getId_molde() == id)
+                .filter(c -> c.getId_maquina() == id)
                 .count();
     }
 }

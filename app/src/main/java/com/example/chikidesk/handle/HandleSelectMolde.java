@@ -38,6 +38,7 @@ public class HandleSelectMolde extends Handle<MainFragment, Integer> implements 
     @Override
     public void setKeysByBundle() {
         id = getBundle() != null ? getBundle().getInt("id") : 0;
+        assert id != 0;
     }
 
     @Override

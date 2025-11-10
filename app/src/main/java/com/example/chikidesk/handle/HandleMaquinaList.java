@@ -1,17 +1,23 @@
 package com.example.chikidesk.handle;
 
-import androidx.annotation.NonNull;
+import android.os.Bundle;
 
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+import com.example.chikidesk.R;
+import com.example.chikidesk.databinding.MaquinaListBinding;
 import com.example.chikidesk.driver.DriverList;
+import com.example.chikidesk.ui.adapter.AdapterMaquinaList;
 import com.example.chikidesk.ui.fragment.MainFragment;
-import com.example.chikidesk.viewmodel.AppCacheViewModel;
 
-public class HandleMaquinaList
-        extends Handle<MainFragment, Integer> implements DriverList{
+public class HandleMaquinaList extends Handle<MainFragment, Integer> implements DriverList {
+    private MaquinaListBinding binding;
 
-
-    public HandleMaquinaList(@NonNull AppCacheViewModel appCache, @NonNull MainFragment fragment) {
+    public HandleMaquinaList(MainFragment fragment) {
         super(fragment);
+        this.binding = (MaquinaListBinding) super.binding;
     }
 
     @Override
@@ -23,46 +29,39 @@ public class HandleMaquinaList
 
     @Override
     public void setAdapters() {
-        /*binding.rcvMaquinaList.setAdapter(new AdapterMaquinaList(appCache.maquinaList, maquina -> {
+        binding.rcvMaquinaList.setAdapter(new AdapterMaquinaList(appCache.maquinaList, m -> {
             Bundle bundle = new Bundle();
-            bundle.putInt("id", maquina.getId());
+            bundle.putInt("id", m.getId());
             NavHostFragment.findNavController(fragment)
                     .navigate(R.id.action_maquinaList_to_maquinaShow, bundle);
-        }));*/
+        }));
     }
 
     @Override
     public void populateForm() {
-
+        binding.rcvMaquinaList.setLayoutManager(new LinearLayoutManager(fragment.getContext()));
+        binding.rcvMaquinaList.setHasFixedSize(true);
     }
 
     @Override
     public void setupNavigationButtons() {
-
+        binding.fabMaquinaListHome.setOnClickListener(v ->
+                Navigation.findNavController(v).popBackStack());
+        binding.fabMaquinaListNew.setOnClickListener(v ->
+                Navigation.findNavController(v).navigate(R.id.action_maquinaList_to_maquinaForm));
     }
 
     @Override
     public void destroyDriver() {
-        //super.onDestroyDriver();
+        this.binding = null;
     }
 
     @Override
-    protected void setKeysByBundle() {
-
-    }
-
+    protected void setKeysByBundle() {}
     @Override
-    protected void initProperties() {
-
-    }
-
+    protected void initProperties() {}
     @Override
-    protected void driveActionDao() {
-
-    }
-
+    protected void driveActionDao() {}
     @Override
-    protected void setupListeners() {
-
-    }
+    protected void setupListeners() {}
 }

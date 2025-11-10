@@ -1,20 +1,19 @@
 package com.example.chikidesk.check;
 
-import com.example.chikidesk.ui.validateforms.CheckReten;
 
 public class CheckFullConfig {
     private final CheckNewConfig checkConfig;
     private final CheckNewInyeccion checkInyeccion;
     private final CheckNewTemperatura checkTemp;
     private final CheckNewExpulsor checkExpulsor;
-    private final CheckReten checkReten;
+    private final CheckNewReten checkReten;
 
-    public CheckFullConfig(CheckNewConfig checkConfig, CheckNewInyeccion chekInyeccion,
-                           CheckNewTemperatura checkTemp, CheckNewExpulsor checkExpulsor,
-                           CheckReten checkReten) {
+    public CheckFullConfig(CheckNewConfig checkConfig, CheckNewTemperatura checkTemp,
+                           CheckNewInyeccion checkInyeccion, CheckNewExpulsor checkExpulsor,
+                           CheckNewReten checkReten) {
         this.checkConfig = checkConfig;
-        this.checkInyeccion = chekInyeccion;
         this.checkTemp = checkTemp;
+        this.checkInyeccion = checkInyeccion;
         this.checkExpulsor = checkExpulsor;
         this.checkReten = checkReten;
     }
@@ -35,18 +34,18 @@ public class CheckFullConfig {
         return checkExpulsor;
     }
 
-    public CheckReten getCheckReten() {
+    public CheckNewReten getCheckReten() {
         return checkReten;
     }
 
     public boolean isEmpty() {
         return checkConfig.empty || checkTemp.empty || checkInyeccion.empty ||
-                checkReten.isEmpty || checkExpulsor.empty;
+                checkReten.empty || checkExpulsor.empty;
     }
 
     public boolean areEqualToUpdate() {
         return checkConfig.areEqualsToUpdate && checkTemp.areEqualsToUpdate &&
                 checkInyeccion.areEqualsToUpdate && checkExpulsor.areEqualsToUpdate &&
-                checkReten.equalToUpdate;
+                checkReten.areEqualsToUpdate;
     }
 }

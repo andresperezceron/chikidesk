@@ -1,6 +1,5 @@
 package com.example.chikidesk.handle;
 
-
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -22,6 +21,7 @@ public class HandleMoldeShow extends Handle<MainFragment, Integer> implements Dr
     private MoldeShowBinding binding;
     private ImageManager imageManager;
     private Molde molde;
+    private Bundle wellKnownNextBundle;
 
     public HandleMoldeShow(MainFragment fragment) {
         super(fragment);
@@ -40,6 +40,7 @@ public class HandleMoldeShow extends Handle<MainFragment, Integer> implements Dr
     @Override
     public void setKeysByBundle() {
         id = getBundle() != null ? getBundle().getInt("id") : 0;
+        assert id != 0;
     }
 
     @Override
@@ -48,6 +49,8 @@ public class HandleMoldeShow extends Handle<MainFragment, Integer> implements Dr
         molde = appCache.moldeList.stream()
                 .filter(m -> Objects.equals(m.getId(), id))
                 .findFirst().orElse(null);
+        wellKnownNextBundle = new Bundle();
+        wellKnownNextBundle.putInt("id", id);
     }
 
     @Override
@@ -74,30 +77,26 @@ public class HandleMoldeShow extends Handle<MainFragment, Integer> implements Dr
 
     @Override
     public void setupNavigationButtons() {
-        Bundle wellKnownNextBundle = new Bundle();
-        wellKnownNextBundle.putInt("id", id);
-
         binding.fabMoldeShowBack.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack());
 
         binding.fabMoldeShowHome.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack(R.id.fragmentStartApp, false));
 
-        binding.fabMoldeShowUpdate.setOnClickListener(v -> {
+        binding.fabMoldeShowUpdate.setOnClickListener(v ->
             NavHostFragment.findNavController(fragment)
-                    .navigate(R.id.action_moldeShow_to_moldeUpdate, wellKnownNextBundle);
-        });
+                    .navigate(R.id.action_moldeShow_to_moldeUpdate, wellKnownNextBundle));
 
-        binding.fabMoldeShowDelete.setOnClickListener(v -> {
+        binding.fabMoldeShowDelete.setOnClickListener(v ->
             NavHostFragment.findNavController(fragment)
-                    .navigate(R.id.action_moldeShow_to_moldeDelete, wellKnownNextBundle);
-        });
+                    .navigate(R.id.action_moldeShow_to_moldeDelete, wellKnownNextBundle));
     }
 
     @Override
     public void destroyDriver() {
         this.imageManager = null;
         this.molde = null;
+        this.wellKnownNextBundle = null;
         this.binding = null;
     }
 

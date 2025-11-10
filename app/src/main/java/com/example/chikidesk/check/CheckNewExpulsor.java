@@ -2,11 +2,12 @@ package com.example.chikidesk.check;
 
 import com.example.chikidesk.databinding.ConfigFormBinding;
 import com.example.chikidesk.model.Expulsor;
-import com.example.chikidesk.viewmodel.AppCacheViewModel;
 
 public class CheckNewExpulsor extends Check<Expulsor, ConfigFormBinding> {
-    public CheckNewExpulsor(AppCacheViewModel appCache, ConfigFormBinding binding) {
-        super(appCache, binding);
+    public CheckNewExpulsor(ConfigFormBinding binding) {
+        super(binding);
+        newEntity = newEntityByBinding();
+        entityChecked = checkingNewEntity();
     }
 
     @Override
@@ -21,7 +22,7 @@ public class CheckNewExpulsor extends Check<Expulsor, ConfigFormBinding> {
     }
 
     @Override
-    protected Expulsor chekingNewEntity() {
+    protected Expulsor checkingNewEntity() {
         empty = false;
         binding.tilConfigFormExpulsorVel1.setError(null);
         if(newEntity.getVelocidad1().isEmpty()) {
