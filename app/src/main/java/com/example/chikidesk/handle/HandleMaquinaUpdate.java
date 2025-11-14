@@ -8,14 +8,13 @@ import com.example.chikidesk.R;
 import com.example.chikidesk.check.CheckUpdateMaquina;
 import com.example.chikidesk.databinding.MaquinaUpdateBinding;
 import com.example.chikidesk.db.MaquinaDao;
-import com.example.chikidesk.driver.DriverUpdate;
 import com.example.chikidesk.model.Maquina;
 import com.example.chikidesk.ui.fragment.MainFragment;
 
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
-public class HandleMaquinaUpdate extends Handle<MainFragment, Integer> implements DriverUpdate {
+public class HandleMaquinaUpdate extends Handle<MainFragment, Integer> {
     private MaquinaUpdateBinding binding;
     private Maquina oldMaquina;
 
@@ -34,13 +33,13 @@ public class HandleMaquinaUpdate extends Handle<MainFragment, Integer> implement
     }
 
     @Override
-    public void setKeysByBundle() {
+    protected void setKeysByBundle() {
         super.id = getBundle() != null ? getBundle().getInt("id") : 0;
         assert id != 0;
     }
 
     @Override
-    public void initProperties() {
+    protected void initProperties() {
         oldMaquina = appCache.maquinaList.stream()
                 .filter(m -> m.getId() == id)
                 .findFirst().orElse(null);
@@ -71,19 +70,19 @@ public class HandleMaquinaUpdate extends Handle<MainFragment, Integer> implement
     }
 
     @Override
-    public void populateForm() {
+    protected void populateForm() {
         binding.edtMaquinaUpdateNombre.setText(oldMaquina.getNombre());
         binding.edtMaquinaUpdateRef.setText(oldMaquina.getReferencia());
         binding.edtMaquinaUpdateDesc.setText(oldMaquina.getDescripcion());
     }
 
     @Override
-    public void setupListeners() {
+    protected void setupListeners() {
         binding.btnMaquinaUpdateUpdate.setOnClickListener(v -> driveActionDao());
     }
 
     @Override
-    public void setupNavigationButtons() {
+    protected void setupNavigationButtons() {
         binding.fabMaquinaUpdateBack.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack());
         binding.fabMaquinaUpdateHome.setOnClickListener(v ->

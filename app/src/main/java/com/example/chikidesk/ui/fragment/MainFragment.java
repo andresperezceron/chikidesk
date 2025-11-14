@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.viewbinding.ViewBinding;
 
 import com.example.chikidesk.cofigurator.Configurator;
-import com.example.chikidesk.driver.Driver;
+import com.example.chikidesk.handle.Driver;
 import com.example.chikidesk.viewmodel.AppCacheViewModel;
 
 public abstract class MainFragment extends Fragment {

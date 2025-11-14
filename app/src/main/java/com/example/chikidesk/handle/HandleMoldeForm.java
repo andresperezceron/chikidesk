@@ -8,7 +8,6 @@ import com.example.chikidesk.R;
 import com.example.chikidesk.check.CheckNewMolde;
 import com.example.chikidesk.databinding.MoldeFormBinding;
 import com.example.chikidesk.db.MoldeDao;
-import com.example.chikidesk.driver.DriverForm;
 import com.example.chikidesk.model.Molde;
 import com.example.chikidesk.ui.fragment.MainFragment;
 
@@ -16,7 +15,7 @@ import java.util.Comparator;
 import java.util.stream.Collectors;
 
 
-public class HandleMoldeForm extends Handle<MainFragment, Integer> implements DriverForm {
+public class HandleMoldeForm extends Handle<MainFragment, Integer> {
     private MoldeFormBinding binding;
     public HandleMoldeForm(MainFragment fragment) {
         super(fragment);
@@ -46,12 +45,12 @@ public class HandleMoldeForm extends Handle<MainFragment, Integer> implements Dr
     }
 
     @Override
-    public void setupListeners() {
+    protected void setupListeners() {
         binding.btnMoldeFormNew.setOnClickListener(v -> driveActionDao());
     }
 
     @Override
-    public void setupNavigationButtons() {
+    protected void setupNavigationButtons() {
         binding.fabMoldeFormBack.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack());
         binding.fabMoldeFormHome.setOnClickListener(v ->

@@ -12,7 +12,7 @@ public class FullConfig {
 
     public FullConfig() {}
 
-    public FullConfig(Molde molde, Maquina maquina, Configuracion configuracion,
+    public FullConfig(Maquina maquina, Molde molde, Configuracion configuracion,
                       Temperatura temperatura, Inyeccion inyeccion, RetenPresion rentenPresion,
                       Expulsor expulsor) {
         this.molde = molde;
@@ -64,7 +64,7 @@ public class FullConfig {
         this.inyeccion = inyeccion;
     }
 
-    public RetenPresion getRentenPresion() {
+    public RetenPresion getRetenPresion() {
         return rentenPresion;
     }
 

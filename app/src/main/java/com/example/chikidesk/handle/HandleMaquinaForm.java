@@ -8,14 +8,13 @@ import com.example.chikidesk.R;
 import com.example.chikidesk.check.CheckNewMaquina;
 import com.example.chikidesk.databinding.MaquinaFormBinding;
 import com.example.chikidesk.db.MaquinaDao;
-import com.example.chikidesk.driver.DriverForm;
 import com.example.chikidesk.model.Maquina;
 import com.example.chikidesk.ui.fragment.MainFragment;
 
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
-public class HandleMaquinaForm extends Handle<MainFragment, Integer> implements DriverForm {
+public class HandleMaquinaForm extends Handle<MainFragment, Integer> {
     private MaquinaFormBinding binding;
 
     public HandleMaquinaForm(MainFragment fragment) {
@@ -46,12 +45,12 @@ public class HandleMaquinaForm extends Handle<MainFragment, Integer> implements 
     }
 
     @Override
-    public void setupListeners() {
+    protected void setupListeners() {
         binding.btnMaquinaFormNew.setOnClickListener(v -> driveActionDao());
     }
 
     @Override
-    public void setupNavigationButtons() {
+    protected void setupNavigationButtons() {
         binding.fabMaquinaFormBack.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack());
         binding.fabMaquinaFormHome.setOnClickListener(v ->

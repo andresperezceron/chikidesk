@@ -9,13 +9,12 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.chikidesk.R;
 import com.example.chikidesk.check.CheckNewConfig;
-import com.example.chikidesk.check.CheckFullConfig;
+import com.example.chikidesk.check.CheckNewFullConfig;
 import com.example.chikidesk.check.CheckNewExpulsor;
 import com.example.chikidesk.check.CheckNewInyeccion;
 import com.example.chikidesk.check.CheckNewReten;
 import com.example.chikidesk.check.CheckNewTemperatura;
 import com.example.chikidesk.databinding.ConfigFormBinding;
-import com.example.chikidesk.driver.DriverFormConfig;
 import com.example.chikidesk.model.Maquina;
 import com.example.chikidesk.model.Molde;
 import com.example.chikidesk.repository.ConfigRepository;
@@ -23,11 +22,11 @@ import com.example.chikidesk.ui.fragment.MainFragment;
 
 import java.util.Objects;
 
-public class HandleConfigForm extends Handle<MainFragment, Integer> implements DriverFormConfig {
+public class HandleConfigForm extends Handle<MainFragment, Integer> {
     private ConfigFormBinding binding;
     private Maquina maquina;
     private Molde molde;
-    private CheckFullConfig check;
+    private CheckNewFullConfig check;
 
     public HandleConfigForm(MainFragment fragment) {
         super(fragment);
@@ -44,7 +43,7 @@ public class HandleConfigForm extends Handle<MainFragment, Integer> implements D
     }
 
     @Override
-    public void setKeysByBundle() {
+    protected void setKeysByBundle() {
         id = getBundle() != null ? getBundle().getInt("maquina") : 0;
         idAux1 = getBundle() != null ? getBundle().getInt("molde") : 0;
         assert id != 0;
@@ -52,7 +51,7 @@ public class HandleConfigForm extends Handle<MainFragment, Integer> implements D
     }
 
     @Override
-    public void initProperties() {
+    protected void initProperties() {
         maquina = appCache.maquinaList.stream()
                 .filter(m -> Objects.equals(m.getId(), id))
                 .findFirst().orElse(null);
@@ -62,7 +61,7 @@ public class HandleConfigForm extends Handle<MainFragment, Integer> implements D
     }
 
     @Override
-    public void populateForm() {
+    protected void populateForm() {
         binding.edtConfigFormMaquina.setText(maquina.getNombre());
         binding.edtConfigFormMolde.setText(molde.getNombre());
         binding.btnConfigFormContinue.setEnabled(false);
@@ -70,7 +69,7 @@ public class HandleConfigForm extends Handle<MainFragment, Integer> implements D
     }
 
     @Override
-    public void setupListeners() {
+    protected void setupListeners() {
         binding.btnConfigFormNew.setOnClickListener(v -> selectionModeInsert());
         binding.btnConfigFormContinue.setOnClickListener(v -> driveActionDao());
         binding.btnConfigFormReset.setOnClickListener(v -> {
@@ -82,7 +81,7 @@ public class HandleConfigForm extends Handle<MainFragment, Integer> implements D
     }
 
     @Override
-    public void setupNavigationButtons() {
+    protected void setupNavigationButtons() {
         binding.fabConfigFormBack.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack());
         binding.fabConfigFormHome.setOnClickListener(v ->
@@ -123,13 +122,13 @@ public class HandleConfigForm extends Handle<MainFragment, Integer> implements D
     protected void setAdapters() {}
 
     private void selectionModeInsert() {
-        check = new CheckFullConfig(
+        check = new CheckNewFullConfig(
                 new CheckNewConfig(maquina, molde, binding),
                 new CheckNewTemperatura(binding),
                 new CheckNewInyeccion(binding),
                 new CheckNewExpulsor(binding),
                 new CheckNewReten(binding));
-        if(check.isEmpty()){
+        if(check.isEmpty()) {
             new AlertDialog.Builder(getContext())
                     .setTitle(R.string.dialog_empty_fields)
                     .setMessage(R.string.msn_default_value)

@@ -10,22 +10,17 @@ import androidx.annotation.Nullable;
 import com.example.chikidesk.db.ConfigDao;
 import com.example.chikidesk.db.ExpulsorDao;
 import com.example.chikidesk.db.InyeccionDao;
-import com.example.chikidesk.db.MaquinaDao;
 import com.example.chikidesk.db.MiDbHelper;
-import com.example.chikidesk.db.MoldeDao;
 import com.example.chikidesk.db.RetenPresionDao;
 import com.example.chikidesk.db.TemperaturaDao;
 import com.example.chikidesk.model.Configuracion;
 import com.example.chikidesk.model.Expulsor;
-import com.example.chikidesk.model.FullConfig;
 import com.example.chikidesk.model.Inyeccion;
 import com.example.chikidesk.model.RetenPresion;
 import com.example.chikidesk.model.Temperatura;
 import com.example.chikidesk.viewmodel.AppCacheViewModel;
 
 public class ConfigRepository {
-    private final MoldeDao moldeDao;
-    private final MaquinaDao maquinaDao;
     private final ConfigDao configDao;
     private final TemperaturaDao tempDao;
     private final InyeccionDao inyDao;
@@ -36,38 +31,12 @@ public class ConfigRepository {
 
     public ConfigRepository(Context context, AppCacheViewModel appCache) {
         this.appCache = appCache;
-        this.moldeDao = new MoldeDao(context);
-        this.maquinaDao = new MaquinaDao(context);
         this.configDao = new ConfigDao(context);
         this.tempDao = new TemperaturaDao(context);
         this.inyDao = new InyeccionDao(context);
         this.retenDao = new RetenPresionDao(context);
         this.expDao = new ExpulsorDao(context);
         this.dbHelper = MiDbHelper.getInstance(context);
-    }
-
-    public ConfigRepository(Context context) {
-        this.moldeDao = new MoldeDao(context);
-        this.maquinaDao = new MaquinaDao(context);
-        this.configDao = new ConfigDao(context);
-        this.tempDao = new TemperaturaDao(context);
-        this.inyDao = new InyeccionDao(context);
-        this.retenDao = new RetenPresionDao(context);
-        this.expDao = new ExpulsorDao(context);
-        this.dbHelper = MiDbHelper.getInstance(context);
-        appCache = null;
-    }
-
-    public FullConfig createFullConfigByConfig(Configuracion configuracion) {
-        return new FullConfig(
-                moldeDao.getById(configuracion.getId_molde()),
-                maquinaDao.getById(configuracion.getId_maquina()),
-                configuracion,
-                tempDao.getByConfig(configuracion),
-                inyDao.getByConfig(configuracion),
-                retenDao.getByConfig(configuracion),
-                expDao.getByConfig(configuracion)
-        );
     }
 
     public boolean updateFullConfig(@Nullable Configuracion config, @Nullable Temperatura temp,

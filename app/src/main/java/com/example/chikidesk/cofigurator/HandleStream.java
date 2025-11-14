@@ -2,9 +2,11 @@ package com.example.chikidesk.cofigurator;
 
 import androidx.annotation.NonNull;
 
-import com.example.chikidesk.driver.Driver;
+import com.example.chikidesk.handle.Driver;
 import com.example.chikidesk.handle.HandleConfigForm;
 import com.example.chikidesk.handle.HandleConfigList;
+import com.example.chikidesk.handle.HandleConfigShow;
+import com.example.chikidesk.handle.HandleConfigUpdate;
 import com.example.chikidesk.handle.HandleMaquinaDelete;
 import com.example.chikidesk.handle.HandleMaquinaForm;
 import com.example.chikidesk.handle.HandleMaquinaList;
@@ -15,6 +17,7 @@ import com.example.chikidesk.handle.HandleMoldeForm;
 import com.example.chikidesk.handle.HandleMoldeList;
 import com.example.chikidesk.handle.HandleMoldeShow;
 import com.example.chikidesk.handle.HandleMoldeUpdate;
+import com.example.chikidesk.handle.HandleSelectConfig;
 import com.example.chikidesk.handle.HandleSelectMaquina;
 import com.example.chikidesk.handle.HandleSelectMolde;
 import com.example.chikidesk.ui.fragment.MainFragment;
@@ -105,6 +108,18 @@ public class HandleStream {
                 @Override
                 public Driver createDriver() { return new HandleConfigForm(fragment); }
             },
+            new ItemHandle() { //CONFIG SHOW
+                @Override
+                public boolean getId() { return idFragment.equals(Ids.FragmentConfigShow.name()); }
+                @Override
+                public Driver createDriver() { return new HandleConfigShow(fragment); }
+            },
+            new ItemHandle() { //CONFIG UPDATE
+                @Override
+                public boolean getId() { return idFragment.equals(Ids.FragmentConfigUpdate.name()); }
+                @Override
+                public Driver createDriver() { return new HandleConfigUpdate(fragment); }
+            },
             new ItemHandle() { //SELECT MAQUINA
                 @Override
                 public boolean getId() { return idFragment.equals(Ids.FragmentSelectMaquina.name()); }
@@ -116,6 +131,12 @@ public class HandleStream {
                 public boolean getId() {return idFragment.equals(Ids.FragmentSelectMolde.name()); }
                 @Override
                 public Driver createDriver() { return new HandleSelectMolde(fragment); }
+            },
+            new ItemHandle() { //SELECT CONFIG
+                @Override
+                public boolean getId() {return idFragment.equals(Ids.FragmentSelectConfig.name()); }
+                @Override
+                public Driver createDriver() { return new HandleSelectConfig(fragment); }
             }
         );
     }

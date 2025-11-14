@@ -8,7 +8,6 @@ import androidx.navigation.Navigation;
 import com.example.chikidesk.R;
 import com.example.chikidesk.databinding.MoldeDeleteBinding;
 import com.example.chikidesk.db.MoldeDao;
-import com.example.chikidesk.driver.DriverDelete;
 import com.example.chikidesk.model.Molde;
 import com.example.chikidesk.ui.fragment.MainFragment;
 import com.example.chikidesk.util.ImageManager;
@@ -17,7 +16,7 @@ import java.util.Comparator;
 import java.util.stream.Collectors;
 
 
-public class HandleMoldeDelete extends Handle<MainFragment, Integer> implements DriverDelete {
+public class HandleMoldeDelete extends Handle<MainFragment, Integer> {
     private MoldeDeleteBinding binding;
     private Molde molde;
     private ImageManager imageManager;
@@ -37,13 +36,13 @@ public class HandleMoldeDelete extends Handle<MainFragment, Integer> implements 
     }
 
     @Override
-    public void setKeysByBundle() {
+    protected void setKeysByBundle() {
         id = getBundle() != null ? getBundle().getInt("id") : 0;
         assert id != 0;
     }
 
     @Override
-    public void initProperties() {
+    protected void initProperties() {
         imageManager = new ImageManager(getContext(), "molde_", "jpg");
         molde = appCache.moldeList.stream()
                 .filter(m -> m.getId() == id)
@@ -51,7 +50,7 @@ public class HandleMoldeDelete extends Handle<MainFragment, Integer> implements 
     }
 
     @Override
-    public void populateForm() {
+    protected void populateForm() {
         String msn = fragment.getString(R.string.msn_delete1) + " " + totalConfigByMolde() + " " +
                 fragment.getString(R.string.msn_delete2) + fragment.getString(R.string.msn_delete3);
         binding.txvMoldeDeleteAlert.setText(msn);
@@ -75,7 +74,7 @@ public class HandleMoldeDelete extends Handle<MainFragment, Integer> implements 
     }
 
     @Override
-    public void setupListeners() {
+    protected void setupListeners() {
         binding.btnMoldeDeleteDelete.setOnClickListener(v ->
                 new AlertDialog.Builder(getContext())
                         .setTitle(R.string.alert_title_aviso)
@@ -89,7 +88,7 @@ public class HandleMoldeDelete extends Handle<MainFragment, Integer> implements 
     }
 
     @Override
-    public void setupNavigationButtons() {
+    protected void setupNavigationButtons() {
         binding.fabMoldeDeleteBack.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack());
         binding.fabMoldeDeleteHome.setOnClickListener(v ->

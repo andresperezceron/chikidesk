@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.chikidesk.R;
 import com.example.chikidesk.databinding.ConfigListBinding;
-import com.example.chikidesk.driver.DriverList;
 import com.example.chikidesk.model.Maquina;
 import com.example.chikidesk.ui.adapter.AdapterConfigList;
 import com.example.chikidesk.ui.fragment.MainFragment;
@@ -19,8 +18,9 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class HandleConfigList extends Handle<MainFragment, Integer> implements DriverList {
+public class HandleConfigList extends Handle<MainFragment, Integer> {
     private ConfigListBinding binding;
+
     public HandleConfigList(MainFragment fragment) {
         super(fragment);
         binding = (ConfigListBinding) super.binding;
@@ -34,23 +34,23 @@ public class HandleConfigList extends Handle<MainFragment, Integer> implements D
     }
 
     @Override
-    public void setAdapters() {
+    protected void setAdapters() {
         binding.rcvConfigList.setAdapter(new AdapterConfigList(getListMapped(), maquina -> {
             Bundle bundle = new Bundle();
-            bundle.putParcelable("maquina", maquina);
+            bundle.putInt("id", maquina.getId());
             NavHostFragment.findNavController(fragment)
                     .navigate(R.id.action_configList_to_selectConfig, bundle);
         }));
     }
 
     @Override
-    public void populateForm() {
+    protected void populateForm() {
         binding.rcvConfigList.setLayoutManager(new LinearLayoutManager(fragment.getContext()));
         binding.rcvConfigList.setHasFixedSize(true);
     }
 
     @Override
-    public void setupNavigationButtons() {
+    protected void setupNavigationButtons() {
         binding.fabConfigListNew.setOnClickListener(v ->
                 Navigation.findNavController(v).navigate(R.id.action_configList_to_selectMaquina));
         binding.fabConfigListHome.setOnClickListener(v ->

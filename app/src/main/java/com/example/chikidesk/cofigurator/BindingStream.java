@@ -5,6 +5,8 @@ import androidx.viewbinding.ViewBinding;
 
 import com.example.chikidesk.databinding.ConfigFormBinding;
 import com.example.chikidesk.databinding.ConfigListBinding;
+import com.example.chikidesk.databinding.ConfigShowBinding;
+import com.example.chikidesk.databinding.ConfigUpdateBinding;
 import com.example.chikidesk.databinding.MaquinaDeleteBinding;
 import com.example.chikidesk.databinding.MaquinaFormBinding;
 import com.example.chikidesk.databinding.MaquinaListBinding;
@@ -15,6 +17,7 @@ import com.example.chikidesk.databinding.MoldeFormBinding;
 import com.example.chikidesk.databinding.MoldeListBinding;
 import com.example.chikidesk.databinding.MoldeShowBinding;
 import com.example.chikidesk.databinding.MoldeUpdateBinding;
+import com.example.chikidesk.databinding.SelectConfigBinding;
 import com.example.chikidesk.databinding.SelectMaquinaBinding;
 import com.example.chikidesk.databinding.SelectMoldeBinding;
 import com.example.chikidesk.ui.fragment.MainFragment;
@@ -141,11 +144,29 @@ public class BindingStream {
                             .inflate(fragment.getInflater(), fragment.getContainer(), false);
                 }
             },
-            new ItemBinding() { //SELECT MAQUINA
+            new ItemBinding() { //CONFIG SHOW
                 @Override
                 public boolean getId() {
-                    return idFragment.equals(Ids.FragmentSelectMaquina.name());
+                    return idFragment.equals(Ids.FragmentConfigShow.name());
                 }
+                @Override
+                public ViewBinding createBinding() {
+                    return ConfigShowBinding
+                            .inflate(fragment.getInflater(), fragment.getContainer(), false);
+                }
+            },
+            new ItemBinding() { //CONFIG UPDATE
+                @Override
+                public boolean getId() { return idFragment.equals(Ids.FragmentConfigUpdate.name()); }
+                @Override
+                public ViewBinding createBinding() {
+                    return ConfigUpdateBinding
+                            .inflate(fragment.getInflater(), fragment.getContainer(), false);
+                }
+            },
+            new ItemBinding() { //SELECT MAQUINA
+                @Override
+                public boolean getId() { return idFragment.equals(Ids.FragmentSelectMaquina.name()); }
                 @Override
                 public ViewBinding createBinding() {
                     return SelectMaquinaBinding
@@ -160,6 +181,15 @@ public class BindingStream {
                 @Override
                 public ViewBinding createBinding() {
                     return SelectMoldeBinding
+                            .inflate(fragment.getInflater(), fragment.getContainer(), false);
+                }
+            },
+            new ItemBinding() { //SELECT CONFIG
+                @Override
+                public boolean getId() { return idFragment.equals(Ids.FragmentSelectConfig.name()); }
+                @Override
+                public ViewBinding createBinding() {
+                    return SelectConfigBinding
                             .inflate(fragment.getInflater(), fragment.getContainer(), false);
                 }
             }

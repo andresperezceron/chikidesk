@@ -8,14 +8,13 @@ import com.example.chikidesk.R;
 import com.example.chikidesk.check.CheckUpdateMolde;
 import com.example.chikidesk.databinding.MoldeUpdateBinding;
 import com.example.chikidesk.db.MoldeDao;
-import com.example.chikidesk.driver.DriverUpdate;
 import com.example.chikidesk.model.Molde;
 import com.example.chikidesk.ui.fragment.MainFragment;
 
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
-public class HandleMoldeUpdate extends Handle<MainFragment, Integer> implements DriverUpdate {
+public class HandleMoldeUpdate extends Handle<MainFragment, Integer> {
     private MoldeUpdateBinding binding;
     private Molde oldMolde;
 
@@ -34,13 +33,13 @@ public class HandleMoldeUpdate extends Handle<MainFragment, Integer> implements 
     }
 
     @Override
-    public void setKeysByBundle() {
+    protected void setKeysByBundle() {
         super.id = getBundle() != null ? getBundle().getInt("id") : 0;
         assert id != 0;
     }
 
     @Override
-    public void initProperties() {
+    protected void initProperties() {
         oldMolde = appCache.moldeList.stream()
                 .filter(m -> m.getId() == id)
                 .findFirst().orElse(null);
@@ -71,19 +70,19 @@ public class HandleMoldeUpdate extends Handle<MainFragment, Integer> implements 
     }
 
     @Override
-    public void populateForm() {
+    protected void populateForm() {
         binding.edtMoldeUpdateNombre.setText(oldMolde.getNombre());
         binding.edtMoldeUpdateRef.setText(oldMolde.getReferencia());
         binding.edtMoldeUpdateDesc.setText(oldMolde.getDescripcion());
     }
 
     @Override
-    public void setupListeners() {
+    protected void setupListeners() {
         binding.btnMoldeUpdateUpdate.setOnClickListener(v -> driveActionDao());
     }
 
     @Override
-    public void setupNavigationButtons() {
+    protected void setupNavigationButtons() {
         binding.fabMoldeUpdateBack.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack());
         binding.fabMoldeUpdateHome.setOnClickListener(v ->

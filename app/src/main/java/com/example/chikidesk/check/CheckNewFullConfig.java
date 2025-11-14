@@ -1,16 +1,16 @@
 package com.example.chikidesk.check;
 
 
-public class CheckFullConfig {
+public class CheckNewFullConfig {
     private final CheckNewConfig checkConfig;
     private final CheckNewInyeccion checkInyeccion;
     private final CheckNewTemperatura checkTemp;
     private final CheckNewExpulsor checkExpulsor;
     private final CheckNewReten checkReten;
 
-    public CheckFullConfig(CheckNewConfig checkConfig, CheckNewTemperatura checkTemp,
-                           CheckNewInyeccion checkInyeccion, CheckNewExpulsor checkExpulsor,
-                           CheckNewReten checkReten) {
+    public CheckNewFullConfig(CheckNewConfig checkConfig, CheckNewTemperatura checkTemp,
+                              CheckNewInyeccion checkInyeccion, CheckNewExpulsor checkExpulsor,
+                              CheckNewReten checkReten) {
         this.checkConfig = checkConfig;
         this.checkTemp = checkTemp;
         this.checkInyeccion = checkInyeccion;
@@ -41,11 +41,5 @@ public class CheckFullConfig {
     public boolean isEmpty() {
         return checkConfig.empty || checkTemp.empty || checkInyeccion.empty ||
                 checkReten.empty || checkExpulsor.empty;
-    }
-
-    public boolean areEqualToUpdate() {
-        return checkConfig.areEqualsToUpdate && checkTemp.areEqualsToUpdate &&
-                checkInyeccion.areEqualsToUpdate && checkExpulsor.areEqualsToUpdate &&
-                checkReten.areEqualsToUpdate;
     }
 }

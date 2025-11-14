@@ -8,11 +8,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.chikidesk.R;
 import com.example.chikidesk.databinding.MaquinaListBinding;
-import com.example.chikidesk.driver.DriverList;
 import com.example.chikidesk.ui.adapter.AdapterMaquinaList;
 import com.example.chikidesk.ui.fragment.MainFragment;
 
-public class HandleMaquinaList extends Handle<MainFragment, Integer> implements DriverList {
+public class HandleMaquinaList extends Handle<MainFragment, Integer> {
     private MaquinaListBinding binding;
 
     public HandleMaquinaList(MainFragment fragment) {
@@ -28,7 +27,7 @@ public class HandleMaquinaList extends Handle<MainFragment, Integer> implements 
     }
 
     @Override
-    public void setAdapters() {
+    protected void setAdapters() {
         binding.rcvMaquinaList.setAdapter(new AdapterMaquinaList(appCache.maquinaList, m -> {
             Bundle bundle = new Bundle();
             bundle.putInt("id", m.getId());
@@ -38,13 +37,13 @@ public class HandleMaquinaList extends Handle<MainFragment, Integer> implements 
     }
 
     @Override
-    public void populateForm() {
+    protected void populateForm() {
         binding.rcvMaquinaList.setLayoutManager(new LinearLayoutManager(fragment.getContext()));
         binding.rcvMaquinaList.setHasFixedSize(true);
     }
 
     @Override
-    public void setupNavigationButtons() {
+    protected void setupNavigationButtons() {
         binding.fabMaquinaListHome.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack());
         binding.fabMaquinaListNew.setOnClickListener(v ->

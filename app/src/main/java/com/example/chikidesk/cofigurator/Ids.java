@@ -12,7 +12,10 @@ public enum Ids {
     FragmentMaquinaUpdate,
     FragmentMaquinaDelete,
     FragmentConfigList,
+    FragmentConfigShow,
     FragmentConfigForm,
+    FragmentConfigUpdate,
     FragmentSelectMaquina,
-    FragmentSelectMolde
+    FragmentSelectMolde,
+    FragmentSelectConfig
 }

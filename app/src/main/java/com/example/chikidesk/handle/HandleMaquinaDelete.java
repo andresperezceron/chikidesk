@@ -8,7 +8,6 @@ import androidx.navigation.Navigation;
 import com.example.chikidesk.R;
 import com.example.chikidesk.databinding.MaquinaDeleteBinding;
 import com.example.chikidesk.db.MaquinaDao;
-import com.example.chikidesk.driver.DriverDelete;
 import com.example.chikidesk.model.Maquina;
 import com.example.chikidesk.ui.fragment.MainFragment;
 import com.example.chikidesk.util.ImageManager;
@@ -16,7 +15,7 @@ import com.example.chikidesk.util.ImageManager;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
-public class HandleMaquinaDelete extends Handle<MainFragment, Integer> implements DriverDelete {
+public class HandleMaquinaDelete extends Handle<MainFragment, Integer> {
     private MaquinaDeleteBinding binding;
     private Maquina maquina;
     private ImageManager imageManager;
@@ -36,13 +35,13 @@ public class HandleMaquinaDelete extends Handle<MainFragment, Integer> implement
     }
 
     @Override
-    public void setKeysByBundle() {
+    protected void setKeysByBundle() {
         id = getBundle() != null ? getBundle().getInt("id") : 0;
         assert id != 0;
     }
 
     @Override
-    public void initProperties() {
+    protected void initProperties() {
         imageManager = new ImageManager(getContext(), "maquina_", "jpg");
         maquina = appCache.maquinaList.stream()
                 .filter(m -> m.getId() == id)
@@ -50,7 +49,7 @@ public class HandleMaquinaDelete extends Handle<MainFragment, Integer> implement
     }
 
     @Override
-    public void populateForm() {
+    protected void populateForm() {
         String msn = fragment.getString(R.string.msn_delete1) + " " + totalConfigByMaquina() + " " +
                 fragment.getString(R.string.msn_delete2) + fragment.getString(R.string.msn_delete3);
         binding.txvMaquinaDeleteAlert.setText(msn);
@@ -60,7 +59,7 @@ public class HandleMaquinaDelete extends Handle<MainFragment, Integer> implement
     }
 
     @Override
-    public void setupListeners() {
+    protected void setupListeners() {
         binding.btnMaquinaDeleteDelete.setOnClickListener(v ->
                 new AlertDialog.Builder(getContext())
                         .setTitle(R.string.alert_title_aviso)
@@ -74,7 +73,7 @@ public class HandleMaquinaDelete extends Handle<MainFragment, Integer> implement
     }
 
     @Override
-    public void setupNavigationButtons() {
+    protected void setupNavigationButtons() {
         binding.fabMaquinaDeleteBack.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack());
         binding.fabMaquinaDeleteHome.setOnClickListener(v ->

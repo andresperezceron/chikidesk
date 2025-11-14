@@ -8,7 +8,6 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.chikidesk.R;
 import com.example.chikidesk.databinding.MaquinaShowBinding;
-import com.example.chikidesk.driver.DriverShow;
 import com.example.chikidesk.model.Maquina;
 import com.example.chikidesk.ui.fragment.MainFragment;
 import com.example.chikidesk.util.ImageManager;
@@ -17,7 +16,7 @@ import com.example.chikidesk.util.ImgPickerHelper;
 import java.io.File;
 import java.util.Objects;
 
-public class HandleMaquinaShow extends Handle<MainFragment, Integer> implements DriverShow {
+public class HandleMaquinaShow extends Handle<MainFragment, Integer> {
     private MaquinaShowBinding binding;
     private ImageManager imageManager;
     private Maquina maquina;
@@ -38,13 +37,13 @@ public class HandleMaquinaShow extends Handle<MainFragment, Integer> implements 
     }
 
     @Override
-    public void setKeysByBundle() {
+    protected void setKeysByBundle() {
         id = getBundle() != null ? getBundle().getInt("id") : 0;
         assert id != 0;
     }
 
     @Override
-    public void initProperties() {
+    protected void initProperties() {
         imageManager = new ImageManager(getContext(), "maquina_", "jpg");
         maquina = appCache.maquinaList.stream()
                 .filter(m -> Objects.equals(m.getId(), id))
@@ -54,7 +53,7 @@ public class HandleMaquinaShow extends Handle<MainFragment, Integer> implements 
     }
 
     @Override
-    public void populateForm() {
+    protected void populateForm() {
         binding.edtMaquinaShowNombre.setText(maquina.getNombre());
         binding.edtMaquinaShowRef.setText(maquina.getReferencia());
         binding.edtMaquinaShowDesc.setText(maquina.getDescripcion());
@@ -62,7 +61,7 @@ public class HandleMaquinaShow extends Handle<MainFragment, Integer> implements 
     }
 
     @Override
-    public void setupListeners() {
+    protected void setupListeners() {
         File destinationFile = imageManager.getImageFile(id);
         ImgPickerHelper piker = new ImgPickerHelper(fragment, destinationFile, binding.imgMaquinaShow);
         binding.fabMaquinaShowSelectImg.setOnClickListener(v -> piker.launch());
@@ -76,7 +75,7 @@ public class HandleMaquinaShow extends Handle<MainFragment, Integer> implements 
     }
 
     @Override
-    public void setupNavigationButtons() {
+    protected void setupNavigationButtons() {
         binding.fabMaquinaShowBack.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack());
 

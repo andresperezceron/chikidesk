@@ -1,6 +1,6 @@
 package com.example.chikidesk.cofigurator;
 
-import com.example.chikidesk.driver.Driver;
+import com.example.chikidesk.handle.Driver;
 
 public interface ItemHandle {
     boolean getId();

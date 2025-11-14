@@ -8,11 +8,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.chikidesk.R;
 import com.example.chikidesk.databinding.SelectMaquinaBinding;
-import com.example.chikidesk.driver.DriverList;
 import com.example.chikidesk.ui.adapter.AdapterMaquinaList;
 import com.example.chikidesk.ui.fragment.MainFragment;
 
-public class HandleSelectMaquina extends Handle<MainFragment, Integer> implements DriverList {
+public class HandleSelectMaquina extends Handle<MainFragment, Integer> {
     private SelectMaquinaBinding binding;
 
     public HandleSelectMaquina(MainFragment fragment) {
@@ -28,7 +27,7 @@ public class HandleSelectMaquina extends Handle<MainFragment, Integer> implement
     }
 
     @Override
-    public void setAdapters() {
+    protected void setAdapters() {
         binding.rcvSelectMaquina.setAdapter(new AdapterMaquinaList(appCache.maquinaList, maquina -> {
             Bundle bundle = new Bundle();
             bundle.putInt("id", maquina.getId());
@@ -38,13 +37,13 @@ public class HandleSelectMaquina extends Handle<MainFragment, Integer> implement
     }
 
     @Override
-    public void populateForm() {
+    protected void populateForm() {
         binding.rcvSelectMaquina.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.rcvSelectMaquina.setHasFixedSize(true);
     }
 
     @Override
-    public void setupNavigationButtons() {
+    protected void setupNavigationButtons() {
         binding.fabSelectMaquinaHome.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack(R.id.fragmentStartApp, false));
         binding.fabSelectMaquinaBack.setOnClickListener(v ->

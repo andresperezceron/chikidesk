@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
+import androidx.annotation.NonNull;
+
 import com.example.chikidesk.model.Maquina;
 
 import java.util.HashMap;
@@ -20,7 +22,7 @@ public class MaquinaDao extends Dao<Maquina, Integer> {
     }
 
     @Override
-    protected Maquina fromCursor(Cursor cursor) {
+    protected Maquina fromCursor(@NonNull Cursor cursor) {
         return new Maquina(
                 cursor.getInt(cursor.getColumnIndexOrThrow("id")),
                 cursor.getString(cursor.getColumnIndexOrThrow("nombre")),
@@ -30,7 +32,7 @@ public class MaquinaDao extends Dao<Maquina, Integer> {
     }
 
     @Override
-    protected ContentValues getContentValues(Maquina entity) {
+    protected ContentValues getContentValues(@NonNull Maquina entity) {
         ContentValues values = new ContentValues();
         values.put("nombre", entity.getNombre());
         values.put("referencia", entity.getReferencia());
@@ -39,7 +41,7 @@ public class MaquinaDao extends Dao<Maquina, Integer> {
     }
 
     @Override
-    protected Integer getId(Maquina entity) {
+    protected Integer getId(@NonNull Maquina entity) {
         return entity.getId();
     }
 

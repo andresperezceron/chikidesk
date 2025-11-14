@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
+import androidx.annotation.NonNull;
+
 import com.example.chikidesk.model.Configuracion;
 import com.example.chikidesk.model.Maquina;
 import com.example.chikidesk.model.Molde;
@@ -25,7 +27,7 @@ public class ConfigDao extends Dao<Configuracion, Integer> {
     }
 
     @Override
-    protected Configuracion fromCursor(Cursor cursor) {
+    protected Configuracion fromCursor(@NonNull Cursor cursor) {
         return new Configuracion(
                 cursor.getInt(cursor.getColumnIndexOrThrow("id")),
                 cursor.getInt(cursor.getColumnIndexOrThrow("id_maquina")),
@@ -41,7 +43,7 @@ public class ConfigDao extends Dao<Configuracion, Integer> {
     }
 
     @Override
-    protected ContentValues getContentValues(Configuracion entity) {
+    protected ContentValues getContentValues(@NonNull Configuracion entity) {
         ContentValues values = new ContentValues();
         values.put("id_maquina", entity.getId_maquina());
         values.put("id_molde", entity.getId_molde());
@@ -56,7 +58,7 @@ public class ConfigDao extends Dao<Configuracion, Integer> {
     }
 
     @Override
-    protected Integer getId(Configuracion entity) {
+    protected Integer getId(@NonNull Configuracion entity) {
         return entity.getId();
     }
 

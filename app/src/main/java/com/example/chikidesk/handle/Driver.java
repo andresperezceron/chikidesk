@@ -1,4 +1,4 @@
-package com.example.chikidesk.driver;
+package com.example.chikidesk.handle;
 
 public interface Driver {
     void drive();

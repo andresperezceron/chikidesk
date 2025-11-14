@@ -8,12 +8,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.chikidesk.R;
 import com.example.chikidesk.databinding.MoldeListBinding;
-import com.example.chikidesk.driver.DriverList;
 import com.example.chikidesk.ui.adapter.AdapterMoldeList;
 import com.example.chikidesk.ui.fragment.MainFragment;
 
 
-public class HandleMoldeList extends Handle<MainFragment, Integer> implements DriverList {
+public class HandleMoldeList extends Handle<MainFragment, Integer> {
     private MoldeListBinding binding;
 
     public HandleMoldeList(MainFragment fragment) {
@@ -29,7 +28,7 @@ public class HandleMoldeList extends Handle<MainFragment, Integer> implements Dr
     }
 
     @Override
-    public void setAdapters() {
+    protected void setAdapters() {
         binding.rcvMoldeList.setAdapter(new AdapterMoldeList(appCache.moldeList, molde -> {
             Bundle bundle = new Bundle();
             bundle.putInt("id", molde.getId());
@@ -39,13 +38,13 @@ public class HandleMoldeList extends Handle<MainFragment, Integer> implements Dr
     }
 
     @Override
-    public void populateForm() {
+    protected void populateForm() {
         binding.rcvMoldeList.setLayoutManager(new LinearLayoutManager(fragment.getContext()));
         binding.rcvMoldeList.setHasFixedSize(true);
     }
 
     @Override
-    public void setupNavigationButtons() {
+    protected void setupNavigationButtons() {
         binding.fabMoldeListHome.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack());
         binding.fabMoldeListNew.setOnClickListener(v ->
