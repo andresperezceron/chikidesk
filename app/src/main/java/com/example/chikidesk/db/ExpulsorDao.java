@@ -4,10 +4,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
-import com.example.chikidesk.model.Configuracion;
+import androidx.annotation.NonNull;
+
 import com.example.chikidesk.model.Expulsor;
 
-public class ExpulsorDao extends Dao<Expulsor, Integer> implements SubTableConfig<Expulsor> {
+public class ExpulsorDao extends Dao<Expulsor, Integer> {
 
     public ExpulsorDao(Context context) {
         super(context);
@@ -19,7 +20,7 @@ public class ExpulsorDao extends Dao<Expulsor, Integer> implements SubTableConfi
     }
 
     @Override
-    protected Expulsor fromCursor(Cursor cursor) {
+    protected Expulsor fromCursor(@NonNull Cursor cursor) {
         return new Expulsor(
                 cursor.getInt(cursor.getColumnIndexOrThrow("id")),
                 cursor.getString(cursor.getColumnIndexOrThrow("velocidad1")),
@@ -32,7 +33,7 @@ public class ExpulsorDao extends Dao<Expulsor, Integer> implements SubTableConfi
     }
 
     @Override
-    protected ContentValues getContentValues(Expulsor entity) {
+    protected ContentValues getContentValues(@NonNull Expulsor entity) {
         ContentValues values = new ContentValues();
         values.put("id", entity.getId());
         values.put("velocidad1", entity.getVelocidad1());
@@ -45,12 +46,7 @@ public class ExpulsorDao extends Dao<Expulsor, Integer> implements SubTableConfi
     }
 
     @Override
-    protected Integer getId(Expulsor entity) {
+    protected Integer getId(@NonNull Expulsor entity) {
         return entity.getId();
-    }
-
-    @Override
-    public Expulsor getByConfig(Configuracion config) {
-        return getById(config.getId());
     }
 }

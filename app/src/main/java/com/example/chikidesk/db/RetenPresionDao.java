@@ -4,10 +4,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
-import com.example.chikidesk.model.Configuracion;
+import androidx.annotation.NonNull;
+
 import com.example.chikidesk.model.RetenPresion;
 
-public class RetenPresionDao extends Dao<RetenPresion, Integer> implements SubTableConfig<RetenPresion> {
+public class RetenPresionDao extends Dao<RetenPresion, Integer> {
     public RetenPresionDao(Context context) {
         super(context);
     }
@@ -18,7 +19,7 @@ public class RetenPresionDao extends Dao<RetenPresion, Integer> implements SubTa
     }
 
     @Override
-    protected RetenPresion fromCursor(Cursor cursor) {
+    protected RetenPresion fromCursor(@NonNull Cursor cursor) {
         return new RetenPresion(
                 cursor.getInt(cursor.getColumnIndexOrThrow("id")),
                 cursor.getString(cursor.getColumnIndexOrThrow("velocidad")),
@@ -28,7 +29,7 @@ public class RetenPresionDao extends Dao<RetenPresion, Integer> implements SubTa
     }
 
     @Override
-    protected ContentValues getContentValues(RetenPresion entity) {
+    protected ContentValues getContentValues(@NonNull RetenPresion entity) {
         ContentValues values = new ContentValues();
         values.put("id", entity.getId());
         values.put("velocidad", entity.getVelocidad());
@@ -38,12 +39,7 @@ public class RetenPresionDao extends Dao<RetenPresion, Integer> implements SubTa
     }
 
     @Override
-    protected Integer getId(RetenPresion entity) {
+    protected Integer getId(@NonNull RetenPresion entity) {
         return entity.getId();
-    }
-
-    @Override
-    public RetenPresion getByConfig(Configuracion config) {
-        return getById(config.getId());
     }
 }

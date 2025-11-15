@@ -8,9 +8,6 @@ import androidx.annotation.NonNull;
 
 import com.example.chikidesk.model.Maquina;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class MaquinaDao extends Dao<Maquina, Integer> {
     public MaquinaDao(Context context) {
         super(context);
@@ -43,34 +40,5 @@ public class MaquinaDao extends Dao<Maquina, Integer> {
     @Override
     protected Integer getId(@NonNull Maquina entity) {
         return entity.getId();
-    }
-
-    public boolean isNameDuplicate(String nombreMaquina) {
-        return duplicateUniqueKey("nombre", nombreMaquina);
-    }
-
-    public boolean isRefDuplicate(String refMaquina) {
-        return duplicateUniqueKey("referencia", refMaquina);
-    }
-
-    public Map<Maquina, Integer> getConfigList() {
-        Map<Maquina, Integer> resultado = new HashMap<>();
-        String query = "SELECT m.id, m.nombre, m.referencia, m.descripcion, COUNT(c.id) as total " +
-                "FROM configuracion c " +
-                "JOIN maquina m ON c.id_maquina = m.id " +
-                "GROUP BY m.id, m.nombre, m.referencia, m.descripcion";
-
-        Cursor cursor = db.rawQuery(query, null);
-
-        if(cursor.moveToFirst()) {
-            do{
-                Maquina maquina = fromCursor(cursor);
-                int total = cursor.getInt(cursor.getColumnIndexOrThrow("total"));
-                resultado.put(maquina, total);
-            }while(cursor.moveToNext());
-        }
-
-        cursor.close();
-        return resultado;
     }
 }

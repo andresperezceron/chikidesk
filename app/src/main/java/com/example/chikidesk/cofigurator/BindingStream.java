@@ -3,6 +3,7 @@ package com.example.chikidesk.cofigurator;
 import androidx.annotation.NonNull;
 import androidx.viewbinding.ViewBinding;
 
+import com.example.chikidesk.databinding.ConfigDeleteBinding;
 import com.example.chikidesk.databinding.ConfigFormBinding;
 import com.example.chikidesk.databinding.ConfigListBinding;
 import com.example.chikidesk.databinding.ConfigShowBinding;
@@ -161,6 +162,15 @@ public class BindingStream {
                 @Override
                 public ViewBinding createBinding() {
                     return ConfigUpdateBinding
+                            .inflate(fragment.getInflater(), fragment.getContainer(), false);
+                }
+            },
+            new ItemBinding() { //CONFIG DELETE
+                @Override
+                public boolean getId() { return idFragment.equals(Ids.FragmentConfigDelete.name()); }
+                @Override
+                public ViewBinding createBinding() {
+                    return ConfigDeleteBinding
                             .inflate(fragment.getInflater(), fragment.getContainer(), false);
                 }
             },

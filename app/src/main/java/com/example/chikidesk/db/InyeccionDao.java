@@ -7,7 +7,7 @@ import android.database.Cursor;
 import com.example.chikidesk.model.Configuracion;
 import com.example.chikidesk.model.Inyeccion;
 
-public class InyeccionDao extends Dao<Inyeccion, Integer> implements SubTableConfig<Inyeccion> {
+public class InyeccionDao extends Dao<Inyeccion, Integer> {
     public InyeccionDao(Context context) {
         super(context);
     }
@@ -54,10 +54,5 @@ public class InyeccionDao extends Dao<Inyeccion, Integer> implements SubTableCon
     @Override
     protected Integer getId(Inyeccion entity) {
         return entity.getId();
-    }
-
-    @Override
-    public Inyeccion getByConfig(Configuracion config) {
-        return getById(config.getId());
     }
 }

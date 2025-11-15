@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
+import androidx.annotation.NonNull;
+
 import com.example.chikidesk.model.Molde;
 
 import java.util.ArrayList;
@@ -20,7 +22,7 @@ public class MoldeDao extends Dao<Molde, Integer> {
     }
 
     @Override
-    protected Molde fromCursor(Cursor cursor) {
+    protected Molde fromCursor(@NonNull Cursor cursor) {
         return new Molde(
                 cursor.getInt(cursor.getColumnIndexOrThrow("id")),
                 cursor.getString(cursor.getColumnIndexOrThrow("nombre")),
@@ -30,7 +32,7 @@ public class MoldeDao extends Dao<Molde, Integer> {
     }
 
     @Override
-    protected ContentValues getContentValues(Molde entity) {
+    protected ContentValues getContentValues(@NonNull Molde entity) {
         ContentValues values = new ContentValues();
         values.put("nombre", entity.getNombre());
         values.put("referencia", entity.getReferencia());
@@ -39,22 +41,7 @@ public class MoldeDao extends Dao<Molde, Integer> {
     }
 
     @Override
-    protected Integer getId(Molde entity) {
+    protected Integer getId(@NonNull Molde entity) {
         return entity.getId();
-    }
-
-    public List<Molde> getMoldesNotConfig(int idMaquina) {
-        List<Molde> moldes = new ArrayList<>();
-        String query = "SELECT m.id, m.nombre, m.referencia, m.descripcion " +
-                "FROM molde m " +
-                "LEFT JOIN configuracion c ON m.id = c.id_molde AND c.id_maquina = ? " +
-                "WHERE c.id_molde IS NULL";
-
-        try(Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(idMaquina)})) {
-            if(cursor.moveToFirst())
-                do moldes.add(fromCursor(cursor));
-                while(cursor.moveToNext());
-        }
-        return moldes;
     }
 }

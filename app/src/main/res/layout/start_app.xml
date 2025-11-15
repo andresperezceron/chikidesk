@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragmentStartApp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_main">
+
+    <TextView
+        android:id="@+id/txvStarAppHeader"
+        style="@style/headers"
+        android:text="@string/app_name"
+        android:textSize="@dimen/textSize_x5"
+        app:layout_constraintBottom_toTopOf="@+id/btnStarAppMoldes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.35"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <Button
+        android:id="@+id/btnStarAppMoldes"
+        style="@style/Widget.App.Button.MainMenu"
+        android:layout_marginTop="@dimen/margin_x6"
+        android:text="@string/btn_text_moldes"
+        app:layout_constraintBottom_toTopOf="@+id/btnStarAppMaquinas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txvStarAppHeader" />
+
+    <Button
+        android:id="@+id/btnStarAppMaquinas"
+        style="@style/Widget.App.Button.MainMenu"
+        android:layout_marginTop="@dimen/margin_x3"
+        android:text="@string/btn_text_maquinas"
+        app:layout_constraintBottom_toTopOf="@+id/btnStarAppConfig"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnStarAppMoldes" />
+
+    <Button
+        android:id="@+id/btnStarAppConfig"
+        style="@style/Widget.App.Button.MainMenu"
+        android:layout_marginTop="@dimen/margin_x3"
+        android:text="@string/btn_text_cofiguraciones"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnStarAppMaquinas" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

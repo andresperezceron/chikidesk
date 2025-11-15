@@ -12,13 +12,13 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.example.chikidesk.R;
-import com.example.chikidesk.databinding.FragmentStartAppBinding;
+import com.example.chikidesk.databinding.StartAppBinding;
 import com.example.chikidesk.repository.StartAppRepository;
 import com.example.chikidesk.viewmodel.AppCacheViewModel;
 
 
 public class FragmentStartApp extends Fragment {
-    private FragmentStartAppBinding binding;
+    private StartAppBinding binding;
 
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +31,7 @@ public class FragmentStartApp extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        binding = FragmentStartAppBinding.inflate(inflater, container, false);
+        binding = StartAppBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 

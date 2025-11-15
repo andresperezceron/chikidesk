@@ -41,7 +41,6 @@ public class HandleConfigShow extends Handle<MainFragment, Integer> {
                 .orElse(null);
         assert config != null;
 
-        // FIX: Assign to the class field, not a new local variable
         this.fullConfig = appCache.createFullConfigByConfig(config);
         assert fullConfig != null;
 
@@ -101,6 +100,8 @@ public class HandleConfigShow extends Handle<MainFragment, Integer> {
 
         binding.fabConfigShowUpdate.setOnClickListener(v ->
                 Navigation.findNavController(v).navigate(R.id.action_configShow_to_configUpdate, wellKnownNextBundle));
+        binding.fabConfigShowDelete.setOnClickListener(v ->
+                Navigation.findNavController(v).navigate(R.id.action_configShow_to_configDelete, wellKnownNextBundle));
     }
 
     @Override

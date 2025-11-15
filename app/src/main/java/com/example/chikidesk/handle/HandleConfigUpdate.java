@@ -22,7 +22,6 @@ public class HandleConfigUpdate extends Handle<MainFragment, Integer> {
     private FullConfig oldFullConfig;
     private ConfigRepository repo;
 
-
     public HandleConfigUpdate(MainFragment fragment) {
         super(fragment);
         this.binding = (ConfigUpdateBinding) super.binding;
@@ -140,9 +139,6 @@ public class HandleConfigUpdate extends Handle<MainFragment, Integer> {
     }
 
     @Override
-    protected void setAdapters() {}
-
-    @Override
     protected void setupListeners() {
         binding.btnConfigUpdateUpdate.setOnClickListener(v -> driveActionDao());
     }
@@ -154,4 +150,7 @@ public class HandleConfigUpdate extends Handle<MainFragment, Integer> {
         binding.fabConfigUpdateHome.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack(R.id.fragmentStartApp, false));
     }
+
+    @Override
+    protected void setAdapters() {}
 }

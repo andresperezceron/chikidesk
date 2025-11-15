@@ -3,6 +3,7 @@ package com.example.chikidesk.cofigurator;
 import androidx.annotation.NonNull;
 
 import com.example.chikidesk.handle.Driver;
+import com.example.chikidesk.handle.HandleConfigDelete;
 import com.example.chikidesk.handle.HandleConfigForm;
 import com.example.chikidesk.handle.HandleConfigList;
 import com.example.chikidesk.handle.HandleConfigShow;
@@ -119,6 +120,12 @@ public class HandleStream {
                 public boolean getId() { return idFragment.equals(Ids.FragmentConfigUpdate.name()); }
                 @Override
                 public Driver createDriver() { return new HandleConfigUpdate(fragment); }
+            },
+            new ItemHandle() { //CONFIG DELETE
+                @Override
+                public boolean getId() { return idFragment.equals(Ids.FragmentConfigDelete.name()); }
+                @Override
+                public Driver createDriver() { return new HandleConfigDelete(fragment); }
             },
             new ItemHandle() { //SELECT MAQUINA
                 @Override

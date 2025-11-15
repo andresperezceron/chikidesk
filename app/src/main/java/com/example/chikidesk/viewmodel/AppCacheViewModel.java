@@ -11,7 +11,7 @@ import com.example.chikidesk.model.Maquina;
 import com.example.chikidesk.model.Molde;
 import com.example.chikidesk.model.RetenPresion;
 import com.example.chikidesk.model.Temperatura;
-import com.example.chikidesk.repository.RollBackConfig;
+import com.example.chikidesk.model.RollBackConfig;
 
 import java.util.List;
 

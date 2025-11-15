@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/fragmentStartApp">
 
@@ -169,7 +170,10 @@
             app:destination="@id/fragmentStartApp" />
         <action
             android:id="@+id/action_configShow_to_configUpdate"
-            app:destination="@id/fragmentConfigUpdate" />
+            app:destination="@+id/fragmentConfigUpdate" />
+        <action
+            android:id="@+id/action_configShow_to_configDelete"
+            app:destination="@id/fragmentConfigDelete" />
     </fragment>
 
     <fragment
@@ -181,7 +185,18 @@
             app:destination="@id/fragmentStartApp" />
         <action
             android:id="@+id/action_configUpdate_to_configShow"
-            app:destination="@id/fragmentConfigShow" />
+            app:destination="@+id/fragmentConfigShow" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentConfigDelete"
+        android:name="com.example.chikidesk.ui.fragment.FragmentConfigDelete"
+        android:label="Eliminando Configuración">
+        <action
+            android:id="@+id/action_configDelete_to_configList"
+            app:destination="@id/fragmentConfigList"
+            app:popUpTo="@id/fragmentConfigList"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment

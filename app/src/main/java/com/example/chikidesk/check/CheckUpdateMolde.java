@@ -11,12 +11,13 @@ public class CheckUpdateMolde extends Check<Molde, MoldeUpdateBinding> {
         super(binding, oldMolde);
         this.appCache = appCache;
         super.newEntity = newEntityByBinding();
-        super.entityChecked = checkingNewEntity();
         super.areEqualsToUpdate = areEquals();
+        super.entityChecked = checkingNewEntity();
     }
 
     @Override
     protected Molde checkingNewEntity() {
+        if(areEqualsToUpdate) return null;
         success = true;
         binding.tilMoldeUpdateNombre.setError(null);
         if(!oldEntity.getNombre().equals(newEntity.getNombre())) {

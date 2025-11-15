@@ -4,10 +4,12 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
+import androidx.annotation.NonNull;
+
 import com.example.chikidesk.model.Configuracion;
 import com.example.chikidesk.model.Temperatura;
 
-public class TemperaturaDao extends Dao<Temperatura, Integer> implements SubTableConfig<Temperatura>{
+public class TemperaturaDao extends Dao<Temperatura, Integer> {
     public TemperaturaDao(Context context) {
         super(context);
     }
@@ -18,7 +20,7 @@ public class TemperaturaDao extends Dao<Temperatura, Integer> implements SubTabl
     }
 
     @Override
-    protected Temperatura fromCursor(Cursor cursor) {
+    protected Temperatura fromCursor(@NonNull Cursor cursor) {
         return new Temperatura(
                 cursor.getInt(cursor.getColumnIndexOrThrow("id")),
                 cursor.getString(cursor.getColumnIndexOrThrow("temp1")),
@@ -29,7 +31,7 @@ public class TemperaturaDao extends Dao<Temperatura, Integer> implements SubTabl
     }
 
     @Override
-    protected ContentValues getContentValues(Temperatura entity) {
+    protected ContentValues getContentValues(@NonNull Temperatura entity) {
         ContentValues values = new ContentValues();
         values.put("id", entity.getId());
         values.put("temp1", entity.getTemp1());
@@ -40,12 +42,7 @@ public class TemperaturaDao extends Dao<Temperatura, Integer> implements SubTabl
     }
 
     @Override
-    protected Integer getId(Temperatura entity) {
+    protected Integer getId(@NonNull Temperatura entity) {
         return entity.getId();
-    }
-
-    @Override
-    public Temperatura getByConfig(Configuracion config) {
-        return getById(config.getId());
     }
 }

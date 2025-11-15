@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,16 +36,6 @@ public abstract class Dao<T, K> {
         }
     }
 
-    public T getById(K id) {
-        open();
-        String query = "SELECT * FROM " + getTableName() + " WHERE id =?";
-        try(Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(id)})) {
-            if(cursor.moveToFirst())
-                return fromCursor(cursor);
-        }
-        return null;
-    }
-
     public List<T> getAll() {
         open();
         List<T> list = new ArrayList<>();
@@ -56,26 +45,6 @@ public abstract class Dao<T, K> {
                 while(cursor.moveToNext());
         }
         return list;
-    }
-
-    protected boolean duplicateUniqueKey(String uniqueKeyName, Object value) {
-        open();
-        String query = "SELECT * FROM " + getTableName() + " WHERE " + uniqueKeyName + "=?";
-        String strValue = String.valueOf(value);
-        try(Cursor cursor = db.rawQuery(query, new String[]{strValue})) {
-            return cursor.moveToFirst();
-        }catch(Exception e) { return true; }
-    }
-
-    protected T getByUniqueKey(String keyName, Object value) {
-        open();
-        String query = "SELECT * FROM " + getTableName() + " WHERE " + keyName + "=?";
-        String strValue = String.valueOf(value);
-        try(Cursor cursor = db.rawQuery(query, new String[]{strValue})) {
-            if(cursor.moveToFirst())
-                return fromCursor(cursor);
-        }
-        return null;
     }
 
     protected void open() {

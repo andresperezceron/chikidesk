@@ -1,10 +1,4 @@
-package com.example.chikidesk.repository;
-
-import com.example.chikidesk.model.Configuracion;
-import com.example.chikidesk.model.Expulsor;
-import com.example.chikidesk.model.Inyeccion;
-import com.example.chikidesk.model.RetenPresion;
-import com.example.chikidesk.model.Temperatura;
+package com.example.chikidesk.model;
 
 import java.util.List;
 

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/layout_config_delete"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.FragmentConfigDelete">
+
+    <TextView
+        android:id="@+id/tv_config_delete_message"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3"
+        tools:text="¿Estás seguro de que quieres eliminar la configuración para la máquina 'Máquina 1' y el molde 'Molde A'?" />
+
+    <Button
+        android:id="@+id/btn_config_delete_confirm"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Confirmar Borrado"
+        android:backgroundTint="@android:color/holo_red_dark"
+        app:layout_constraintEnd_toEndOf="@+id/tv_config_delete_message"
+        app:layout_constraintStart_toStartOf="@+id/tv_config_delete_message"
+        app:layout_constraintTop_toBottomOf="@+id/tv_config_delete_message" />
+
+    <Button
+        android:id="@+id/btn_config_delete_cancel"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Cancelar"
+        android:textColor="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="@+id/btn_config_delete_confirm"
+        app:layout_constraintStart_toStartOf="@+id/btn_config_delete_confirm"
+        app:layout_constraintTop_toBottomOf="@+id/btn_config_delete_confirm" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_config_delete_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:contentDescription="TODO"
+        app:srcCompat="@drawable/ic_back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_config_delete_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:contentDescription="TODO"
+        app:srcCompat="@drawable/ic_home"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

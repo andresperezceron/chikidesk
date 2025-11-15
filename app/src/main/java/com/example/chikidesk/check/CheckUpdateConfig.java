@@ -15,8 +15,8 @@ public class CheckUpdateConfig extends Check<Configuracion, ConfigUpdateBinding>
         this.maquina = maquina;
         this.molde = molde;
         super.newEntity = newEntityByBinding();
-        super.entityChecked = checkingNewEntity();
         super.areEqualsToUpdate = areEquals();
+        super.entityChecked = checkingNewEntity();
     }
 
     @Override
@@ -33,7 +33,10 @@ public class CheckUpdateConfig extends Check<Configuracion, ConfigUpdateBinding>
 
     @Override
     protected Configuracion checkingNewEntity() {
+        if(areEqualsToUpdate) return null;
+        empty = false;
         success = true;
+
         binding.tilConfigUpdatePlastifico.setError(null);
         if(newEntity.getPlastificacion().isEmpty()) {
             empty = true;

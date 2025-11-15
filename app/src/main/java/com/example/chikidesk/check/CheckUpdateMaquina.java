@@ -11,12 +11,13 @@ public class CheckUpdateMaquina extends Check<Maquina, MaquinaUpdateBinding> {
         super(binding, oldEntity);
         this.appCache = appCache;
         super.newEntity = newEntityByBinding();
-        super.entityChecked = checkingNewEntity();
         super.areEqualsToUpdate = areEquals();
+        super.entityChecked = checkingNewEntity();
     }
 
     @Override
     protected Maquina newEntityByBinding() {
+        if(areEqualsToUpdate) return null;
         success = true;
         binding.tilMaquinaUpdateNombre.setError(null);
         if(!oldEntity.getNombre().equals(newEntity.getNombre())) {

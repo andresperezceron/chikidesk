@@ -10,10 +10,11 @@
 
     <TextView
         android:id="@+id/txvMaquinaListHeader"
-        android:text="@string/header_maquina_list"
         style="@style/headers"
+        android:text="@string/header_maquina_list"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvMaquinaList"
@@ -23,32 +24,24 @@
         android:paddingBottom="@dimen/paddingBottom_rcv"
         android:clipToPadding="false"
         android:contentDescription="@string/cont_desc_rcv_maquina"
-        app:layout_constraintTop_toBottomOf="@id/txvMaquinaListHeader"
+        app:layout_constraintTop_toBottomOf="@+id/txvMaquinaListHeader"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabMaquinaListHome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_x2"
+        style="@style/Widget.App.FloatingActionButton"
         android:src="@drawable/ic_home"
         android:contentDescription="@string/cont_desc_fab_nav_home"
-        app:tint="@color/fab_fore_gre108"
-        app:backgroundTint="@color/fab_back_gre101"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabMaquinaListNew"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_x2"
+        style="@style/Widget.App.FloatingActionButton"
         android:src="@drawable/ic_add"
         android:contentDescription="@string/cont_desc_fab_new_maquina"
-        app:tint="@color/fab_fore_gre108"
-        app:backgroundTint="@color/fab_back_gre101"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 

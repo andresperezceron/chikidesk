@@ -8,8 +8,8 @@ public class CheckUpdateTemperatura extends Check<Temperatura, ConfigUpdateBindi
     public CheckUpdateTemperatura(ConfigUpdateBinding binding, Temperatura oldEntity) {
         super(binding, oldEntity);
         super.newEntity = newEntityByBinding();
-        super.entityChecked = checkingNewEntity();
         super.areEqualsToUpdate = areEquals();
+        super.entityChecked = checkingNewEntity();
     }
 
     @Override
@@ -23,31 +23,33 @@ public class CheckUpdateTemperatura extends Check<Temperatura, ConfigUpdateBindi
 
     @Override
     protected Temperatura checkingNewEntity() {
+        if(areEqualsToUpdate) return null;
         success = true;
+        empty = false;
 
         binding.tilConfigUpdateTemp1.setError(null);
-        if (newEntity.getTemp1().isEmpty()) {
+        if(newEntity.getTemp1().isEmpty()) {
             empty = true;
             success = false;
             binding.tilConfigUpdateTemp1.setError("");
         }
 
         binding.tilConfigUpdateTemp2.setError(null);
-        if (newEntity.getTemp2().isEmpty()) {
+        if(newEntity.getTemp2().isEmpty()) {
             empty = true;
             success = false;
             binding.tilConfigUpdateTemp2.setError("");
         }
 
         binding.tilConfigUpdateTemp3.setError(null);
-        if (newEntity.getTemp3().isEmpty()) {
+        if(newEntity.getTemp3().isEmpty()) {
             empty = true;
             success = false;
             binding.tilConfigUpdateTemp3.setError("");
         }
 
         binding.tilConfigUpdateTemp4.setError(null);
-        if (newEntity.getTemp4().isEmpty()) {
+        if(newEntity.getTemp4().isEmpty()) {
             empty = true;
             success = false;
             binding.tilConfigUpdateTemp4.setError("");

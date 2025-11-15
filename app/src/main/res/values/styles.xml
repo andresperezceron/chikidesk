@@ -9,6 +9,26 @@
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Large</item>
     </style>
 
+    <style name="Widget.App.Button.MainMenu" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_width">@dimen/widthButton_x2</item>
+        <item name="android:layout_height">@dimen/heightButton_x2</item>
+        <item name="android:textColor">@color/text_gre108</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Medium</item>
+        <item name="cornerRadius">@dimen/strokeRadius_x1</item>
+        <item name="strokeWidth">@dimen/strokeWidth_x1</item>
+        <item name="strokeColor">@color/strokes_gre107</item>
+        <item name="backgroundTint">@color/btn_back_gre105</item>
+    </style>
+
+    <!-- New Style for Floating Action Buttons -->
+    <style name="Widget.App.FloatingActionButton" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/margin_x2</item>
+        <item name="tint">@color/fab_fore_gre108</item>
+        <item name="backgroundTint">@color/fab_back_gre101</item>
+    </style>
+
     <style name="MyHintAppearance" >
         <item name="android:textSize">@dimen/textSize_x2</item>
     </style>
