@@ -69,7 +69,7 @@ public class HandleSelectConfig extends Handle<MainFragment, Integer> {
                     .findFirst()
                     .orElse(null);
 
-            if (selectedConfig != null) {
+            if(selectedConfig != null) {
                 // Navigate to ConfigShow, passing the configuration ID
                 Bundle bundle = new Bundle();
                 bundle.putInt("id", selectedConfig.getId());

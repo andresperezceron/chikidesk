@@ -1,15 +1,16 @@
-package com.example.chikidesk.check;
+package com.example.chikidesk.check.insert;
 
+import com.example.chikidesk.check.Check;
 import com.example.chikidesk.databinding.ConfigFormBinding;
 import com.example.chikidesk.model.Configuracion;
 import com.example.chikidesk.model.Maquina;
 import com.example.chikidesk.model.Molde;
 
-public class CheckNewConfig extends Check<Configuracion, ConfigFormBinding> {
+public class CheckInsertConfig extends Check<Configuracion, ConfigFormBinding> {
     private final Maquina maquina;
     private final Molde molde;
 
-    public CheckNewConfig(Maquina maquina, Molde molde, ConfigFormBinding binding) {
+    public CheckInsertConfig(Maquina maquina, Molde molde, ConfigFormBinding binding) {
         super(binding);
         this.maquina = maquina;
         this.molde = molde;
@@ -31,7 +32,6 @@ public class CheckNewConfig extends Check<Configuracion, ConfigFormBinding> {
 
     @Override
     protected Configuracion checkingNewEntity() {
-        empty = false;
         binding.tilConfigFormPlastifico.setError(null);
         if(newEntity.getPlastificacion().isEmpty()) {
             empty = true;
@@ -76,7 +76,7 @@ public class CheckNewConfig extends Check<Configuracion, ConfigFormBinding> {
         if(newEntity.getObservaciones().isEmpty()) {
             newEntity.setObservaciones("Sin observaciones");
         }
-        return newEntity;
+        return success ? newEntity : null;
     }
 
     @Override

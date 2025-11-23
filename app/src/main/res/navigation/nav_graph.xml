@@ -49,10 +49,10 @@
         android:label="Descripcion molde" >
         <action
             android:id="@+id/action_moldeShow_to_moldeUpdate"
-            app:destination="@+id/fragmentMoldeUpdate" />
+            app:destination="@id/fragmentMoldeUpdate" />
         <action
             android:id="@+id/action_moldeShow_to_moldeDelete"
-            app:destination="@+id/fragmentMoldeDelete" />
+            app:destination="@id/fragmentMoldeDelete" />
     </fragment>
 
     <fragment
@@ -106,10 +106,10 @@
         android:label="Descripcion Máquina" >
         <action
             android:id="@+id/action_maquinaShow_to_maquinaUpdate"
-            app:destination="@+id/fragmentMaquinaUpdate" />
+            app:destination="@id/fragmentMaquinaUpdate" />
         <action
             android:id="@+id/action_maquinaShow_to_maquinaDelete"
-            app:destination="@+id/fragmentMaquinaDelete" />
+            app:destination="@id/fragmentMaquinaDelete" />
     </fragment>
 
     <fragment
@@ -145,6 +145,9 @@
         <action
             android:id="@+id/action_configList_to_selectMaquina"
             app:destination="@id/fragmentSelectMaquina" />
+        <action
+            android:id="@+id/action_configList_to_configShow"
+            app:destination="@id/fragmentConfigShow" />
     </fragment>
 
     <fragment
@@ -166,11 +169,8 @@
         android:name="com.example.chikidesk.ui.fragment.FragmentConfigShow"
         android:label="Mostrando configuracion" >
         <action
-            android:id="@+id/action_configShow_to_home"
-            app:destination="@id/fragmentStartApp" />
-        <action
             android:id="@+id/action_configShow_to_configUpdate"
-            app:destination="@+id/fragmentConfigUpdate" />
+            app:destination="@id/fragmentConfigUpdate" />
         <action
             android:id="@+id/action_configShow_to_configDelete"
             app:destination="@id/fragmentConfigDelete" />
@@ -181,11 +181,10 @@
         android:name="com.example.chikidesk.ui.fragment.FragmentConfigUpdate"
         android:label="Actualizando configuracion" >
         <action
-            android:id="@+id/action_configUpdate_to_home"
-            app:destination="@id/fragmentStartApp" />
-        <action
-            android:id="@+id/action_configUpdate_to_configShow"
-            app:destination="@+id/fragmentConfigShow" />
+            android:id="@+id/action_configUpdate_to_configList"
+            app:destination="@id/fragmentConfigList"
+            app:popUpTo="@id/fragmentConfigList"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -194,7 +193,7 @@
         android:label="Eliminando Configuración">
         <action
             android:id="@+id/action_configDelete_to_configList"
-            app:destination="@id/fragmentConfigList"
+            app:destination="@+id/fragmentConfigList"
             app:popUpTo="@id/fragmentConfigList"
             app:popUpToInclusive="true" />
     </fragment>
@@ -214,16 +213,13 @@
         android:label="Seleccionar Molde" >
         <action
             android:id="@+id/action_selectMolde_to_configForm"
-            app:destination="@+id/fragmentConfigForm" />
+            app:destination="@id/fragmentConfigForm" />
     </fragment>
 
     <fragment
         android:id="@+id/fragmentSelectConfig"
         android:name="com.example.chikidesk.ui.fragment.FragmentSelectConfig"
         android:label="Seleccion de configuracion" >
-        <action
-            android:id="@+id/action_selectConfig_to_home"
-            app:destination="@id/fragmentStartApp" />
         <action
             android:id="@+id/action_selectConfig_to_configShow"
             app:destination="@id/fragmentConfigShow" />

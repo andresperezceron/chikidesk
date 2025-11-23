@@ -5,7 +5,7 @@ import android.widget.Toast;
 import androidx.navigation.Navigation;
 
 import com.example.chikidesk.R;
-import com.example.chikidesk.check.CheckUpdateMolde;
+import com.example.chikidesk.check.update.CheckUpdateMolde;
 import com.example.chikidesk.databinding.MoldeUpdateBinding;
 import com.example.chikidesk.db.MoldeDao;
 import com.example.chikidesk.model.Molde;
@@ -56,7 +56,7 @@ public class HandleMoldeUpdate extends Handle<MainFragment, Integer> {
             return;
         }
 
-        if(check.isNotSuccess()) return;
+        if(check.isSuccess()) return;
 
         appCache.moldeList = dao.exeCrudAction(check.getEntity(), MoldeDao.ACTION_UPDATE)
                 .stream()

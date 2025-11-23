@@ -13,11 +13,15 @@ public abstract class Check<T, B> {
 
     public Check(B binding) {
         this.binding = binding;
+        success = true;
+        empty = false;
     }
 
     public Check(B binding, T oldEntity) {
         this.binding = binding;
         this.oldEntity = oldEntity;
+        success = true;
+        empty = false;
     }
 
     protected abstract T newEntityByBinding();
@@ -27,8 +31,8 @@ public abstract class Check<T, B> {
     public T getEntity() {
         return entityChecked;
     }
-    public boolean isNotSuccess() {
-        return !success;
+    public boolean isSuccess() {
+        return success;
     }
     public boolean isAreEqualsToUpdate() {
         return areEqualsToUpdate;

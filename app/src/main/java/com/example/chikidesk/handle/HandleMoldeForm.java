@@ -5,18 +5,15 @@ import android.widget.Toast;
 import androidx.navigation.Navigation;
 
 import com.example.chikidesk.R;
-import com.example.chikidesk.check.CheckNewMolde;
+import com.example.chikidesk.check.insert.CheckInsertMolde;
 import com.example.chikidesk.databinding.MoldeFormBinding;
-import com.example.chikidesk.db.MoldeDao;
-import com.example.chikidesk.model.Molde;
+import com.example.chikidesk.repository.MoldeRepository;
 import com.example.chikidesk.ui.fragment.MainFragment;
-
-import java.util.Comparator;
-import java.util.stream.Collectors;
-
 
 public class HandleMoldeForm extends Handle<MainFragment, Integer> {
     private MoldeFormBinding binding;
+    private MoldeRepository repo;
+
     public HandleMoldeForm(MainFragment fragment) {
         super(fragment);
         binding = (MoldeFormBinding) super.binding;
@@ -24,24 +21,32 @@ public class HandleMoldeForm extends Handle<MainFragment, Integer> {
 
     @Override
     public void drive() {
+        initProperties();
         setupListeners();
         setupNavigationButtons();
     }
 
     @Override
+    protected void initProperties() {
+        repo = new MoldeRepository(getContext(), appCache);
+    }
+
+    @Override
     protected void driveActionDao() {
-        CheckNewMolde check = new CheckNewMolde(appCache, binding);
-        if(check.isNotSuccess()) return;
+        CheckInsertMolde check = new CheckInsertMolde(appCache, binding);
+        if(!check.isSuccess()) {
+            Toast.makeText(getContext(), "Datos inválidos", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-        MoldeDao dao = new MoldeDao(getContext());
-        appCache.moldeList = dao.exeCrudAction(check.getEntity(), MoldeDao.ACTION_INSERT).stream()
-                .sorted(Comparator.comparing(Molde::getNombre, String.CASE_INSENSITIVE_ORDER))
-                .collect(Collectors.toList());
+        boolean success = repo.insertMolde(check.getEntity());
 
-        if(appCache.getStatus()) {
+        if(success) {
             Navigation.findNavController(getView()).navigate(R.id.action_moldeForm_to_moldeList);
-            Toast.makeText(fragment.requireContext(), R.string.tot_new_molde, Toast.LENGTH_SHORT).show();
-        } else assert false;
+            Toast.makeText(fragment.requireContext(), "Nuevo molde guardado", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getContext(), "Error al guardar el molde", Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
@@ -53,18 +58,27 @@ public class HandleMoldeForm extends Handle<MainFragment, Integer> {
     protected void setupNavigationButtons() {
         binding.fabMoldeFormBack.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack());
+
         binding.fabMoldeFormHome.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack(R.id.fragmentStartApp, false));
+
+        // Logic for the new shortcut button
+        binding.fabMoldeFormList.setOnClickListener(v ->
+                Navigation.findNavController(v).popBackStack(R.id.fragmentMoldeList, false));
     }
 
     @Override
-    public void destroyDriver() { this.binding = null;}
+    public void destroyDriver() {
+        this.binding = null;
+        this.repo = null;
+    }
+
     @Override
     protected void setKeysByBundle() {}
-    @Override
-    protected void initProperties() {}
+
     @Override
     protected void populateForm() {}
+
     @Override
     protected void setAdapters() {}
 }

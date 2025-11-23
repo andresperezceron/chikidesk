@@ -1,5 +1,6 @@
-package com.example.chikidesk.check;
+package com.example.chikidesk.check.update;
 
+import com.example.chikidesk.check.Check;
 import com.example.chikidesk.databinding.MaquinaUpdateBinding;
 import com.example.chikidesk.model.Maquina;
 import com.example.chikidesk.viewmodel.AppCacheViewModel;

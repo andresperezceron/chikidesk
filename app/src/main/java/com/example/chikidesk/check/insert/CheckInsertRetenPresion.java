@@ -1,10 +1,11 @@
-package com.example.chikidesk.check;
+package com.example.chikidesk.check.insert;
 
+import com.example.chikidesk.check.Check;
 import com.example.chikidesk.databinding.ConfigFormBinding;
 import com.example.chikidesk.model.RetenPresion;
 
-public class CheckNewReten extends Check<RetenPresion, ConfigFormBinding> {
-    public CheckNewReten(ConfigFormBinding binding) {
+public class CheckInsertRetenPresion extends Check<RetenPresion, ConfigFormBinding> {
+    public CheckInsertRetenPresion(ConfigFormBinding binding) {
         super(binding);
         newEntity = newEntityByBinding();
         entityChecked = checkingNewEntity();
@@ -20,28 +21,32 @@ public class CheckNewReten extends Check<RetenPresion, ConfigFormBinding> {
 
     @Override
     protected RetenPresion checkingNewEntity() {
-        empty = false;
         binding.tilConfigFormRetenVel.setError(null);
-        if(newEntity.getVelocidad().isEmpty()) {
+        if (newEntity.getVelocidad().isEmpty()) {
             empty = true;
-            binding.tilConfigFormRetenVel.setError("Velocidad = 0");
+            binding.tilConfigFormRetenVel.setError("V = 0");
             newEntity.setVelocidad("0");
         }
+
         binding.tilConfigFormRetenPre.setError(null);
-        if(newEntity.getPresion().isEmpty()) {
+        if (newEntity.getPresion().isEmpty()) {
             empty = true;
-            binding.tilConfigFormRetenPre.setError("Presion = 0");
+            binding.tilConfigFormRetenPre.setError("P = 0");
             newEntity.setPresion("0");
         }
+
         binding.tilConfigFormRetenTmp.setError(null);
-        if(newEntity.getTiempo().isEmpty()) {
+        if (newEntity.getTiempo().isEmpty()) {
             empty = true;
-            binding.tilConfigFormRetenTmp.setError("Tiempo = 0");
+            binding.tilConfigFormRetenTmp.setError("T = 0");
             newEntity.setTiempo("0");
         }
-        return newEntity;
+
+        return success ? newEntity : null;
     }
 
     @Override
-    protected boolean areEquals() { return false; }
+    protected boolean areEquals() {
+        return false;
+    }
 }

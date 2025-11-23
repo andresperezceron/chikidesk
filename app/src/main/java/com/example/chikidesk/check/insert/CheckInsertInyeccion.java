@@ -1,10 +1,11 @@
-package com.example.chikidesk.check;
+package com.example.chikidesk.check.insert;
 
+import com.example.chikidesk.check.Check;
 import com.example.chikidesk.databinding.ConfigFormBinding;
 import com.example.chikidesk.model.Inyeccion;
 
-public class CheckNewInyeccion extends Check<Inyeccion, ConfigFormBinding> {
-    public CheckNewInyeccion(ConfigFormBinding binding) {
+public class CheckInsertInyeccion extends Check<Inyeccion, ConfigFormBinding> {
+    public CheckInsertInyeccion(ConfigFormBinding binding) {
         super(binding);
         newEntity = newEntityByBinding();
         entityChecked = checkingNewEntity();
@@ -27,7 +28,6 @@ public class CheckNewInyeccion extends Check<Inyeccion, ConfigFormBinding> {
 
     @Override
     protected Inyeccion checkingNewEntity() {
-        empty = false;
         binding.tilConfigFormInyVel1.setError(null);
         if(newEntity.getVelocidad1().isEmpty()) {
             empty = true;
@@ -92,7 +92,8 @@ public class CheckNewInyeccion extends Check<Inyeccion, ConfigFormBinding> {
             binding.tilConfigFormInyPre5.setError("P5 = 0");
             newEntity.setPresion5("0");
         }
-        return newEntity;
+        
+        return success ? newEntity : null;
     }
 
     @Override

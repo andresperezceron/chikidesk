@@ -2,15 +2,16 @@ package com.example.chikidesk.handle;
 
 import android.widget.Toast;
 
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.example.chikidesk.R;
-import com.example.chikidesk.check.CheckUpdateConfig;
-import com.example.chikidesk.check.CheckUpdateExpulsor;
-import com.example.chikidesk.check.CheckUpdateFullConfig;
-import com.example.chikidesk.check.CheckUpdateInyeccion;
-import com.example.chikidesk.check.CheckUpdateRetenPresion;
-import com.example.chikidesk.check.CheckUpdateTemperatura;
+import com.example.chikidesk.check.update.CheckUpdateConfig;
+import com.example.chikidesk.check.update.CheckUpdateExpulsor;
+import com.example.chikidesk.check.update.CheckUpdateFullConfig;
+import com.example.chikidesk.check.update.CheckUpdateInyeccion;
+import com.example.chikidesk.check.update.CheckUpdateRetenPresion;
+import com.example.chikidesk.check.update.CheckUpdateTemperatura;
 import com.example.chikidesk.databinding.ConfigUpdateBinding;
 import com.example.chikidesk.model.Configuracion;
 import com.example.chikidesk.model.FullConfig;
@@ -21,6 +22,7 @@ public class HandleConfigUpdate extends Handle<MainFragment, Integer> {
     private ConfigUpdateBinding binding;
     private FullConfig oldFullConfig;
     private ConfigRepository repo;
+
 
     public HandleConfigUpdate(MainFragment fragment) {
         super(fragment);
@@ -101,6 +103,7 @@ public class HandleConfigUpdate extends Handle<MainFragment, Integer> {
         binding.edtConfigUpdateEnfriar.setText(oldFullConfig.getConfiguracion().getTiempoEnfriar());
         binding.edtConfigUpdateMaterial.setText(oldFullConfig.getConfiguracion().getMaterial());
         binding.edtConfigUpdateObservaciones.setText(oldFullConfig.getConfiguracion().getObservaciones());
+
     }
 
     @Override
@@ -132,7 +135,10 @@ public class HandleConfigUpdate extends Handle<MainFragment, Integer> {
 
         if (success) {
             Toast.makeText(getContext(), "Configuración actualizada correctamente", Toast.LENGTH_SHORT).show();
-            Navigation.findNavController(getView()).navigate(R.id.action_configUpdate_to_configShow, getBundle());
+            // Chained navigation
+            NavController navController = Navigation.findNavController(getView());
+            navController.navigate(R.id.action_configUpdate_to_configList, getBundle()); // This will refresh the list in the background
+            navController.navigate(R.id.action_configList_to_configShow, getBundle()); // This is what the user sees
         } else {
             Toast.makeText(getContext(), "Error al actualizar la configuración", Toast.LENGTH_LONG).show();
         }

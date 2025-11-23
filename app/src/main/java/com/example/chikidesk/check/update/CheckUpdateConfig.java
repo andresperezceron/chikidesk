@@ -1,5 +1,6 @@
-package com.example.chikidesk.check;
+package com.example.chikidesk.check.update;
 
+import com.example.chikidesk.check.Check;
 import com.example.chikidesk.databinding.ConfigUpdateBinding;
 import com.example.chikidesk.model.Configuracion;
 import com.example.chikidesk.model.Maquina;
@@ -34,8 +35,6 @@ public class CheckUpdateConfig extends Check<Configuracion, ConfigUpdateBinding>
     @Override
     protected Configuracion checkingNewEntity() {
         if(areEqualsToUpdate) return null;
-        empty = false;
-        success = true;
 
         binding.tilConfigUpdatePlastifico.setError(null);
         if(newEntity.getPlastificacion().isEmpty()) {

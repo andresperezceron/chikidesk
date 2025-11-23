@@ -5,17 +5,14 @@ import android.widget.Toast;
 import androidx.navigation.Navigation;
 
 import com.example.chikidesk.R;
-import com.example.chikidesk.check.CheckNewMaquina;
+import com.example.chikidesk.check.insert.CheckInsertMaquina;
 import com.example.chikidesk.databinding.MaquinaFormBinding;
-import com.example.chikidesk.db.MaquinaDao;
-import com.example.chikidesk.model.Maquina;
+import com.example.chikidesk.repository.MaquinaRepository;
 import com.example.chikidesk.ui.fragment.MainFragment;
-
-import java.util.Comparator;
-import java.util.stream.Collectors;
 
 public class HandleMaquinaForm extends Handle<MainFragment, Integer> {
     private MaquinaFormBinding binding;
+    private MaquinaRepository repo;
 
     public HandleMaquinaForm(MainFragment fragment) {
         super(fragment);
@@ -24,24 +21,32 @@ public class HandleMaquinaForm extends Handle<MainFragment, Integer> {
 
     @Override
     public void drive() {
+        initProperties();
         setupListeners();
         setupNavigationButtons();
     }
 
     @Override
+    protected void initProperties() {
+        repo = new MaquinaRepository(getContext(), appCache);
+    }
+
+    @Override
     protected void driveActionDao() {
-        CheckNewMaquina check = new CheckNewMaquina(appCache, binding);
-        if(check.isNotSuccess()) return;
+        CheckInsertMaquina check = new CheckInsertMaquina(appCache, binding);
+        if(!check.isSuccess()) {
+            Toast.makeText(getContext(), "Datos inválidos", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-        MaquinaDao dao = new MaquinaDao(getContext());
-        appCache.maquinaList = dao.exeCrudAction(check.getEntity(), MaquinaDao.ACTION_INSERT).stream()
-                .sorted(Comparator.comparing(Maquina::getNombre, String.CASE_INSENSITIVE_ORDER))
-                .collect(Collectors.toList());
+        boolean success = repo.insertMaquina(check.getEntity());
 
-        if(appCache.getStatus()) {
-            Navigation.findNavController(getView()).navigate(R.id.action_moldeForm_to_moldeList);
-            Toast.makeText(fragment.requireContext(), R.string.tot_new_molde, Toast.LENGTH_SHORT).show();
-        } else assert false;
+        if(success) {
+            Navigation.findNavController(getView()).navigate(R.id.action_maquinaForm_to_maquinaList);
+            Toast.makeText(fragment.requireContext(), "Nueva máquina guardada", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getContext(), "Error al guardar la máquina", Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
@@ -53,21 +58,27 @@ public class HandleMaquinaForm extends Handle<MainFragment, Integer> {
     protected void setupNavigationButtons() {
         binding.fabMaquinaFormBack.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack());
+
         binding.fabMaquinaFormHome.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack(R.id.fragmentStartApp, false));
+
+        // Logic for the new shortcut button
+        binding.fabMaquinaFormList.setOnClickListener(v ->
+                Navigation.findNavController(v).popBackStack(R.id.fragmentMaquinaList, false));
     }
 
     @Override
     public void destroyDriver() {
         this.binding = null;
+        this.repo = null;
     }
 
     @Override
     protected void setKeysByBundle() {}
-    @Override
-    protected void initProperties() {}
+
     @Override
     protected void populateForm() {}
+
     @Override
     protected void setAdapters() {}
 }

@@ -7,19 +7,17 @@ import androidx.navigation.Navigation;
 
 import com.example.chikidesk.R;
 import com.example.chikidesk.databinding.MoldeDeleteBinding;
-import com.example.chikidesk.db.MoldeDao;
 import com.example.chikidesk.model.Molde;
+import com.example.chikidesk.repository.MoldeRepository;
 import com.example.chikidesk.ui.fragment.MainFragment;
 import com.example.chikidesk.util.ImageManager;
-
-import java.util.Comparator;
-import java.util.stream.Collectors;
 
 
 public class HandleMoldeDelete extends Handle<MainFragment, Integer> {
     private MoldeDeleteBinding binding;
     private Molde molde;
     private ImageManager imageManager;
+    private MoldeRepository repo;
 
     public HandleMoldeDelete(MainFragment fragment) {
         super(fragment);
@@ -47,6 +45,8 @@ public class HandleMoldeDelete extends Handle<MainFragment, Integer> {
         molde = appCache.moldeList.stream()
                 .filter(m -> m.getId() == id)
                 .findFirst().orElse(null);
+        assert molde != null;
+        repo = new MoldeRepository(getContext(), appCache);
     }
 
     @Override
@@ -61,16 +61,15 @@ public class HandleMoldeDelete extends Handle<MainFragment, Integer> {
 
     @Override
     protected void driveActionDao() {
-        MoldeDao dao = new MoldeDao(getContext());
-        appCache.moldeList = dao.exeCrudAction(molde, MoldeDao.ACTION_DELETE).stream()
-                .sorted(Comparator.comparing(Molde::getNombre, String.CASE_INSENSITIVE_ORDER))
-                .collect(Collectors.toList());
+        boolean success = repo.deleteMolde(molde);
 
-        if(appCache.getStatus()) {
+        if(success) {
             imageManager.deleteImage(id);
             Navigation.findNavController(getView()).navigate(R.id.action_moldeDelete_to_moldeList);
             Toast.makeText(getContext(), R.string.tot_del_molde, Toast.LENGTH_SHORT).show();
-        } else assert false;
+        } else {
+            Toast.makeText(getContext(), "Error al eliminar el molde y sus configuraciones", Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
@@ -99,6 +98,7 @@ public class HandleMoldeDelete extends Handle<MainFragment, Integer> {
     public void destroyDriver() {
         molde = null;
         imageManager = null;
+        repo = null;
         this.binding = null;
     }
 

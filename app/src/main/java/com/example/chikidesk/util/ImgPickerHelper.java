@@ -58,7 +58,7 @@ public class ImgPickerHelper {
             Bitmap bitmap = getBitmapFromUri(uri);
             saveBitmapToFile(bitmap);
             imageView.setImageBitmap(bitmap); // Actualiza la UI inmediatamente
-            Toast.makeText(fragment.requireContext(), R.string.tot_del_img, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(fragment.requireContext(), R.string.tot_del_img, Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             Log.e("ImgPickerHelper", "Error al procesar la imagen", e);
             Toast.makeText(fragment.requireContext(), R.string.tot_del_img, Toast.LENGTH_SHORT).show();
@@ -66,14 +66,9 @@ public class ImgPickerHelper {
     }
 
     private Bitmap getBitmapFromUri(Uri uri) throws IOException {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            // Forma moderna y segura (Android 9+)
-            ImageDecoder.Source source = ImageDecoder.createSource(fragment.requireContext().getContentResolver(), uri);
-            return ImageDecoder.decodeBitmap(source);
-        } else {
-            // Forma antigua (obsoleta pero necesaria para compatibilidad)
-            return MediaStore.Images.Media.getBitmap(fragment.requireContext().getContentResolver(), uri);
-        }
+        // Forma moderna y segura (Android 9+)
+        ImageDecoder.Source source = ImageDecoder.createSource(fragment.requireContext().getContentResolver(), uri);
+        return ImageDecoder.decodeBitmap(source);
     }
 
     private void saveBitmapToFile(Bitmap bitmap) throws IOException {

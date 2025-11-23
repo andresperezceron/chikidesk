@@ -8,12 +8,13 @@ import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.chikidesk.R;
-import com.example.chikidesk.check.CheckNewConfig;
-import com.example.chikidesk.check.CheckNewFullConfig;
-import com.example.chikidesk.check.CheckNewExpulsor;
-import com.example.chikidesk.check.CheckNewInyeccion;
-import com.example.chikidesk.check.CheckNewReten;
-import com.example.chikidesk.check.CheckNewTemperatura;
+import com.example.chikidesk.check.insert.CheckInsertConfig;
+import com.example.chikidesk.check.insert.CheckInsertFullConfig;
+import com.example.chikidesk.check.insert.CheckInsertExpulsor;
+import com.example.chikidesk.check.insert.CheckInsertInyeccion;
+import com.example.chikidesk.check.insert.CheckInsertRetenPresion;
+import com.example.chikidesk.check.insert.CheckInsertRetenPresion;
+import com.example.chikidesk.check.insert.CheckInsertTemperatura;
 import com.example.chikidesk.databinding.ConfigFormBinding;
 import com.example.chikidesk.model.Maquina;
 import com.example.chikidesk.model.Molde;
@@ -26,7 +27,7 @@ public class HandleConfigForm extends Handle<MainFragment, Integer> {
     private ConfigFormBinding binding;
     private Maquina maquina;
     private Molde molde;
-    private CheckNewFullConfig check;
+    private CheckInsertFullConfig check;
 
     public HandleConfigForm(MainFragment fragment) {
         super(fragment);
@@ -122,12 +123,12 @@ public class HandleConfigForm extends Handle<MainFragment, Integer> {
     protected void setAdapters() {}
 
     private void selectionModeInsert() {
-        check = new CheckNewFullConfig(
-                new CheckNewConfig(maquina, molde, binding),
-                new CheckNewTemperatura(binding),
-                new CheckNewInyeccion(binding),
-                new CheckNewExpulsor(binding),
-                new CheckNewReten(binding));
+        check = new CheckInsertFullConfig(
+                new CheckInsertConfig(maquina, molde, binding),
+                new CheckInsertTemperatura(binding),
+                new CheckInsertInyeccion(binding),
+                new CheckInsertExpulsor(binding),
+                new CheckInsertRetenPresion(binding));
         if(check.isEmpty()) {
             new AlertDialog.Builder(getContext())
                     .setTitle(R.string.dialog_empty_fields)

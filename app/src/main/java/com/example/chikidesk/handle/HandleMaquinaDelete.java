@@ -7,18 +7,16 @@ import androidx.navigation.Navigation;
 
 import com.example.chikidesk.R;
 import com.example.chikidesk.databinding.MaquinaDeleteBinding;
-import com.example.chikidesk.db.MaquinaDao;
 import com.example.chikidesk.model.Maquina;
+import com.example.chikidesk.repository.MaquinaRepository;
 import com.example.chikidesk.ui.fragment.MainFragment;
 import com.example.chikidesk.util.ImageManager;
-
-import java.util.Comparator;
-import java.util.stream.Collectors;
 
 public class HandleMaquinaDelete extends Handle<MainFragment, Integer> {
     private MaquinaDeleteBinding binding;
     private Maquina maquina;
     private ImageManager imageManager;
+    private MaquinaRepository repo;
 
     public HandleMaquinaDelete(MainFragment fragment) {
         super(fragment);
@@ -46,6 +44,8 @@ public class HandleMaquinaDelete extends Handle<MainFragment, Integer> {
         maquina = appCache.maquinaList.stream()
                 .filter(m -> m.getId() == id)
                 .findFirst().orElse(null);
+        assert maquina != null;
+        repo = new MaquinaRepository(getContext(), appCache);
     }
 
     @Override
@@ -84,21 +84,21 @@ public class HandleMaquinaDelete extends Handle<MainFragment, Integer> {
     public void destroyDriver() {
         maquina = null;
         imageManager = null;
+        repo = null;
         this.binding = null;
     }
 
     @Override
     protected void driveActionDao() {
-        MaquinaDao dao = new MaquinaDao(getContext());
-        appCache.maquinaList = dao.exeCrudAction(maquina, MaquinaDao.ACTION_DELETE).stream()
-                .sorted(Comparator.comparing(Maquina::getNombre, String.CASE_INSENSITIVE_ORDER))
-                .collect(Collectors.toList());
+        boolean success = repo.deleteMaquina(maquina);
 
-        if(appCache.getStatus()) {
+        if(success) {
             imageManager.deleteImage(id);
             Navigation.findNavController(getView()).navigate(R.id.action_maquinaDelete_to_maquinaList);
-            Toast.makeText(getContext(), R.string.tot_del_molde, Toast.LENGTH_SHORT).show();
-        } else assert false;
+            Toast.makeText(getContext(), "Máquina eliminada correctamente", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getContext(), "Error al eliminar la máquina y sus configuraciones", Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override

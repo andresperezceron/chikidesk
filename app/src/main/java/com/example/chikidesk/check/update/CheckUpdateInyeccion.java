@@ -1,5 +1,6 @@
-package com.example.chikidesk.check;
+package com.example.chikidesk.check.update;
 
+import com.example.chikidesk.check.Check;
 import com.example.chikidesk.databinding.ConfigUpdateBinding;
 import com.example.chikidesk.model.Inyeccion;
 

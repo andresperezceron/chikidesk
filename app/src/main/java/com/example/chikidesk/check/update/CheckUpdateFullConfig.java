@@ -1,4 +1,4 @@
-package com.example.chikidesk.check;
+package com.example.chikidesk.check.update;
 
 public class CheckUpdateFullConfig {
     private final CheckUpdateConfig checkConfig;
@@ -38,18 +38,18 @@ public class CheckUpdateFullConfig {
     }
 
     public boolean isSuccess() {
-        return checkConfig.success && checkTemp.success && checkInyeccion.success &&
-                checkReten.success && checkExpulsor.success;
+        return checkConfig.isSuccess() && checkTemp.isSuccess() && checkInyeccion.isSuccess() &&
+                checkReten.isSuccess() && checkExpulsor.isSuccess();
     }
 
     public boolean isEmpty() {
-        return checkConfig.empty || checkTemp.empty || checkInyeccion.empty ||
-                checkReten.empty || checkExpulsor.empty;
+        return checkConfig.isEmpty() || checkTemp.isEmpty() || checkInyeccion.isEmpty() ||
+                checkReten.isSuccess() || checkExpulsor.isEmpty();
     }
 
     public boolean areEqualToUpdate() {
-        return checkConfig.areEqualsToUpdate && checkTemp.areEqualsToUpdate &&
-                checkInyeccion.areEqualsToUpdate && checkExpulsor.areEqualsToUpdate &&
-                checkReten.areEqualsToUpdate;
+        return checkConfig.isAreEqualsToUpdate() && checkTemp.isAreEqualsToUpdate() &&
+                checkInyeccion.isAreEqualsToUpdate() && checkExpulsor.isAreEqualsToUpdate() &&
+                checkReten.isAreEqualsToUpdate();
     }
 }

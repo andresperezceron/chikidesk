@@ -5,7 +5,7 @@ import android.widget.Toast;
 import androidx.navigation.Navigation;
 
 import com.example.chikidesk.R;
-import com.example.chikidesk.check.CheckUpdateMaquina;
+import com.example.chikidesk.check.update.CheckUpdateMaquina;
 import com.example.chikidesk.databinding.MaquinaUpdateBinding;
 import com.example.chikidesk.db.MaquinaDao;
 import com.example.chikidesk.model.Maquina;
@@ -56,7 +56,7 @@ public class HandleMaquinaUpdate extends Handle<MainFragment, Integer> {
             return;
         }
 
-        if(check.isNotSuccess()) return;
+        if(check.isSuccess()) return;
 
         appCache.maquinaList = dao.exeCrudAction(check.getEntity(), MaquinaDao.ACTION_UPDATE)
                 .stream()
