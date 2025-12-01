@@ -19,7 +19,7 @@ public class CheckUpdateMaquina extends Check<Maquina, MaquinaUpdateBinding> {
     @Override
     protected Maquina newEntityByBinding() {
         if(areEqualsToUpdate) return null;
-        success = true;
+
         binding.tilMaquinaUpdateNombre.setError(null);
         if(!oldEntity.getNombre().equals(newEntity.getNombre())) {
             if(newEntity.getNombre().isEmpty()) {

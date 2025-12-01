@@ -56,7 +56,7 @@ public class HandleMaquinaUpdate extends Handle<MainFragment, Integer> {
             return;
         }
 
-        if(check.isSuccess()) return;
+        if(!check.isSuccess()) return;
 
         appCache.maquinaList = dao.exeCrudAction(check.getEntity(), MaquinaDao.ACTION_UPDATE)
                 .stream()

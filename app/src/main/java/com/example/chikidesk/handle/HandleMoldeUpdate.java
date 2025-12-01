@@ -56,7 +56,7 @@ public class HandleMoldeUpdate extends Handle<MainFragment, Integer> {
             return;
         }
 
-        if(check.isSuccess()) return;
+        if(!check.isSuccess()) return;
 
         appCache.moldeList = dao.exeCrudAction(check.getEntity(), MoldeDao.ACTION_UPDATE)
                 .stream()

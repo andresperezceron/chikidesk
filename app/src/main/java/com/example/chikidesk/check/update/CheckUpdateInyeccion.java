@@ -31,29 +31,76 @@ public class CheckUpdateInyeccion extends Check<Inyeccion, ConfigUpdateBinding> 
     @Override
     protected Inyeccion checkingNewEntity() {
         if (areEqualsToUpdate) return null;
-        success = true;
-        empty = false;
 
         binding.tilConfigUpdateInyVel1.setError(null);
-        if (newEntity.getVelocidad1().isEmpty()) { empty = true; success = false; binding.tilConfigUpdateInyVel1.setError(""); }
+        if (newEntity.getVelocidad1().isEmpty()) {
+            empty = true;
+            success = false;
+            binding.tilConfigUpdateInyVel1.setError("");
+        }
+
         binding.tilConfigUpdateInyPre1.setError(null);
-        if (newEntity.getPresion1().isEmpty()) { empty = true; success = false; binding.tilConfigUpdateInyPre1.setError(""); }
+        if (newEntity.getPresion1().isEmpty()) {
+            empty = true;
+            success = false;
+            binding.tilConfigUpdateInyPre1.setError("");
+        }
+
         binding.tilConfigUpdateInyVel2.setError(null);
-        if (newEntity.getVelocidad2().isEmpty()) { empty = true; success = false; binding.tilConfigUpdateInyVel2.setError(""); }
+        if (newEntity.getVelocidad2().isEmpty()) {
+            empty = true;
+            success = false;
+            binding.tilConfigUpdateInyVel2.setError("");
+        }
+
         binding.tilConfigUpdateInyPre2.setError(null);
-        if (newEntity.getPresion2().isEmpty()) { empty = true; success = false; binding.tilConfigUpdateInyPre2.setError(""); }
+        if(newEntity.getPresion2().isEmpty()) {
+            empty = true;
+            success = false;
+            binding.tilConfigUpdateInyPre2.setError("");
+        }
+
         binding.tilConfigUpdateInyVel3.setError(null);
-        if (newEntity.getVelocidad3().isEmpty()) { empty = true; success = false; binding.tilConfigUpdateInyVel3.setError(""); }
+        if(newEntity.getVelocidad3().isEmpty()) {
+            empty = true;
+            success = false;
+            binding.tilConfigUpdateInyVel3.setError("");
+        }
+
         binding.tilConfigUpdateInyPre3.setError(null);
-        if (newEntity.getPresion3().isEmpty()) { empty = true; success = false; binding.tilConfigUpdateInyPre3.setError(""); }
+        if(newEntity.getPresion3().isEmpty()) {
+            empty = true;
+            success = false;
+            binding.tilConfigUpdateInyPre3.setError("");
+        }
+
         binding.tilConfigUpdateInyVel4.setError(null);
-        if (newEntity.getVelocidad4().isEmpty()) { empty = true; success = false; binding.tilConfigUpdateInyVel4.setError(""); }
+        if(newEntity.getVelocidad4().isEmpty()) {
+            empty = true;
+            success = false;
+            binding.tilConfigUpdateInyVel4.setError("");
+        }
+
         binding.tilConfigUpdateInyPre4.setError(null);
-        if (newEntity.getPresion4().isEmpty()) { empty = true; success = false; binding.tilConfigUpdateInyPre4.setError(""); }
+        if(newEntity.getPresion4().isEmpty()) {
+            empty = true;
+            success = false;
+            binding.tilConfigUpdateInyPre4.setError("");
+        }
+
         binding.tilConfigUpdateInyVel5.setError(null);
-        if (newEntity.getVelocidad5().isEmpty()) { empty = true; success = false; binding.tilConfigUpdateInyVel5.setError(""); }
+        if(newEntity.getVelocidad5().isEmpty()) {
+            empty = true;
+            success = false;
+            binding.tilConfigUpdateInyVel5.setError("");
+        }
+
         binding.tilConfigUpdateInyPre5.setError(null);
-        if (newEntity.getPresion5().isEmpty()) { empty = true; success = false; binding.tilConfigUpdateInyPre5.setError(""); }
+        if(newEntity.getPresion5().isEmpty()) {
+            empty = true;
+            success = false;
+            binding.tilConfigUpdateInyPre5.setError("");
+        }
 
         return success ? newEntity : null;
     }

@@ -25,8 +25,6 @@ public class CheckUpdateTemperatura extends Check<Temperatura, ConfigUpdateBindi
     @Override
     protected Temperatura checkingNewEntity() {
         if(areEqualsToUpdate) return null;
-        success = true;
-        empty = false;
 
         binding.tilConfigUpdateTemp1.setError(null);
         if(newEntity.getTemp1().isEmpty()) {

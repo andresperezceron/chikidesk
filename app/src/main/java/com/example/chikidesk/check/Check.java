@@ -31,9 +31,8 @@ public abstract class Check<T, B> {
     public T getEntity() {
         return entityChecked;
     }
-    public boolean isSuccess() {
-        return success;
-    }
+
+    public boolean isSuccess() { return success; }
     public boolean isAreEqualsToUpdate() {
         return areEqualsToUpdate;
     }

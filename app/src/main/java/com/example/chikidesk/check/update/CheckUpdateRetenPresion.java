@@ -24,17 +24,27 @@ public class CheckUpdateRetenPresion extends Check<RetenPresion, ConfigUpdateBin
     @Override
     protected RetenPresion checkingNewEntity() {
         if(areEqualsToUpdate) return null;
-        success = true;
-        empty = false;
 
         binding.tilConfigUpdateRetenVel.setError(null);
-        if (newEntity.getVelocidad().isEmpty()) { empty = true; success = false; binding.tilConfigUpdateRetenVel.setError(""); }
+        if (newEntity.getVelocidad().isEmpty()) {
+            empty = true;
+            success = false;
+            binding.tilConfigUpdateRetenVel.setError("");
+        }
         
         binding.tilConfigUpdateRetenPre.setError(null);
-        if (newEntity.getPresion().isEmpty()) { empty = true; success = false; binding.tilConfigUpdateRetenPre.setError(""); }
+        if(newEntity.getPresion().isEmpty()) {
+            empty = true;
+            success = false;
+            binding.tilConfigUpdateRetenPre.setError("");
+        }
         
         binding.tilConfigUpdateRetenTmp.setError(null);
-        if (newEntity.getTiempo().isEmpty()) { empty = true; success = false; binding.tilConfigUpdateRetenTmp.setError(""); }
+        if(newEntity.getTiempo().isEmpty()) {
+            empty = true;
+            success = false;
+            binding.tilConfigUpdateRetenTmp.setError("");
+        }
 
         return success ? newEntity : null;
     }

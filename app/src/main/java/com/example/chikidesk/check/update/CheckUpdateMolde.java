@@ -19,7 +19,7 @@ public class CheckUpdateMolde extends Check<Molde, MoldeUpdateBinding> {
     @Override
     protected Molde checkingNewEntity() {
         if(areEqualsToUpdate) return null;
-        success = true;
+
         binding.tilMoldeUpdateNombre.setError(null);
         if(!oldEntity.getNombre().equals(newEntity.getNombre())) {
             if(newEntity.getNombre().isEmpty()) {

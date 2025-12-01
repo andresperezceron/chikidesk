@@ -44,7 +44,7 @@ public class CheckUpdateFullConfig {
 
     public boolean isEmpty() {
         return checkConfig.isEmpty() || checkTemp.isEmpty() || checkInyeccion.isEmpty() ||
-                checkReten.isSuccess() || checkExpulsor.isEmpty();
+                checkReten.isEmpty() || checkExpulsor.isEmpty();
     }
 
     public boolean areEqualToUpdate() {
