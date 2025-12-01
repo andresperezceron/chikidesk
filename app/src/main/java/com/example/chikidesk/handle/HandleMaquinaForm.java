@@ -2,6 +2,7 @@ package com.example.chikidesk.handle;
 
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.navigation.Navigation;
 
 import com.example.chikidesk.R;
@@ -34,18 +35,20 @@ public class HandleMaquinaForm extends Handle<MainFragment, Integer> {
     @Override
     protected void driveActionDao() {
         CheckInsertMaquina check = new CheckInsertMaquina(appCache, binding);
-        if(!check.isSuccess()) {
-            Toast.makeText(getContext(), "Datos inválidos", Toast.LENGTH_SHORT).show();
-            return;
-        }
+        if(!check.isSuccess()) { return; }
 
         boolean success = repo.insertMaquina(check.getEntity());
 
         if(success) {
             Navigation.findNavController(getView()).navigate(R.id.action_maquinaForm_to_maquinaList);
-            Toast.makeText(fragment.requireContext(), "Nueva máquina guardada", Toast.LENGTH_SHORT).show();
+            Toast.makeText(fragment.requireContext(), R.string.tot_new_maquina, Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(getContext(), "Error al guardar la máquina", Toast.LENGTH_LONG).show();
+            new AlertDialog.Builder(getContext())
+                    .setTitle(R.string.alert_title_error)
+                    .setMessage(R.string.alert_new_maquina)
+                    .setCancelable(false)
+                    .setPositiveButton(R.string.alert_ok, null)
+                    .show();
         }
     }
 
@@ -61,10 +64,6 @@ public class HandleMaquinaForm extends Handle<MainFragment, Integer> {
 
         binding.fabMaquinaFormHome.setOnClickListener(v ->
                 Navigation.findNavController(v).popBackStack(R.id.fragmentStartApp, false));
-
-        // Logic for the new shortcut button
-        binding.fabMaquinaFormList.setOnClickListener(v ->
-                Navigation.findNavController(v).popBackStack(R.id.fragmentMaquinaList, false));
     }
 
     @Override

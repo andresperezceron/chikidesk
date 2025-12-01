@@ -95,19 +95,10 @@
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabMaquinaFormBack"
         style="@style/Widget.App.FloatingActionButton"
-        android:src="@drawable/ic_back"
+        android:src="@drawable/ic_list"
         android:contentDescription="@string/cont_desc_fab_nav_back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabMaquinaFormList"
-        style="@style/Widget.App.FloatingActionButton"
-        android:src="@drawable/ic_list"
-        android:contentDescription="Volver a la lista"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabMaquinaFormHome"
