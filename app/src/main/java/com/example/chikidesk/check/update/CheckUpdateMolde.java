@@ -17,6 +17,14 @@ public class CheckUpdateMolde extends Check<Molde, MoldeUpdateBinding> {
     }
 
     @Override
+    protected Molde newEntityByBinding() {
+        return new Molde(oldEntity.getId(),
+                getTextFrom(binding.edtMoldeUpdateNombre),
+                getTextFrom(binding.edtMoldeUpdateRef),
+                getTextFrom(binding.edtMoldeUpdateDesc));
+    }
+
+    @Override
     protected Molde checkingNewEntity() {
         if(areEqualsToUpdate) return null;
 
@@ -43,14 +51,6 @@ public class CheckUpdateMolde extends Check<Molde, MoldeUpdateBinding> {
             }
         }
         return success ? newEntity : null;
-    }
-
-    @Override
-    protected Molde newEntityByBinding() {
-        return new Molde(oldEntity.getId(),
-                getTextFrom(binding.edtMoldeUpdateNombre),
-                getTextFrom(binding.edtMoldeUpdateRef),
-                getTextFrom(binding.edtMoldeUpdateDesc));
     }
 
     @Override

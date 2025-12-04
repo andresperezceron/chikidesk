@@ -18,6 +18,14 @@ public class CheckUpdateMaquina extends Check<Maquina, MaquinaUpdateBinding> {
 
     @Override
     protected Maquina newEntityByBinding() {
+        return new Maquina(oldEntity.getId(),
+                getTextFrom(binding.edtMaquinaUpdateNombre),
+                getTextFrom(binding.edtMaquinaUpdateRef),
+                getTextFrom(binding.edtMaquinaUpdateDesc));
+    }
+
+    @Override
+    protected Maquina checkingNewEntity() {
         if(areEqualsToUpdate) return null;
 
         binding.tilMaquinaUpdateNombre.setError(null);
@@ -42,15 +50,8 @@ public class CheckUpdateMaquina extends Check<Maquina, MaquinaUpdateBinding> {
                 binding.tilMaquinaUpdateRef.setError("Ya hay un maquina con esta referencia");
             }
         }
-        return success ? newEntity : null;
-    }
 
-    @Override
-    protected Maquina checkingNewEntity() {
-        return new Maquina(oldEntity.getId(),
-                getTextFrom(binding.edtMaquinaUpdateNombre),
-                getTextFrom(binding.edtMaquinaUpdateRef),
-                getTextFrom(binding.edtMaquinaUpdateDesc));
+        return success ? newEntity : null;
     }
 
     @Override
